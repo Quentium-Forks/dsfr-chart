@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div class="widget_container fr-grid-row" :id="widgetId">
+  <div class="widget_container fr-grid-row" :ref="widgetId">
     <div class="r_col fr-col-12">
       <div class="chart">
         <div class="linechart_tooltip">
@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <canvas :id="chartId"></canvas>
+        <canvas :ref="chartId"></canvas>
         <div class="chart_legend fr-mb-0 fr-mt-4v">
           <div v-for="(item, index) in nameParse" :key="item" class="flex fr-mt-3v fr-mb-1v">
             <span class="legende_dot" :style="{ 'background-color': colorParse[index], 'opacity': opacity[index] }"
@@ -366,8 +366,10 @@ export default {
       Chart.defaults.global.defaultFontColor = '#DDDDDD';
 
       this.getData();
+
       const self = this;
-      const ctx = document.getElementById(self.chartId).getContext('2d');
+      const ctx = this.$refs[self.chartId].getContext('2d');
+
       this.chart = new Chart(ctx, {
         data: {
           labels: self.labels,
@@ -655,7 +657,7 @@ export default {
     this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
   },
   mounted() {
-    document.getElementById(this.widgetId).offsetWidth > 486
+    this.$refs[this.widgetId].offsetWidth > 486
       ? (this.display = 'big')
       : (this.display = 'small');
     this.createChart();
@@ -668,10 +670,10 @@ export default {
     });
   },
   beforeUpdate() {
-    this.resetData();
-    this.createChart();
-    const element = document.documentElement;
-    this.changeColors(element.getAttribute('data-fr-theme'));
+    // this.resetData();
+    // this.createChart();
+    // const element = document.documentElement;
+    // this.changeColors(element.getAttribute('data-fr-theme'));
   }
 };
 </script>

@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div class="widget_container fr-grid-row" :id="widgetId">
+  <div class="widget_container fr-grid-row" :ref="widgetId">
     <div class="r_col fr-col-12">
       <div class="chart">
         <div class="linechart_tooltip">
@@ -11,7 +11,7 @@
             </div>
           </div>
         </div>
-        <canvas :id="chartId"></canvas>
+        <canvas :ref="chartId"></canvas>
         <div class="chart_legend fr-mb-0 fr-mt-4v">
           <div v-for="(item, index) in nameParse" :key="index" class="flex fr-mt-3v fr-mb-1v">
             <span class="legende_dot" v-bind:style="{ 'background-color': colorParse[index] }"></span>
@@ -156,7 +156,9 @@ export default {
       Chart.defaults.global.defaultFontColor = '#DDDDDD';
 
       this.getData();
-      const ctx = document.getElementById(this.chartId).getContext('2d');
+
+      const ctx = this.$refs[this.chartId].getContext('2d');
+
       this.chart = new Chart(ctx, {
         type: this.typeGraph,
         data: {
@@ -304,7 +306,7 @@ export default {
   },
   mounted() {
     this.display =
-      document.getElementById(this.widgetId).offsetWidth > 486 ? 'big' : 'small';
+      this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
     this.createChart();
     const element = document.documentElement; // Référence à l'élément <html> du DOM
     element.addEventListener('dsfr.theme', (e) => {
@@ -315,10 +317,10 @@ export default {
     });
   },
   beforeUpdate() {
-    this.resetData();
-    this.createChart();
-    const element = document.documentElement;
-    this.changeColors(element.getAttribute('data-fr-theme'));
+    // this.resetData();
+    // this.createChart();
+    // const element = document.documentElement;
+    // this.changeColors(element.getAttribute('data-fr-theme'));
   }
 };
 </script>

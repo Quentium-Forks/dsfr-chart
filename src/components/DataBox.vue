@@ -90,7 +90,7 @@
                     </div>
 
                     <!-- Graphique -->
-                    <div :id="`chart-section-${widgetId}`" class="databox__content-chart" v-if="shouldDisplayChart">
+                    <div :ref="`chart-section-${widgetId}`" class="databox__content-chart" v-if="shouldDisplayChart">
                         <div class="databox__content-chart-section-canvas">
                             <component :is="component" v-bind="chartProps"></component>
                         </div>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <!-- Tableau -->
-                    <div :id="`table-section-${widgetId}`" v-if="shouldDisplayTable"
+                    <div :ref="`table-section-${widgetId}`" v-if="shouldDisplayTable"
                         class="databox__content-table-responsive">
                         <table-vue :captionTitle="captionTitle" :tablevue_data="serieObj.table"
                             :isMultilineTableHeader="isMultilineTableHeader">
@@ -358,7 +358,6 @@ export default {
         },
         shouldDisplayLegend() {
             return (
-                this.display_legend &&
                 this.serieObj.showGraph &&
                 this.component &&
                 !this.indicator

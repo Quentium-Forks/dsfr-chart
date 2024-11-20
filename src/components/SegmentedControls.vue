@@ -7,7 +7,7 @@
         <input
           value="1"
           type="radio"
-          :id="idcontrol + '-1'"
+          :ref="idcontrol + '-1'"
           :name="idcontrol + 'segmented-2230'"
           @click="emitChartSelected(option1Value)"
           :checked="isOption1Checked"
@@ -28,7 +28,7 @@
         <input
           value="2"
           type="radio"
-          :id="idcontrol + '-2'"
+          :ref="idcontrol + '-2'"
           :name="idcontrol + 'segmented-2230'"
           @click="emitChartSelected(option2Value)"
           :checked="isOption2Checked"
