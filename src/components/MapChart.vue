@@ -69,7 +69,7 @@ import LeftCol from '@/components/LeftCol'
 import maps from '@/components/maps'
 import * as d3 from 'd3-scale'
 import { isMobile, mixin, getColorsByIndex, choosePalette } from '@/utils/global.js'
-import { generateColors } from '@/utils/colors.js'; // Import depuis colors.js
+import { generateColors } from '@/utils/colors.js';
 
 export default {
   name: 'MapChart',
@@ -499,5 +499,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import './Style/MapChart.scss';
+@import '@/styles/MapChart.scss';
 </style>

@@ -34,6 +34,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import { mixin } from '@/utils/global.js'
 
 export default {

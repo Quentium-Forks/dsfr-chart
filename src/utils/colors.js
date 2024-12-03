@@ -1,10 +1,6 @@
 /* eslint-disable */
 import chroma from 'chroma-js';
-import {
-    getDefaultColor, getColorsByIndex,
-    getNeutralColor,
-    choosePalette
-  } from '@/utils/global.js';
+import { getDefaultColor, getColorsByIndex, getNeutralColor, choosePalette } from '@/utils/global.js';
 
 /**
  * Génère des couleurs pour un graphique.

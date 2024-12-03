@@ -1,6 +1,6 @@
 /* eslint-disable */
 import chroma from 'chroma-js';
-import colors from '../assets/colors.json';
+import colors from '@/assets/colors.json';
 
 export const capitalize = function (string) {
   if (string) {
