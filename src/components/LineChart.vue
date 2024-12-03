@@ -130,7 +130,7 @@ export default {
       default: 2
     },
     formatdate: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false
     },
     selectedPalette: {

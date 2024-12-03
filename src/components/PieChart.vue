@@ -74,7 +74,7 @@ export default {
       default: undefined
     },
     fill: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false
     },
     date: {

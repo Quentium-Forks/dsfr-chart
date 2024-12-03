@@ -183,7 +183,7 @@ export default {
             default: '' // Default to an empty string if not provided
         },
         isMultilineTableHeader: {
-            type: Boolean,
+            type: [Boolean, String],
             default: true, // Défini par défaut
         },
         dataBoxTitle: {
@@ -195,7 +195,7 @@ export default {
             default: "Description de la dataBox.",
         },
         indicator: {
-            type: Boolean,
+            type: [Boolean, String],
             default: false,
         },
         trendValue: {
@@ -211,7 +211,7 @@ export default {
             default: "PieChart", // Composant par défaut
         },
         addSources: {
-            type: Boolean,
+            type: [Boolean, String],
             default: false,
         },
         select_options: {

@@ -82,7 +82,7 @@ export default {
       default: '2rem'
     },
     legend: {
-      type: Boolean,
+      type: [Boolean, String],
       default: true
     },
     date: {

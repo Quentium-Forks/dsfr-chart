@@ -81,11 +81,11 @@ export default {
       default: undefined,
     },
     stacked: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
     },
     horizontal: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
     },
     barsize: {
@@ -101,7 +101,7 @@ export default {
       default: 1,
     },
     formatdate: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
     },
     selectedPalette: {
@@ -113,7 +113,7 @@ export default {
       default: () => [3, 4]
     },
     isDescendingOrder: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false, // Default is false; set to true for fixed green-to-red legend order
     },
     unitTooltip: {

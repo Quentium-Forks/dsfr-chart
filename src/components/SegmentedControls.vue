@@ -56,7 +56,7 @@ export default {
       required: true,
     },
     showIcons: {
-      type: Boolean,
+      type: [Boolean, String],
       default: true, // Par défaut, affiche les icônes
     },
     // Nouvelles props pour personnaliser les options

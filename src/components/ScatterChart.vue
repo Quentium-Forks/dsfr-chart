@@ -126,7 +126,7 @@ export default {
       default: 5
     },
     showline: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false
     },
     date: {
@@ -138,7 +138,7 @@ export default {
       default: 2
     },
     formatdate: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false
     },
     // Nouveau paramètre pour choisir la palette de couleurs
