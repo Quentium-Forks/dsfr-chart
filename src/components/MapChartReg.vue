@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div class="widget_container fr-grid-row" :id="widgetId">
+  <div class="widget_container fr-grid-row" :ref="widgetId">
     <LeftCol :props="leftColProps"></LeftCol>
     <div class="r_col fr-col-12 fr-col-lg-9">
       <button class="fr-btn fr-btn--sm fr-icon-arrow-go-back-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-ml-4w" @click="resetGeoFilters" v-if="zoomDep !== undefined" >
@@ -116,7 +116,7 @@ export default {
   methods: {
     createChart() {
     // Initialize region data
-    const parentWidget = document.getElementById(this.widgetId);
+    const parentWidget = this.$refs[this.widgetId];
     const self = this;
     this.dataParse = JSON.parse(this.data);
 
@@ -190,7 +190,7 @@ export default {
     },
     displayTooltip(e) {
       if (isMobile) return
-      const parentWidget = document.getElementById(this.widgetId)
+      const parentWidget = this.$refs[this.widgetId]
       const hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '')
 
       const className = this.getClassMap(hoverdep, 'dep')
@@ -224,7 +224,7 @@ export default {
     hideTooltip(e) {
       if (isMobile) return
       this.tooltip.visibility = 'hidden'
-      const parentWidget = document.getElementById(this.widgetId)
+      const parentWidget = this.$refs[this.widgetId]
       const hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '')
       const className = this.getClassMap(hoverdep, 'dep')
       const elCol = parentWidget.getElementsByClassName(className)

@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div class="widget_container fr-grid-row" :id="widgetId">
+  <div class="widget_container fr-grid-row" :ref="widgetId">
     <div class="r_col fr-col-12">
       <div class="chart">
         <div class="linechart_tooltip" ref="tooltip">
@@ -17,7 +17,7 @@
             </div>
           </div>
         </div>
-        <canvas :id="chartId"></canvas>
+        <canvas :ref="chartId"></canvas>
         <div class="chart_legend fr-mb-0 fr-mt-4v">
           <div class="flex fr-mt-1w fr-mb-0">
             <span class="legende_dot"></span>
@@ -313,8 +313,10 @@ export default {
       if (this.chart) this.chart.destroy();
 
       this.getData();
-      const ctx = document.getElementById(this.chartId).getContext('2d');
+
+      const ctx = this.$refs[this.chartId].getContext('2d');
       const self = this;
+
       this.chart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -563,10 +565,10 @@ export default {
     });
   },
   beforeUpdate() {
-    this.resetData();
-    this.createChart();
-    const element = document.documentElement;
-    this.changeColors(element.getAttribute('data-fr-theme'));
+    // this.resetData();
+    // this.createChart();
+    // const element = document.documentElement;
+    // this.changeColors(element.getAttribute('data-fr-theme'));
   }
 };
 </script>

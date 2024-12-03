@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div class="widget_container fr-grid-row" :id="widgetId">
+  <div class="widget_container fr-grid-row" :ref="widgetId">
     <LeftCol :props="leftColProps"></LeftCol>
     <div class="r_col fr-col-12 fr-col-lg-9">
       <button
@@ -176,7 +176,7 @@ export default {
       this.leftColProps.names = this.name;
       this.leftColProps.min = this.scaleMin;
       this.leftColProps.max = this.scaleMax;
-      const parentWidget = document.getElementById(this.widgetId)
+      const parentWidget = this.$refs[this.widgetId]
       const self = this
 
       // Parse the data
@@ -320,7 +320,7 @@ export default {
     },
     displayTooltip(e) {
       if (isMobile) return
-      const parentWidget = document.getElementById(this.widgetId)
+      const parentWidget = this.$refs[this.widgetId]
       let hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '')
 
       let className
@@ -370,7 +370,7 @@ export default {
     hideTooltip(e) {
       if (isMobile) return
       this.tooltip.visibility = 'hidden'
-      const parentWidget = document.getElementById(this.widgetId)
+      const parentWidget = this.$refs[this.widgetId]
       let hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '')
       let className
       if (hoverdep.includes('DOM')) {
