@@ -47,7 +47,6 @@
     "chartjs-plugin-annotation": "^0.5.7",
     "chroma-js": "^3.1.2",
     "d3-scale": "^4.0.2",
-    "mobile-device-detect": "^0.4.3",
     "vue": "^2.7.16",
     "vue-custom-element": "^3.3.0"
   },

@@ -68,10 +68,8 @@ import chroma from 'chroma-js'
 import LeftCol from '@/components/LeftCol'
 import maps from '@/components/maps'
 import * as d3 from 'd3-scale'
-import { isMobile } from 'mobile-device-detect'
-import { mixin, getColorsByIndex, choosePalette } from '@/utils/global.js'
+import { isMobile, mixin, getColorsByIndex, choosePalette } from '@/utils/global.js'
 import { generateColors } from '@/utils/colors.js'; // Import depuis colors.js
-
 
 export default {
   name: 'MapChart',
