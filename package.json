@@ -25,7 +25,8 @@
     "build-all": "npm run build-bar & npm run build-barline & npm run build-line & npm run build-map & npm run build-multiline & npm run build-pie & npm run build-scatter & npm run build-mapreg & npm run build-gauge & npm run build-table & npm run build-radar & npm run build-databox",
     "lint": "vue-cli-service lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "playwright test"
   },
   "files": [
     "/BarChart",
@@ -60,12 +61,14 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.2",
     "@gouvfr/dsfr": "^1.12.1",
+    "@playwright/test": "^1.49.0",
     "@storybook/addon-essentials": "^8.4.6",
     "@storybook/addon-webpack5-compiler-swc": "^1.0.5",
     "@storybook/blocks": "^8.4.6",
     "@storybook/test": "^8.4.6",
     "@storybook/web-components": "^8.4.6",
     "@storybook/web-components-webpack5": "^8.4.6",
+    "@types/node": "^22.10.1",
     "@vue/cli-plugin-eslint": "^5.0.8",
     "@vue/cli-service": "^5.0.0",
     "eslint-plugin-storybook": "^0.11.1",

@@ -36,3 +36,7 @@ pnpm-debug.log*
 #/package-lock.json
 
 *storybook.log
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
