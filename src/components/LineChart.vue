@@ -285,12 +285,10 @@ export default {
       this.vlineColorParse = vlineColorParse;
       this.hlineColorParse = hlineColorParse;
     },
-
     choosePalette() {
       // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
     },
-
     changeColors(theme) {
       Chart.defaults.global.defaultFontColor = this.getHexaFromToken('text-mention-grey', theme);
       this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
@@ -553,8 +551,11 @@ export default {
     this.chartId = 'myChart' + Math.floor(Math.random() * 1000);
   },
   mounted() {
-    const element = document.documentElement; // Référence à l'élément <html> du DOM
+    this.resetData();
     this.createChart();
+
+    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
+    const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
       if (this.chartId !== '') {
         this.changeColors(e.detail.theme);
@@ -563,12 +564,6 @@ export default {
     addEventListener('resize', () => {
       this.isSmall = document.documentElement.clientWidth < 767;
     });
-  },
-  beforeUpdate() {
-    // this.resetData();
-    // this.createChart();
-    // const element = document.documentElement;
-    // this.changeColors(element.getAttribute('data-fr-theme'));
   }
 };
 </script>

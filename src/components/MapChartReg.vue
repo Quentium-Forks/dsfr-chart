@@ -261,7 +261,6 @@ export default {
       this.zoomDep = undefined
       this.createChart()
     },
-
     changeTheme(theme) {
       if (theme === 'light') {
         this.colLeft = '#eeeeee';
@@ -282,10 +281,12 @@ export default {
     this.widgetId = 'widget' + Math.floor(Math.random() * (1000))
   },
   mounted() {
-    const element = document.documentElement // Reference à l'element <html> du DOM
+    const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      this.changeTheme(e.detail.theme)
-    })
+      if (this.chartId !== '') {
+        this.changeTheme(e.detail.theme);
+      }
+    });
   }
 }
 

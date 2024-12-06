@@ -32,10 +32,6 @@ import { mixin } from '@/utils/global.js'
 export default {
   name: 'LeftCol',
   mixins: [mixin],
-  data () {
-    return {
-    }
-  },
   props: {
     props: Object
   },
@@ -43,8 +39,6 @@ export default {
     gradient () {
       return 'linear-gradient(90deg,' + this.props.colMin + ' 0%,' + this.props.colMax + ' 100%)'
     }
-  },
-  methods: {
   }
 }
 </script>

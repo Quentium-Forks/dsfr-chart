@@ -93,11 +93,8 @@ export default {
     this.tableId = 'table' + Math.floor(Math.random() * (1000))
   },
   mounted () {
+    this.resetData()
     this.getData()
-  },
-  beforeUpdate () {
-    // this.resetData()
-    // this.getData()
   }
 }
 </script>

@@ -623,7 +623,6 @@ export default {
       // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
     },
-
     changeColors(theme) {
       Chart.defaults.global.defaultFontColor = this.getHexaFromToken('text-mention-grey', theme);
       this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
@@ -651,21 +650,19 @@ export default {
     this.widgetId = 'widget' + Math.floor(Math.random() * (1000))
   },
   mounted() {
-    this.$refs[this.widgetId].offsetWidth > 486 ? this.display = 'big' : this.display = 'small'
-    this.createChart()
-    const element = document.documentElement
+    this.resetData();
+    this.createChart();
+
+    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
+    const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      this.changeColors(e.detail.theme)
-    })
-    addEventListener('resize', (event) => {
-      this.isSmall = document.documentElement.clientWidth < 767
-    })
-  },
-  beforeUpdate() {
-    // this.resetData()
-    // this.createChart()
-    // const element = document.documentElement
-    // this.changeColors(element.getAttribute('data-fr-theme'))
+      if (this.chartId !== '') {
+        this.changeColors(e.detail.theme);
+      }
+    });
+    addEventListener('resize', () => {
+      this.isSmall = document.documentElement.clientWidth < 767;
+    });
   }
 }
 </script>

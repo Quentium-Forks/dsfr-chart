@@ -423,7 +423,6 @@ export default {
       this.zoomDep = undefined
       this.createChart()
     },
-
     loadColors() {
       const {
         colorParse,
@@ -445,7 +444,6 @@ export default {
       this.colorParse = colorParse;
       this.colorHover = colorHover;
     },
-
     changeColors(theme) {
       this.loadColors()
       Chart.defaults.global.defaultFontColor = this.getHexaFromToken('text-mention-grey', theme)
@@ -459,12 +457,10 @@ export default {
       }
       this.chart.update(0)
     },
-
     choosePalette() {
       // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
     },
-
     changeTheme(theme) {
       this.textMention = this.getHexaFromToken('text-mention-grey', theme)
       this.leftColProps.textMention = this.textMention
@@ -492,10 +488,12 @@ export default {
     this.prefixClass = 'FR-' + this.level + '-'
   },
   mounted() {
-    const element = document.documentElement // Reference à l'element <html> du DOM
+    const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      this.changeTheme(e.detail.theme)
-    })
+      if (this.chartId !== '') {
+        this.changeTheme(e.detail.theme);
+      }
+    });
   }
 }
 </script>

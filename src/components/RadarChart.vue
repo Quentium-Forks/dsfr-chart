@@ -161,7 +161,6 @@ export default {
       this.colorParse = colorParse.map(colors => colors[0]); // Récupère uniquement la première couleur de chaque série
       this.colorHover = colorHover.map(colors => colors[0]); // Idem pour les couleurs de survol
     },
-
     choosePalette() {
       // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
@@ -334,22 +333,19 @@ export default {
     this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
   },
   mounted() {
-    this.display =
-      this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
+    this.resetData();
     this.createChart();
-    const element = document.documentElement; // Référence à l'élément <html> du DOM
+
+    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
+    const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      this.changeColors(e.detail.theme);
+      if (this.chartId !== '') {
+        this.changeColors(e.detail.theme);
+      }
     });
     addEventListener('resize', () => {
       this.isSmall = document.documentElement.clientWidth < 767;
     });
-  },
-  beforeUpdate() {
-    // this.resetData();
-    // this.createChart();
-    // const element = document.documentElement;
-    // this.changeColors(element.getAttribute('data-fr-theme'));
   }
 };
 </script>

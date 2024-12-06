@@ -301,7 +301,6 @@ export default {
       // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
     },
-
     loadColors() {
       const {
         colorBarParse,
@@ -327,7 +326,6 @@ export default {
       this.vlineColorParse = vlineColorParse;
       this.hlineColorParse = hlineColorParse;
     },
-
     createChart() {
       if (this.chart) this.chart.destroy();
 
@@ -593,11 +591,11 @@ export default {
                       : `${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}`; // Lignes
 
                     divValue.innerHTML += `
-                  <div class="tooltip_value-content" style="display: flex; align-items: center;">
-                    <span ${nodeName} class="tooltip_dot" style="background-color:${color};"></span>
-                    ${displayValue}
-                  </div>
-    `;
+                      <div class="tooltip_value-content" style="display: flex; align-items: center;">
+                        <span ${nodeName} class="tooltip_dot" style="background-color:${color};"></span>
+                        ${displayValue}
+                      </div>
+                    `;
                   }
                 });
               }
@@ -659,20 +657,19 @@ export default {
     this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
   },
   mounted() {
+    this.resetData();
     this.createChart();
-    const element = document.documentElement; // Référence à l'élément <html> du DOM
+
+    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
+    const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      this.changeColors(e.detail.theme);
+      if (this.chartId !== '') {
+        this.changeColors(e.detail.theme);
+      }
     });
     addEventListener('resize', () => {
       this.isSmall = document.documentElement.clientWidth < 767;
     });
-  },
-  beforeUpdate() {
-    // this.resetData();
-    // this.createChart();
-    // const element = document.documentElement;
-    // this.changeColors(element.getAttribute('data-fr-theme'));
   }
 };
 </script>
