@@ -12,5 +12,10 @@ module.exports = {
   productionSourceMap: false,
   chainWebpack: config => {
     config.optimization.delete('splitChunks')
+    config.plugin().use(webpack.DefinePlugin, [
+      {
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+      },
+    ]);
   },
 }
