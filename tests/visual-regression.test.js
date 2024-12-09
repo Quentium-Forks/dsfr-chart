@@ -23,6 +23,7 @@ describe('Charts visual regression', () => {
     story.paths.forEach((path) => {
       test(`${story.name} - ${path.name}`, async ({ page }) => {
         await page.goto(path.url)
+        await page.setViewportSize({ width: 1920, height: 1080 })
         // await page.waitForSelector('#storybook-root')
 
         const graph = await page.locator('#storybook-preview-iframe')
