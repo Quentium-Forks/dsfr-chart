@@ -13,6 +13,11 @@ module.exports = defineConfig({
     trace: 'on-first-retry'
   },
 
+  webServer: {
+    command: 'npm run serve',
+    url: 'http://localhost:8080'
+  },
+
   projects: [
     {
       name: 'chromium',

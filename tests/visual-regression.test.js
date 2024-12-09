@@ -38,3 +38,17 @@ describe('Charts visual regression', () => {
     })
   })
 })
+
+describe('Dev doc page visual regression', () => {
+  test('Full page', async ({ page }) => {
+    await page.goto('http://localhost:8080/')
+    await page.setViewportSize({ width: 1920, height: 1080 })
+    await expect(page).toHaveScreenshot(
+      `dev-doc-full-page-${process.platform}.png`,
+      {
+        animations: 'disabled',
+        fullPage: true
+      }
+    )
+  })
+})
