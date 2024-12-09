@@ -4,12 +4,33 @@ const meta = {
 
 export default meta
 
-export const Default = {
+export const Vertical = {
   args: {
-    x: '[["15 à 29 ans", "30 à 44 ans", "45 à 59 ans", "60 à 74 ans", "75 ans ou plus"]]',
-    y: '[[75.4, 80.5, 66.8, 43.4, 12.1]]',
-    name: '["Achat sur internet au cours des 12 derniers mois (%)"]',
-    'selected-palette': 'neutral',
+    x: '[["2025", "2030", "2035", "2040", "2050", "2060", "2070"]]',
+    y: '[[69.1, 70.3, 71.4, 72.5, 74, 75.2, 76.4]]',
+    name: '["Population en millions"]',
+    'selected-palette': 'defaultColor',
+    'unit-tooltip': 'millions'
+  }
+}
+
+export const Horizontal = {
+  args: {
+    x: '[["2000", "2010", "2020"], ["2000", "2010", "2020"]]',
+    y: '[[11.1, 10.5, 8.4], [8.8, 7.5, 5.6]]',
+    name: '["Empreinte carbone", "Émission sur le territoire national"]',
+    horizontal: 'true',
+    'unit-tooltip': 'tonnes'
+  }
+}
+
+export const Stacked = {
+  args: {
+    x: '[["Ensemble des Français", "Agglomération parisienne", "Communauté urbaine de province", "Commune rurale"]]',
+    y: '[[15, 19, 15, 13], [45, 40, 47, 41], [36, 32, 34, 44], [4, 9, 4, 2]]',
+    name: '["Tout à fait satisfait", "Plutôt satisfait", "Plutôt pas satisfait", "Pas du tout satisfait"]',
+    stacked: 'true',
+    'selected-palette': 'divergentDescending',
     'unit-tooltip': '%'
   }
 }
