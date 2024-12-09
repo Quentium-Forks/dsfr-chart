@@ -228,14 +228,16 @@ export default {
                 const value = bodyLines[0][0]; // assuming bodyLines[0][0] contains the value
                 const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
-                const nodeName = this.$el.querySelector('.tooltip_dot').attributes[0].nodeName;
+                // Retrieve the node name for tooltip dots
+                const tooltipDotElement = this.$el.querySelector('.tooltip_dot');
+                const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
 
                 divValue.innerHTML = `
                   <div class="tooltip_value-content">
-                      <span ${nodeName}="" class="tooltip_dot" style="background-color:${color};"></span>
-                      ${displayValue}
-                    </div>
-                  `;
+                    <span ${nodeName}="" class="tooltip_dot" style="background-color:${color};"></span>
+                    ${displayValue}
+                  </div>
+                `;
               }
 
               const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
