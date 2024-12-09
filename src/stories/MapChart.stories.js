@@ -22,7 +22,7 @@ export const Departemental = {
   }
 }
 
-export const DecoupageRegional = {
+export const Decoupage = {
   args: {
     data: '{"84": 1, "32": 10, "93": 20, "44": 30, "76": 40, "28": 50, "75": 60, "24": 70, "53": 80, "94": 90, "52": 100, "01": 95, "02": 85, "03": 75, "04": 65, "06": "55", "27": 100, "11": 35}',
     valuenat: '10',
