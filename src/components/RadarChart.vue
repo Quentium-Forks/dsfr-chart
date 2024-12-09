@@ -286,7 +286,7 @@ export default {
                     const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
                     divValue.innerHTML += `
-                      <div class="tooltip_value-content" style="display: flex; align-items: center;">
+                      <div class="tooltip_value-content">
                         <span ${nodeName}="" class="tooltip_dot" style="background-color:${color};"></span>
                         ${displayValue}
                       </div>
