@@ -11,7 +11,7 @@ export const Default = {
     ybar: '[826.1, 793.1, 807.4, 832.8]',
     name: 'Naissances',
     nameBar: 'Taux de natalité',
-    'unit-tooltip': '%',
-    'unit-tooltip-bar': 'milliers'
+    unitTooltip: '%',
+    unitTooltipBar: 'milliers'
   }
 }
