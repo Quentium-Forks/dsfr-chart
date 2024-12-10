@@ -1,4 +1,3 @@
-/* eslint-disable */
 import chroma from 'chroma-js';
 import { getDefaultColor, getColorsByIndex, getNeutralColor, choosePalette } from '@/utils/global.js';
 
@@ -217,7 +216,6 @@ export function changeChartColors({
       chart.data.datasets[i].hoverBorderColor = chart.colorHover[i];
       chart.data.datasets[i].hoverBackgroundColor = chart.colorHover[i];
 
-      /* eslint-disable */
       console.log('Debug: chart.colorParse', chart.colorParse);
       console.log('Debug: chart.colorParse[i]', chart.colorParse[i]);
       console.log('Debug: chart.data.datasets', chart.data.datasets);

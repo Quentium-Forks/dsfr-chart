@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <fieldset class="fr-segmented fr-segmented--no-legend fr-segmented--sm">
     <div class="fr-segmented__elements">
@@ -44,7 +43,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default {
   props: {
     idcontrol: {

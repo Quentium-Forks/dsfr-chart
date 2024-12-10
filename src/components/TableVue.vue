@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div class="fr-table--sm fr-table fr-table fr-table--layout-fixed fr-table--no-caption fr-mb-0 "
     id="table-bordered-component">
@@ -73,7 +72,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default {
   name: "TableVue",
   props: {

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import chroma from 'chroma-js';
 import colors from '@/assets/colors.json';
 

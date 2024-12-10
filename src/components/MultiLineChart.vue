@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div class="widget_container fr-grid-row" :ref="widgetId">
     <div class="r_col fr-col-12">
@@ -53,7 +52,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { Chart } from 'chart.js';
 import chroma from 'chroma-js';
 import { mixin, getColorsByIndex, getNeutralColor, choosePalette } from '@/utils/global.js';

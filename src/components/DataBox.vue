@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
     <div class="box">
         <div :class="[
@@ -142,7 +141,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import PieChart from "./PieChart.vue";
 import BarChart from "./BarChart.vue";
 import MapChart from "./MapChart.vue";

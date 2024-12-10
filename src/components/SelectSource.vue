@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div class="fr-select-group select-widget">
     <select v-if="lsOptions.length > 0" class="fr-select" :ref="id_select" v-model="selectedOption" @change="emitSelectedValue">
@@ -10,7 +9,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default {
   name: "SelectSource",
   props: {

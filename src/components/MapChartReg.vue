@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div class="widget_container fr-grid-row" :ref="widgetId">
     <LeftCol :props="leftColProps"></LeftCol>
@@ -25,7 +24,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import LeftCol from '@/components/LeftCol.vue'
 import maps from '@/components/maps'
 import * as d3 from 'd3-scale'

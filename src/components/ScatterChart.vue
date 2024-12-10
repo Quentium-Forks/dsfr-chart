@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>
   <div class="widget_container fr-grid-row" :ref="widgetId">
     <div class="r_col fr-col-12">
@@ -44,7 +43,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 import { Chart } from 'chart.js'
 import { mixin, choosePalette } from '@/utils/global.js';
 import { generateScatterChartColors } from '@/utils/colors.js';
