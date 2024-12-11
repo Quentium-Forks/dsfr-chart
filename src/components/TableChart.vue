@@ -1,18 +1,47 @@
 <template>
-  <div class="widget_container fr-grid-row" :ref="widgetId">
-    <div class='fr-table scroll' :ref="tableId" :style="styleHeight">
+  <div
+    :ref="widgetId"
+    class="widget_container fr-grid-row"
+  >
+    <div
+      :ref="tableId"
+      class="fr-table scroll"
+      :style="styleHeight"
+    >
       <table aria-labelledby="table-caption">
-        <caption id="table-caption">{{varname}}</caption>
+        <caption id="table-caption">
+          {{ varname }}
+        </caption>
         <thead>
           <tr>
-            <th scope="col">{{varname}}</th>
-            <th v-for="(item, index) in nameParse" :key="index" scope="col">{{item}}</th>
+            <th scope="col">
+              {{ varname }}
+            </th>
+            <th
+              v-for="(item, index) in nameParse"
+              :key="index"
+              scope="col"
+            >
+              {{ item }}
+            </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, rowIndex) in xparse" :key="rowIndex" :ref="'table-row-' + rowIndex">
-            <td :class="getClass(item)">{{item}}</td>
-            <td v-for="(item2, colIndex) in yparse" :key="colIndex" :class="getClass(yparse[colIndex][rowIndex])">{{convertIntToHumanTable(yparse[colIndex][rowIndex])}}</td>
+          <tr
+            v-for="(item, rowIndex) in xparse"
+            :key="rowIndex"
+            :ref="'table-row-' + rowIndex"
+          >
+            <td :class="getClass(item)">
+              {{ item }}
+            </td>
+            <td
+              v-for="(item2, colIndex) in yparse"
+              :key="colIndex"
+              :class="getClass(yparse[colIndex][rowIndex])"
+            >
+              {{ convertIntToHumanTable(yparse[colIndex][rowIndex]) }}
+            </td>
           </tr>
         </tbody>
       </table>
@@ -26,16 +55,6 @@ import { mixin } from '@/utils/global.js'
 export default {
   name: 'TableChart',
   mixins: [mixin],
-  data () {
-    return {
-      widgetId: '',
-      tableId: '',
-      xparse: [],
-      yparse: [],
-      nameParse: [],
-      styleHeight: ''
-    }
-  },
   props: {
     x: {
       type: String,
@@ -57,6 +76,24 @@ export default {
       type: String,
       default: '25rem'
     }
+  },
+  data () {
+    return {
+      widgetId: '',
+      tableId: '',
+      xparse: [],
+      yparse: [],
+      nameParse: [],
+      styleHeight: ''
+    }
+  },
+  created () {
+    this.widgetId = 'widget' + Math.floor(Math.random() * (1000))
+    this.tableId = 'table' + Math.floor(Math.random() * (1000))
+  },
+  mounted () {
+    this.resetData()
+    this.getData()
   },
   methods: {
     resetData () {
@@ -87,14 +124,6 @@ export default {
     getClass (value) {
       return typeof value === 'number' ? 'text-right' : 'text-left'
     }
-  },
-  created () {
-    this.widgetId = 'widget' + Math.floor(Math.random() * (1000))
-    this.tableId = 'table' + Math.floor(Math.random() * (1000))
-  },
-  mounted () {
-    this.resetData()
-    this.getData()
   }
 }
 </script>

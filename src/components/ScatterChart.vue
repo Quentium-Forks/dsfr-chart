@@ -1,41 +1,81 @@
 <template>
-  <div class="widget_container fr-grid-row" :ref="widgetId">
+  <div
+    :ref="widgetId"
+    class="widget_container fr-grid-row"
+  >
     <div class="r_col fr-col-12">
       <div class="chart">
         <div class="linechart_tooltip">
-          <div class="tooltip_header fr-text--sm fr-mb-0"></div>
+          <div class="tooltip_header fr-text--sm fr-mb-0" />
           <div class="tooltip_body">
             <div class="tooltip_value">
-              <span class="tooltip_dot"></span>
+              <span class="tooltip_dot" />
             </div>
           </div>
         </div>
-        <canvas :ref="chartId"></canvas>
+        <canvas :ref="chartId" />
         <!-- Légende pour les séries de données -->
         <div class="chart_legend fr-mb-0 fr-mt-4v">
-          <div v-for="(item, index) in nameParse" :key="item" class="flex fr-mt-3v fr-mb-1v">
-            <span class="legende_dot" :style="{ 'background-color': colorParse[index] }"></span>
-            <p class='fr-text--sm fr-text--bold fr-ml-1w fr-mb-0'>
+          <div
+            v-for="(item, index) in nameParse"
+            :key="item"
+            class="flex fr-mt-3v fr-mb-1v"
+          >
+            <span
+              class="legende_dot"
+              :style="{ 'background-color': colorParse[index] }"
+            />
+            <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
               {{ capitalize(nameParse[index]) }}
             </p>
           </div>
         </div>
         <!-- Légende pour les lignes horizontales -->
-        <div v-for="(item2, index2) in hlineNameParse" :key="item2" class="flex fr-mt-3v"
-          :style="{ 'margin-left': isSmall ? '0px' : style }">
-          <span class="legende_dash_line1" :style="{ 'background-color': hlineColorParse[index2] }"></span>
-          <span class="legende_dash_line2" :style="{ 'background-color': hlineColorParse[index2] }"></span>
-          <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">{{ capitalize(hlineNameParse[index2]) }}</p>
+        <div
+          v-for="(item2, index2) in hlineNameParse"
+          :key="item2"
+          class="flex fr-mt-3v"
+          :style="{ 'margin-left': isSmall ? '0px' : style }"
+        >
+          <span
+            class="legende_dash_line1"
+            :style="{ 'background-color': hlineColorParse[index2] }"
+          />
+          <span
+            class="legende_dash_line2"
+            :style="{ 'background-color': hlineColorParse[index2] }"
+          />
+          <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
+            {{ capitalize(hlineNameParse[index2]) }}
+          </p>
         </div>
         <!-- Légende pour les lignes verticales -->
-        <div v-for="(item3, index3) in vlineNameParse" :key="item3" class="flex fr-mt-3v fr-mb-1v"
-          :style="{ 'margin-left': isSmall ? '0px' : style }">
-          <span class="legende_dash_line1" :style="{ 'background-color': vlineColorParse[index3] }"></span>
-          <span class="legende_dash_line2" :style="{ 'background-color': vlineColorParse[index3] }"></span>
-          <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">{{ capitalize(vlineNameParse[index3]) }}</p>
+        <div
+          v-for="(item3, index3) in vlineNameParse"
+          :key="item3"
+          class="flex fr-mt-3v fr-mb-1v"
+          :style="{ 'margin-left': isSmall ? '0px' : style }"
+        >
+          <span
+            class="legende_dash_line1"
+            :style="{ 'background-color': vlineColorParse[index3] }"
+          />
+          <span
+            class="legende_dash_line2"
+            :style="{ 'background-color': vlineColorParse[index3] }"
+          />
+          <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
+            {{ capitalize(vlineNameParse[index3]) }}
+          </p>
         </div>
-        <div v-if="date !== undefined" class="flex fr-mt-1w" :style="{ 'margin-left': isSmall ? '0px' : style }">
-          <p class="fr-text--xs">Mise à jour : {{ date }}</p>
+        <div
+          v-if="date !== undefined"
+          class="flex fr-mt-1w"
+          :style="{ 'margin-left': isSmall ? '0px' : style }"
+        >
+          <p class="fr-text--xs">
+            Mise à jour : {{ date }}
+          </p>
         </div>
       </div>
     </div>
@@ -51,37 +91,6 @@ import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
 export default {
   name: 'ScatterChart',
   mixins: [mixin],
-  data() {
-    return {
-      widgetId: '',
-      chartId: '',
-      chart: undefined,
-      legendLeftMargin: 100,
-      display: '',
-      datasets: [],
-      xAxisType: 'category',
-      labels: undefined,
-      opacity: [],
-      showPoint: [],
-      xparse: [],
-      yparse: [],
-      nameParse: [],
-      tmpColorParse: [],
-      colorParse: [],
-      vlineParse: [],
-      vlineColorParse: [],
-      tmpVlineColorParse: [],
-      vlineNameParse: [],
-      hlineParse: [],
-      hlineColorParse: [],
-      tmpHlineColorParse: [],
-      hlineNameParse: [],
-      ymax: 0,
-      colorPrecisionBar: '#161616',
-      colorHover: [],
-      isSmall: false
-    }
-  },
   props: {
     x: {
       type: String,
@@ -154,10 +163,61 @@ export default {
       default: ''  // Default to an empty string if no unit is specified
     }
   },
+  data() {
+    return {
+      widgetId: '',
+      chartId: '',
+      chart: undefined,
+      legendLeftMargin: 100,
+      display: '',
+      datasets: [],
+      xAxisType: 'category',
+      labels: undefined,
+      opacity: [],
+      showPoint: [],
+      xparse: [],
+      yparse: [],
+      nameParse: [],
+      tmpColorParse: [],
+      colorParse: [],
+      vlineParse: [],
+      vlineColorParse: [],
+      tmpVlineColorParse: [],
+      vlineNameParse: [],
+      hlineParse: [],
+      hlineColorParse: [],
+      tmpHlineColorParse: [],
+      hlineNameParse: [],
+      ymax: 0,
+      colorPrecisionBar: '#161616',
+      colorHover: [],
+      isSmall: false
+    }
+  },
   computed: {
     style() {
       return this.legendLeftMargin + 'px'
     }
+  },
+  created() {
+    configureChartDefaults();
+    this.chartId = 'myChart' + Math.floor(Math.random() * (1000))
+    this.widgetId = 'widget' + Math.floor(Math.random() * (1000))
+  },
+  mounted() {
+    this.resetData();
+    this.createChart();
+
+    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
+    const element = document.documentElement;
+    element.addEventListener('dsfr.theme', (e) => {
+      if (this.chartId !== '') {
+        this.changeColors(e.detail.theme);
+      }
+    });
+    addEventListener('resize', () => {
+      this.isSmall = document.documentElement.clientWidth < 767;
+    });
   },
   methods: {
     resetData() {
@@ -329,7 +389,7 @@ export default {
           datasets: self.datasets
         },
         plugins: [{
-          afterDatasetDraw: function (chart, args, options) {
+          afterDatasetDraw: function (chart) {
             const ctx = chart.chart.ctx;
             const xScales = chart.config.options.scales.xAxes;
             const yScales = chart.config.options.scales.yAxes;
@@ -370,7 +430,7 @@ export default {
         },
         {
           // Mise à jour de la méthode beforeDatasetsDraw
-          beforeDatasetsDraw: function (chart, args, options) {
+          beforeDatasetsDraw: function (chart) {
             if (chart.tooltip._active && chart.tooltip._active.length) {
               const activePoint = chart.tooltip._active[0];
               const ctx = chart.chart.ctx;
@@ -444,7 +504,7 @@ export default {
                 autoSkip: true,
                 maxTicksLimit: 5,
                 suggestedMax: self.ymax,
-                callback: function (value, index, values) {
+                callback: function (value) {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B'
                   } else if (value >= 1000000 || value <= -1000000) {
@@ -489,7 +549,7 @@ export default {
               title: function (tooltipItems) {
                 return tooltipItems[0].label
               },
-              labelTextColor: function (tooltipItems) {
+              labelTextColor: function () {
                 const colors = []
                 self.showPoint.forEach(function (show, i) {
                   if (show) {
@@ -586,7 +646,7 @@ export default {
         this.chart.data.datasets[index].showLine = false
       }
       this.opacity.length = 0
-      this.showPoint.forEach(function (show, j) {
+      this.showPoint.forEach(function (show) {
         if (show) {
           self.opacity.push(1)
         } else {
@@ -641,26 +701,6 @@ export default {
       }
       this.chart.update(0)
     }
-  },
-  created() {
-    configureChartDefaults();
-    this.chartId = 'myChart' + Math.floor(Math.random() * (1000))
-    this.widgetId = 'widget' + Math.floor(Math.random() * (1000))
-  },
-  mounted() {
-    this.resetData();
-    this.createChart();
-
-    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
-    const element = document.documentElement;
-    element.addEventListener('dsfr.theme', (e) => {
-      if (this.chartId !== '') {
-        this.changeColors(e.detail.theme);
-      }
-    });
-    addEventListener('resize', () => {
-      this.isSmall = document.documentElement.clientWidth < 767;
-    });
   }
 }
 </script>

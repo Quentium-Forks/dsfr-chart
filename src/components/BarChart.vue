@@ -1,29 +1,47 @@
 <template>
-  <div class="widget_container fr-grid-row" :ref="widgetId">
+  <div
+    :ref="widgetId"
+    class="widget_container fr-grid-row"
+  >
     <div class="r_col fr-col-12">
       <div class="chart">
         <!-- Tooltip personnalisé -->
-        <div class="linechart_tooltip" style="opacity: 0; position: absolute;">
-          <div class="tooltip_header fr-text--sm fr-mb-0"></div>
+        <div
+          class="linechart_tooltip"
+          style="opacity: 0; position: absolute;"
+        >
+          <div class="tooltip_header fr-text--sm fr-mb-0" />
           <div class="tooltip_body">
-            <div class="tooltip_value"></div>
+            <div class="tooltip_value" />
           </div>
         </div>
         <!-- Canvas pour le graphique -->
-        <canvas :ref="chartId"></canvas>
+        <canvas :ref="chartId" />
         <!-- Légende -->
 
         <div class="chart_legend fr-mb-0 fr-mt-4v">
-          <div v-for="(item, index) in nameParse" :key="item" class="flex fr-mt-3v fr-mb-1v">
-            <span class="legende_dot" :style="{ 'background-color': legendColors[index] }"></span>
+          <div
+            v-for="(item, index) in nameParse"
+            :key="item"
+            class="flex fr-mt-3v fr-mb-1v"
+          >
+            <span
+              class="legende_dot"
+              :style="{ 'background-color': legendColors[index] }"
+            />
             <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
               {{ capitalize(nameParse[index]) }}
             </p>
           </div>
         </div>
         <!-- Date de mise à jour -->
-        <div v-if="date !== undefined" class="flex fr-mt-1w">
-          <p class="fr-text--xs">Mise à jour : {{ date }}</p>
+        <div
+          v-if="date !== undefined"
+          class="flex fr-mt-1w"
+        >
+          <p class="fr-text--xs">
+            Mise à jour : {{ date }}
+          </p>
         </div>
       </div>
     </div>
@@ -43,25 +61,6 @@ Chart.pluginService.register(annotationPlugin);
 export default {
   name: 'BarChart',
   mixins: [mixin],
-  data() {
-    return {
-      widgetId: '',
-      chartId: '',
-      chart: undefined,
-      legendLeftMargin: 100,
-      datasets: [],
-      labels: [],
-      xparse: [],
-      yparse: [],
-      nameParse: [],
-      tmpColorParse: [],
-      colorParse: [],
-      colorHover: [],
-      typeGraph: '',
-      isSmall: false,
-      legendColors: [], // Ajoutez cette ligne
-    };
-  },
   props: {
     x: {
       type: String,
@@ -115,6 +114,45 @@ export default {
       type: String,
       default: ''  // Default to an empty string if no unit is specified
     }
+  },
+  data() {
+    return {
+      widgetId: '',
+      chartId: '',
+      chart: undefined,
+      legendLeftMargin: 100,
+      datasets: [],
+      labels: [],
+      xparse: [],
+      yparse: [],
+      nameParse: [],
+      tmpColorParse: [],
+      colorParse: [],
+      colorHover: [],
+      typeGraph: '',
+      isSmall: false,
+      legendColors: [], // Ajoutez cette ligne
+    };
+  },
+  created() {
+    configureChartDefaults();
+    this.chartId = 'myChart' + Math.floor(Math.random() * 1000);
+    this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
+  },
+  mounted() {
+    this.resetData();
+    this.createChart();
+
+    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
+    const element = document.documentElement;
+    element.addEventListener('dsfr.theme', (e) => {
+      if (this.chartId !== '') {
+        this.changeColors(e.detail.theme);
+      }
+    });
+    addEventListener('resize', () => {
+      this.isSmall = document.documentElement.clientWidth < 767;
+    });
   },
   methods: {
     resetData() {
@@ -286,7 +324,6 @@ export default {
 
               // Update tooltip content
               const titleLines = tooltipModel.title || [];
-              const bodyLines = tooltipModel.body.map(item => item.lines);
 
               const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
               divDate.innerHTML = titleLines[0];
@@ -350,26 +387,6 @@ export default {
 
       this.chart.update(0);
     },
-  },
-  created() {
-    configureChartDefaults();
-    this.chartId = 'myChart' + Math.floor(Math.random() * 1000);
-    this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
-  },
-  mounted() {
-    this.resetData();
-    this.createChart();
-
-    this.display = this.$refs[this.widgetId].offsetWidth > 486 ? 'big' : 'small';
-    const element = document.documentElement;
-    element.addEventListener('dsfr.theme', (e) => {
-      if (this.chartId !== '') {
-        this.changeColors(e.detail.theme);
-      }
-    });
-    addEventListener('resize', () => {
-      this.isSmall = document.documentElement.clientWidth < 767;
-    });
   }
 };
 </script>

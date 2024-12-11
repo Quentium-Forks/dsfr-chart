@@ -1,7 +1,17 @@
 <template>
   <div class="fr-select-group select-widget">
-    <select v-if="lsOptions.length > 0" class="fr-select" :ref="id_select" v-model="selectedOption" @change="emitSelectedValue">
-      <option v-for="option in lsOptions" :key="option.value" :value="option.value">
+    <select
+      v-if="lsOptions.length > 0"
+      :ref="idSelect"
+      v-model="selectedOption"
+      class="fr-select"
+      @change="emitSelectedValue"
+    >
+      <option
+        v-for="option in lsOptions"
+        :key="option.value"
+        :value="option.value"
+      >
         {{ option.label }}
       </option>
     </select>
@@ -10,11 +20,11 @@
 
 <script>
 export default {
-  name: "SelectSource",
+  name: 'SelectSource',
   props: {
-    id_select: {
+    idSelect: {
       type: String,
-      default: "select-source"
+      default: 'select-source'
     },
     optiondefault: {
       type: String,
@@ -28,6 +38,7 @@ export default {
       }
     }
   },
+  emits: ['select-source'],
   data() {
     return {
       selectedOption: this.optiondefault, // Initialise la sélection par défaut
@@ -41,16 +52,16 @@ export default {
       }
     }
   },
-  methods: {
-    emitSelectedValue() {
-      this.$emit("select-source", this.selectedOption);
-    },
-  },
   mounted() {
     // Assurez-vous que `selectedOption` est bien initialisé avec `optiondefault`
     if (!this.selectedOption && this.optiondefault) {
       this.selectedOption = this.optiondefault;
     }
+  },
+  methods: {
+    emitSelectedValue() {
+      this.$emit('select-source', this.selectedOption);
+    },
   }
 };
 </script>

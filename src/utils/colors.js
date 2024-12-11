@@ -169,19 +169,16 @@ export function generateScatterChartColors({
 }
 
 export function changeChartColors({
-  Chart,
+  chart,
   theme,
   yparse,
   loadColors,
   getHexaFromToken,
   colorPrecisionBarCallback = () => {},
 }) {
-  // Met à jour les couleurs globales
-  Chart.defaults.global.defaultFontColor = getHexaFromToken('text-mention-grey', theme);
-
-  console.log('Debug: yparse', yparse); // Add this
-  console.log('Debug: chart.data.datasets', chart.data.datasets); // Add this
-  console.log('Debug: chart.colorParse', chart.colorParse); // Add this
+  // console.log('Debug: yparse', yparse);
+  // console.log('Debug: chart.data.datasets', chart.data.datasets);
+  // console.log('Debug: chart.colorParse', chart.colorParse);
 
   if (!Array.isArray(yparse) || yparse.length === 0) {
     console.error('yparse is not a valid array or is empty:', yparse);
