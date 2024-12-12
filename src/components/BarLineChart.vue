@@ -517,67 +517,67 @@ export default {
                 },
               },
             },
-            yAxes: [
-              {
-                position: 'left',
-                id: 'yAxisL',
-                gridLines: {
-                  drawTicks: false,
-                  zeroLineColor: '#DDDDDD',
-                  color: '#DDDDDD',
-                  borderDash: [3],
-                  lineWidth: 1,
-                },
-                ticks: {
-                  padding: 8,
-                  suggestedMin: 0,
-                  suggestedMax: self.ymax,
-                  maxTicksLimit: 5,
-                  callback: function (value) {
-                    if (value >= 1000000000 || value <= -1000000000) {
-                      return value / 1e9 + 'B';
-                    } else if (value >= 1000000 || value <= -1000000) {
-                      return value / 1e6 + 'M';
-                    } else if (value >= 1000 || value <= -1000) {
-                      return value / 1e3 + 'K';
-                    }
-                    return value;
-                  },
-                },
-                afterFit: function (axis) {
-                  self.legendLeftMargin = axis.width;
+            y: {
+              type: 'linear',
+              position: 'left',
+              id: 'yAxisL',
+              gridLines: {
+                drawTicks: false,
+                zeroLineColor: '#DDDDDD',
+                color: '#DDDDDD',
+                borderDash: [3],
+                lineWidth: 1,
+              },
+              ticks: {
+                padding: 8,
+                suggestedMin: 0,
+                suggestedMax: self.ymax,
+                maxTicksLimit: 5,
+                callback: function (value) {
+                  if (value >= 1000000000 || value <= -1000000000) {
+                    return value / 1e9 + 'B';
+                  } else if (value >= 1000000 || value <= -1000000) {
+                    return value / 1e6 + 'M';
+                  } else if (value >= 1000 || value <= -1000) {
+                    return value / 1e3 + 'K';
+                  }
+                  return value;
                 },
               },
-              {
-                position: 'right',
-                id: 'yAxisR',
-                gridLines: {
-                  drawTicks: false,
-                  zeroLineColor: '#DDDDDD',
-                  color: '#DDDDDD',
-                  borderDash: [3],
-                  lineWidth: 1,
-                },
-                ticks: {
-                  padding: 8,
-                  maxTicksLimit: 5,
-                  suggestedMin: 0,
-                  callback: function (value) {
-                    if (value >= 1000000000 || value <= -1000000000) {
-                      return value / 1e9 + 'B';
-                    } else if (value >= 1000000 || value <= -1000000) {
-                      return value / 1e6 + 'M';
-                    } else if (value >= 1000 || value <= -1000) {
-                      return value / 1e3 + 'K';
-                    }
-                    return value;
-                  },
-                },
-                afterFit: function (axis) {
-                  self.legendLeftMargin = axis.width;
+              afterFit: function (axis) {
+                self.legendLeftMargin = axis.width;
+              },
+            },
+            ybar:{
+              type: 'linear',
+              position: 'right',
+              id: 'yAxisR',
+              gridLines: {
+                drawTicks: false,
+                zeroLineColor: '#DDDDDD',
+                color: '#DDDDDD',
+                borderDash: [3],
+                lineWidth: 1,
+              },
+              ticks: {
+                padding: 8,
+                maxTicksLimit: 5,
+                suggestedMin: 0,
+                callback: function (value) {
+                  if (value >= 1000000000 || value <= -1000000000) {
+                    return value / 1e9 + 'B';
+                  } else if (value >= 1000000 || value <= -1000000) {
+                    return value / 1e6 + 'M';
+                  } else if (value >= 1000 || value <= -1000) {
+                    return value / 1e3 + 'K';
+                  }
+                  return value;
                 },
               },
-            ],
+              afterFit: function (axis) {
+                self.legendLeftMargin = axis.width;
+              },
+            },
           },
           plugins: {
             legend: {
