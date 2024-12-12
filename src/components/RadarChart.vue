@@ -46,12 +46,9 @@
 <script>
 import { Chart } from 'chart.js';
 import chroma from 'chroma-js';
-import annotationPlugin from 'chartjs-plugin-annotation';
 import { choosePalette, mixin } from '@/utils/global.js';
 import { generateColors } from '@/utils/colors.js';
 import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
-
-Chart.pluginService.register(annotationPlugin);
 
 export default {
   name: 'RadarChart',

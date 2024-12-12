@@ -54,10 +54,6 @@ import { mixin, choosePalette } from '@/utils/global.js';
 import { generateColors } from '@/utils/colors.js';
 import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
 
-import annotationPlugin from 'chartjs-plugin-annotation';
-
-Chart.pluginService.register(annotationPlugin);
-
 export default {
   name: 'BarChart',
   mixins: [mixin],
