@@ -96,7 +96,6 @@ export default {
       tmpColorParse: [],
       colorParse: [],
       colorHover: [],
-      typeGraph: 'doughnut',
       isSmall: false,
     };
   },
@@ -140,12 +139,8 @@ export default {
       this.tmpColorParse = [];
       this.colorParse = [];
       this.colorHover = [];
-      this.typeGraph = '';
     },
     getData() {
-      // Détermination du type de graphique
-      this.typeGraph = this.fill ? 'pie' : 'doughnut';
-
       // Parsing des données
       this.xparse = JSON.parse(this.x);
       this.yparse = JSON.parse(this.y);
@@ -188,7 +183,7 @@ export default {
       const ctx = this.$refs[this.chartId].getContext('2d');
 
       this.chart = new Chart(ctx, {
-        type: this.typeGraph,
+        type: this.fill ? 'pie' : 'doughnut',
         data: {
           labels: this.labels,
           datasets: this.datasets,
