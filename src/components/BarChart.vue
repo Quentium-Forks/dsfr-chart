@@ -125,7 +125,6 @@ export default {
       tmpColorParse: [],
       colorParse: [],
       colorHover: [],
-      typeGraph: '',
       isSmall: false,
       legendColors: [], // Ajoutez cette ligne
     };
@@ -165,8 +164,6 @@ export default {
       this.colorHover = [];
     },
     getData() {
-      this.typeGraph = this.horizontal ? 'horizontalBar' : 'bar';
-
       // Parsing des données
       try {
         this.xparse = JSON.parse(this.x);
@@ -234,12 +231,13 @@ export default {
       const ctx = this.$refs[this.chartId].getContext('2d');
 
       this.chart = new Chart(ctx, {
-        type: this.typeGraph,
+        type: 'bar',
         data: {
           labels: this.labels,
           datasets: this.datasets,
         },
         options: {
+          indexAxis: this.horizontal ? 'y' : 'x',
           responsive: true,
           maintainAspectRatio: true, // Changez à true pour maintenir le ratio
           aspectRatio: 2, // Ajustez ce ratio pour gérer la hauteur/largeur du graphique
