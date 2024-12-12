@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { Chart } from 'chart.js';
+import Chart from 'chart.js/auto';
 import chroma from 'chroma-js';
 import { choosePalette, mixin } from '@/utils/global.js';
 import { generateColors } from '@/utils/colors.js';
@@ -193,7 +193,7 @@ export default {
       return choosePalette(this.selectedPalette);
     },
     changeColors(theme) {
-      Chart.defaults.global.defaultFontColor = this.getHexaFromToken('text-mention-grey', theme);
+      Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
       this.chart.options.scale.gridLines.color = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();

@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import Chart from 'chart.js';
+import Chart from 'chart.js/auto';
 import { generateBarLineChartColors } from '@/utils/colors.js';
 import { mixin, choosePalette } from '@/utils/global.js';
 import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
@@ -347,7 +347,7 @@ export default {
       return choosePalette(this.selectedPalette);
     },
     changeColors(theme) {
-      Chart.defaults.global.defaultFontColor = this.getHexaFromToken('text-mention-grey', theme);
+      Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
       this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
       this.chart.options.scales.yAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
 

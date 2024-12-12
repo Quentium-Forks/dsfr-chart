@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { Chart } from 'chart.js';
+import Chart from 'chart.js/auto';
 import { mixin, choosePalette } from '@/utils/global.js';
 import { generateColors } from '@/utils/colors.js';
 import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
@@ -364,7 +364,7 @@ export default {
       });
     },
     changeColors(theme) {
-      Chart.defaults.global.defaultFontColor = this.getHexaFromToken('text-mention-grey', theme);
+      Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
       this.loadColors();
 
       if (theme === 'light') {
