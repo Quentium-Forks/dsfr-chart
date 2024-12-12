@@ -174,14 +174,14 @@ export function changeChartColors({
     return;
   }
   // Met à jour les options des axes
-  if (chart.options.scales) {
-    if (chart.options.scales.xAxes) {
-      chart.options.scales.xAxes[0].ticks.fontColor = getHexaFromToken('text-mention-grey', theme);
-    }
-    if (chart.options.scales.yAxes) {
-      chart.options.scales.yAxes[0].ticks.fontColor = getHexaFromToken('text-mention-grey', theme);
-    }
-  }
+  // if (chart.options.scales) {
+  //   if (chart.options.scales.xAxes) {
+  //     chart.options.scales.xAxes[0].ticks.fontColor = getHexaFromToken('text-mention-grey', theme);
+  //   }
+  //   if (chart.options.scales.yAxes) {
+  //     chart.options.scales.yAxes[0].ticks.fontColor = getHexaFromToken('text-mention-grey', theme);
+  //   }
+  // }
 
   if (chart.options.scale && chart.options.scale.gridLines) {
     chart.options.scale.gridLines.color = getHexaFromToken('border-default-grey', theme);

@@ -348,8 +348,8 @@ export default {
     },
     changeColors(theme) {
       Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
-      this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
-      this.chart.options.scales.yAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
+      // this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
+      // this.chart.options.scales.yAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();
       if (theme === 'light') {
@@ -387,66 +387,62 @@ export default {
             duration: 1000,
           },
           scales: {
-            xAxes: [
-              {
-                offset: true,
-                position: 'center',
-                type: this.xAxisType,
-                gridLines: {
-                  drawTicks: false,
-                  zeroLineColor: '#DDDDDD',
-                  drawOnChartArea: false,
-                  color: '#DDDDDD',
-                  borderDash: [3],
-                  lineWidth: 1,
-                },
-                ticks: {
-                  padding: 10, // Espace supplémentaire autour des étiquettes
-                  fontColor: '#DDDDDD',
-                  labelOffset: 10,
-                  callback: function (value) {
-                    if (self.formatdate) {
-                      const date = new Date(value);
-                      return date.getMonth() + 1 + '/' + date.getFullYear();
-                    } else {
-                      return value;
-                    }
-                  },
-                },
+            x: {
+              offset: true,
+              position: 'center',
+              type: this.xAxisType,
+              gridLines: {
+                drawTicks: false,
+                zeroLineColor: '#DDDDDD',
+                drawOnChartArea: false,
+                color: '#DDDDDD',
+                borderDash: [3],
+                lineWidth: 1,
               },
-            ],
-            yAxes: [
-              {
-                gridLines: {
-                  drawTicks: false,
-                  zeroLineColor: '#DDDDDD',
-                  color: '#DDDDDD',
-                  lineWidth: 1,
-                  borderDash: [3],
-                },
-                ticks: {
-                  position: 'left',
-                  fontColor: '#DDDDDD',
-                  padding: 10, // Espace supplémentaire autour des étiquettes
-                  suggestedMax: this.ymax,
-                  autoSkip: true,
-                  maxTicksLimit: 5,
-                  callback: function (value) {
-                    if (value >= 1e9 || value <= -1e9) {
-                      return value / 1e9 + 'B';
-                    } else if (value >= 1e6 || value <= -1e6) {
-                      return value / 1e6 + 'M';
-                    } else if (value >= 1e3 || value <= -1e3) {
-                      return value / 1e3 + 'K';
-                    }
+              ticks: {
+                padding: 10, // Espace supplémentaire autour des étiquettes
+                fontColor: '#DDDDDD',
+                labelOffset: 10,
+                callback: function (value) {
+                  if (self.formatdate) {
+                    const date = new Date(value);
+                    return date.getMonth() + 1 + '/' + date.getFullYear();
+                  } else {
                     return value;
-                  },
-                },
-                afterFit: function (axis) {
-                  self.legendLeftMargin = axis.width;
+                  }
                 },
               },
-            ],
+            },
+            y: {
+              gridLines: {
+                drawTicks: false,
+                zeroLineColor: '#DDDDDD',
+                color: '#DDDDDD',
+                lineWidth: 1,
+                borderDash: [3],
+              },
+              ticks: {
+                position: 'left',
+                fontColor: '#DDDDDD',
+                padding: 10, // Espace supplémentaire autour des étiquettes
+                suggestedMax: this.ymax,
+                autoSkip: true,
+                maxTicksLimit: 5,
+                callback: function (value) {
+                  if (value >= 1e9 || value <= -1e9) {
+                    return value / 1e9 + 'B';
+                  } else if (value >= 1e6 || value <= -1e6) {
+                    return value / 1e6 + 'M';
+                  } else if (value >= 1e3 || value <= -1e3) {
+                    return value / 1e3 + 'K';
+                  }
+                  return value;
+                },
+              },
+              afterFit: function (axis) {
+                self.legendLeftMargin = axis.width;
+              },
+            },
           },
           legend: {
             display: false,

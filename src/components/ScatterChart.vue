@@ -475,56 +475,52 @@ export default {
             animateRotate: true,
           },
           scales: {
-            xAxes: [
-              {
-                type: self.xAxisType,
-                gridLines: {
-                  zeroLineColor: '#DDDDDD',
-                  drawOnChartArea: false,
-                  color: '#DDDDDD',
-                  lineWidth: 1,
-                },
-                ticks: {
-                  callback: function (value) {
-                    if (self.formatdate) {
-                      return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
-                    } else {
-                      return value;
-                    }
-                  },
-                },
+            x: {
+              type: self.xAxisType,
+              gridLines: {
+                zeroLineColor: '#DDDDDD',
+                drawOnChartArea: false,
+                color: '#DDDDDD',
+                lineWidth: 1,
               },
-            ],
-            yAxes: [
-              {
-                gridLines: {
-                  drawTicks: false,
-                  zeroLineColor: '#DDDDDD',
-                  color: '#DDDDDD',
-                  borderDash: [3],
-                  lineWidth: 1,
-                },
-                ticks: {
-                  padding: 4,
-                  autoSkip: true,
-                  maxTicksLimit: 5,
-                  suggestedMax: self.ymax,
-                  callback: function (value) {
-                    if (value >= 1000000000 || value <= -1000000000) {
-                      return value / 1e9 + 'B';
-                    } else if (value >= 1000000 || value <= -1000000) {
-                      return value / 1e6 + 'M';
-                    } else if (value >= 1000 || value <= -1000) {
-                      return value / 1e3 + 'K';
-                    }
+              ticks: {
+                callback: function (value) {
+                  if (self.formatdate) {
+                    return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
+                  } else {
                     return value;
-                  },
-                },
-                afterFit: function (axis) {
-                  self.legendLeftMargin = axis.width;
+                  }
                 },
               },
-            ],
+            },
+            y: {
+              gridLines: {
+                drawTicks: false,
+                zeroLineColor: '#DDDDDD',
+                color: '#DDDDDD',
+                borderDash: [3],
+                lineWidth: 1,
+              },
+              ticks: {
+                padding: 4,
+                autoSkip: true,
+                maxTicksLimit: 5,
+                suggestedMax: self.ymax,
+                callback: function (value) {
+                  if (value >= 1000000000 || value <= -1000000000) {
+                    return value / 1e9 + 'B';
+                  } else if (value >= 1000000 || value <= -1000000) {
+                    return value / 1e6 + 'M';
+                  } else if (value >= 1000 || value <= -1000) {
+                    return value / 1e3 + 'K';
+                  }
+                  return value;
+                },
+              },
+              afterFit: function (axis) {
+                self.legendLeftMargin = axis.width;
+              },
+            },
           },
           legend: {
             display: false,
@@ -681,8 +677,8 @@ export default {
     },
     changeColors(theme) {
       Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
-      this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
-      this.chart.options.scales.yAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
+      // this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
+      // this.chart.options.scales.yAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();
       if (theme === 'light') {

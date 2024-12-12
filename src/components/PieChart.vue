@@ -321,7 +321,7 @@ export default {
       this.chart.data.datasets[0].backgroundColor = this.colorParse;
       this.chart.data.datasets[0].hoverBackgroundColor = this.colorHover;
       this.chart.data.datasets[0].hoverBorderColor = this.colorHover;
-      this.chart.update(0);
+      // this.chart.update(0);
     },
   },
 };

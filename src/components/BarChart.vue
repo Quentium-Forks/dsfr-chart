@@ -248,36 +248,32 @@ export default {
             duration: 1000,
           },
           scales: {
-            xAxes: [
-              {
-                offset: true, // Remove any offset from the X-axis
-                stacked: this.stacked,
-                gridLines: {
-                  display: false,
-                },
-                ticks: {
-                  beginAtZero: true,
-                  padding: 5, // Espace supplémentaire autour des étiquettes
-                },
+            x: {
+              offset: true, // Remove any offset from the X-axis
+              stacked: this.stacked,
+              gridLines: {
+                display: false,
               },
-            ],
-            yAxes: [
-              {
-                stacked: this.stacked,
-                offset: true,
-                gridLines: {
-                  drawTicks: false,
-                  zeroLineColor: '#DDDDDD',
-                  color: '#DDDDDD',
-                  borderDash: [3],
-                  lineWidth: 1,
-                },
-                ticks: {
-                  beginAtZero: true,
-                  padding: 5, // Espace supplémentaire autour des étiquettes
-                },
+              ticks: {
+                beginAtZero: true,
+                padding: 5, // Espace supplémentaire autour des étiquettes
               },
-            ],
+            },
+            y: {
+              stacked: this.stacked,
+              offset: true,
+              gridLines: {
+                drawTicks: false,
+                zeroLineColor: '#DDDDDD',
+                color: '#DDDDDD',
+                borderDash: [3],
+                lineWidth: 1,
+              },
+              ticks: {
+                beginAtZero: true,
+                padding: 5, // Espace supplémentaire autour des étiquettes
+              },
+            },
           },
           legend: {
             display: false,

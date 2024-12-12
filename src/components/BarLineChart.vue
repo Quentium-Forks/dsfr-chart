@@ -498,27 +498,25 @@ export default {
             duration: 1000,
           },
           scales: {
-            xAxes: [
-              {
-                offset: true,
-                type: self.xAxisType,
-                gridLines: {
-                  zeroLineColor: '#DDDDDD',
-                  drawOnChartArea: false,
-                  color: '#DDDDDD',
-                  lineWidth: 1,
-                },
-                ticks: {
-                  callback: function (value) {
-                    if (self.formatdate) {
-                      return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
-                    } else {
-                      return value;
-                    }
-                  },
+            x: {
+              offset: true,
+              type: self.xAxisType,
+              gridLines: {
+                zeroLineColor: '#DDDDDD',
+                drawOnChartArea: false,
+                color: '#DDDDDD',
+                lineWidth: 1,
+              },
+              ticks: {
+                callback: function (value) {
+                  if (self.formatdate) {
+                    return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
+                  } else {
+                    return value;
+                  }
                 },
               },
-            ],
+            },
             yAxes: [
               {
                 position: 'left',
@@ -695,7 +693,7 @@ export default {
       });
     },
     changeColors(theme) {
-      this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
+      // this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();
       if (theme === 'light') {
