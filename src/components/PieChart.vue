@@ -203,8 +203,10 @@ export default {
             easing: 'easeInOutBack',
             duration: 1000,
           },
-          legend: {
-            display: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
           },
           tooltips: {
             displayColors: false,

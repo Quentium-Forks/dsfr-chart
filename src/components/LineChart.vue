@@ -444,8 +444,10 @@ export default {
               },
             },
           },
-          legend: {
-            display: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
           },
           tooltips: {
             enabled: false,

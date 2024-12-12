@@ -238,8 +238,10 @@ export default {
               borderDash: [3, 3],
             },
           },
-          legend: {
-            display: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
           },
           tooltips: {
             enabled: false,
