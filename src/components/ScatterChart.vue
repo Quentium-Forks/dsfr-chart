@@ -391,7 +391,7 @@ export default {
         plugins: [
           {
             afterDatasetDraw: function (chart) {
-              const ctx = chart.chart.ctx;
+              const ctx = chart.ctx;
               const xScales = chart.config.options.scales.xAxes;
               const yScales = chart.config.options.scales.yAxes;
 
