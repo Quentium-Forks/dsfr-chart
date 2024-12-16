@@ -250,26 +250,28 @@ export default {
             x: {
               offset: true, // Remove any offset from the X-axis
               stacked: this.stacked,
-              gridLines: {
+              grid: {
                 display: false,
+                borderColor: 'transparent',
               },
               ticks: {
                 beginAtZero: true,
+                color: '#666666', // couleur valeurs de l'axe X
                 padding: 5, // Espace supplémentaire autour des étiquettes
               },
             },
             y: {
               stacked: this.stacked,
               offset: true,
-              gridLines: {
+              grid: {
                 drawTicks: false,
-                zeroLineColor: '#DDDDDD',
-                color: '#DDDDDD',
+                borderColor: '#DDDDDD',
                 borderDash: [3],
                 lineWidth: 1,
               },
               ticks: {
                 beginAtZero: true,
+                color: '#666666', // couleur valeurs de l'axe X
                 padding: 5, // Espace supplémentaire autour des étiquettes
               },
             },
