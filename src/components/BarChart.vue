@@ -278,83 +278,86 @@ export default {
             legend: {
               display: false,
             },
-          },
-          tooltips: {
-            enabled: false,
-            displayColors: false,
-            backgroundColor: '#6b6b6b',
-            callbacks: {
-              label: (tooltipItems) => {
-                const datasetIndex = tooltipItems.datasetIndex;
-                const index = tooltipItems.index;
-                const value = this.datasets[datasetIndex].data[index];
-                return this.convertIntToHuman(value);
+            tooltip: {
+              enabled: false,
+              displayColors: false,
+              backgroundColor: '#6b6b6b',
+              callbacks: {
+                label: (tooltipItems) => {
+                  const datasetIndex = tooltipItems.datasetIndex;
+                  const index = tooltipItems.dataIndex;
+                  const value = this.datasets[datasetIndex].data[index];
+                  console.log(value, this.convertIntToHuman(value))
+                  return this.convertIntToHuman(value);
+                },
+                title: (tooltipItems) => tooltipItems[0].label,
+                labelTextColor: (tooltipItems) => {
+                  const datasetIndex = tooltipItems.datasetIndex;
+                  const index = tooltipItems.dataIndex;
+                  return this.colorParse[datasetIndex][index];
+                },
               },
-              title: (tooltipItems) => tooltipItems[0].label,
-              labelTextColor: (tooltipItems) => {
-                const datasetIndex = tooltipItems.datasetIndex;
-                const index = tooltipItems.index;
-                return this.colorParse[datasetIndex][index];
-              },
-            },
-            custom: (tooltipModel) => {
-              const tooltipEl = this.$el.querySelector('.linechart_tooltip');
+              external: (context) => {
+                const tooltipEl = this.$el.querySelector('.linechart_tooltip');
 
-              if (!tooltipEl) return;
+                const tooltipModel = context.tooltip;
 
-              if (!tooltipModel || tooltipModel.opacity === 0) {
-                tooltipEl.style.opacity = 0;
-                return;
-              }
+                if (!tooltipEl) return;
 
-              // Set tooltip position classes
-              tooltipEl.classList.remove('above', 'below', 'no-transform');
-              if (tooltipModel.yAlign) {
-                tooltipEl.classList.add(tooltipModel.yAlign);
-              } else {
-                tooltipEl.classList.add('no-transform');
-              }
+                if (!tooltipModel || tooltipModel.opacity === 0) {
+                  tooltipEl.style.opacity = 0;
+                  return;
+                }
 
-              // Update tooltip content
-              const titleLines = tooltipModel.title || [];
+                // Set tooltip position classes
+                tooltipEl.classList.remove('above', 'below', 'no-transform');
+                if (tooltipModel.yAlign) {
+                  tooltipEl.classList.add(tooltipModel.yAlign);
+                } else {
+                  tooltipEl.classList.add('no-transform');
+                }
 
-              const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-              divDate.innerHTML = titleLines[0];
+                // Update tooltip content
+                const titleLines = tooltipModel.title || [];
 
-              const divValue = tooltipEl.querySelector('.tooltip_value');
-              divValue.innerHTML = '';
+                const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
+                divDate.innerHTML = titleLines[0];
 
-              // Iterate over each data point to set the color and value in the tooltip
-              tooltipModel.dataPoints.forEach((dataPoint) => {
-                const datasetIndex = dataPoint.datasetIndex;
-                const index = dataPoint.index;
+                const divValue = tooltipEl.querySelector('.tooltip_value');
+                divValue.innerHTML = '';
 
-                // Ensure the color is correctly referenced
-                const colorArray = this.colorParse[datasetIndex];
-                const color = colorArray ? colorArray[index] : '#000'; // Fallback to black if color is undefined
+                // Iterate over each data point to set the color and value in the tooltip
+                tooltipModel.dataPoints.forEach((dataPoint) => {
+                  const datasetIndex = dataPoint.datasetIndex;
+                  const index = dataPoint.dataIndex;
 
-                const value = this.convertIntToHuman(this.datasets[datasetIndex].data[index]);
-                const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+                  // Ensure the color is correctly referenced
+                  const colorArray = this.colorParse[datasetIndex];
+                  const color = colorArray ? colorArray[index] : '#000'; // Fallback to black if color is undefined
 
-                divValue.innerHTML += `
+                  const value = this.convertIntToHuman(this.datasets[datasetIndex].data[index]);
+                  const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+
+                  divValue.innerHTML += `
                   <div class="tooltip_value-content" style="display: flex; align-items: center;">
                     <span class="tooltip_dot" style="background-color:${color};"></span>
                     <p class="tooltip_place fr-mb-0">${displayValue}</p>
                   </div>
                 `;
-              });
+                });
 
-              // Position the tooltip
-              const position = this.chart.canvas.getBoundingClientRect();
-              tooltipEl.style.position = 'absolute';
-              tooltipEl.style.pointerEvents = 'none';
+                // Position the tooltip
+                const position = this.chart.canvas.getBoundingClientRect();
+                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.pointerEvents = 'none';
 
-              let tooltipX = position.left + window.pageXOffset + tooltipModel.caretX + 10;
-              let tooltipY = position.top + window.pageYOffset + tooltipModel.caretY - 18;
+                let tooltipX = position.left + window.pageXOffset + tooltipModel.caretX + 10;
+                let tooltipY = position.top + window.pageYOffset + tooltipModel.caretY - 18;
 
-              tooltipEl.style.left = `${tooltipX}px`;
-              tooltipEl.style.top = `${tooltipY}px`;
-              tooltipEl.style.opacity = 1;
+                tooltipEl.style.left = `${tooltipX}px`;
+                tooltipEl.style.top = `${tooltipY}px`;
+                tooltipEl.style.opacity = 1;
+              },
             },
           },
         },
