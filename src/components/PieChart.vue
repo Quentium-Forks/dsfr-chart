@@ -207,90 +207,90 @@ export default {
             legend: {
               display: false,
             },
-          },
-          tooltips: {
-            displayColors: false,
-            backgroundColor: '#6b6b6b',
-            enabled: false,
-            callbacks: {
-              label: (tooltipItems) => {
-                return this.datasets[0].data[tooltipItems.index];
+            tooltip: {
+              displayColors: false,
+              backgroundColor: '#6b6b6b',
+              enabled: false,
+              callbacks: {
+                label: (tooltipItems) => { 
+                  return this.datasets[0].data[tooltipItems.dataIndex];
+                },
+                title: (tooltipItems) => {
+                  return this.labels[tooltipItems[0].dataIndex];
+                },
+                labelTextColor: (tooltipItems) => {
+                  return this.colorParse[tooltipItems.dataIndex];
+                },
               },
-              title: (tooltipItems) => {
-                return this.labels[tooltipItems[0].index];
-              },
-              labelTextColor: (tooltipItems) => {
-                return this.colorParse[tooltipItems.index];
-              },
-            },
-            custom: (context) => {
-              // Tooltip Element
-              const tooltipEl = this.$el.querySelector('.linechart_tooltip');
+              external: (context) => {
+                // Tooltip Element
+                const tooltipEl = this.$el.querySelector('.linechart_tooltip');
 
-              // Hide if no tooltip
-              const tooltipModel = context;
-              if (tooltipModel.opacity === 0) {
-                tooltipEl.style.opacity = 0;
-                return;
-              }
+                // Hide if no tooltip
+                const tooltipModel = context.tooltip;
+                if (tooltipModel.opacity === 0) {
+                  tooltipEl.style.opacity = 0;
+                  return;
+                }
 
-              // Set caret Position
-              tooltipEl.classList.remove('above', 'below', 'no-transform');
-              if (tooltipModel.yAlign) {
-                tooltipEl.classList.add(tooltipModel.yAlign);
-              } else {
-                tooltipEl.classList.add('no-transform');
-              }
+                // Set caret Position
+                tooltipEl.classList.remove('above', 'below', 'no-transform');
+                if (tooltipModel.yAlign) {
+                  tooltipEl.classList.add(tooltipModel.yAlign);
+                } else {
+                  tooltipEl.classList.add('no-transform');
+                }
 
-              function getBody(bodyItem) {
-                return bodyItem.lines;
-              }
-              // Set Text
-              if (tooltipModel.body) {
-                const titleLines = tooltipModel.title || [];
-                const bodyLines = tooltipModel.body.map(getBody);
+                function getBody(bodyItem) {
+                  return bodyItem.lines;
+                }
+                // Set Text
+                if (tooltipModel.body) {
+                  const titleLines = tooltipModel.title || [];
+                  const bodyLines = tooltipModel.body.map(getBody);
 
-                const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                divDate.innerHTML = titleLines;
-                const color = tooltipModel.labelTextColors[0];
-                const divValue = this.$el.querySelector('.tooltip_value');
-                const value = bodyLines[0][0]; // assuming bodyLines[0][0] contains the value
-                const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+                  const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
+                  divDate.innerHTML = titleLines;
+                  const color = tooltipModel.labelTextColors[0];
+                  const divValue = this.$el.querySelector('.tooltip_value');
+                  const value = bodyLines[0][0]; // assuming bodyLines[0][0] contains the value
+                  const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
-                // Retrieve the node name for tooltip dots
-                const tooltipDotElement = this.$el.querySelector('.tooltip_dot');
-                const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
+                  // Retrieve the node name for tooltip dots
+                  const tooltipDotElement = this.$el.querySelector('.tooltip_dot');
+                  const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
 
-                divValue.innerHTML = `
+                  divValue.innerHTML = `
                   <div class="tooltip_value-content">
                     <span ${nodeName}="" class="tooltip_dot" style="background-color:${color};"></span>
                     ${displayValue}
                   </div>
                 `;
-              }
+                }
 
-              const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
+                const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
 
-              const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
-              const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
-              tooltipEl.style.position = 'absolute';
-              tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
-              tooltipEl.style.pointerEvents = 'none';
-              let tooltipX = positionX + tooltipModel.caretX + 10;
-              let tooltipY = positionY + tooltipModel.caretY - 18;
-              if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
-              }
-              if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
-              }
-              if (tooltipX < positionX) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
-              }
-              tooltipEl.style.left = tooltipX + 'px';
-              tooltipEl.style.top = tooltipY + 'px';
-              tooltipEl.style.opacity = 1;
+                const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
+                const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
+                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+                tooltipEl.style.pointerEvents = 'none';
+                let tooltipX = positionX + tooltipModel.caretX + 10;
+                let tooltipY = positionY + tooltipModel.caretY - 18;
+                if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
+                }
+                if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
+                }
+                if (tooltipX < positionX) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
+                }
+                tooltipEl.style.left = tooltipX + 'px';
+                tooltipEl.style.top = tooltipY + 'px';
+                tooltipEl.style.opacity = 1;
+              },
             },
           },
         },
