@@ -443,11 +443,11 @@ export default {
             afterDraw: function (chart) {
               if (chart.tooltip._active !== undefined) {
                 if (chart.tooltip._active.length !== 0) {
-                  const x = chart.tooltip._active[0]._model.x;
+                  const x = chart.tooltip.getActiveElements()[0].element.x
                   const index = chart.tooltip._active[0]._index;
-                  const yAxisR = chart.scales.yAxisR;
-                  const yAxisL = chart.scales.yAxisL;
-                  const xAxis = chart.scales['x-axis-0'];
+                  const yAxisR = chart.scales.yBar;
+                  const yAxisL = chart.scales.y;
+                  const xAxis = chart.scales.x;
 
                   const y = yAxisR.getPixelForValue(self.yparse[index]);
                   const ybar = yAxisL.getPixelForValue(self.ybarparse[index]);
@@ -574,8 +574,7 @@ export default {
             legend: {
               display: false,
             },
-          },
-          tooltips: {
+            tooltip: {
             enabled: false,
             displayColors: false,
             backgroundColor: '#6b6b6b',
@@ -583,7 +582,7 @@ export default {
               label: function (tooltipItems) {
                 const label = [];
                 self.datasets.forEach(function (set) {
-                  label.push(self.convertIntToHuman(set.data[tooltipItems.index]));
+                  label.push(self.convertIntToHuman(set.data[tooltipItems.dataIndex]));
                 });
                 return label;
               },
@@ -591,95 +590,96 @@ export default {
                 return tooltipItems[0].label;
               },
             },
-            custom: function (context) {
-              // Tooltip Element
-              const tooltipEl = self.$el.querySelector('.linechart_tooltip');
+              external: function (context) {
+                // Tooltip Element
+                const tooltipEl = self.$el.querySelector('.linechart_tooltip');
 
-              // Hide if no tooltip
-              const tooltipModel = context;
-              if (tooltipModel.opacity === 0) {
-                tooltipEl.style.opacity = 0;
-                return;
-              }
+                // Hide if no tooltip
+                const tooltipModel = context.tooltip;
+                if (tooltipModel.opacity === 0) {
+                  tooltipEl.style.opacity = 0;
+                  return;
+                }
 
-              // Set caret Position
-              tooltipEl.classList.remove('above', 'below', 'no-transform');
-              if (tooltipModel.yAlign) {
-                tooltipEl.classList.add(tooltipModel.yAlign);
-              } else {
-                tooltipEl.classList.add('no-transform');
-              }
+                // Set caret Position
+                tooltipEl.classList.remove('above', 'below', 'no-transform');
+                if (tooltipModel.yAlign) {
+                  tooltipEl.classList.add(tooltipModel.yAlign);
+                } else {
+                  tooltipEl.classList.add('no-transform');
+                }
 
-              function getBody(bodyItem) {
-                return bodyItem.lines;
-              }
+                function getBody(bodyItem) {
+                  return bodyItem.lines;
+                }
 
-              // Set Text
-              if (tooltipModel.body) {
-                const titleLines = tooltipModel.title || [];
-                const bodyLines = tooltipModel.body.map(getBody);
+                // Set Text
+                if (tooltipModel.body) {
+                  const titleLines = tooltipModel.title || [];
+                  const bodyLines = tooltipModel.body.map(getBody);
 
-                // Set the title in the tooltip header
-                const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                divDate.innerHTML = titleLines[0];
+                  // Set the title in the tooltip header
+                  const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
+                  divDate.innerHTML = titleLines[0];
 
-                const divValue = tooltipEl.querySelector('.tooltip_value');
-                divValue.innerHTML = '';
+                  const divValue = tooltipEl.querySelector('.tooltip_value');
+                  divValue.innerHTML = '';
 
-                // Access color arrays for different datasets
-                const colors = [self.colorBarParse, self.colorParse]; // Adjust to match your color variables
+                  // Access color arrays for different datasets
+                  const colors = [self.colorBarParse, self.colorParse]; // Adjust to match your color variables
 
-                // If there is no .tooltip_dot element, set a fallback for nodeName
-                const tooltipDotElement = self.$el.querySelector('.tooltip_dot');
-                const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
+                  // If there is no .tooltip_dot element, set a fallback for nodeName
+                  const tooltipDotElement = self.$el.querySelector('.tooltip_dot');
+                  const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
 
-                // Iterate over bodyLines to set each line with the correct color and value
-                bodyLines[0].forEach(function (line, i) {
-                  if (line !== undefined) {
-                    const color = colors[i] ? colors[i] : '#000'; // Fallback to black if color is undefined
+                  // Iterate over bodyLines to set each line with the correct color and value
+                  bodyLines[0].forEach(function (line, i) {
+                    if (line !== undefined) {
+                      const color = colors[i] ? colors[i] : '#000'; // Fallback to black if color is undefined
 
-                    // Détecter si c'est une barre ou une ligne en fonction de l'index
-                    const displayValue =
-                      i === 0
-                        ? `${line}${self.unitTooltipBar ? ' ' + self.unitTooltipBar : ''}` // Barres
-                        : `${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}`; // Lignes
+                      // Détecter si c'est une barre ou une ligne en fonction de l'index
+                      const displayValue =
+                        i === 0
+                          ? `${line}${self.unitTooltipBar ? ' ' + self.unitTooltipBar : ''}` // Barres
+                          : `${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}`; // Lignes
 
-                    divValue.innerHTML += `
-                      <div class="tooltip_value-content" style="display: flex; align-items: center;">
-                        <span ${nodeName} class="tooltip_dot" style="background-color:${color};"></span>
-                        ${displayValue}
-                      </div>
-                    `;
-                  }
-                });
-              }
+                      divValue.innerHTML += `
+                        <div class="tooltip_value-content" style="display: flex; align-items: center;">
+                          <span ${nodeName} class="tooltip_dot" style="background-color:${color};"></span>
+                          ${displayValue}
+                        </div>
+                      `;
+                    }
+                  });
+                }
 
-              // Position the tooltip
-              const { offsetLeft: positionX, offsetTop: positionY } = self.chart.canvas;
-              const canvasWidth = Number(self.chart.canvas.style.width.replace(/\D/g, ''));
-              const canvasHeight = Number(self.chart.canvas.style.height.replace(/\D/g, ''));
+                // Position the tooltip
+                const { offsetLeft: positionX, offsetTop: positionY } = self.chart.canvas;
+                const canvasWidth = Number(self.chart.canvas.style.width.replace(/\D/g, ''));
+                const canvasHeight = Number(self.chart.canvas.style.height.replace(/\D/g, ''));
 
-              tooltipEl.style.position = 'absolute';
-              tooltipEl.style.padding = `${tooltipModel.padding}px ${tooltipModel.padding}px`;
-              tooltipEl.style.pointerEvents = 'none';
+                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.padding = `${tooltipModel.padding}px ${tooltipModel.padding}px`;
+                tooltipEl.style.pointerEvents = 'none';
 
-              let tooltipX = positionX + window.pageXOffset + tooltipModel.caretX + 10;
-              let tooltipY = positionY + window.pageYOffset + tooltipModel.caretY - 18;
+                let tooltipX = positionX + window.pageXOffset + tooltipModel.caretX + 10;
+                let tooltipY = positionY + window.pageYOffset + tooltipModel.caretY - 18;
 
-              if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
-              }
-              if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
-              }
-              if (tooltipX < positionX) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
-              }
+                if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
+                }
+                if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
+                }
+                if (tooltipX < positionX) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
+                }
 
-              tooltipEl.style.left = `${tooltipX}px`;
-              tooltipEl.style.top = `${tooltipY}px`;
-              tooltipEl.style.opacity = 1;
+                tooltipEl.style.left = `${tooltipX}px`;
+                tooltipEl.style.top = `${tooltipY}px`;
+                tooltipEl.style.opacity = 1;
+              },
             },
           },
         },
