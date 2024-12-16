@@ -347,7 +347,6 @@ export default {
           barThickness: 32,
           type: 'bar',
           barPercentage: 0.5,
-          yAxisID: 'yAxisL',
           order: 2,
         },
         {
@@ -361,7 +360,7 @@ export default {
           pointBorderColor: this.colorParse,
           pointHoverBackgroundColor: this.colorHover,
           pointHoverBorderColor: this.colorHover,
-          yAxisID: 'yAxisR',
+          yAxisID: 'yBar',
           order: 1,
         },
       ];
@@ -398,8 +397,8 @@ export default {
 
       this.chart = new Chart(ctx, {
         data: {
-          labels: self.labels,
-          datasets: self.datasets,
+          labels: this.labels,
+          datasets: this.datasets,
         },
         plugins: [
           {
@@ -507,20 +506,10 @@ export default {
                 color: '#DDDDDD',
                 lineWidth: 1,
               },
-              ticks: {
-                callback: function (value) {
-                  if (self.formatdate) {
-                    return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
-                  } else {
-                    return value;
-                  }
-                },
-              },
             },
             y: {
               type: 'linear',
               position: 'left',
-              id: 'yAxisL',
               gridLines: {
                 drawTicks: false,
                 zeroLineColor: '#DDDDDD',
@@ -548,10 +537,11 @@ export default {
                 self.legendLeftMargin = axis.width;
               },
             },
-            ybar:{
+            yBar:{
               type: 'linear',
               position: 'right',
-              id: 'yAxisR',
+              id: 'yBar',
+              beginAtZero: true,
               gridLines: {
                 drawTicks: false,
                 zeroLineColor: '#DDDDDD',
