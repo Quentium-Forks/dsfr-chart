@@ -299,12 +299,14 @@ export default {
                 },
               },
               external: (context) => {
+                // Tooltip Element
                 const tooltipEl = this.$el.querySelector('.linechart_tooltip');
 
                 const tooltipModel = context.tooltip;
 
                 if (!tooltipEl) return;
 
+                // Hide if no tooltip
                 if (!tooltipModel || tooltipModel.opacity === 0) {
                   tooltipEl.style.opacity = 0;
                   return;

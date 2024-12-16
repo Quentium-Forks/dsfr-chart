@@ -5,10 +5,7 @@
   >
     <div class="r_col fr-col-12">
       <div class="chart">
-        <div
-          ref="tooltip"
-          class="linechart_tooltip"
-        >
+        <div class="linechart_tooltip">
           <div class="tooltip_header fr-text--sm fr-mb-0" />
           <div class="tooltip_body">
             <div class="tooltip_value">
@@ -447,18 +444,25 @@ export default {
             },
             tooltip: {
               enabled: false,
+              displayColors: false,
+              backgroundColor: '#6b6b6b',
               mode: 'index',
               intersect: false,
-              external: function (context) {
-                const tooltipEl = self.$refs.tooltip;
+              external: (context) => {
+                // Tooltip Element
+                const tooltipEl = this.$el.querySelector('.linechart_tooltip');
 
                 const tooltipModel = context.tooltip;
 
-                if (tooltipModel.opacity === 0) {
+                if (!tooltipEl) return;
+
+                // Hide if no tooltip
+                if (!tooltipModel || tooltipModel.opacity === 0) {
                   tooltipEl.style.opacity = 0;
                   return;
                 }
 
+                // Set tooltip position classes
                 tooltipEl.classList.remove('above', 'below', 'no-transform');
                 if (tooltipModel.yAlign) {
                   tooltipEl.classList.add(tooltipModel.yAlign);
@@ -527,75 +531,6 @@ export default {
             },
           },
         },
-        plugins: [
-          {
-            afterDatasetsDraw: function (chart) {
-              const ctx = chart.ctx;
-              const xAxis = chart.scales['x-axis-0'];
-              const yAxis = chart.scales['y-axis-0'];
-
-              // Lignes verticales (vlines)
-              if (self.vlineParse !== undefined) {
-                self.vlineParse.forEach(function (line, j) {
-                  const x = xAxis.getPixelForValue(line);
-
-                  ctx.beginPath();
-                  ctx.moveTo(x, yAxis.bottom);
-                  ctx.strokeStyle = self.vlineColorParse[j];
-                  ctx.lineWidth = 3;
-                  ctx.setLineDash([10, 5]);
-                  ctx.lineTo(x, yAxis.top);
-                  ctx.stroke();
-                });
-              }
-
-              // Lignes horizontales (hlines)
-              if (self.hlineParse !== undefined) {
-                self.hlineParse.forEach(function (line, j) {
-                  const y = yAxis.getPixelForValue(line);
-
-                  ctx.beginPath();
-                  ctx.moveTo(xAxis.left, y);
-                  ctx.strokeStyle = self.hlineColorParse[j];
-                  ctx.lineWidth = 3;
-                  ctx.setLineDash([10, 5]);
-                  ctx.lineTo(xAxis.right, y);
-                  ctx.stroke();
-                });
-              }
-            },
-            afterDraw: function (chart) {
-              if (chart.tooltip._active && chart.tooltip._active.length) {
-                const ctx = chart.ctx;
-                // const activePoint = chart.tooltip.getActiveElements()[0];
-                // const x = activePoint.element.tooltipPosition().x;
-                // const y = activePoint.element.tooltipPosition().y;
-                // const xAxis = chart.scales['x-axis-0'];
-                // const yAxis = chart.scales['y-axis-0'];
-
-                ctx.save();
-                ctx.beginPath();
-                // ctx.moveTo(x, yAxis.top);
-                // ctx.lineTo(x, yAxis.bottom);
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = self.colorPrecisionBar;
-                ctx.setLineDash([10, 5]);
-                ctx.stroke();
-                ctx.restore();
-
-                ctx.save();
-                ctx.beginPath();
-                // ctx.moveTo(xAxis.left, y);
-                // ctx.lineTo(xAxis.right, y);
-                ctx.lineWidth = 1;
-                ctx.strokeStyle = self.colorPrecisionBar;
-                ctx.setLineDash([10, 5]);
-                ctx.stroke();
-                ctx.restore();
-              }
-            },
-          },
-        ],
       });
     },
   },

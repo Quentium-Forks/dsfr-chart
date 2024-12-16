@@ -210,9 +210,9 @@ export default {
               display: false,
             },
             tooltip: {
+              enabled: false,
               displayColors: false,
               backgroundColor: '#6b6b6b',
-              enabled: false,
               callbacks: {
                 label: (tooltipItems) => {
                   return this.datasets[0].data[tooltipItems.dataIndex];
@@ -228,14 +228,17 @@ export default {
                 // Tooltip Element
                 const tooltipEl = this.$el.querySelector('.linechart_tooltip');
 
-                // Hide if no tooltip
                 const tooltipModel = context.tooltip;
-                if (tooltipModel.opacity === 0) {
+
+                if (!tooltipEl) return;
+
+                // Hide if no tooltip
+                if (!tooltipModel || tooltipModel.opacity === 0) {
                   tooltipEl.style.opacity = 0;
                   return;
                 }
 
-                // Set caret Position
+                // Set tooltip position classes
                 tooltipEl.classList.remove('above', 'below', 'no-transform');
                 if (tooltipModel.yAlign) {
                   tooltipEl.classList.add(tooltipModel.yAlign);

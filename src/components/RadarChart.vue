@@ -270,13 +270,15 @@ export default {
 
                 const tooltipModel = context.tooltip;
 
+                if (!tooltipEl) return;
+
                 // Hide if no tooltip
-                if (tooltipModel.opacity === 0) {
+                if (!tooltipModel || tooltipModel.opacity === 0) {
                   tooltipEl.style.opacity = 0;
                   return;
                 }
 
-                // Set caret Position
+                // Set tooltip position classes
                 tooltipEl.classList.remove('above', 'below', 'no-transform');
                 if (tooltipModel.yAlign) {
                   tooltipEl.classList.add(tooltipModel.yAlign);

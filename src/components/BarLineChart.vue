@@ -401,96 +401,6 @@ export default {
           labels: this.labels,
           datasets: this.datasets,
         },
-        plugins: [
-          {
-            afterDatasetDraw: function (chart) {
-              if (self.vlineParse !== undefined) {
-                self.vlineParse.forEach(function (line, j) {
-                  const ctx = chart.ctx;
-                  const xAxis = chart.scales['x-axis-0'];
-                  const yAxis = chart.scales.yAxisL;
-
-                  const x = xAxis.getPixelForValue(line);
-
-                  ctx.beginPath();
-                  ctx.moveTo(x, yAxis.bottom);
-                  ctx.strokeStyle = self.vlineColorParse[j];
-                  ctx.lineWidth = '3';
-                  ctx.setLineDash([10, 5]);
-                  ctx.lineTo(x, yAxis.top);
-                  ctx.stroke();
-                });
-              }
-              if (self.hlineParse !== undefined) {
-                self.hlineParse.forEach(function (line, j) {
-                  const ctx = chart.ctx;
-                  const xAxis = chart.scales['x-axis-0'];
-                  const yAxis = chart.scales.yAxisL;
-                  const y = yAxis.getPixelForValue(line);
-
-                  ctx.beginPath();
-                  ctx.moveTo(xAxis.left, y);
-                  ctx.strokeStyle = self.hlineColorParse[j];
-                  ctx.lineWidth = '3';
-                  ctx.setLineDash([10, 5]);
-                  ctx.lineTo(xAxis.right, y);
-                  ctx.stroke();
-                });
-              }
-            },
-          },
-          {
-            afterDraw: function (chart) {
-              if (chart.tooltip._active !== undefined) {
-                if (chart.tooltip._active.length !== 0) {
-                  const x = chart.tooltip.getActiveElements()[0].element.x
-                  const index = chart.tooltip._active[0]._index;
-                  const yAxisR = chart.scales.yBar;
-                  const yAxisL = chart.scales.y;
-                  const xAxis = chart.scales.x;
-
-                  const y = yAxisR.getPixelForValue(self.yparse[index]);
-                  const ybar = yAxisL.getPixelForValue(self.ybarparse[index]);
-
-                  const ctx = chart.ctx;
-
-                  // Draw the vertical line under the points
-                  ctx.save();
-                  ctx.beginPath();
-                  ctx.moveTo(x, yAxisL.top);
-                  ctx.lineTo(x, yAxisL.bottom);
-                  ctx.lineWidth = '1';
-                  ctx.strokeStyle = self.colorPrecisionBar;
-                  ctx.setLineDash([10, 5]);
-                  ctx.stroke();
-                  ctx.restore();
-
-                  // Draw the horizontal line for the line chart value
-                  ctx.save();
-                  ctx.beginPath();
-                  ctx.moveTo(xAxis.left, y);
-                  ctx.lineTo(x, y);
-                  ctx.lineWidth = '1';
-                  ctx.strokeStyle = self.colorPrecisionBar;
-                  ctx.setLineDash([10, 5]);
-                  ctx.stroke();
-                  ctx.restore();
-
-                  // Draw the horizontal line for the bar chart value
-                  ctx.save();
-                  ctx.beginPath();
-                  ctx.moveTo(xAxis.left, ybar);
-                  ctx.lineTo(x, ybar);
-                  ctx.lineWidth = '1';
-                  ctx.strokeStyle = self.colorPrecisionBar;
-                  ctx.setLineDash([10, 5]);
-                  ctx.stroke();
-                  ctx.restore();
-                }
-              }
-            },
-          },
-        ],
         options: {
           aspectRatio: this.aspectratio,
           animation: {
@@ -575,33 +485,36 @@ export default {
               display: false,
             },
             tooltip: {
-            enabled: false,
-            displayColors: false,
-            backgroundColor: '#6b6b6b',
-            callbacks: {
-              label: function (tooltipItems) {
-                const label = [];
-                self.datasets.forEach(function (set) {
-                  label.push(self.convertIntToHuman(set.data[tooltipItems.dataIndex]));
-                });
-                return label;
+              enabled: false,
+              displayColors: false,
+              backgroundColor: '#6b6b6b',
+              callbacks: {
+                label: function (tooltipItems) {
+                  const label = [];
+                  self.datasets.forEach(function (set) {
+                    label.push(self.convertIntToHuman(set.data[tooltipItems.dataIndex]));
+                  });
+                  return label;
+                },
+                title: function (tooltipItems) {
+                  return tooltipItems[0].label;
+                },
               },
-              title: function (tooltipItems) {
-                return tooltipItems[0].label;
-              },
-            },
-              external: function (context) {
+              external: (context) => {
                 // Tooltip Element
-                const tooltipEl = self.$el.querySelector('.linechart_tooltip');
+                const tooltipEl = this.$el.querySelector('.linechart_tooltip');
+
+                const tooltipModel = context.tooltip;
+
+                if (!tooltipEl) return;
 
                 // Hide if no tooltip
-                const tooltipModel = context.tooltip;
-                if (tooltipModel.opacity === 0) {
+                if (!tooltipModel || tooltipModel.opacity === 0) {
                   tooltipEl.style.opacity = 0;
                   return;
                 }
 
-                // Set caret Position
+                // Set tooltip position classes
                 tooltipEl.classList.remove('above', 'below', 'no-transform');
                 if (tooltipModel.yAlign) {
                   tooltipEl.classList.add(tooltipModel.yAlign);

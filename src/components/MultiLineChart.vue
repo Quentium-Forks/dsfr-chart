@@ -434,81 +434,6 @@ export default {
           labels: self.labels,
           datasets: self.datasets,
         },
-        plugins: [
-          {
-            afterDatasetDraw: function (chart) {
-              if (self.vlineParse !== undefined) {
-                self.vlineParse.forEach(function (line, j) {
-                  const ctx = chart.ctx;
-                  const xAxis = chart.scales['x-axis-0'];
-                  const yAxis = chart.scales['y-axis-0'];
-
-                  const x = xAxis.getPixelForValue(line);
-
-                  ctx.beginPath();
-                  ctx.moveTo(x, yAxis.bottom);
-                  ctx.strokeStyle = self.vlineColorParse[j];
-                  ctx.lineWidth = '3';
-                  ctx.setLineDash([10, 5]);
-                  ctx.lineTo(x, yAxis.top);
-                  ctx.stroke();
-                });
-              }
-              if (self.hlineParse !== undefined) {
-                self.hlineParse.forEach(function (line, j) {
-                  const ctx = chart.ctx;
-                  const xAxis = chart.scales['x-axis-0'];
-                  const yAxis = chart.scales['y-axis-0'];
-                  const y = yAxis.getPixelForValue(line);
-
-                  ctx.beginPath();
-                  ctx.moveTo(xAxis.left, y);
-                  ctx.strokeStyle = self.hlineColorParse[j];
-                  ctx.lineWidth = '3';
-                  ctx.setLineDash([10, 5]);
-                  ctx.lineTo(xAxis.right, y);
-                  ctx.stroke();
-                });
-              }
-            },
-          },
-          {
-            afterDraw: function (chart) {
-              if (chart.tooltip._active !== undefined) {
-                if (chart.tooltip._active.length !== 0) {
-                  const x = chart.tooltip._active[0]._model.x;
-                  let y;
-                  const index = chart.tooltip._active[0]._index;
-                  const yAxis = chart.scales['y-axis-0'];
-                  const xAxis = chart.scales['x-axis-0'];
-                  const ctx = chart.ctx;
-                  ctx.save();
-                  ctx.beginPath();
-                  ctx.moveTo(x, yAxis.top);
-                  ctx.lineTo(x, yAxis.bottom);
-                  ctx.lineWidth = '1';
-                  ctx.strokeStyle = self.colorPrecisionBar;
-                  ctx.setLineDash([10, 5]);
-                  ctx.stroke();
-                  ctx.restore();
-
-                  self.yparse.forEach(function (yj) {
-                    y = yAxis.getPixelForValue(yj[index]);
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.moveTo(xAxis.left, y);
-                    ctx.lineTo(xAxis.right, y);
-                    ctx.lineWidth = '1';
-                    ctx.strokeStyle = self.colorPrecisionBar;
-                    ctx.setLineDash([10, 5]);
-                    ctx.stroke();
-                    ctx.restore();
-                  });
-                }
-              }
-            },
-          },
-        ],
         options: {
           aspectRatio: this.aspectratio,
           animation: {
@@ -606,18 +531,21 @@ export default {
                   return colors;
                 },
               },
-              external: function (context) {
+              external: (context) => {
                 // Tooltip Element
-                const tooltipEl = self.$el.querySelector('.linechart_tooltip');
+                const tooltipEl = this.$el.querySelector('.linechart_tooltip');
+
+                const tooltipModel = context.tooltip;
+
+                if (!tooltipEl) return;
 
                 // Hide if no tooltip
-                const tooltipModel = context.tooltip;
-                if (tooltipModel.opacity === 0) {
+                if (!tooltipModel || tooltipModel.opacity === 0) {
                   tooltipEl.style.opacity = 0;
                   return;
                 }
 
-                // Set caret Position
+                // Set tooltip position classes
                 tooltipEl.classList.remove('above', 'below', 'no-transform');
                 if (tooltipModel.yAlign) {
                   tooltipEl.classList.add(tooltipModel.yAlign);
