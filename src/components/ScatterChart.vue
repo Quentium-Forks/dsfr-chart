@@ -164,7 +164,7 @@ export default {
     },
   },
   data() {
-    this.chart = undefined
+    this.chart = undefined;
 
     return {
       widgetId: '',

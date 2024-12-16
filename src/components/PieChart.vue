@@ -82,7 +82,7 @@ export default {
     },
   },
   data() {
-    this.chart = undefined
+    this.chart = undefined;
 
     return {
       widgetId: '',
@@ -214,7 +214,7 @@ export default {
               backgroundColor: '#6b6b6b',
               enabled: false,
               callbacks: {
-                label: (tooltipItems) => { 
+                label: (tooltipItems) => {
                   return this.datasets[0].data[tooltipItems.dataIndex];
                 },
                 title: (tooltipItems) => {
