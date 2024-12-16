@@ -190,6 +190,7 @@ export default {
         },
         options: {
           responsive: true,
+          aspectRatio: 2,
           maintainAspectRatio: true,
           layout: {
             padding: {
