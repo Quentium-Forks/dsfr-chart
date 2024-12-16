@@ -52,8 +52,7 @@
               class="dropdown-wrapper"
             >
               <button
-                ref="dropdown"
-                title="dropdown"
+                title="Dropdown"
                 type="button"
                 class="dropdown-toggle fr-btn fr-btn--tertiary-no-outline fr-p-0"
                 aria-label="Afficher le menu déroulant"

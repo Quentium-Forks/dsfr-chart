@@ -14,7 +14,6 @@
       </button>
       <div class="map m-lg">
         <div
-          ref="mapTooltip"
           class="map_tooltip"
           :style="{ top: tooltip.top, left: tooltip.left, visibility: tooltip.visibility }"
         >
