@@ -445,83 +445,85 @@ export default {
             legend: {
               display: false,
             },
-          },
-          tooltips: {
-            enabled: false,
-            mode: 'index',
-            intersect: false,
-            custom: function (tooltipModel) {
-              const tooltipEl = self.$refs.tooltip;
+            tooltip: {
+              enabled: false,
+              mode: 'index',
+              intersect: false,
+              external: function (context) {
+                const tooltipEl = self.$refs.tooltip;
 
-              if (tooltipModel.opacity === 0) {
-                tooltipEl.style.opacity = 0;
-                return;
-              }
+                const tooltipModel = context.tooltip;
 
-              tooltipEl.classList.remove('above', 'below', 'no-transform');
-              if (tooltipModel.yAlign) {
-                tooltipEl.classList.add(tooltipModel.yAlign);
-              } else {
-                tooltipEl.classList.add('no-transform');
-              }
+                if (tooltipModel.opacity === 0) {
+                  tooltipEl.style.opacity = 0;
+                  return;
+                }
 
-              if (tooltipModel.body) {
-                const titleLines = tooltipModel.title || [];
-                const bodyLines = tooltipModel.body.map(function (bodyItem) {
-                  return bodyItem.lines;
-                });
+                tooltipEl.classList.remove('above', 'below', 'no-transform');
+                if (tooltipModel.yAlign) {
+                  tooltipEl.classList.add(tooltipModel.yAlign);
+                } else {
+                  tooltipEl.classList.add('no-transform');
+                }
 
-                // Set tooltip header
-                const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                divDate.innerHTML = titleLines[0];
+                if (tooltipModel.body) {
+                  const titleLines = tooltipModel.title || [];
+                  const bodyLines = tooltipModel.body.map(function (bodyItem) {
+                    return bodyItem.lines;
+                  });
 
-                // Clear existing tooltip content
-                const divValue = tooltipEl.querySelector('.tooltip_value');
-                divValue.innerHTML = '';
+                  // Set tooltip header
+                  const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
+                  divDate.innerHTML = titleLines[0];
 
-                // Iterate through each line in the body and add formatted HTML
-                bodyLines.forEach((line, i) => {
-                  if (line !== undefined) {
-                    const color = Array.isArray(self.colorParse) ? self.colorParse[i] : self.colorParse;
+                  // Clear existing tooltip content
+                  const divValue = tooltipEl.querySelector('.tooltip_value');
+                  divValue.innerHTML = '';
 
-                    // Extraire uniquement la valeur numérique sans le texte "Prix moyen en euros"
-                    const valueOnly = line[0].replace(self.name + ': ', ''); // Enlever le nom depuis le prop `name`
+                  // Iterate through each line in the body and add formatted HTML
+                  bodyLines.forEach((line, i) => {
+                    if (line !== undefined) {
+                      const color = Array.isArray(self.colorParse) ? self.colorParse[i] : self.colorParse;
 
-                    divValue.innerHTML += `
-                      <div class="tooltip_value-content" style="display: flex; justify-content: space-between; align-items: center;">
-                        <span class="tooltip_dot" style="background-color: ${color};"></span>
-                        <p class="tooltip_place fr-mb-0">${valueOnly}${self.unitTooltip ? ' ' + self.unitTooltip : ''}</p>
-                      </div>
-                    `;
-                  }
-                });
-              }
+                      // Extraire uniquement la valeur numérique sans le texte "Prix moyen en euros"
+                      const valueOnly = line[0].replace(self.name + ': ', ''); // Enlever le nom depuis le prop `name`
 
-              const positionX = self.chart.canvas.offsetLeft;
-              const positionY = self.chart.canvas.offsetTop;
+                      divValue.innerHTML += `
+                        <div class="tooltip_value-content" style="display: flex; justify-content: space-between; align-items: center;">
+                          <span class="tooltip_dot" style="background-color: ${color};"></span>
+                          <p class="tooltip_place fr-mb-0">${valueOnly}${self.unitTooltip ? ' ' + self.unitTooltip : ''}</p>
+                        </div>
+                      `;
+                    }
+                  });
+                }
 
-              tooltipEl.style.position = 'absolute';
-              tooltipEl.style.pointerEvents = 'none';
+                const positionX = self.chart.canvas.offsetLeft;
+                const positionY = self.chart.canvas.offsetTop;
 
-              let tooltipX = positionX + tooltipModel.caretX + 10;
-              let tooltipY = positionY + tooltipModel.caretY - 18;
+                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.pointerEvents = 'none';
 
-              const canvasWidth = self.chart.canvas.clientWidth;
-              const canvasHeight = self.chart.canvas.clientHeight;
+                let tooltipX = positionX + tooltipModel.caretX + 10;
+                let tooltipY = positionY + tooltipModel.caretY - 18;
 
-              if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
-              }
-              if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
-              }
-              if (tooltipX < positionX) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
-              }
-              tooltipEl.style.left = tooltipX + 'px';
-              tooltipEl.style.top = tooltipY + 'px';
-              tooltipEl.style.opacity = 1;
+                const canvasWidth = self.chart.canvas.clientWidth;
+                const canvasHeight = self.chart.canvas.clientHeight;
+
+                if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
+                }
+                if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
+                }
+                if (tooltipX < positionX) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
+                }
+                tooltipEl.style.left = tooltipX + 'px';
+                tooltipEl.style.top = tooltipY + 'px';
+                tooltipEl.style.opacity = 1;
+              },
             },
           },
         },
@@ -565,16 +567,16 @@ export default {
             afterDraw: function (chart) {
               if (chart.tooltip._active && chart.tooltip._active.length) {
                 const ctx = chart.ctx;
-                const activePoint = chart.tooltip._active[0];
-                const x = activePoint.tooltipPosition().x;
-                const y = activePoint.tooltipPosition().y;
-                const xAxis = chart.scales['x-axis-0'];
-                const yAxis = chart.scales['y-axis-0'];
+                // const activePoint = chart.tooltip.getActiveElements()[0];
+                // const x = activePoint.element.tooltipPosition().x;
+                // const y = activePoint.element.tooltipPosition().y;
+                // const xAxis = chart.scales['x-axis-0'];
+                // const yAxis = chart.scales['y-axis-0'];
 
                 ctx.save();
                 ctx.beginPath();
-                ctx.moveTo(x, yAxis.top);
-                ctx.lineTo(x, yAxis.bottom);
+                // ctx.moveTo(x, yAxis.top);
+                // ctx.lineTo(x, yAxis.bottom);
                 ctx.lineWidth = 1;
                 ctx.strokeStyle = self.colorPrecisionBar;
                 ctx.setLineDash([10, 5]);
@@ -583,8 +585,8 @@ export default {
 
                 ctx.save();
                 ctx.beginPath();
-                ctx.moveTo(xAxis.left, y);
-                ctx.lineTo(xAxis.right, y);
+                // ctx.moveTo(xAxis.left, y);
+                // ctx.lineTo(xAxis.right, y);
                 ctx.lineWidth = 1;
                 ctx.strokeStyle = self.colorPrecisionBar;
                 ctx.setLineDash([10, 5]);
