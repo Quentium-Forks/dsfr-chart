@@ -287,7 +287,6 @@ export default {
                   const datasetIndex = tooltipItems.datasetIndex;
                   const index = tooltipItems.dataIndex;
                   const value = this.datasets[datasetIndex].data[index];
-                  console.log(value, this.convertIntToHuman(value))
                   return this.convertIntToHuman(value);
                 },
                 title: (tooltipItems) => tooltipItems[0].label,
