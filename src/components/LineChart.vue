@@ -390,19 +390,17 @@ export default {
           scales: {
             x: {
               offset: true,
-              position: 'center',
               type: this.xAxisType,
-              gridLines: {
+              grid: {
                 drawTicks: false,
-                zeroLineColor: '#DDDDDD',
                 drawOnChartArea: false,
-                color: '#DDDDDD',
+                borderColor: '#DDDDDD', // couleur axe X
                 borderDash: [3],
                 lineWidth: 1,
               },
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes
-                fontColor: '#DDDDDD',
+                color: '#666666', // couleur valeurs de l'axe X
                 labelOffset: 10,
                 callback: function (value) {
                   if (self.formatdate) {
@@ -415,19 +413,17 @@ export default {
               },
             },
             y: {
-              gridLines: {
+              grid: {
                 drawTicks: false,
-                zeroLineColor: '#DDDDDD',
-                color: '#DDDDDD',
+                borderColor: '#DDDDDD', // couleur axe Y
                 lineWidth: 1,
                 borderDash: [3],
               },
+              suggestedMax: this.ymax,
               ticks: {
                 position: 'left',
-                fontColor: '#DDDDDD',
+                color: '#666666', // couleur valeurs de l'axe Y
                 padding: 10, // Espace supplémentaire autour des étiquettes
-                suggestedMax: this.ymax,
-                autoSkip: true,
                 maxTicksLimit: 5,
                 callback: function (value) {
                   if (value >= 1e9 || value <= -1e9) {
