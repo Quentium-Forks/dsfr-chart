@@ -392,11 +392,11 @@ export default {
           {
             afterDatasetDraw: function (chart) {
               const ctx = chart.ctx;
-              const xScales = chart.config.options.scales.xAxes;
-              const yScales = chart.config.options.scales.yAxes;
+              const xScales = chart.config.options.scales.x;
+              const yScales = chart.config.options.scales.y;
 
-              const xAxisId = xScales[0].id || xScales[0].scaleLabel.labelString;
-              const yAxisId = yScales[0].id || yScales[0].scaleLabel.labelString;
+              const xAxisId = xScales.id || xScales[0].scaleLabel.labelString;
+              const yAxisId = yScales.id || yScales[0].scaleLabel.labelString;
 
               const xAxis = chart.scales[xAxisId];
               const yAxis = chart.scales[yAxisId];
@@ -433,10 +433,10 @@ export default {
             // Mise à jour de la méthode beforeDatasetsDraw
             beforeDatasetsDraw: function (chart) {
               if (chart.tooltip._active && chart.tooltip._active.length) {
-                const activePoint = chart.tooltip._active[0];
-                const ctx = chart.chart.ctx;
-                const x = activePoint.tooltipPosition().x;
-                const y = activePoint.tooltipPosition().y;
+                const activePoint = chart.tooltip.getActiveElements()[0];
+                const ctx = chart.ctx;
+                const x = activePoint.element.tooltipPosition().x;
+                const y = activePoint.element.tooltipPosition().y;
 
                 const xScale = activePoint._xScale;
                 const yScale = activePoint._yScale;
@@ -526,111 +526,111 @@ export default {
             legend: {
               display: false,
             },
-          },
-          tooltips: {
-            enabled: false,
-            displayColors: false,
-            backgroundColor: '#6b6b6b',
-            callbacks: {
-              label: function (tooltipItems) {
-                const label = [];
-                self.datasets.forEach(function (set, i) {
-                  if (self.showPoint[i]) {
-                    if (self.xAxisType === 'linear') {
-                      const index = self.xparse[i].indexOf(tooltipItems.xLabel);
-                      if (index !== -1) {
-                        label.push(self.convertIntToHuman(self.yparse[i][index]));
+            tooltip: {
+              enabled: false,
+              displayColors: false,
+              backgroundColor: '#6b6b6b',
+              callbacks: {
+                label: function (tooltipItems) {
+                  const label = [];
+                  self.datasets.forEach(function (set, i) {
+                    if (self.showPoint[i]) {
+                      if (self.xAxisType === 'linear') {
+                        const index = self.xparse[i].indexOf(tooltipItems.parsed.x);
+                        if (index !== -1) {
+                          label.push(self.convertIntToHuman(self.yparse[i][index]));
+                        } else {
+                          label.push(undefined);
+                        }
                       } else {
-                        label.push(undefined);
+                        label.push(self.convertIntToHuman(set.data[tooltipItems.dataIndex]));
                       }
-                    } else {
-                      label.push(self.convertIntToHuman(set.data[tooltipItems.index]));
                     }
-                  }
-                });
-                return label;
+                  });
+                  return label;
+                },
+                title: function (tooltipItems) {
+                  return tooltipItems[0].label;
+                },
+                labelTextColor: function () {
+                  const colors = [];
+                  self.showPoint.forEach(function (show, i) {
+                    if (show) {
+                      colors.push(self.colorParse[i]);
+                    }
+                  });
+                  return colors;
+                },
               },
-              title: function (tooltipItems) {
-                return tooltipItems[0].label;
-              },
-              labelTextColor: function () {
-                const colors = [];
-                self.showPoint.forEach(function (show, i) {
-                  if (show) {
-                    colors.push(self.colorParse[i]);
-                  }
-                });
-                return colors;
-              },
-            },
-            custom: function (context) {
-              // Tooltip Element
-              const tooltipEl = self.$el.querySelector('.linechart_tooltip');
+              external: function (context) {
+                // Tooltip Element
+                const tooltipEl = self.$el.querySelector('.linechart_tooltip');
 
-              // Hide if no tooltip
-              const tooltipModel = context;
-              if (tooltipModel.opacity === 0) {
-                tooltipEl.style.opacity = 0;
-                return;
-              }
+                // Hide if no tooltip
+                const tooltipModel = context.tooltip;
+                if (tooltipModel.opacity === 0) {
+                  tooltipEl.style.opacity = 0;
+                  return;
+                }
 
-              // Set caret Position
-              tooltipEl.classList.remove('above', 'below', 'no-transform');
-              if (tooltipModel.yAlign) {
-                tooltipEl.classList.add(tooltipModel.yAlign);
-              } else {
-                tooltipEl.classList.add('no-transform');
-              }
+                // Set caret Position
+                tooltipEl.classList.remove('above', 'below', 'no-transform');
+                if (tooltipModel.yAlign) {
+                  tooltipEl.classList.add(tooltipModel.yAlign);
+                } else {
+                  tooltipEl.classList.add('no-transform');
+                }
 
-              function getBody(bodyItem) {
-                return bodyItem.lines;
-              }
-              // Set Text
-              if (tooltipModel.body) {
-                const titleLines = tooltipModel.title || [];
-                const bodyLines = tooltipModel.body.map(getBody);
+                function getBody(bodyItem) {
+                  return bodyItem.lines;
+                }
+                // Set Text
+                if (tooltipModel.body) {
+                  const titleLines = tooltipModel.title || [];
+                  const bodyLines = tooltipModel.body.map(getBody);
 
-                const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                divDate.innerHTML = titleLines[0];
+                  const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
+                  divDate.innerHTML = titleLines[0];
 
-                const divValue = self.$el.querySelector('.tooltip_value');
+                  const divValue = self.$el.querySelector('.tooltip_value');
 
-                divValue.innerHTML = '';
-                bodyLines[0].forEach(function (line, i) {
-                  const displayValue = `${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}`;
-                  if (line !== undefined) {
-                    divValue.innerHTML += `
+                  divValue.innerHTML = '';
+                  bodyLines[0].forEach(function (line, i) {
+                    const displayValue = `${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}`;
+                    if (line !== undefined) {
+                      divValue.innerHTML += `
                       <div class="tooltip_value-content">
                         <span class="tooltip_dot" style="background-color:${self.colorParse[i]};"></span>
                         <p class="tooltip_place fr-mb-0">${displayValue}</p>
                       </div>
                     `;
-                  }
-                });
-              }
+                    }
+                  });
+                }
 
-              const { offsetLeft: positionX, offsetTop: positionY } = self.chart.canvas;
+                const { offsetLeft: positionX, offsetTop: positionY } = self.chart.canvas;
 
-              const canvasWidth = Number(self.chart.canvas.style.width.replace(/\D/g, ''));
-              const canvasHeight = Number(self.chart.canvas.style.height.replace(/\D/g, ''));
-              tooltipEl.style.position = 'absolute';
-              tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
-              tooltipEl.style.pointerEvents = 'none';
-              let tooltipX = positionX + tooltipModel.caretX + 10;
-              let tooltipY = positionY + tooltipModel.caretY - 18;
-              if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
-              }
-              if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
-              }
-              if (tooltipX < positionX) {
-                tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
-                tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
-              }
-              tooltipEl.style.left = tooltipX + 'px';
-              tooltipEl.style.top = tooltipY + 'px';
-              tooltipEl.style.opacity = 1;
+                const canvasWidth = Number(self.chart.canvas.style.width.replace(/\D/g, ''));
+                const canvasHeight = Number(self.chart.canvas.style.height.replace(/\D/g, ''));
+                tooltipEl.style.position = 'absolute';
+                tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+                tooltipEl.style.pointerEvents = 'none';
+                let tooltipX = positionX + tooltipModel.caretX + 10;
+                let tooltipY = positionY + tooltipModel.caretY - 18;
+                if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
+                }
+                if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 18;
+                }
+                if (tooltipX < positionX) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 18;
+                }
+                tooltipEl.style.left = tooltipX + 'px';
+                tooltipEl.style.top = tooltipY + 'px';
+                tooltipEl.style.opacity = 1;
+              },
             },
           },
         },
