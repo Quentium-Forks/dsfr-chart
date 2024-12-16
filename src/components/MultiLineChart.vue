@@ -518,16 +518,15 @@ export default {
           scales: {
             x: {
               offset: true,
-              position: 'center',
               type: self.xAxisType,
-              gridLines: {
-                zeroLineColor: '#DDDDDD',
+              grid: {
                 drawOnChartArea: false,
-                color: '#DDDDDD',
+                borderColor: '#DDDDDD',
                 lineWidth: 1,
               },
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes
+                color: '#666666',
                 callback: function (value) {
                   if (self.formatdate) {
                     return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
@@ -539,18 +538,18 @@ export default {
             },
             y: {
               position: 'left',
-              gridLines: {
+              grid: {
                 drawTicks: false,
                 zeroLineColor: '#DDDDDD',
-                color: '#DDDDDD',
+                borderColor: '#DDDDDD',
                 borderDash: [3],
                 lineWidth: 1,
               },
+              suggestedMax: self.ymax,
               ticks: {
+                color: '#666666',
                 padding: 4,
-                autoSkip: true,
                 maxTicksLimit: 5,
-                suggestedMax: self.ymax,
                 callback: function (value) {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';
