@@ -82,10 +82,11 @@ export default {
     },
   },
   data() {
+    this.chart = undefined
+
     return {
       widgetId: '',
       chartId: '',
-      chart: undefined,
       legendLeftMargin: 100,
       display: '',
       datasets: [],

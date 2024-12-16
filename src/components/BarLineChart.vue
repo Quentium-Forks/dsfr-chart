@@ -180,10 +180,11 @@ export default {
     },
   },
   data() {
+    this.chart = undefined
+
     return {
       widgetId: '',
       chartId: '',
-      chart: undefined,
       legendLeftMargin: 0,
       display: '',
       datasets: [],

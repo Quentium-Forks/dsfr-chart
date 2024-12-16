@@ -199,9 +199,10 @@ export default {
     },
   },
   data() {
+    this.chart = undefined
+
     return {
       dataParse: {},
-      chart: undefined,
       widgetId: '',
       chartId: '',
       scaleMin: 0,

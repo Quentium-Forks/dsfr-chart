@@ -162,10 +162,11 @@ export default {
     },
   },
   data() {
+    this.chart = undefined
+
     return {
       widgetId: '',
       chartId: '',
-      chart: null,
       legendLeftMargin: 0,
       datasets: [],
       xAxisType: 'category',
