@@ -1,3 +1,9 @@
+import '../node_modules/@gouvfr/dsfr/dist/dsfr.module.min.js';
+
+import '../node_modules/@gouvfr/dsfr/dist/dsfr.main.min.css';
+import '../node_modules/@gouvfr/dsfr/dist/utility/utility.main.min.css';
+import '../node_modules/@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
+
 import { defineCustomElement } from 'vue';
 
 import LineChart from '@/components/LineChart.vue';
@@ -12,12 +18,6 @@ import GaugeChart from '@/components/GaugeChart.vue';
 import TableChart from '@/components/TableChart.vue';
 import RadarChart from '@/components/RadarChart.vue';
 import DataBox from '@/components/DataBox.vue';
-
-import '../node_modules/@gouvfr/dsfr/dist/dsfr.module.min.js';
-
-import '../node_modules/@gouvfr/dsfr/dist/dsfr.main.min.css';
-import '../node_modules/@gouvfr/dsfr/dist/utility/utility.main.min.css';
-import '../node_modules/@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
 
 customElements.define('line-chart', defineCustomElement(LineChart, { shadowRoot: false }));
 customElements.define('bar-chart', defineCustomElement(BarChart, { shadowRoot: false }));
