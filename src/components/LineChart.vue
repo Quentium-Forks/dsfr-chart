@@ -354,11 +354,15 @@ export default {
       } else {
         this.colorPrecisionBar = '#FFFFFF';
       }
-      this.chart.data.datasets[0].borderColor = this.colorParse;
-      this.chart.data.datasets[0].pointBackgroundColor = this.colorParse;
-      this.chart.data.datasets[0].pointBorderColor = this.colorParse;
-      this.chart.data.datasets[0].pointHoverBackgroundColor = this.colorHover;
-      this.chart.data.datasets[0].pointHoverBorderColor = this.colorHover;
+
+      // Mise à jour des couleurs dans le graphique
+      this.chart.data.datasets.forEach((dataset, i) => {
+        dataset.borderColor = this.colorParse[i];
+        dataset.backgroundColor = this.colorParse[i];
+        dataset.hoverBorderColor = this.colorHover[i];
+        dataset.hoverBackgroundColor = this.colorHover[i];
+      });
+
       this.chart.update(0);
     },
     createChart() {

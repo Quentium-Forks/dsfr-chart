@@ -317,12 +317,18 @@ export default {
     },
     changeColors(theme) {
       Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
+
       this.loadColors();
-      this.chart.data.datasets[0].borderColor = this.colorParse;
-      this.chart.data.datasets[0].backgroundColor = this.colorParse;
-      this.chart.data.datasets[0].hoverBackgroundColor = this.colorHover;
-      this.chart.data.datasets[0].hoverBorderColor = this.colorHover;
-      // this.chart.update(0);
+
+      // Mise à jour des couleurs dans le graphique
+      this.chart.data.datasets.forEach((dataset, i) => {
+        dataset.borderColor = this.colorParse[i];
+        dataset.backgroundColor = this.colorParse[i];
+        dataset.hoverBorderColor = this.colorHover[i];
+        dataset.hoverBackgroundColor = this.colorHover[i];
+      });
+
+      this.chart.update(0);
     },
   },
 };

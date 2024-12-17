@@ -415,12 +415,15 @@ export default {
       } else {
         this.colorPrecisionBar = '#FFFFFF';
       }
-      for (let i = 0; i < this.yparse.length; i++) {
-        this.chart.data.datasets[i].borderColor = this.colorParse[i];
-        this.chart.data.datasets[i].backgroundColor = this.colorParse[i];
-        this.chart.data.datasets[i].pointHoverBackgroundColor = this.colorHover[i];
-        this.chart.data.datasets[i].pointHoverBorderColor = this.colorHover[i];
-      }
+
+      // Mise à jour des couleurs dans le graphique
+      this.chart.data.datasets.forEach((dataset, i) => {
+        dataset.borderColor = this.colorParse[i];
+        dataset.backgroundColor = this.colorParse[i];
+        dataset.hoverBorderColor = this.colorHover[i];
+        dataset.hoverBackgroundColor = this.colorHover[i];
+      });
+
       this.chart.update(0);
     },
 

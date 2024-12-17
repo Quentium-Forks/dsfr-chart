@@ -365,13 +365,8 @@ export default {
     },
     changeColors(theme) {
       Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
+      
       this.loadColors();
-
-      if (theme === 'light') {
-        this.colorPrecisionBar = '#161616';
-      } else {
-        this.colorPrecisionBar = '#FFFFFF';
-      }
 
       // Mise à jour des couleurs dans le graphique
       this.chart.data.datasets.forEach((dataset, i) => {

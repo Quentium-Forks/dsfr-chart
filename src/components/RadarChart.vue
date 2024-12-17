@@ -197,13 +197,15 @@ export default {
       this.chart.options.scale.gridLines.color = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();
-      for (let i = 0; i < this.yparse.length; i++) {
-        this.chart.data.datasets[i].borderColor = this.colorParse[i];
-        this.chart.data.datasets[i].pointBackgroundColor = this.colorParse[i];
-        this.chart.data.datasets[i].backgroundColor = chroma(this.colorParse[i]).alpha(0.3).hex();
-        this.chart.data.datasets[i].hoverBorderColor = this.colorHover[i];
-        this.chart.data.datasets[i].hoverBackgroundColor = this.colorHover[i];
-      }
+
+      // Mise à jour des couleurs dans le graphique
+      this.chart.data.datasets.forEach((dataset, i) => {
+        dataset.borderColor = this.colorParse[i];
+        dataset.backgroundColor = this.colorParse[i];
+        dataset.hoverBorderColor = this.colorHover[i];
+        dataset.hoverBackgroundColor = this.colorHover[i];
+      });
+
       this.chart.update(0);
     },
     createChart() {
