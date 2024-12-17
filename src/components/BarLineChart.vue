@@ -411,7 +411,8 @@ export default {
             x: {
               offset: true,
               type: self.xAxisType,
-              gridLines: {
+              grid: {
+                drawTicks: true,
                 zeroLineColor: '#DDDDDD',
                 drawOnChartArea: false,
                 color: '#DDDDDD',
@@ -421,10 +422,9 @@ export default {
             y: {
               type: 'linear',
               position: 'left',
-              gridLines: {
+              grid: {
                 drawTicks: false,
                 zeroLineColor: '#DDDDDD',
-                color: '#DDDDDD',
                 borderDash: [3],
                 lineWidth: 1,
               },
@@ -453,10 +453,9 @@ export default {
               position: 'right',
               id: 'yBar',
               beginAtZero: true,
-              gridLines: {
+              grid: {
                 drawTicks: false,
                 zeroLineColor: '#DDDDDD',
-                color: '#DDDDDD',
                 borderDash: [3],
                 lineWidth: 1,
               },
