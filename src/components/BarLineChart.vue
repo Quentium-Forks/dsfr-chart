@@ -595,6 +595,7 @@ export default {
       });
     },
     changeColors(theme) {
+      Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
       // this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();
