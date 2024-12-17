@@ -420,8 +420,12 @@ export default {
       this.chart.data.datasets.forEach((dataset, i) => {
         dataset.borderColor = this.colorParse[i];
         dataset.backgroundColor = this.colorParse[i];
+        dataset.pointBorderColor = this.colorParse[i];
+        dataset.pointBackgroundColor = this.colorParse[i];
         dataset.hoverBorderColor = this.colorHover[i];
         dataset.hoverBackgroundColor = this.colorHover[i];
+        dataset.pointHoverBorderColor = this.colorHover[i];
+        dataset.pointHoverBackgroundColor = this.colorHover[i];
       });
 
       this.chart.update(0);

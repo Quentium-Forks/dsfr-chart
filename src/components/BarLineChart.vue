@@ -206,7 +206,7 @@ export default {
       colorBarParse: undefined,
       colorPrecisionBar: '#161616',
       colorHover: undefined,
-      colorbarHover: undefined,
+      colorBarHover: undefined,
       isSmall: false,
     };
   },
@@ -261,7 +261,7 @@ export default {
       this.colorBarParse = undefined;
       this.colorPrecisionBar = '#161616';
       this.colorHover = undefined;
-      this.colorbarHover = undefined;
+      this.colorBarHover = undefined;
     },
     getData() {
       // Récupération des paramètres
@@ -340,8 +340,8 @@ export default {
           data: dataBar,
           backgroundColor: this.colorBarParse,
           borderColor: this.colorBarParse,
-          hoverBorderColor: this.colorbarHover,
-          hoverBackgroundColor: this.colorbarHover,
+          hoverBorderColor: this.colorBarHover,
+          hoverBackgroundColor: this.colorBarHover,
           pointRadius: 5,
           pointHoverRadius: 5,
           barThickness: 32,
@@ -370,7 +370,7 @@ export default {
       return choosePalette(this.selectedPalette);
     },
     loadColors() {
-      const { colorBarParse, colorbarHover, colorParse, colorHover, vlineColorParse, hlineColorParse } = generateBarLineChartColors({
+      const { colorBarParse, colorBarHover, colorParse, colorHover, vlineColorParse, hlineColorParse } = generateBarLineChartColors({
         vlineParse: this.vlineParse,
         hlineParse: this.hlineParse,
         tmpVlineColorParse: this.tmpVlineColorParse,
@@ -381,7 +381,7 @@ export default {
       });
 
       this.colorBarParse = colorBarParse;
-      this.colorbarHover = colorbarHover;
+      this.colorBarHover = colorBarHover;
       this.colorParse = colorParse;
       this.colorHover = colorHover;
       this.vlineColorParse = vlineColorParse;
@@ -606,11 +606,15 @@ export default {
       }
 
       // Mise à jour des couleurs dans le graphique
-      this.chart.data.datasets.forEach((dataset, i) => {
-        dataset.borderColor = this.colorParse[i];
-        dataset.backgroundColor = this.colorParse[i];
-        dataset.hoverBorderColor = this.colorHover[i];
-        dataset.hoverBackgroundColor = this.colorHover[i];
+      this.chart.data.datasets.forEach((dataset) => {
+        dataset.borderColor = this.colorParse;
+        dataset.backgroundColor = this.colorBarParse;
+        dataset.pointBorderColor = this.colorParse;
+        dataset.pointBackgroundColor = this.colorParse;
+        dataset.hoverBorderColor = this.colorHover;
+        dataset.hoverBackgroundColor = this.colorBarHover;
+        dataset.pointHoverBorderColor = this.colorHover;
+        dataset.pointHoverBackgroundColor = this.colorHover;
       });
 
       this.chart.update(0);

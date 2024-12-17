@@ -321,11 +321,11 @@ export default {
       this.loadColors();
 
       // Mise à jour des couleurs dans le graphique
-      this.chart.data.datasets.forEach((dataset, i) => {
-        dataset.borderColor = this.colorParse[i];
-        dataset.backgroundColor = this.colorParse[i];
-        dataset.hoverBorderColor = this.colorHover[i];
-        dataset.hoverBackgroundColor = this.colorHover[i];
+      this.chart.data.datasets.forEach((dataset) => {
+        dataset.borderColor = this.colorParse;
+        dataset.backgroundColor = this.colorParse;
+        dataset.hoverBorderColor = this.colorHover;
+        dataset.hoverBackgroundColor = this.colorHover;
       });
 
       this.chart.update(0);
