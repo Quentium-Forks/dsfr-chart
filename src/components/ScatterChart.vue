@@ -399,10 +399,9 @@ export default {
           scales: {
             x: {
               type: self.xAxisType,
-              gridLines: {
+              grid: {
                 zeroLineColor: '#DDDDDD',
                 drawOnChartArea: false,
-                color: '#DDDDDD',
                 lineWidth: 1,
               },
               ticks: {
@@ -416,10 +415,9 @@ export default {
               },
             },
             y: {
-              gridLines: {
+              grid: {
                 drawTicks: false,
                 zeroLineColor: '#DDDDDD',
-                color: '#DDDDDD',
                 borderDash: [3],
                 lineWidth: 1,
               },
