@@ -153,7 +153,6 @@ export function changeChartColors({
   yparse,
   loadColors,
   getHexaFromToken,
-  colorPrecisionBarCallback = () => { },
 }) {
   // console.log('Debug: yparse', yparse);
   // console.log('Debug: chart.data.datasets', chart.data.datasets);
@@ -179,10 +178,6 @@ export function changeChartColors({
 
   // Charge les couleurs
   loadColors();
-
-  // Définir `colorPrecisionBar`
-  const colorPrecisionBar = theme === 'light' ? '#161616' : '#FFFFFF';
-  colorPrecisionBarCallback(colorPrecisionBar);
 
   // Mise à jour des datasets
   for (let i = 0; i < yparse.length; i++) {

@@ -204,7 +204,6 @@ export default {
       ymax: 0,
       colorParse: undefined,
       colorBarParse: undefined,
-      colorPrecisionBar: '#161616',
       colorHover: undefined,
       colorBarHover: undefined,
       isSmall: false,
@@ -259,7 +258,6 @@ export default {
       this.ymax = 0;
       this.colorParse = undefined;
       this.colorBarParse = undefined;
-      this.colorPrecisionBar = '#161616';
       this.colorHover = undefined;
       this.colorBarHover = undefined;
     },
@@ -600,11 +598,6 @@ export default {
       // this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();
-      if (theme === 'light') {
-        this.colorPrecisionBar = '#161616';
-      } else {
-        this.colorPrecisionBar = '#FFFFFF';
-      }
 
       // Mise à jour des couleurs dans le graphique
       this.chart.data.datasets.forEach((dataset) => {

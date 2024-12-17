@@ -193,7 +193,6 @@ export default {
       tmpHlineColorParse: [],
       hlineNameParse: [],
       ymax: 0,
-      colorPrecisionBar: '',
       colorHover: [],
       isSmall: false,
     };
@@ -249,7 +248,6 @@ export default {
       this.tmpHlineColorParse = [];
       this.hlineNameParse = [];
       this.ymax = 0;
-      this.colorPrecisionBar = '';
       this.colorHover = [];
     },
     getData() {
@@ -410,11 +408,6 @@ export default {
       // this.chart.options.scales.yAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
 
       this.loadColors();
-      if (theme === 'light') {
-        this.colorPrecisionBar = '#161616';
-      } else {
-        this.colorPrecisionBar = '#FFFFFF';
-      }
 
       // Mise à jour des couleurs dans le graphique
       this.chart.data.datasets.forEach((dataset, i) => {
