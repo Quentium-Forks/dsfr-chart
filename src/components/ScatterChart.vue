@@ -84,9 +84,8 @@
 
 <script>
 import Chart from 'chart.js/auto';
-import { mixin, choosePalette } from '@/utils/global.js';
-import { generateScatterChartColors } from '@/utils/colors.js';
-import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
+import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { choosePalette, generateScatterChartColors } from '@/utils/colors.js';
 
 export default {
   name: 'ScatterChart',

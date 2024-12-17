@@ -98,9 +98,8 @@
 
 <script>
 import Chart from 'chart.js/auto';
-import { mixin, choosePalette } from '@/utils/global.js';
-import { generateBarLineChartColors } from '@/utils/colors.js';
-import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
+import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { choosePalette, generateBarLineChartColors } from '@/utils/colors.js';
 
 export default {
   name: 'BarLineChart',

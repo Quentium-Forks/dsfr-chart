@@ -1,16 +1,6 @@
 import chroma from 'chroma-js';
-import { getDefaultColor, getColorsByIndex, getNeutralColor, choosePalette } from '@/utils/global.js';
+import colors from '@/assets/colors.json';
 
-/**
- * Génère des couleurs pour un graphique.
- * @param {Object} options - Options pour configurer les couleurs.
- * @param {Array} options.yparse - Données pour lesquelles les couleurs doivent être générées.
- * @param {Array} options.tmpColorParse - Couleurs personnalisées pour chaque série.
- * @param {Array} options.highlightIndex - Indices des données à mettre en surbrillance.
- * @param {string} options.selectedPalette - Palette sélectionnée pour générer les couleurs.
- * @param {boolean} options.reverseOrder - Indique si les couleurs doivent être inversées.
- * @returns {Object} - Couleurs générées.
- */
 export function generateColors({
   yparse = [],
   tmpColorParse = [],
@@ -220,4 +210,93 @@ export function changeChartColors({
   }
   // Mise à jour du graphique
   chart.update(0);
+}
+
+function getThemeColors() {
+  const currentTheme = document.documentElement.getAttribute('data-fr-theme') || 'light';
+  return colors[currentTheme] || colors['light'];
+}
+
+export function getCategoricalPalette() {
+  const themeColors = getThemeColors();
+  return [
+    themeColors['dsfr-chart-colors-01'],
+    themeColors['dsfr-chart-colors-02'],
+    themeColors['dsfr-chart-colors-03'],
+    themeColors['dsfr-chart-colors-04'],
+    themeColors['dsfr-chart-colors-05'],
+    themeColors['dsfr-chart-colors-06'],
+    themeColors['dsfr-chart-colors-07'],
+    themeColors['dsfr-chart-colors-08'],
+  ];
+}
+
+// Palettes séquentielles
+export function getSequentialAscending() {
+  const themeColors = getThemeColors();
+  return chroma.scale([
+    themeColors['dsfr-chart-colors-09'],
+    themeColors['dsfr-chart-colors-10'],
+  ]).colors(10);
+}
+
+export function getSequentialDescending() {
+  const themeColors = getThemeColors();
+  return chroma.scale([
+    themeColors['dsfr-chart-colors-10'],
+    themeColors['dsfr-chart-colors-09'],
+  ]).colors(10);
+}
+
+export function getDivergentAscending() {
+  const themeColors = getThemeColors();
+  return chroma.scale([
+    themeColors['dsfr-chart-colors-11'],
+    themeColors['dsfr-chart-colors-13'],
+    themeColors['dsfr-chart-colors-15'],
+  ]).colors(4);
+}
+
+export function getDivergentDescending() {
+  const themeColors = getThemeColors();
+  return chroma.scale([
+    themeColors['dsfr-chart-colors-15'],
+    themeColors['dsfr-chart-colors-13'],
+    themeColors['dsfr-chart-colors-11'],
+  ]).colors(4);
+}
+
+export function getColorsByIndex(index, palette = getCategoricalPalette()) {
+  return palette[index % palette.length];
+}
+
+export function getDefaultColor() {
+  const themeColors = getThemeColors();
+  return themeColors['dsfr-chart-colors-default'];
+}
+
+export function getNeutralColor() {
+  const themeColors = getThemeColors();
+  return themeColors['dsfr-chart-colors-neutral'];
+}
+
+export function choosePalette(selectedPalette) {
+  switch (selectedPalette) {
+    case 'categorical':
+      return getCategoricalPalette();
+    case 'sequentialAscending':
+      return getSequentialAscending();
+    case 'sequentialDescending':
+      return getSequentialDescending();
+    case 'divergentAscending':
+      return getDivergentAscending();
+    case 'divergentDescending':
+      return getDivergentDescending();
+    case 'neutral':
+      return [getNeutralColor()];
+    case 'defaultColor':
+      return [getDefaultColor()];
+    default:
+      return getCategoricalPalette();
+  }
 }

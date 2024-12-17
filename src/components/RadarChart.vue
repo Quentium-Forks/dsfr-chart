@@ -46,9 +46,8 @@
 <script>
 import Chart from 'chart.js/auto';
 import chroma from 'chroma-js';
-import { choosePalette, mixin } from '@/utils/global.js';
-import { generateColors } from '@/utils/colors.js';
-import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
+import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { choosePalette, generateColors } from '@/utils/colors.js';
 
 export default {
   name: 'RadarChart',

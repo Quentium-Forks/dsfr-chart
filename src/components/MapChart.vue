@@ -158,7 +158,8 @@
 import chroma from 'chroma-js';
 import LeftCol from '@/components/LeftCol.vue';
 import maps from '@/components/maps';
-import { isMobile, mixin, getColorsByIndex, choosePalette } from '@/utils/global.js';
+import { mixin, isMobile } from '@/utils/global.js';
+import { choosePalette, getColorsByIndex } from '@/utils/colors.js';
 
 export default {
   name: 'MapChart',

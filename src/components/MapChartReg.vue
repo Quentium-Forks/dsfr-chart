@@ -49,7 +49,8 @@
 import LeftCol from '@/components/LeftCol.vue';
 import maps from '@/components/maps';
 import * as d3 from 'd3-scale';
-import { isMobile, mixin, choosePalette } from '@/utils/global.js';
+import { mixin, isMobile } from '@/utils/global.js';
+import { choosePalette } from '@/utils/colors.js';
 
 export default {
   name: 'MapChartReg',

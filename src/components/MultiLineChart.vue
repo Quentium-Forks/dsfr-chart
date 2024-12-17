@@ -102,8 +102,8 @@
 <script>
 import Chart from 'chart.js/auto';
 import chroma from 'chroma-js';
-import { mixin, getColorsByIndex, getNeutralColor, choosePalette } from '@/utils/global.js';
-import { configureChartDefaults } from '@/utils/configureChartDefaults.js';
+import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { choosePalette, getColorsByIndex, getNeutralColor  } from '@/utils/colors.js';
 
 export default {
   name: 'MultiLineChart',

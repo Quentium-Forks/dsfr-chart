@@ -1,5 +1,4 @@
-import chroma from 'chroma-js';
-import colors from '@/assets/colors.json';
+import { Chart } from 'chart.js';
 
 export const capitalize = function (string) {
   if (string) {
@@ -82,66 +81,6 @@ export const isMobile = function () {
   /* eslint-enable */
 };
 
-// Fonction pour obtenir les couleurs du thème actuel
-export function getThemeColors() {
-  const currentTheme = document.documentElement.getAttribute('data-fr-theme') || 'light';
-  return colors[currentTheme] || colors['light'];
-}
-
-// Fonction pour obtenir la palette catégorique
-export function getCategoricalPalette() {
-  const themeColors = getThemeColors();
-  return [
-    themeColors['dsfr-chart-colors-01'],
-    themeColors['dsfr-chart-colors-02'],
-    themeColors['dsfr-chart-colors-03'],
-    themeColors['dsfr-chart-colors-04'],
-    themeColors['dsfr-chart-colors-05'],
-    themeColors['dsfr-chart-colors-06'],
-    themeColors['dsfr-chart-colors-07'],
-    themeColors['dsfr-chart-colors-08'],
-  ];
-}
-
-// Log de vérification final
-// console.log('Palette catégorique après chargement :', getCategoricalPalette());
-
-// Palettes séquentielles
-export function getSequentialAscending() {
-  const themeColors = getThemeColors();
-  return chroma.scale([
-    themeColors['dsfr-chart-colors-09'],
-    themeColors['dsfr-chart-colors-10'],
-  ]).colors(10);
-}
-
-export function getSequentialDescending() {
-  const themeColors = getThemeColors();
-  return chroma.scale([
-    themeColors['dsfr-chart-colors-10'],
-    themeColors['dsfr-chart-colors-09'],
-  ]).colors(10);
-}
-
-// Palettes divergentes
-export function getDivergentAscending() {
-  const themeColors = getThemeColors();
-  return chroma.scale([
-    themeColors['dsfr-chart-colors-11'],
-    themeColors['dsfr-chart-colors-13'],
-    themeColors['dsfr-chart-colors-15'],
-  ]).colors(4);
-}
-
-export function getDivergentDescending() {
-  const themeColors = getThemeColors();
-  return chroma.scale([
-    themeColors['dsfr-chart-colors-15'],
-    themeColors['dsfr-chart-colors-13'],
-    themeColors['dsfr-chart-colors-11'],
-  ]).colors(4);
-}
-
 // Fonction pour limiter les catégories (si plus de 8 catégories)
 export function limitCategories(labels, data, maxCategories = 8) {
   if (labels.length > maxCategories) {
@@ -154,58 +93,6 @@ export function limitCategories(labels, data, maxCategories = 8) {
     return { labels: limitedLabels, data: limitedData };
   }
   return { labels, data };
-}
-
-// Fonction pour obtenir des couleurs dynamiques selon un index et une palette
-export function getColorsByIndex(index, palette = getCategoricalPalette()) {
-  return palette[index % palette.length];
-}
-
-// Fonction pour obtenir la couleur par défaut pour un graphique unicolore
-export function getDefaultColor() {
-  const themeColors = getThemeColors();
-  return themeColors['dsfr-chart-colors-default'];
-}
-
-// Fonction pour obtenir la couleur neutre (pour les données "minimales")
-export function getNeutralColor() {
-  const themeColors = getThemeColors();
-  return themeColors['dsfr-chart-colors-neutral'];
-}
-
-// Exemple d'export de toutes les fonctions et palettes pour les utiliser dans vos composants
-export const colorUtils = {
-  getCategoricalPalette,
-  getDefaultColor,
-  getNeutralColor,
-  getSequentialAscending,
-  getSequentialDescending,
-  getDivergentAscending,
-  getDivergentDescending,
-  limitCategories,
-  getColorsByIndex,
-};
-
-// Fonction principale `choosePalette`
-export function choosePalette(selectedPalette) {
-  switch (selectedPalette) {
-    case 'categorical':
-      return getCategoricalPalette();
-    case 'sequentialAscending':
-      return getSequentialAscending();
-    case 'sequentialDescending':
-      return getSequentialDescending();
-    case 'divergentAscending':
-      return getDivergentAscending();
-    case 'divergentDescending':
-      return getDivergentDescending();
-    case 'neutral':
-      return [getNeutralColor()];
-    case 'defaultColor':
-      return [getDefaultColor()];
-    default:
-      return getCategoricalPalette(); // Fallback
-  }
 }
 
 const dep = [
@@ -1011,10 +898,6 @@ const reg = [
   },
 ];
 
-export const getHexaFromName = function (colorName, options = undefined) {
-  return window.dsfr.colors.getColor('artwork', 'major', colorName, options);
-};
-
 const patternDraw = [
   'plus',
   'cross',
@@ -1244,8 +1127,19 @@ const allToken = {
   },
 };
 
+export const getHexaFromName = function (colorName, options = undefined) {
+  return window.dsfr.colors.getColor('artwork', 'major', colorName, options);
+};
+
 export const getHexaFromToken = function (token, theme) {
   return allToken[token][theme];
+};
+
+export const configureChartDefaults = () => {
+  Chart.defaults.font.size = 12;
+  Chart.defaults.font.lineHeight = 1.66;
+  Chart.defaults.color = '#666666';
+  Chart.defaults.borderColor = '#DDDDDD';
 };
 
 export const mixin = {
@@ -1262,9 +1156,9 @@ export const mixin = {
     getAcad,
     getDepsFromReg,
     getHexaFromName,
+    getHexaFromToken,
     getAllPattern,
     getClassMap,
     getAllReg,
-    getHexaFromToken,
   },
 };
