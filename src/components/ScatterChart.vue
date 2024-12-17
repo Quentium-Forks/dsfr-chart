@@ -468,7 +468,7 @@ export default {
                   return label;
                 },
                 title: function (tooltipItems) {
-                  return tooltipItems[0].label;
+                  return tooltipItems[0].parsed.x;
                 },
                 labelTextColor: function () {
                   const colors = [];
