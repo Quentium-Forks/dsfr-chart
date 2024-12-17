@@ -5,4 +5,7 @@ export default {
   framework: {
     name: '@storybook/web-components-vite',
   },
+  core: {
+    disableTelemetry: true,
+  },
 };
