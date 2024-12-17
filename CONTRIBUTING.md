@@ -93,11 +93,7 @@ Pour les exécuter vous devez dans un premier temps build le projet:
 
 `npm run build`
 
-Lancez le Storybook:
-
-`npm run storybook`
-
-Et enfin lancez les tests:
+Puis lancez les tests:
 
 `npm run test`
 
