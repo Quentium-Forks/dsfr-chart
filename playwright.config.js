@@ -5,6 +5,7 @@ export default defineConfig({
   testDir: "./tests",
   fullyParallel: true,
   forbidOnly: true,
+  snapshotPathTemplate: "{testDir}/__snapshots__/{arg}{ext}",
   retries: 0,
   workers: 4,
   reporter: "html",
@@ -29,14 +30,5 @@ export default defineConfig({
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
     },
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] }
-    // },
-
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] }
-    // }
   ],
 });
