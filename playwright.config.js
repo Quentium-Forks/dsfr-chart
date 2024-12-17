@@ -8,6 +8,7 @@ export default defineConfig({
   snapshotPathTemplate: "{testDir}/__snapshots__/{arg}{ext}",
   retries: 0,
   workers: 4,
+  timeout: 10000,
   reporter: "html",
   use: {
     baseURL: "http://localhost:6006",
