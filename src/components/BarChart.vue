@@ -365,7 +365,7 @@ export default {
     },
     changeColors(theme) {
       Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
-      
+
       this.loadColors();
 
       // Mise à jour des couleurs dans le graphique

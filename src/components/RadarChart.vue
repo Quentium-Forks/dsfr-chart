@@ -234,8 +234,8 @@ export default {
           scales: {
             r: {
               angleLines: {
-                display: true, 
-                borderDash: [3, 3]
+                display: true,
+                borderDash: [3, 3],
               },
               ticks: {
                 display: false, // Hide the tick labels
@@ -243,7 +243,7 @@ export default {
               },
               grid: {
                 color: '#666666',
-              }
+              },
             },
           },
           plugins: {
