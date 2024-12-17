@@ -360,7 +360,7 @@ export default {
           pointHoverBorderColor: this.colorHover,
           yAxisID: 'yBar',
           order: 1,
-          tension: 0.4
+          tension: 0.4,
         },
       ];
     },
@@ -445,7 +445,7 @@ export default {
                 self.legendLeftMargin = axis.width;
               },
             },
-            yBar:{
+            yBar: {
               type: 'linear',
               position: 'right',
               id: 'yBar',
