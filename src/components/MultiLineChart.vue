@@ -225,6 +225,9 @@ export default {
   },
   methods: {
     resetData() {
+      if (this.chart) {
+        this.chart.destroy();
+      }
       this.legendLeftMargin = 100;
       this.display = '';
       this.datasets = [];
