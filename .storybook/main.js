@@ -1,12 +1,8 @@
 /** @type { import('@storybook/web-components-vite').StorybookConfig } */
-const config = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-  addons: [
-    "@storybook/addon-essentials"
-  ],
+export default {
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: ['@storybook/addon-essentials'],
   framework: {
-    name: "@storybook/web-components-vite",
-    options: {},
+    name: '@storybook/web-components-vite',
   },
 };
-export default config;
