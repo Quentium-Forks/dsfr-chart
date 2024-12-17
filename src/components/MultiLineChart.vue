@@ -426,6 +426,7 @@ export default {
         dataset.hoverBackgroundColor = this.colorHover[i];
         dataset.pointHoverBorderColor = this.colorHover[i];
         dataset.pointHoverBackgroundColor = this.colorHover[i];
+        dataset.tension = 0.4;
       });
 
       this.chart.update(0);

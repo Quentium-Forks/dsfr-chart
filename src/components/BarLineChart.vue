@@ -362,6 +362,7 @@ export default {
           pointHoverBorderColor: this.colorHover,
           yAxisID: 'yBar',
           order: 1,
+          tension: 0.4
         },
       ];
     },
