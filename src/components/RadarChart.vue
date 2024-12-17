@@ -228,18 +228,19 @@ export default {
             easing: 'easeInOutBack',
             duration: 0,
           },
-          scale: {
-            ticks: {
-              display: false, // Hide the tick labels
-              backdropColor: 'transparent',
-            },
-            gridLines: {
-              color: '#DDDDDD',
-            },
-            angleLines: {
-              color: '#DDDDDD',
-              lineWidth: 1,
-              borderDash: [3, 3],
+          scales: {
+            r: {
+              angleLines: {
+                display: true, 
+                borderDash: [3, 3]
+              },
+              ticks: {
+                display: false, // Hide the tick labels
+                backdropColor: 'transparent',
+              },
+              grid: {
+                color: '#666666',
+              }
             },
           },
           plugins: {
