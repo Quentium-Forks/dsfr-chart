@@ -391,13 +391,11 @@ export default {
               grid: {
                 drawTicks: false,
                 drawOnChartArea: false,
-                borderColor: '#DDDDDD', // couleur axe X
                 borderDash: [3],
                 lineWidth: 1,
               },
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes
-                color: '#666666', // couleur valeurs de l'axe X
                 labelOffset: 10,
                 callback: function (value) {
                   if (self.formatdate) {
@@ -412,14 +410,12 @@ export default {
             y: {
               grid: {
                 drawTicks: false,
-                borderColor: '#DDDDDD', // couleur axe Y
                 lineWidth: 1,
                 borderDash: [3],
               },
               suggestedMax: this.ymax,
               ticks: {
                 position: 'left',
-                color: '#666666', // couleur valeurs de l'axe Y
                 padding: 10, // Espace supplémentaire autour des étiquettes
                 maxTicksLimit: 5,
                 callback: function (value) {

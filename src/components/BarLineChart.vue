@@ -415,7 +415,6 @@ export default {
                 drawTicks: true,
                 zeroLineColor: '#DDDDDD',
                 drawOnChartArea: false,
-                color: '#DDDDDD',
                 lineWidth: 1,
               },
             },

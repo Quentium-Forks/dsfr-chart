@@ -446,12 +446,10 @@ export default {
               type: self.xAxisType,
               grid: {
                 drawOnChartArea: false,
-                borderColor: '#DDDDDD',
                 lineWidth: 1,
               },
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes
-                color: '#666666',
                 callback: function (value) {
                   if (self.formatdate) {
                     return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
@@ -466,13 +464,11 @@ export default {
               grid: {
                 drawTicks: false,
                 zeroLineColor: '#DDDDDD',
-                borderColor: '#DDDDDD',
                 borderDash: [3],
                 lineWidth: 1,
               },
               suggestedMax: self.ymax,
               ticks: {
-                color: '#666666',
                 padding: 4,
                 maxTicksLimit: 5,
                 callback: function (value) {

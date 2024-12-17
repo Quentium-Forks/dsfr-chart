@@ -256,7 +256,6 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                color: '#666666', // couleur valeurs de l'axe X
                 padding: 5, // Espace supplémentaire autour des étiquettes
               },
             },
@@ -265,13 +264,11 @@ export default {
               offset: true,
               grid: {
                 drawTicks: false,
-                borderColor: '#DDDDDD',
                 borderDash: [3],
                 lineWidth: 1,
               },
               ticks: {
                 beginAtZero: true,
-                color: '#666666', // couleur valeurs de l'axe X
                 padding: 5, // Espace supplémentaire autour des étiquettes
               },
             },
