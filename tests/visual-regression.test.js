@@ -3,6 +3,9 @@
 import { test, expect } from "@playwright/test";
 import { readdirSync } from "fs";
 
+// Small hack because page.waitForSelecotr is not working with storybook
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
 const stories = await Promise.all(
   readdirSync("src/stories")
     .filter((file) => file.endsWith(".stories.js"))
@@ -25,6 +28,7 @@ test.describe("Charts visual regression", () => {
       test(`${story.name} - ${path.name}`, async ({ page, browserName }) => {
         await page.goto(path.url);
         await page.setViewportSize({ width: 1920, height: 1080 });
+        await sleep(2000);
         // await page.waitForSelector('#storybook-root')
 
         const graph = await page.locator("#storybook-preview-iframe");
@@ -44,6 +48,7 @@ test.describe("Dev doc page visual regression", () => {
   test("Full page", async ({ page, browserName }) => {
     await page.goto("http://localhost:5173/");
     await page.setViewportSize({ width: 1920, height: 1080 });
+    await sleep(2000);
     await expect(page).toHaveScreenshot(
       `dev-doc-full-page-${browserName}.png`,
       {
