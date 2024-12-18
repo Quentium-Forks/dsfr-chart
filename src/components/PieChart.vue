@@ -242,13 +242,12 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                function getBody(bodyItem) {
-                  return bodyItem.lines;
-                }
                 // Set Text
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
-                  const bodyLines = tooltipModel.body.map(getBody);
+                  const bodyLines = tooltipModel.body.map((bodyItem) => {
+                    return bodyItem.lines;
+                  });
 
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines;
