@@ -392,8 +392,10 @@ export default {
               grid: {
                 drawTicks: false,
                 drawOnChartArea: false,
-                borderDash: [3],
                 lineWidth: 1,
+              },
+              border: {
+                dash: [3],
               },
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes

@@ -261,9 +261,6 @@ export default {
                 beginAtZero: true,
                 padding: 5, // Espace supplémentaire autour des étiquettes
               },
-              border:{
-                display: false,
-              }
             },
             y: {
               stacked: this.stacked,
