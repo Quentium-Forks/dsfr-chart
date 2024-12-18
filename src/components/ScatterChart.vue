@@ -388,7 +388,6 @@ export default {
             x: {
               type: this.xAxisType,
               grid: {
-                zeroLineColor: '#DDDDDD',
                 drawOnChartArea: false,
                 lineWidth: 1,
               },
