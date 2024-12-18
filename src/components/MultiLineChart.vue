@@ -427,13 +427,12 @@ export default {
 
       this.getData();
 
-      const self = this;
-      const ctx = this.$refs[self.chartId].getContext('2d');
+      const ctx = this.$refs[this.chartId].getContext('2d');
 
       this.chart = new Chart(ctx, {
         data: {
-          labels: self.labels,
-          datasets: self.datasets,
+          labels: this.labels,
+          datasets: this.datasets,
         },
         options: {
           aspectRatio: this.aspectratio,
@@ -444,15 +443,15 @@ export default {
           scales: {
             x: {
               offset: true,
-              type: self.xAxisType,
+              type: this.xAxisType,
               grid: {
                 drawOnChartArea: false,
                 lineWidth: 1,
               },
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes
-                callback: function (value) {
-                  if (self.formatdate) {
+                callback: (value) => {
+                  if (this.formatdate) {
                     return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
                   } else {
                     return value;
@@ -468,11 +467,11 @@ export default {
                 borderDash: [3],
                 lineWidth: 1,
               },
-              suggestedMax: self.ymax,
+              suggestedMax: this.ymax,
               ticks: {
                 padding: 4,
                 maxTicksLimit: 5,
-                callback: function (value) {
+                callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';
                   } else if (value >= 1000000 || value <= -1000000) {
@@ -483,8 +482,8 @@ export default {
                   return value;
                 },
               },
-              afterFit: function (axis) {
-                self.legendLeftMargin = axis.width;
+              afterFit: (axis) => {
+                this.legendLeftMargin = axis.width;
               },
             },
           },
@@ -497,14 +496,14 @@ export default {
               displayColors: false,
               backgroundColor: '#6b6b6b',
               callbacks: {
-                label: function (tooltipItems) {
+                label: (tooltipItems) => {
                   const label = [];
-                  self.datasets.forEach(function (set, i) {
-                    if (self.showLine[i]) {
-                      if (self.xAxisType === 'linear') {
-                        const index = self.xparse[i].indexOf(tooltipItems.parsed.x);
+                  this.datasets.forEach((set, i) => {
+                    if (this.showLine[i]) {
+                      if (this.xAxisType === 'linear') {
+                        const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
                         if (index !== -1) {
-                          label.push(self.yparse[i][index]);
+                          label.push(this.yparse[i][index]);
                         } else {
                           label.push(undefined);
                         }
@@ -515,14 +514,14 @@ export default {
                   });
                   return label;
                 },
-                title: function (tooltipItems) {
+                title: (tooltipItems) => {
                   return tooltipItems[0].label;
                 },
-                labelTextColor: function () {
+                labelTextColor: () => {
                   const colors = [];
-                  self.showLine.forEach(function (show, i) {
+                  this.showLine.forEach((show, i) => {
                     if (show) {
-                      colors.push(self.colorParse[i]);
+                      colors.push(this.colorParse[i]);
                     }
                   });
                   return colors;
@@ -553,51 +552,48 @@ export default {
                 // Set Text
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
-                  const bodyLines = tooltipModel.body.map(getBody);
+                  const bodyLines = tooltipModel.body.map((bodyItem) => {
+                    return bodyItem.lines;
+                  });
 
                   // Set the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines[0];
 
                   // Clear the existing tooltip content
-                  const divValue = self.$el.querySelector('.tooltip_value');
+                  const divValue = this.$el.querySelector('.tooltip_value');
                   divValue.innerHTML = '';
 
                   // Check if `.tooltip_dot` element exists and get its attribute node name
-                  const tooltipDot = self.$el.querySelector('.tooltip_dot');
+                  const tooltipDot = this.$el.querySelector('.tooltip_dot');
                   const nodeName = tooltipDot ? tooltipDot.attributes[0].nodeName : 'data-attribute'; // Default attribute if `.tooltip_dot` is missing
 
                   // Iterate through each line in the body and add formatted HTML with correct colors
                   bodyLines[0].forEach((line, i) => {
                     if (line !== undefined) {
-                      const lineColor = tooltipModel.labelTextColors[i] || self.colorParse[i]; // Use tooltipModel color if available, fallback to self.colorParse
+                      const lineColor = tooltipModel.labelTextColors[i] || this.colorParse[i]; // Use tooltipModel color if available, fallback to this.colorParse
 
                       // Append the line with color and optional unitTooltip
                       divValue.innerHTML += `
                       <div class="tooltip_value-content" style="display: flex; justify-content: space-between; align-items: center;">
                         <span ${nodeName}="" class="tooltip_dot" style="background-color:${lineColor};"></span>
-                        ${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}<br>
+                        ${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}<br>
                       </div>
                     `;
                     }
                   });
                 }
 
-                // Helper function for extracting body lines
-                function getBody(bodyItem) {
-                  return bodyItem.lines;
-                }
+                const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
 
-                const { offsetLeft: positionX, offsetTop: positionY } = self.chart.canvas;
-
-                const canvasWidth = Number(self.chart.canvas.style.width.replace(/\D/g, ''));
-                const canvasHeight = Number(self.chart.canvas.style.height.replace(/\D/g, ''));
+                const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
+                const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 18;
-                if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
+                if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
                 }
                 if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {

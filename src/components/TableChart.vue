@@ -101,20 +101,19 @@ export default {
       this.nameParse = [];
     },
     getData() {
-      const self = this;
       this.xparse = JSON.parse(this.x);
       this.yparse = JSON.parse(this.y);
 
       let tmpNameParse = [];
       if (this.name !== undefined) {
-        tmpNameParse = JSON.parse(self.name);
+        tmpNameParse = JSON.parse(this.name);
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
         if (tmpNameParse[i] !== undefined) {
-          self.nameParse.push(tmpNameParse[i]);
+          this.nameParse.push(tmpNameParse[i]);
         } else {
-          self.nameParse.push('Serie' + (i + 1));
+          this.nameParse.push('Serie' + (i + 1));
         }
       }
     },

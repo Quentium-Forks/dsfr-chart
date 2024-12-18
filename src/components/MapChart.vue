@@ -301,9 +301,9 @@ export default {
         } else {
           listDep = [this.getAcad(this.zoomDep).value];
         }
-        listDep.forEach(function (key) {
+        for (const key in listDep) {
           values.push(self.dataParse[key]);
-        });
+        }
       } else {
         for (const key in self.dataParse) {
           values.push(self.dataParse[key]);

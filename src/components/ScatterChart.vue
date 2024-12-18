@@ -246,7 +246,6 @@ export default {
       this.colorHover = [];
     },
     getData() {
-      const self = this;
       // Récupération des paramètres
       try {
         this.xparse = JSON.parse(this.x);
@@ -259,7 +258,7 @@ export default {
       let tmpNameParse = [];
       if (this.name !== undefined) {
         try {
-          tmpNameParse = JSON.parse(self.name);
+          tmpNameParse = JSON.parse(this.name);
         } catch (error) {
           console.error('Erreur lors du parsing de name:', error);
         }
@@ -268,11 +267,11 @@ export default {
       this.loadColors();
 
       for (let i = 0; i < this.yparse.length; i++) {
-        self.showPoint.push(true);
+        this.showPoint.push(true);
         if (tmpNameParse[i] !== undefined) {
-          self.nameParse.push(tmpNameParse[i]);
+          this.nameParse.push(tmpNameParse[i]);
         } else {
-          self.nameParse.push('Serie' + (i + 1));
+          this.nameParse.push('Serie' + (i + 1));
         }
       }
 
@@ -281,17 +280,17 @@ export default {
         this.vlineParse = JSON.parse(this.vline);
         let tmpVlineNameParse = [];
         if (this.vlinename !== undefined) {
-          tmpVlineNameParse = JSON.parse(self.vlinename);
+          tmpVlineNameParse = JSON.parse(this.vlinename);
         }
         if (this.vlinecolor !== undefined) {
-          this.tmpVlineColorParse = JSON.parse(self.vlinecolor);
+          this.tmpVlineColorParse = JSON.parse(this.vlinecolor);
         }
 
         for (let i = 0; i < this.vlineParse.length; i++) {
           if (tmpVlineNameParse[i] !== undefined) {
-            self.vlineNameParse.push(tmpVlineNameParse[i]);
+            this.vlineNameParse.push(tmpVlineNameParse[i]);
           } else {
-            self.vlineNameParse.push('V' + (i + 1));
+            this.vlineNameParse.push('V' + (i + 1));
           }
         }
       }
@@ -301,17 +300,17 @@ export default {
         this.hlineParse = JSON.parse(this.hline);
         let tmpHlineNameParse = [];
         if (this.hlinename !== undefined) {
-          tmpHlineNameParse = JSON.parse(self.hlinename);
+          tmpHlineNameParse = JSON.parse(this.hlinename);
         }
         if (this.hlinecolor !== undefined) {
-          this.tmpHlineColorParse = JSON.parse(self.hlinecolor);
+          this.tmpHlineColorParse = JSON.parse(this.hlinecolor);
         }
 
         for (let i = 0; i < this.hlineParse.length; i++) {
           if (tmpHlineNameParse[i] !== undefined) {
-            self.hlineNameParse.push(tmpHlineNameParse[i]);
+            this.hlineNameParse.push(tmpHlineNameParse[i]);
           } else {
-            self.hlineNameParse.push('H' + (i + 1));
+            this.hlineNameParse.push('H' + (i + 1));
           }
         }
       }
@@ -319,16 +318,16 @@ export default {
       // Formatage des données
       let data = [];
       // Cas où x est numérique
-      if (typeof self.xparse[0][0] === 'number') {
+      if (typeof this.xparse[0][0] === 'number') {
         const allX = [];
-        self.xparse.forEach(function (xj, j) {
+        this.xparse.forEach((xj, j) => {
           const dj = [];
           const xsort = xj.map((a) => a).sort((a, b) => a - b);
-          xsort.forEach(function (k) {
+          xsort.forEach((k) => {
             const index = xj.findIndex((element) => element === k);
             dj.push({
               x: k,
-              y: self.yparse[j][index],
+              y: this.yparse[j][index],
             });
             if (!allX.includes(k)) {
               allX.push(k);
@@ -336,31 +335,31 @@ export default {
           });
           data.push(dj);
         });
-        self.labels = undefined;
-        self.xAxisType = 'linear';
+        this.labels = undefined;
+        this.xAxisType = 'linear';
       } else {
         // Cas où x est non numérique
-        data = self.yparse;
-        self.labels = self.xparse[0];
-        self.xAxisType = 'category';
+        data = this.yparse;
+        this.labels = this.xparse[0];
+        this.xAxisType = 'category';
       }
 
       // Set ymax
-      self.ymax = Math.max.apply(null, self.hlineParse);
+      this.ymax = Math.max.apply(null, this.hlineParse);
 
       // Tracé de la courbe
-      data.forEach(function (dj, j) {
-        self.datasets.push({
+      data.forEach((dj, j) => {
+        this.datasets.push({
           data: dj,
           fill: false,
-          borderColor: self.colorParse[j],
-          backgroundColor: self.colorParse[j],
+          borderColor: this.colorParse[j],
+          backgroundColor: this.colorParse[j],
           type: 'scatter',
-          pointRadius: self.pointradius,
-          pointHoverRadius: self.pointradius,
-          pointHoverBackgroundColor: self.colorHover[j],
-          pointHoverBorderColor: self.colorHover[j],
-          showLine: self.showline,
+          pointRadius: this.pointradius,
+          pointHoverRadius: this.pointradius,
+          pointHoverBackgroundColor: this.colorHover[j],
+          pointHoverBorderColor: this.colorHover[j],
+          showLine: this.showline,
           borderWidth: 2,
         });
       });
@@ -370,14 +369,13 @@ export default {
 
       this.getData();
 
-      const self = this;
-      const ctx = this.$refs[self.chartId].getContext('2d');
+      const ctx = this.$refs[this.chartId].getContext('2d');
 
       this.chart = new Chart(ctx, {
         type: 'scatter',
         data: {
-          labels: self.labels,
-          datasets: self.datasets,
+          labels: this.labels,
+          datasets: this.datasets,
         },
         options: {
           aspectRatio: this.aspectratio,
@@ -389,15 +387,15 @@ export default {
           },
           scales: {
             x: {
-              type: self.xAxisType,
+              type: this.xAxisType,
               grid: {
                 zeroLineColor: '#DDDDDD',
                 drawOnChartArea: false,
                 lineWidth: 1,
               },
               ticks: {
-                callback: function (value) {
-                  if (self.formatdate) {
+                callback: (value) => {
+                  if (this.formatdate) {
                     return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
                   } else {
                     return value;
@@ -416,8 +414,8 @@ export default {
                 padding: 4,
                 autoSkip: true,
                 maxTicksLimit: 5,
-                suggestedMax: self.ymax,
-                callback: function (value) {
+                suggestedMax: this.ymax,
+                callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';
                   } else if (value >= 1000000 || value <= -1000000) {
@@ -428,8 +426,8 @@ export default {
                   return value;
                 },
               },
-              afterFit: function (axis) {
-                self.legendLeftMargin = axis.width;
+              afterFit: (axis) => {
+                this.legendLeftMargin = axis.width;
               },
             },
           },
@@ -442,32 +440,32 @@ export default {
               displayColors: false,
               backgroundColor: '#6b6b6b',
               callbacks: {
-                label: function (tooltipItems) {
+                label: (tooltipItems) => {
                   const label = [];
-                  self.datasets.forEach(function (set, i) {
-                    if (self.showPoint[i]) {
-                      if (self.xAxisType === 'linear') {
-                        const index = self.xparse[i].indexOf(tooltipItems.parsed.x);
+                  this.datasets.forEach((set, i) => {
+                    if (this.showPoint[i]) {
+                      if (this.xAxisType === 'linear') {
+                        const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
                         if (index !== -1) {
-                          label.push(self.convertIntToHuman(self.yparse[i][index]));
+                          label.push(this.convertIntToHuman(this.yparse[i][index]));
                         } else {
                           label.push(undefined);
                         }
                       } else {
-                        label.push(self.convertIntToHuman(set.data[tooltipItems.dataIndex]));
+                        label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
                       }
                     }
                   });
                   return label;
                 },
-                title: function (tooltipItems) {
+                title: (tooltipItems) => {
                   return tooltipItems[0].parsed.x;
                 },
-                labelTextColor: function () {
+                labelTextColor: () => {
                   const colors = [];
-                  self.showPoint.forEach(function (show, i) {
+                  this.showPoint.forEach((show, i) => {
                     if (show) {
-                      colors.push(self.colorParse[i]);
+                      colors.push(this.colorParse[i]);
                     }
                   });
                   return colors;
@@ -495,26 +493,25 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                function getBody(bodyItem) {
-                  return bodyItem.lines;
-                }
                 // Set Text
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
-                  const bodyLines = tooltipModel.body.map(getBody);
+                  const bodyLines = tooltipModel.body.map((bodyItem) => {
+                    return bodyItem.lines;
+                  });
 
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines[0];
 
-                  const divValue = self.$el.querySelector('.tooltip_value');
+                  const divValue = this.$el.querySelector('.tooltip_value');
 
                   divValue.innerHTML = '';
-                  bodyLines[0].forEach(function (line, i) {
-                    const displayValue = `${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}`;
+                  bodyLines[0].forEach((line, i) => {
+                    const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
                     if (line !== undefined) {
                       divValue.innerHTML += `
                       <div class="tooltip_value-content">
-                        <span class="tooltip_dot" style="background-color:${self.colorParse[i]};"></span>
+                        <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>
                         <p class="tooltip_place fr-mb-0">${displayValue}</p>
                       </div>
                     `;
@@ -522,16 +519,16 @@ export default {
                   });
                 }
 
-                const { offsetLeft: positionX, offsetTop: positionY } = self.chart.canvas;
+                const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
 
-                const canvasWidth = Number(self.chart.canvas.style.width.replace(/\D/g, ''));
-                const canvasHeight = Number(self.chart.canvas.style.height.replace(/\D/g, ''));
+                const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
+                const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 18;
-                if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
+                if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
                 }
                 if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
@@ -551,21 +548,20 @@ export default {
       });
     },
     ChangeShowPoint(index) {
-      const self = this;
       this.showPoint[index] = !this.showPoint[index];
       if (this.showPoint[index]) {
-        this.chart.data.datasets[index].pointRadius = self.pointradius;
-        this.chart.data.datasets[index].showLine = self.showline;
+        this.chart.data.datasets[index].pointRadius = this.pointradius;
+        this.chart.data.datasets[index].showLine = this.showline;
       } else {
         this.chart.data.datasets[index].pointRadius = 0;
         this.chart.data.datasets[index].showLine = false;
       }
       this.opacity.length = 0;
-      this.showPoint.forEach(function (show) {
+      this.showPoint.forEach((show) => {
         if (show) {
-          self.opacity.push(1);
+          this.opacity.push(1);
         } else {
-          self.opacity.push(0.3);
+          this.opacity.push(0.3);
         }
       });
       this.chart.update(0);

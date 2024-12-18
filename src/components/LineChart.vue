@@ -368,7 +368,6 @@ export default {
       this.getData();
 
       const ctx = this.$refs[this.chartId].getContext('2d');
-      const self = this;
 
       this.chart = new Chart(ctx, {
         type: 'line',
@@ -397,8 +396,8 @@ export default {
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes
                 labelOffset: 10,
-                callback: function (value) {
-                  if (self.formatdate) {
+                callback: (value) => {
+                  if (this.formatdate) {
                     const date = new Date(value);
                     return date.getMonth() + 1 + '/' + date.getFullYear();
                   } else {
@@ -418,7 +417,7 @@ export default {
                 position: 'left',
                 padding: 10, // Espace supplémentaire autour des étiquettes
                 maxTicksLimit: 5,
-                callback: function (value) {
+                callback: (value) => {
                   if (value >= 1e9 || value <= -1e9) {
                     return value / 1e9 + 'B';
                   } else if (value >= 1e6 || value <= -1e6) {
@@ -429,8 +428,8 @@ export default {
                   return value;
                 },
               },
-              afterFit: function (axis) {
-                self.legendLeftMargin = axis.width;
+              afterFit: (axis) => {
+                this.legendLeftMargin = axis.width;
               },
             },
           },
@@ -468,7 +467,7 @@ export default {
 
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
-                  const bodyLines = tooltipModel.body.map(function (bodyItem) {
+                  const bodyLines = tooltipModel.body.map((bodyItem) => {
                     return bodyItem.lines;
                   });
 
@@ -483,23 +482,23 @@ export default {
                   // Iterate through each line in the body and add formatted HTML
                   bodyLines.forEach((line, i) => {
                     if (line !== undefined) {
-                      const color = Array.isArray(self.colorParse) ? self.colorParse[i] : self.colorParse;
+                      const color = Array.isArray(this.colorParse) ? this.colorParse[i] : this.colorParse;
 
                       // Extraire uniquement la valeur numérique sans le texte "Prix moyen en euros"
-                      const valueOnly = line[0].replace(self.name + ': ', ''); // Enlever le nom depuis le prop `name`
+                      const valueOnly = line[0].replace(this.name + ': ', ''); // Enlever le nom depuis le prop `name`
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content" style="display: flex; justify-content: space-between; align-items: center;">
                           <span class="tooltip_dot" style="background-color: ${color};"></span>
-                          <p class="tooltip_place fr-mb-0">${valueOnly}${self.unitTooltip ? ' ' + self.unitTooltip : ''}</p>
+                          <p class="tooltip_place fr-mb-0">${valueOnly}${this.unitTooltip ? ' ' + this.unitTooltip : ''}</p>
                         </div>
                       `;
                     }
                   });
                 }
 
-                const positionX = self.chart.canvas.offsetLeft;
-                const positionY = self.chart.canvas.offsetTop;
+                const positionX = this.chart.canvas.offsetLeft;
+                const positionY = this.chart.canvas.offsetTop;
 
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.pointerEvents = 'none';
@@ -507,10 +506,10 @@ export default {
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 18;
 
-                const canvasWidth = self.chart.canvas.clientWidth;
-                const canvasHeight = self.chart.canvas.clientHeight;
+                const canvasWidth = this.chart.canvas.clientWidth;
+                const canvasHeight = this.chart.canvas.clientHeight;
 
-                if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
+                if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
                 }
                 if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {

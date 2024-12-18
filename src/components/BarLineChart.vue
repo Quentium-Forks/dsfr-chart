@@ -385,8 +385,7 @@ export default {
 
       this.getData();
 
-      const self = this;
-      const ctx = this.$refs[self.chartId].getContext('2d');
+      const ctx = this.$refs[this.chartId].getContext('2d');
 
       this.chart = new Chart(ctx, {
         data: {
@@ -402,7 +401,7 @@ export default {
           scales: {
             x: {
               offset: true,
-              type: self.xAxisType,
+              type: this.xAxisType,
               grid: {
                 drawTicks: true,
                 zeroLineColor: '#DDDDDD',
@@ -422,9 +421,9 @@ export default {
               ticks: {
                 padding: 8,
                 suggestedMin: 0,
-                suggestedMax: self.ymax,
+                suggestedMax: this.ymax,
                 maxTicksLimit: 5,
-                callback: function (value) {
+                callback: (value) =>{
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';
                   } else if (value >= 1000000 || value <= -1000000) {
@@ -435,8 +434,8 @@ export default {
                   return value;
                 },
               },
-              afterFit: function (axis) {
-                self.legendLeftMargin = axis.width;
+              afterFit: (axis) =>{
+                this.legendLeftMargin = axis.width;
               },
             },
             yBar: {
@@ -454,7 +453,7 @@ export default {
                 padding: 8,
                 maxTicksLimit: 5,
                 suggestedMin: 0,
-                callback: function (value) {
+                callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';
                   } else if (value >= 1000000 || value <= -1000000) {
@@ -465,8 +464,8 @@ export default {
                   return value;
                 },
               },
-              afterFit: function (axis) {
-                self.legendLeftMargin = axis.width;
+              afterFit: (axis) => {
+                this.legendLeftMargin = axis.width;
               },
             },
           },
@@ -479,14 +478,14 @@ export default {
               displayColors: false,
               backgroundColor: '#6b6b6b',
               callbacks: {
-                label: function (tooltipItems) {
+                label: (tooltipItems) => {
                   const label = [];
-                  self.datasets.forEach(function (set) {
-                    label.push(self.convertIntToHuman(set.data[tooltipItems.dataIndex]));
+                  this.datasets.forEach((set) => {
+                    label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
                   });
                   return label;
                 },
-                title: function (tooltipItems) {
+                title: (tooltipItems) => {
                   return tooltipItems[0].label;
                 },
               },
@@ -512,14 +511,12 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                function getBody(bodyItem) {
-                  return bodyItem.lines;
-                }
-
                 // Set Text
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
-                  const bodyLines = tooltipModel.body.map(getBody);
+                  const bodyLines = tooltipModel.body.map((bodyItem) => {
+                    return bodyItem.lines;
+                  });
 
                   // Set the title in the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
@@ -529,22 +526,22 @@ export default {
                   divValue.innerHTML = '';
 
                   // Access color arrays for different datasets
-                  const colors = [self.colorBarParse, self.colorParse]; // Adjust to match your color variables
+                  const colors = [this.colorBarParse, this.colorParse]; // Adjust to match your color variables
 
                   // If there is no .tooltip_dot element, set a fallback for nodeName
-                  const tooltipDotElement = self.$el.querySelector('.tooltip_dot');
+                  const tooltipDotElement = this.$el.querySelector('.tooltip_dot');
                   const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
 
                   // Iterate over bodyLines to set each line with the correct color and value
-                  bodyLines[0].forEach(function (line, i) {
+                  bodyLines[0].forEach((line, i) => {
                     if (line !== undefined) {
                       const color = colors[i] ? colors[i] : '#000'; // Fallback to black if color is undefined
 
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
                       const displayValue =
                         i === 0
-                          ? `${line}${self.unitTooltipBar ? ' ' + self.unitTooltipBar : ''}` // Barres
-                          : `${line}${self.unitTooltip ? ' ' + self.unitTooltip : ''}`; // Lignes
+                          ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}` // Barres
+                          : `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`; // Lignes
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content" style="display: flex; align-items: center;">
@@ -557,9 +554,9 @@ export default {
                 }
 
                 // Position the tooltip
-                const { offsetLeft: positionX, offsetTop: positionY } = self.chart.canvas;
-                const canvasWidth = Number(self.chart.canvas.style.width.replace(/\D/g, ''));
-                const canvasHeight = Number(self.chart.canvas.style.height.replace(/\D/g, ''));
+                const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
+                const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
+                const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
 
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = `${tooltipModel.padding}px ${tooltipModel.padding}px`;
@@ -568,7 +565,7 @@ export default {
                 let tooltipX = positionX + window.pageXOffset + tooltipModel.caretX + 10;
                 let tooltipY = positionY + window.pageYOffset + tooltipModel.caretY - 18;
 
-                if (tooltipX + tooltipEl.clientWidth + self.legendLeftMargin > positionX + canvasWidth) {
+                if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
                 }
                 if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
