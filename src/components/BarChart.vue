@@ -203,7 +203,7 @@ export default {
         hoverBackgroundColor: this.colorHover[index],
         hoverBorderColor: this.colorHover[index],
         barThickness: this.barsize || (this.stacked ? 32 : this.horizontal ? 20 : 32),
-        maxBarThickness: 32, // Définissez une épaisseur maximale pour les barres
+        maxBarThickness: 32,
       }));
     },
     choosePalette() {
