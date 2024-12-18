@@ -146,9 +146,6 @@ export default {
       if (this.name !== undefined) {
         tmpNameParse = JSON.parse(this.name);
       }
-      if (this.color !== undefined) {
-        this.tmpColorParse = JSON.parse(this.color);
-      }
 
       this.loadColors();
       for (let i = 0; i < this.yparse.length; i++) {

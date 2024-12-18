@@ -264,13 +264,6 @@ export default {
           console.error('Erreur lors du parsing de name:', error);
         }
       }
-      if (this.color !== undefined) {
-        try {
-          this.tmpColorParse = JSON.parse(self.color);
-        } catch (error) {
-          console.error('Erreur lors du parsing de color:', error);
-        }
-      }
 
       this.loadColors();
 

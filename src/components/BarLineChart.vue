@@ -113,10 +113,6 @@ export default {
       type: String,
       required: true,
     },
-    colorbar: {
-      type: String,
-      default: undefined,
-    },
     y: {
       type: String,
       required: true,
@@ -374,8 +370,6 @@ export default {
         hlineParse: this.hlineParse,
         tmpVlineColorParse: this.tmpVlineColorParse,
         tmpHlineColorParse: this.tmpHlineColorParse,
-        colorbar: this.colorbar,
-        color: this.color,
         selectedPalette: this.selectedPalette,
       });
 

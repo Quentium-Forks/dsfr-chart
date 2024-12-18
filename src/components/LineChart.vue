@@ -327,7 +327,6 @@ export default {
         hlineParse: this.hlineParse,
         tmpVlineColorParse: this.tmpVlineColorParse,
         tmpHlineColorParse: this.tmpHlineColorParse,
-        colorbar: this.color,
         selectedPalette: this.selectedPalette,
       });
 

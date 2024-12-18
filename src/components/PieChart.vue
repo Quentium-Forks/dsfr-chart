@@ -149,9 +149,6 @@ export default {
       if (this.name !== undefined) {
         tmpNameParse = JSON.parse(this.name);
       }
-      if (this.color !== undefined) {
-        this.tmpColorParse = JSON.parse(this.color);
-      }
 
       this.loadColors();
 
