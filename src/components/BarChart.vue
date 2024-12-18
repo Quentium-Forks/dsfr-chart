@@ -118,7 +118,7 @@ export default {
       chartId: '',
       legendLeftMargin: 100,
       datasets: [],
-      labels: [],
+      labels: undefined,
       xparse: [],
       yparse: [],
       nameParse: [],
