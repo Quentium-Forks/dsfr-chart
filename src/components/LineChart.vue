@@ -277,7 +277,6 @@ export default {
         }
       }
 
-      this.loadColors();
       let dataLine = [];
 
       // Cas où x est numérique
@@ -302,7 +301,10 @@ export default {
       // Définir ymax
       this.ymax = Math.max.apply(null, this.hlineParse);
 
-      // Tracer de la courbe
+      // Chargement des couleurs
+      this.loadColors();
+
+      // Préparation des datasets
       this.datasets = [
         {
           label: this.name,

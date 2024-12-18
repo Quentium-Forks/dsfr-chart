@@ -150,8 +150,6 @@ export default {
         tmpNameParse = JSON.parse(this.name);
       }
 
-      this.loadColors();
-
       for (let i = 0; i < this.yparse.length; i++) {
         if (tmpNameParse[i] !== undefined) {
           this.nameParse.push(tmpNameParse[i]);
@@ -160,7 +158,7 @@ export default {
         }
       }
 
-      // Formatage des données
+      // Assignation des labels
       this.labels = this.xparse;
       this.datasets = [
         {
@@ -171,6 +169,11 @@ export default {
           hoverBorderColor: this.colorHover,
         },
       ];
+
+      // Chargement des couleurs
+      this.loadColors();
+
+      // Préparation des datasets
     },
     createChart() {
       if (this.chart) this.chart.destroy();

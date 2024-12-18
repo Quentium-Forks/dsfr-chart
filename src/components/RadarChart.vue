@@ -147,7 +147,6 @@ export default {
         tmpNameParse = JSON.parse(this.name);
       }
 
-      this.loadColors();
       for (let i = 0; i < this.yparse.length; i++) {
         if (tmpNameParse[i] !== undefined) {
           this.nameParse.push(tmpNameParse[i]);
@@ -155,10 +154,14 @@ export default {
           this.nameParse.push('Serie' + (i + 1));
         }
       }
-      // Formatage des données
+
+      // Assignation des labels
       this.labels = this.xparse[0];
 
-      // Tracé de la courbe
+      // Chargement des couleurs
+      this.loadColors();
+
+      // Préparation des datasets
       this.datasets = this.yparse.map((dataSet, index) => ({
         pointRadius: 5,
         pointHoverRadius: 5,

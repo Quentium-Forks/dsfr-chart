@@ -264,8 +264,6 @@ export default {
         }
       }
 
-      this.loadColors();
-
       for (let i = 0; i < this.yparse.length; i++) {
         this.showPoint.push(true);
         if (tmpNameParse[i] !== undefined) {
@@ -347,7 +345,10 @@ export default {
       // Set ymax
       this.ymax = Math.max.apply(null, this.hlineParse);
 
-      // Tracé de la courbe
+      // Chargement des couleurs
+      this.loadColors();
+
+      // Préparation des datasets
       this.datasets = data.map((dataSet, index) => ({
         data: dataSet,
         fill: false,

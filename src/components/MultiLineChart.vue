@@ -260,7 +260,6 @@ export default {
         tmpNameParse = JSON.parse(this.name);
       }
 
-      this.loadColors();
       for (let i = 0; i < this.yparse.length; i++) {
         this.showLine.push(true);
         if (tmpNameParse[i] !== undefined) {
@@ -342,7 +341,13 @@ export default {
       // Définir ymax
       this.ymax = Math.max.apply(null, this.hlineParse.concat(this.yparse.flat()));
 
-      // Tracé de la courbe
+      // Assignation des labels
+      this.labels = this.xparse[0];
+
+      // Chargement des couleurs
+      this.loadColors();
+
+      // Préparation des datasets
       this.datasets = data.map((dataSet, index) => ({
         data: dataSet,
         fill: false,
