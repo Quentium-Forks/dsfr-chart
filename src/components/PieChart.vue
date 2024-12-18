@@ -25,7 +25,7 @@
               :style="{ 'background-color': colorParse[index] }"
             />
             <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-              {{ capitalize(nameParse[index]) }}
+              {{ capitalize(item) }}
             </p>
           </div>
           <div

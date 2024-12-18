@@ -36,7 +36,7 @@
               {{ item }}
             </td>
             <td
-              v-for="(item2, colIndex) in yparse"
+              v-for="(item, colIndex) in yparse"
               :key="colIndex"
               :class="getClass(yparse[colIndex][rowIndex])"
             >

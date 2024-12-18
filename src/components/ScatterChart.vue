@@ -18,7 +18,7 @@
         <div class="chart_legend fr-mb-0 fr-mt-4v">
           <div
             v-for="(item, index) in nameParse"
-            :key="item"
+            :key="index"
             class="flex fr-mt-3v fr-mb-1v"
           >
             <span
@@ -26,46 +26,46 @@
               :style="{ 'background-color': colorParse[index] }"
             />
             <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-              {{ capitalize(nameParse[index]) }}
+              {{ capitalize(item) }}
             </p>
           </div>
         </div>
         <!-- Légende pour les lignes horizontales -->
         <div
-          v-for="(item2, index2) in hlineNameParse"
-          :key="item2"
+          v-for="(item, index) in hlineNameParse"
+          :key="index"
           class="flex fr-mt-3v"
           :style="{ 'margin-left': isSmall ? '0px' : style }"
         >
           <span
             class="legende_dash_line1"
-            :style="{ 'background-color': hlineColorParse[index2] }"
+            :style="{ 'background-color': hlineColorParse[index] }"
           />
           <span
             class="legende_dash_line2"
-            :style="{ 'background-color': hlineColorParse[index2] }"
+            :style="{ 'background-color': hlineColorParse[index] }"
           />
           <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-            {{ capitalize(hlineNameParse[index2]) }}
+            {{ capitalize(item) }}
           </p>
         </div>
         <!-- Légende pour les lignes verticales -->
         <div
-          v-for="(item3, index3) in vlineNameParse"
-          :key="item3"
+          v-for="(item, index) in vlineNameParse"
+          :key="index"
           class="flex fr-mt-3v fr-mb-1v"
           :style="{ 'margin-left': isSmall ? '0px' : style }"
         >
           <span
             class="legende_dash_line1"
-            :style="{ 'background-color': vlineColorParse[index3] }"
+            :style="{ 'background-color': vlineColorParse[index] }"
           />
           <span
             class="legende_dash_line2"
-            :style="{ 'background-color': vlineColorParse[index3] }"
+            :style="{ 'background-color': vlineColorParse[index] }"
           />
           <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-            {{ capitalize(vlineNameParse[index3]) }}
+            {{ capitalize(name) }}
           </p>
         </div>
         <div

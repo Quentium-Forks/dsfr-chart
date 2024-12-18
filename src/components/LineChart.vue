@@ -11,7 +11,7 @@
             <div class="tooltip_value">
               <div
                 v-for="(item, index) in nameParse"
-                :key="item"
+                :key="index"
                 class="flex fr-mt-3v fr-mb-1v"
                 :style="{ 'border-bottom': '1px solid #e0e0e0' }"
               >
@@ -21,7 +21,7 @@
                     :style="{ 'background-color': colorParse[index] }"
                   />
                   <p class="tooltip_place">
-                    {{ capitalize(nameParse[index]) }}
+                    {{ capitalize(item) }}
                   </p>
                 </div>
               </div>
@@ -39,7 +39,7 @@
         </div>
         <div
           v-for="(item, index) in hlineNameParse"
-          :key="item"
+          :key="index"
           class="flex fr-mt-3v"
           :style="{ 'margin-left': isSmall ? '0px' : style }"
         >
@@ -52,25 +52,25 @@
             :style="{ 'background-color': hlineColorParse[index] }"
           />
           <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-            {{ capitalize(hlineNameParse[index]) }}
+            {{ capitalize(item) }}
           </p>
         </div>
         <div
-          v-for="(item2, index2) in vlineParse"
-          :key="item2"
+          v-for="(item, index) in vlineNameParse"
+          :key="index"
           class="flex fr-mt-3v fr-mb-1v"
           :style="{ 'margin-left': isSmall ? '0px' : style }"
         >
           <span
             class="legende_dash_line1"
-            :style="{ 'background-color': vlineColorParse[index2] }"
+            :style="{ 'background-color': vlineColorParse[index] }"
           />
           <span
             class="legende_dash_line2"
-            :style="{ 'background-color': vlineColorParse[index2] }"
+            :style="{ 'background-color': vlineColorParse[index] }"
           />
           <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-            {{ capitalize(vlineNameParse[index2]) }}
+            {{ capitalize(item) }}
           </p>
         </div>
         <div

@@ -22,7 +22,7 @@
         <div class="chart_legend fr-mb-0 fr-mt-4v">
           <div
             v-for="(item, index) in nameParse"
-            :key="item"
+            :key="index"
             class="flex fr-mt-3v fr-mb-1v"
           >
             <span
@@ -30,7 +30,7 @@
               :style="{ 'background-color': legendColors[index] }"
             />
             <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-              {{ capitalize(nameParse[index]) }}
+              {{ capitalize(item) }}
             </p>
           </div>
         </div>
