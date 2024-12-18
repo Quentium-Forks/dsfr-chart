@@ -466,9 +466,10 @@ export default {
               position: 'left',
               grid: {
                 drawTicks: false,
-                zeroLineColor: '#DDDDDD',
-                borderDash: [3],
                 lineWidth: 1,
+              },
+              border: {
+                dash: [3],
               },
               suggestedMax: this.ymax,
               ticks: {

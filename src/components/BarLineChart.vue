@@ -405,7 +405,6 @@ export default {
               type: this.xAxisType,
               grid: {
                 drawTicks: true,
-                zeroLineColor: '#DDDDDD',
                 drawOnChartArea: false,
                 lineWidth: 1,
               },
@@ -415,9 +414,10 @@ export default {
               position: 'left',
               grid: {
                 drawTicks: false,
-                zeroLineColor: '#DDDDDD',
-                borderDash: [3],
                 lineWidth: 1,
+              },
+              border: {
+                dash: [3],
               },
               ticks: {
                 padding: 8,
@@ -446,9 +446,10 @@ export default {
               beginAtZero: true,
               grid: {
                 drawTicks: false,
-                zeroLineColor: '#DDDDDD',
-                borderDash: [3],
                 lineWidth: 1,
+              },
+              border: {
+                dash: [3],
               },
               ticks: {
                 padding: 8,

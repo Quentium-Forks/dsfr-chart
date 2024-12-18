@@ -412,7 +412,9 @@ export default {
               grid: {
                 drawTicks: false,
                 lineWidth: 1,
-                borderDash: [3],
+              },
+              border: {
+                dash: [3],
               },
               suggestedMax: this.ymax,
               ticks: {

@@ -405,9 +405,10 @@ export default {
             y: {
               grid: {
                 drawTicks: false,
-                zeroLineColor: '#DDDDDD',
-                borderDash: [3],
                 lineWidth: 1,
+              },
+              border: {
+                dash: [3],
               },
               ticks: {
                 padding: 4,
