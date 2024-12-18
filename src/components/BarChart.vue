@@ -185,7 +185,11 @@ export default {
 
       // Assignation des noms de séries
       for (let i = 0; i < this.yparse.length; i++) {
-        this.nameParse.push(tmpNameParse[i] !== undefined ? tmpNameParse[i] : 'Série ' + (i + 1));
+        if (tmpNameParse[i] !== undefined) {
+          this.nameParse.push(tmpNameParse[i]);
+        } else {
+          this.nameParse.push('Serie' + (i + 1));
+        }
       }
 
       // Assignation des labels
