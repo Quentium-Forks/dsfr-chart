@@ -348,21 +348,19 @@ export default {
       this.ymax = Math.max.apply(null, this.hlineParse);
 
       // Tracé de la courbe
-      data.forEach((dj, j) => {
-        this.datasets.push({
-          data: dj,
-          fill: false,
-          borderColor: this.colorParse[j],
-          backgroundColor: this.colorParse[j],
-          type: 'scatter',
-          pointRadius: this.pointradius,
-          pointHoverRadius: this.pointradius,
-          pointHoverBackgroundColor: this.colorHover[j],
-          pointHoverBorderColor: this.colorHover[j],
-          showLine: this.showline,
-          borderWidth: 2,
-        });
-      });
+      this.datasets = data.map((dataSet, index) => ({
+        data: dataSet,
+        fill: false,
+        borderColor: this.colorParse[index],
+        backgroundColor: this.colorParse[index],
+        type: 'scatter',
+        pointRadius: this.pointradius,
+        pointHoverRadius: this.pointradius,
+        pointHoverBackgroundColor: this.colorHover[index],
+        pointHoverBorderColor: this.colorHover[index],
+        showLine: this.showline,
+        borderWidth: 2,
+      }));
     },
     createChart() {
       if (this.chart) this.chart.destroy();

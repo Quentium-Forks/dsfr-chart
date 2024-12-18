@@ -159,16 +159,16 @@ export default {
       this.labels = this.xparse[0];
 
       // Tracé de la courbe
-      this.datasets = this.yparse.map((dataSet, j) => ({
+      this.datasets = this.yparse.map((dataSet, index) => ({
         pointRadius: 5,
         pointHoverRadius: 5,
         data: dataSet,
-        borderColor: this.colorParse[j],
-        pointBackgroundColor: this.colorParse[j],
-        backgroundColor: chroma(this.colorParse[j]).alpha(0.3).hex(),
+        borderColor: this.colorParse[index],
+        pointBackgroundColor: this.colorParse[index],
+        backgroundColor: chroma(this.colorParse[index]).alpha(0.3).hex(),
         fill: true,
-        hoverBorderColor: this.colorHover[j],
-        hoverBackgroundColor: this.colorHover[j],
+        hoverBorderColor: this.colorHover[index],
+        hoverBackgroundColor: this.colorHover[index],
       }));
     },
     loadColors() {
