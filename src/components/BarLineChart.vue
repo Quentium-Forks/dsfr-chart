@@ -531,7 +531,7 @@ export default {
                   const colors = [this.colorBarParse, this.colorParse]; // Adjust to match your color variables
 
                   // If there is no .tooltip_dot element, set a fallback for nodeName
-                  const tooltipDotElement = this.$el.querySelector('.tooltip_dot');
+                  const tooltipDotElement = tooltipEl.querySelector('.tooltip_dot');
                   const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
 
                   // Iterate over bodyLines to set each line with the correct color and value

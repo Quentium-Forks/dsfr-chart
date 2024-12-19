@@ -255,12 +255,12 @@ export default {
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines;
                   const color = tooltipModel.labelTextColors[0];
-                  const divValue = this.$el.querySelector('.tooltip_value');
+                  const divValue = tooltipEl.querySelector('.tooltip_value');
                   const value = bodyLines[0][0]; // assuming bodyLines[0][0] contains the value
                   const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
                   // Retrieve the node name for tooltip dots
-                  const tooltipDotElement = this.$el.querySelector('.tooltip_dot');
+                  const tooltipDotElement = tooltipEl.querySelector('.tooltip_dot');
                   const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
 
                   divValue.innerHTML = `

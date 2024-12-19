@@ -303,7 +303,7 @@ export default {
                   divValue.innerHTML = '';
 
                   // Retrieve the node name for tooltip dots
-                  const tooltipDotElement = this.$el.querySelector('.tooltip_dot');
+                  const tooltipDotElement = tooltipEl.querySelector('.tooltip_dot');
                   const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
 
                   // Process each line in bodyLines to display in the tooltip

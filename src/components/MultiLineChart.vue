@@ -566,11 +566,11 @@ export default {
                   divDate.innerHTML = titleLines[0];
 
                   // Clear the existing tooltip content
-                  const divValue = this.$el.querySelector('.tooltip_value');
+                  const divValue = tooltipEl.querySelector('.tooltip_value');
                   divValue.innerHTML = '';
 
                   // Check if `.tooltip_dot` element exists and get its attribute node name
-                  const tooltipDot = this.$el.querySelector('.tooltip_dot');
+                  const tooltipDot = tooltipEl.querySelector('.tooltip_dot');
                   const nodeName = tooltipDot ? tooltipDot.attributes[0].nodeName : 'data-attribute'; // Default attribute if `.tooltip_dot` is missing
 
                   // Iterate through each line in the body and add formatted HTML with correct colors

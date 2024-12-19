@@ -503,7 +503,7 @@ export default {
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines[0];
 
-                  const divValue = this.$el.querySelector('.tooltip_value');
+                  const divValue = tooltipEl.querySelector('.tooltip_value');
 
                   divValue.innerHTML = '';
                   bodyLines[0].forEach((line, i) => {
