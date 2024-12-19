@@ -1,11 +1,11 @@
 import vue from '@vitejs/plugin-vue';
-import path from 'path';
+import { resolve } from 'path';
 
 /** @type {import('vite').UserConfig} */
 export default {
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': resolve(__dirname, './src'),
     },
   },
   build: {
