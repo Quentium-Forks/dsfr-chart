@@ -310,9 +310,8 @@ export default {
       // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
     },
+    // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
-      Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
-
       this.loadColors();
 
       // Mise à jour des couleurs dans le graphique
@@ -323,7 +322,7 @@ export default {
         dataset.hoverBackgroundColor = this.colorHover;
       });
 
-      this.chart.update(0);
+      this.chart.update('none');
     },
   },
 };

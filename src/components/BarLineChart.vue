@@ -583,10 +583,8 @@ export default {
         },
       });
     },
+    // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
-      Chart.defaults.color = this.getHexaFromToken('text-mention-grey', theme);
-      // this.chart.options.scales.xAxes[0].ticks.fontColor = this.getHexaFromToken('text-mention-grey', theme);
-
       this.loadColors();
 
       // Mise à jour des couleurs dans le graphique
@@ -601,7 +599,7 @@ export default {
         dataset.pointHoverBackgroundColor = this.colorHover;
       });
 
-      this.chart.update(0);
+      this.chart.update('none');
     },
   },
 };
