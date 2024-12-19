@@ -320,6 +320,7 @@ export default {
           pointHoverBorderColor: this.colorHover,
           borderWidth: 2,
           fill: false,
+          tension: 0.8,
         },
       ];
     },

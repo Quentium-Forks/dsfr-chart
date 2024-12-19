@@ -360,6 +360,7 @@ export default {
         pointHoverBackgroundColor: this.colorHover[index],
         pointHoverBorderColor: this.colorHover[index],
         borderWidth: 2,
+        tension: 0.8,
       }));
     },
     loadColors() {

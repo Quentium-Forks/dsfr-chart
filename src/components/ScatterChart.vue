@@ -361,6 +361,7 @@ export default {
         pointHoverBorderColor: this.colorHover[index],
         showLine: this.showline,
         borderWidth: 2,
+        tension: 0.4,
       }));
     },
     createChart() {
