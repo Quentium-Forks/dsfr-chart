@@ -26,8 +26,7 @@ test.describe('Charts visual regression', () => {
       test(`${story.name} - ${path.name}`, async ({ page, browserName }) => {
         await page.goto(path.url);
         await page.setViewportSize({ width: 1920, height: 1080 });
-        await sleep(2000);
-        // await page.waitForSelector('#storybook-root')
+        await sleep(3000);
 
         const graph = page.locator('#storybook-preview-iframe');
 
@@ -45,7 +44,7 @@ test.describe('Dev doc page visual regression', () => {
   test('Full page', async ({ page, browserName }) => {
     await page.goto('http://localhost:5173/');
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await sleep(2000);
+    await sleep(5000);
 
     const name = `dev-doc-full-page-${browserName}.png`;
 
