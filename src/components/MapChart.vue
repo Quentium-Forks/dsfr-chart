@@ -260,6 +260,8 @@ export default {
     this.prefixClass = 'FR-' + this.level + '-';
   },
   mounted() {
+    this.createChart();
+
     const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
       if (this.chartId !== '') {

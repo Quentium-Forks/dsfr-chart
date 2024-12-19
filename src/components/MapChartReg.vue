@@ -139,6 +139,8 @@ export default {
     this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
   },
   mounted() {
+    this.createChart();
+
     const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
       if (this.chartId !== '') {
