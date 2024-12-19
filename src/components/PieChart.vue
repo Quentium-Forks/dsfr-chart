@@ -200,10 +200,6 @@ export default {
               bottom: 0,
             },
           },
-          animation: {
-            easing: 'easeInOutBack',
-            duration: 1000,
-          },
           plugins: {
             legend: {
               display: false,

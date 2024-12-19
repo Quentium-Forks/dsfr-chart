@@ -245,10 +245,6 @@ export default {
           responsive: true,
           maintainAspectRatio: true, // Changez à true pour maintenir le ratio
           aspectRatio: 2, // Ajustez ce ratio pour gérer la hauteur/largeur du graphique
-          animation: {
-            easing: 'easeInOutBack',
-            duration: 1000,
-          },
           scales: {
             x: {
               offset: true, // Remove any offset from the X-axis

@@ -224,10 +224,6 @@ export default {
         options: {
           aspectRatio: 2,
           maintainAspectRatio: true,
-          animation: {
-            easing: 'easeInOutBack',
-            duration: 0,
-          },
           scales: {
             r: {
               angleLines: {

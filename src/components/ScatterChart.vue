@@ -378,12 +378,6 @@ export default {
         },
         options: {
           aspectRatio: this.aspectratio,
-          animation: {
-            duration: 1000,
-            easing: 'easeOutBounce',
-            animateScale: true,
-            animateRotate: true,
-          },
           scales: {
             x: {
               type: this.xAxisType,

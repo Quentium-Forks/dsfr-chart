@@ -439,10 +439,6 @@ export default {
         },
         options: {
           aspectRatio: this.aspectratio,
-          animation: {
-            easing: 'easeInOutBack',
-            duration: 1000,
-          },
           scales: {
             x: {
               offset: true,
