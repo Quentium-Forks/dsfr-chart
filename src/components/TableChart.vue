@@ -28,19 +28,20 @@
         </thead>
         <tbody>
           <tr
-            v-for="(item, rowIndex) in xparse"
+            v-for="(rowItem, rowIndex) in xparse"
             :key="rowIndex"
-            :ref="'table-row-' + rowIndex"
           >
-            <td :class="getClass(item)">
-              {{ item }}
+            <td
+              :class="getClass(rowItem)"
+            >
+              {{ rowItem }}
             </td>
             <td
-              v-for="(item, colIndex) in yparse"
+              v-for="(colItem, colIndex) in yparse"
               :key="colIndex"
-              :class="getClass(yparse[colIndex][rowIndex])"
+              :class="getClass(colItem[rowIndex])"
             >
-              {{ convertIntToHumanTable(yparse[colIndex][rowIndex]) }}
+              {{ convertIntToHumanTable(colItem[rowIndex]) }}
             </td>
           </tr>
         </tbody>
