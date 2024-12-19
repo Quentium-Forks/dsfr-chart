@@ -354,7 +354,6 @@ export default {
         fill: false,
         borderColor: this.colorParse[index],
         backgroundColor: this.colorParse[index],
-        type: 'scatter',
         pointRadius: this.pointradius,
         pointHoverRadius: this.pointradius,
         pointHoverBackgroundColor: this.colorHover[index],

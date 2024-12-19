@@ -311,7 +311,6 @@ export default {
           data: dataLine,
           borderColor: this.colorParse,
           backgroundColor: 'rgba(0, 0, 0, 0)',
-          type: 'line',
           pointRadius: 5,
           pointHoverRadius: 5,
           pointBackgroundColor: this.colorParse,
@@ -320,7 +319,7 @@ export default {
           pointHoverBorderColor: this.colorHover,
           borderWidth: 2,
           fill: false,
-          tension: 0.8,
+          tension: 0.4,
         },
       ];
     },
@@ -360,7 +359,6 @@ export default {
         dataset.hoverBackgroundColor = this.colorHover;
         dataset.pointHoverBorderColor = this.colorHover;
         dataset.pointHoverBackgroundColor = this.colorHover;
-        dataset.tension = 0.4;
       });
 
       this.chart.update(0);

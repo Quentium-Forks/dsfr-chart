@@ -352,7 +352,6 @@ export default {
         data: dataSet,
         fill: false,
         borderColor: this.colorParse[index],
-        type: 'line',
         pointRadius: 5,
         pointHoverRadius: 5,
         pointBackgroundColor: this.colorParse[index],
@@ -360,7 +359,7 @@ export default {
         pointHoverBackgroundColor: this.colorHover[index],
         pointHoverBorderColor: this.colorHover[index],
         borderWidth: 2,
-        tension: 0.8,
+        tension: 0.4,
       }));
     },
     loadColors() {
@@ -420,7 +419,6 @@ export default {
         dataset.hoverBackgroundColor = this.colorHover[i];
         dataset.pointHoverBorderColor = this.colorHover[i];
         dataset.pointHoverBackgroundColor = this.colorHover[i];
-        dataset.tension = 0.4;
       });
 
       this.chart.update(0);
@@ -434,6 +432,7 @@ export default {
       const ctx = this.$refs[this.chartId].getContext('2d');
 
       this.chart = new Chart(ctx, {
+        type: 'line',
         data: {
           labels: this.labels,
           datasets: this.datasets,
