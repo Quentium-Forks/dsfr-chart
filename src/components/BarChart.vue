@@ -126,7 +126,7 @@ export default {
       colorParse: [],
       colorHover: [],
       isSmall: false,
-      legendColors: [], // Ajoutez cette ligne
+      legendColors: [],
     };
   },
   created() {
