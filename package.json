@@ -24,7 +24,7 @@
     "build-radar": "LIBRARY=RadarChart vite build --config=vite-components.config.js",
     "build-scatter": "LIBRARY=ScatterChart vite build --config=vite-components.config.js",
     "build-table": "LIBRARY=TableChart vite build --config=vite-components.config.js",
-    "build:components": "concurrently npm:build-*",
+    "build:components": "concurrently npm:build npm:build-*",
     "storybook": "NODE_OPTIONS=--max_old_space_size=4096 storybook dev -p 6006",
     "build:storybook": "storybook build",
     "test": "playwright test",
