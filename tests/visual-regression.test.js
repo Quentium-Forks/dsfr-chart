@@ -3,7 +3,7 @@
 import { test, expect } from '@playwright/test';
 import { readdirSync } from 'fs';
 
-// Small hack because page.waitForSelecotr is not working with storybook
+// Small hack because page.waitForSelector is not working with storybook
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
 const stories = await Promise.all(
@@ -44,7 +44,7 @@ test.describe('Dev doc page visual regression', () => {
   test('Full page', async ({ page, browserName }) => {
     await page.goto('http://localhost:5173/');
     await page.setViewportSize({ width: 1920, height: 1080 });
-    await sleep(5000);
+    await sleep(3000);
 
     const name = `dev-doc-full-page-${browserName}.png`;
 
