@@ -348,8 +348,8 @@ export default {
         showGraph: true,
         unitTooltip: '%',
         serie_values: {
-          x: [['Serie 1', 'Serie 2', 'Serie 3']],
-          y: [[100, 200, 300]],
+          x: ['Serie 1', 'Serie 2', 'Serie 3'],
+          y: [100, 200, 300],
         },
         table: [
           ['Serie 1', '100'],
