@@ -296,7 +296,7 @@ export default {
       });
     },
     loadColors() {
-      const { colorParse, colorHover, legendColors } = generateColors({
+      const { colorParse, colorHover } = generateColors({
         yparse: this.yparse,
         tmpColorParse: this.tmpColorParse,
         selectedPalette: this.selectedPalette,
@@ -304,7 +304,6 @@ export default {
 
       this.colorParse = colorParse;
       this.colorHover = colorHover;
-      this.legendColors = legendColors;
     },
     choosePalette() {
       // Using the refactored choosePalette function from utils
