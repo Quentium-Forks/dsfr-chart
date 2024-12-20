@@ -373,6 +373,38 @@ export default {
           labels: this.labels,
           datasets: this.datasets,
         },
+        plugins: [
+          {
+            afterDraw: (chart) => {
+              if (chart.tooltip._active && chart.tooltip._active.length) {
+                const { ctx } = chart;
+                const activePoint = chart.tooltip.getActiveElements()[0];
+                const x = activePoint.element.tooltipPosition().x;
+                const y = activePoint.element.tooltipPosition().y;
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(x, chart.scales.y.top);
+                ctx.lineTo(x, chart.scales.y.bottom);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = self.colorPrecisionBar;
+                ctx.setLineDash([10, 5]);
+                ctx.stroke();
+                ctx.restore();
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(chart.scales.x.left, y);
+                ctx.lineTo(chart.scales.x.right, y);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = self.colorPrecisionBar;
+                ctx.setLineDash([10, 5]);
+                ctx.stroke();
+                ctx.restore();
+              }
+            },
+          },
+        ],
         options: {
           responsive: true,
           maintainAspectRatio: true,

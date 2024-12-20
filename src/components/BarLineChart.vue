@@ -393,6 +393,59 @@ export default {
           labels: this.labels,
           datasets: this.datasets,
         },
+        plugins: [
+          {
+            afterDraw: (chart) => {
+              if (chart.tooltip._active !== undefined) {
+                if (chart.tooltip._active.length !== 0) {
+                  const x = chart.tooltip.getActiveElements()[0].element.x
+                  const index = chart.tooltip._active[0]._index;
+                  const yAxisR = chart.scales.yBar;
+                  const yAxisL = chart.scales.y;
+                  const xAxis = chart.scales.x;
+
+                  const y = yAxisR.getPixelForValue(this.yparse[index]);
+                  const ybar = yAxisL.getPixelForValue(this.ybarparse[index]);
+
+                  const ctx = chart.ctx;
+
+                  // Draw the vertical line under the points
+                  ctx.save();
+                  ctx.beginPath();
+                  ctx.moveTo(x, yAxisL.top);
+                  ctx.lineTo(x, yAxisL.bottom);
+                  ctx.lineWidth = '1';
+                  ctx.strokeStyle = this.colorPrecisionBar;
+                  ctx.setLineDash([10, 5]);
+                  ctx.stroke();
+                  ctx.restore();
+
+                  // Draw the horizontal line for the line chart value
+                  ctx.save();
+                  ctx.beginPath();
+                  ctx.moveTo(xAxis.left, y);
+                  ctx.lineTo(x, y);
+                  ctx.lineWidth = '1';
+                  ctx.strokeStyle = this.colorPrecisionBar;
+                  ctx.setLineDash([10, 5]);
+                  ctx.stroke();
+                  ctx.restore();
+
+                  // Draw the horizontal line for the bar chart value
+                  ctx.save();
+                  ctx.beginPath();
+                  ctx.moveTo(xAxis.left, ybar);
+                  ctx.lineTo(x, ybar);
+                  ctx.lineWidth = '1';
+                  ctx.strokeStyle = this.colorPrecisionBar;
+                  ctx.setLineDash([10, 5]);
+                  ctx.stroke();
+                  ctx.restore();
+                }
+              }
+            },
+          },
+        ],
         options: {
           aspectRatio: this.aspectratio,
           scales: {
