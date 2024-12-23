@@ -18,7 +18,7 @@ export const Fill = {
     x: '["Protection sociale", "Santé", "Affaires économiques", "Services publics généraux", "Autres", "Enseignement", "Défense"]',
     y: '[40.8, 15.6, 11.5, 10.6, 9.4, 9, 3.1]',
     name: '["Protection sociale", "Santé", "Affaires économiques", "Services publics généraux", "Autres", "Enseignement", "Défense"]',
-    fill: 'true',
+    fill: true,
     unitTooltip: '%'
   }
 };
