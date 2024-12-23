@@ -307,13 +307,18 @@ export default {
       });
     },
     loadColors() {
+      let yparseSimple = this.yparse
+      if (this.selectedPalette === 'categorical') {
+        yparseSimple = this.yparse[0];
+      }
+
       const { colorParse, colorHover } = generateColors({
-        yparse: this.yparse,
+        yparse: yparseSimple,
         tmpColorParse: this.tmpColorParse,
         selectedPalette: this.selectedPalette,
       });
 
-      this.colorParse = colorParse;
+      this.colorParse = [colorParse.flat()];
       this.colorHover = colorHover;
     },
     choosePalette() {
