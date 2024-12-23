@@ -279,7 +279,6 @@ export default {
       }
 
       let dataLine = [];
-
       // Cas où x est numérique
       if (typeof this.xparse[0] === 'number') {
         const xsort = this.xparse.map((a) => a).sort((a, b) => a - b);
@@ -290,7 +289,7 @@ export default {
             y: this.yparse[index],
           });
         });
-        this.labels = undefined;
+        this.labels = xsort;
         this.xAxisType = 'linear';
       } else {
         // Cas où x est non numérique
