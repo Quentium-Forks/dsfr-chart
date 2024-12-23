@@ -161,7 +161,6 @@ export default {
         return;
       }
 
-      // Parsing des noms de séries
       let tmpNameParse = [];
       if (this.name !== undefined) {
         try {

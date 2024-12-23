@@ -146,12 +146,21 @@ export default {
     },
     getData() {
       // Parsing des données
-      this.xparse = JSON.parse(this.x);
-      this.yparse = JSON.parse(this.y);
+      try {
+        this.xparse = JSON.parse(this.x);
+        this.yparse = JSON.parse(this.y);
+      } catch (error) {
+        console.error('Erreur lors du parsing des données x ou y:', error);
+        return;
+      }
 
       let tmpNameParse = [];
       if (this.name !== undefined) {
-        tmpNameParse = JSON.parse(this.name);
+        try {
+          tmpNameParse = JSON.parse(this.name);
+        } catch (error) {
+          console.error('Erreur lors du parsing de name:', error);
+        }
       }
 
       for (let i = 0; i < this.yparse.length; i++) {

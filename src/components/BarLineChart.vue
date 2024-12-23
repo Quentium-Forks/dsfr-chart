@@ -254,10 +254,15 @@ export default {
       this.colorBarHover = undefined;
     },
     getData() {
-      // Récupération des paramètres
-      this.xparse = JSON.parse(this.x);
-      this.yparse = JSON.parse(this.y);
-      this.ybarparse = JSON.parse(this.yBar);
+      // Parsing des données
+      try {
+        this.xparse = JSON.parse(this.x);
+        this.yparse = JSON.parse(this.y);
+        this.ybarparse = JSON.parse(this.yBar);
+      } catch (error) {
+        console.error('Erreur lors du parsing des données x ou y ou yBar:', error);
+        return;
+      }
 
       // Récupération données Vline
       if (this.vline !== undefined) {

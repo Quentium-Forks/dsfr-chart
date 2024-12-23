@@ -229,9 +229,14 @@ export default {
       this.colorHover = '';
     },
     getData() {
-      // Récupération des paramètres
-      this.xparse = JSON.parse(this.x);
-      this.yparse = JSON.parse(this.y);
+      // Parsing des données
+      try {
+        this.xparse = JSON.parse(this.x);
+        this.yparse = JSON.parse(this.y);
+      } catch (error) {
+        console.error('Erreur lors du parsing des données x ou y:', error);
+        return;
+      }
 
       // Récupération données Vline
       if (this.vline !== undefined) {

@@ -242,12 +242,12 @@ export default {
       this.colorHover = [];
     },
     getData() {
-      // Récupération des paramètres
+      // Parsing des données
       try {
         this.xparse = JSON.parse(this.x);
         this.yparse = JSON.parse(this.y);
       } catch (error) {
-        console.error('Erreur lors du parsing de x ou y:', error);
+        console.error('Erreur lors du parsing des données x ou y:', error);
         return;
       }
 

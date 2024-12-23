@@ -103,7 +103,11 @@ export default {
 
       let tmpNameParse = [];
       if (this.name !== undefined) {
-        tmpNameParse = JSON.parse(this.name);
+        try {
+          tmpNameParse = JSON.parse(this.name);
+        } catch (error) {
+          console.error('Erreur lors du parsing de name:', error);
+        }
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
