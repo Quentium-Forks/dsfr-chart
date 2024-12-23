@@ -1082,7 +1082,7 @@ export const getAcad = function (code) {
 export const getClassMap = function (code, level) {
   if (!level) {
     console.warn(`Level is undefined for code: ${code}`);
-    return null; // Ou vous pouvez définir un niveau par défaut ici si nécessaire
+    return null;
   }
 
   let obj;

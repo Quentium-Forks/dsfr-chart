@@ -118,7 +118,7 @@ export default {
     },
     isMultilineTableHeader: {
       type: [Boolean, String],
-      default: true, // Défini par défaut à true
+      default: true,
     },
   },
   computed: {

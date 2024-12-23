@@ -191,7 +191,7 @@ export default {
     },
     selectedPalette: {
       type: String,
-      default: 'sequentialAscending', // Aucune palette définie par défaut
+      default: 'sequentialAscending',
     },
   },
   data() {

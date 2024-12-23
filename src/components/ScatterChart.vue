@@ -147,19 +147,17 @@ export default {
       type: [Boolean, String],
       default: false,
     },
-    // Nouveau paramètre pour choisir la palette de couleurs
     selectedPalette: {
       type: String,
       default: '',
     },
-    // Index de la série à mettre en avant
     highlightIndex: {
       type: Number,
       default: -1,
     },
     unitTooltip: {
       type: String,
-      default: '', // Default to an empty string if no unit is specified
+      default: '',
     },
   },
   data() {
