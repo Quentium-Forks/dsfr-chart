@@ -22,7 +22,7 @@
           >
             <span
               class="legende_dot"
-              :style="{ 'background-color': colorParse[index] }"
+              :style="{ 'background-color': colorParse[0][index] }"
             />
             <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
               {{ capitalize(item) }}
