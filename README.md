@@ -848,7 +848,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 -   **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département ou de région, associe la valeur de l’indicateur dans cette zone géographique.
 
--   **valuenat** : _(String | Number)_ La valeur de l'indicateur à l'échelle nationale. Cette valeur sera affichée dans la barre latérale.
+-   **value-nat** : _(String | Number)_ La valeur de l'indicateur à l'échelle nationale. Cette valeur sera affichée dans la barre latérale.
 
 -   **name** : _(String)_ Nom de l'indicateur.
 
@@ -894,7 +894,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
     "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
     "2B": 16
   }'
-  valuenat="10"
+  value-nat="10"
   name="Nom de l'indicateur"
   selected-palette="sequentialAscending"
   :highlightIndex='["75", "13"]'
@@ -913,7 +913,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
     "84": 1, "32": 10, "93": 20, "44": 30, "76": 40, "28": 50, "75": 60, "24": 70, "53": 80, "94": 90,
     "52": 100, "01": 95, "02": 85, "03": 75, "04": 65, "06": 55, "27": 100, "11": 35
   }'
-  valuenat="10"
+  value-nat="10"
   name="Nom de l'indicateur"
   level="reg"
   selected-palette="divergentDescending"
@@ -998,7 +998,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 ```html
 <map-chart
   data='{"01": 72, "02": 83, "03": 67, "04": 36, "05": 47}'
-  valuenat="65"
+  value-nat="65"
   name="Taux de réussite"
   selected-palette="neutral"
   :highlightIndex='["01", "02"]'

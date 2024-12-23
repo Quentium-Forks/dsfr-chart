@@ -173,7 +173,7 @@ export default {
       type: String,
       required: true,
     },
-    valuenat: {
+    valueNat: {
       type: Number,
       default: undefined,
     },
@@ -370,8 +370,8 @@ export default {
           this.leftColProps.localisation = this.getAcad(this.zoomDep).label;
         }
         this.leftColProps.value = this.dataParse[this.zoomDep];
-        this.leftColProps.levelNat = this.valuenat !== undefined;
-        this.leftColProps.valueNat = this.valuenat;
+        this.leftColProps.levelNat = this.valueNat !== undefined;
+        this.leftColProps.valueNat = this.valueNat;
 
         if (this.level === 'dep') {
           this.displayFrance = 'none';
@@ -397,7 +397,7 @@ export default {
         }
       } else {
         this.leftColProps.localisation = 'France';
-        this.leftColProps.value = this.valuenat;
+        this.leftColProps.value = this.valueNat;
         this.leftColProps.levelNat = false;
         if (this.level === 'dep') {
           this.FranceProps.viewBox = '0 0 262 262';
