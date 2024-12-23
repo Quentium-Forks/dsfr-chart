@@ -415,7 +415,6 @@ Les graphiques en barres sont accessibles à travers la balise : `<bar-chart>`.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **highlightIndex** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'neutral'`).
-- **isDescendingOrder** : _(Boolean)_ Permet d'inverser l'ordre des couleurs dans la légende et le graphique pour certaines palettes. Mettre à `true` pour inverser l'ordre, par exemple pour afficher une progression de vert à rouge.
 - **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barres horizontales. Mettre à `true` pour activer.
 - **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer.
@@ -467,7 +466,6 @@ Pour tracer un **BarChart empilé**, il faut renseigner l’option **stacked="tr
   name='["Série 1", "Série 2", "Série 3", "Série 4"]'
   stacked="true"
   selected-palette="divergentDescending"
-  :isDescendingOrder="true"
   unit-tooltip="%"
 ></bar-chart>
 ```
@@ -511,7 +509,6 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
 
 - **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
 - **highlightIndex** : Utilisé en combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des barres spécifiques du graphique. Les index commencent à **0**.
-- **isDescendingOrder** : Ce paramètre est particulièrement utile avec les palettes divergentes pour inverser l'ordre des couleurs, par exemple pour représenter une progression du vert au rouge.
 - **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une barre du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 - **horizontal** : Définit l'orientation du graphique. Par défaut, les barres sont verticales.
 - **stacked** : Permet d'empiler les séries de données, utile pour visualiser la contribution de chaque série au total.
@@ -523,7 +520,6 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
 - **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes de listes, par exemple `x='[["Label1", "Label2"]]'` et `y='[[10, 20], [30, 40]]'`.
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `horizontal="true"` avec `stacked="true"`.
 - **Indexation** : Les index utilisés dans `highlightIndex` correspondent aux positions des barres dans vos données `x`. Par exemple, `:highlightIndex="[0, 2]"` mettra en avant la première et la troisième barre.
-- **Dynamique des couleurs** : En utilisant **isDescendingOrder**, vous pouvez contrôler l'ordre des couleurs dans la légende et le graphique, ce qui peut être utile pour représenter des données où l'ordre des couleurs a une signification.
 
 ---
 

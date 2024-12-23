@@ -101,10 +101,6 @@ export default {
       type: Array,
       default: () => [3, 4],
     },
-    isDescendingOrder: {
-      type: [Boolean, String],
-      default: false, // Default is false; set to true for fixed green-to-red legend order
-    },
     unitTooltip: {
       type: String,
       default: '', // Default to an empty string if no unit is specified
