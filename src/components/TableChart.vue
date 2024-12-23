@@ -6,16 +6,16 @@
     <div
       :ref="tableId"
       class="fr-table scroll"
-      :style="{ maxHeight: maxheight }"
+      :style="{ maxHeight: '25rem' }"
     >
       <table aria-labelledby="table-caption">
         <caption id="table-caption">
-          {{ varname }}
+          {{ tableName }}
         </caption>
         <thead>
           <tr>
             <th scope="col">
-              {{ varname }}
+              {{ tableName }}
             </th>
             <th
               v-for="(item, index) in nameParse"
@@ -69,13 +69,9 @@ export default {
       type: String,
       default: undefined,
     },
-    varname: {
+    tableName: {
       type: String,
       default: undefined,
-    },
-    maxheight: {
-      type: String,
-      default: '25rem',
     },
   },
   data() {
