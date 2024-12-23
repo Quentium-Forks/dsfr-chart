@@ -100,7 +100,7 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **highlightIndex** : _(Number | Array)_ Index ou liste d'index des points à mettre en avant (utilisé principalement avec la palette `'neutral'`).
-- **showline** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
+- **show-line** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
 
 ---
 
@@ -118,7 +118,7 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
 
 ### 2. Nuage de points reliés
 
-On peut choisir de relier les points d'un `ScatterChart` avec l'option **showline**. On lui affecte la valeur `true` dans le cas où l’on veut relier les points.
+On peut choisir de relier les points d'un `ScatterChart` avec l'option **show-line**. On lui affecte la valeur `true` dans le cas où l’on veut relier les points.
 
 **Exemple**:
 
@@ -126,7 +126,7 @@ On peut choisir de relier les points d'un `ScatterChart` avec l'option **showlin
 <scatter-chart
   x="[[1, 5, 8]]"
   y="[[30, 10, 20]]"
-  showline="true"
+  show-line="true"
 ></scatter-chart>
 ```
 
@@ -175,7 +175,7 @@ Il est possible de combiner plusieurs options pour personnaliser davantage votre
 <scatter-chart
   x="[[1, 3, 5, 7]]"
   y="[[10, 20, 15, 25]]"
-  showline="true"
+  show-line="true"
   selectedPalette="neutral"
   highlightIndex="[2]"
 ></scatter-chart>
@@ -187,7 +187,7 @@ Il est possible de combiner plusieurs options pour personnaliser davantage votre
 
 - **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
 - **highlightIndex** : En combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des points spécifiques du graphique. Les index commencent à **0**.
-- **showline** : Utile pour visualiser les tendances ou les relations entre les points en les reliant par des lignes.
+- **show-line** : Utile pour visualiser les tendances ou les relations entre les points en les reliant par des lignes.
 
 # II. Graphique en lignes (LineChart)
 

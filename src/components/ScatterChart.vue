@@ -131,7 +131,7 @@ export default {
       type: Number,
       default: 5,
     },
-    showline: {
+    showLine: {
       type: [Boolean, String],
       default: false,
     },
@@ -356,7 +356,7 @@ export default {
         pointHoverRadius: this.pointRadius,
         pointHoverBackgroundColor: this.colorHover[index],
         pointHoverBorderColor: this.colorHover[index],
-        showLine: this.showline,
+        showLine: this.showLine,
         borderWidth: 2,
         tension: 0.4,
       }));
@@ -576,7 +576,7 @@ export default {
       this.showPoint[index] = !this.showPoint[index];
       if (this.showPoint[index]) {
         this.chart.data.datasets[index].pointRadius = this.pointRadius;
-        this.chart.data.datasets[index].showLine = this.showline;
+        this.chart.data.datasets[index].showLine = this.showLine;
       } else {
         this.chart.data.datasets[index].pointRadius = 0;
         this.chart.data.datasets[index].showLine = false;
