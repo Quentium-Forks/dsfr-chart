@@ -71,6 +71,10 @@ export default {
       type: String,
       default: undefined,
     },
+    aspectRatio: {
+      type: Number,
+      default: 2,
+    },
     selectedPalette: {
       type: String,
       default: '',
@@ -190,8 +194,7 @@ export default {
         },
         options: {
           responsive: true,
-          aspectRatio: 2,
-          maintainAspectRatio: true,
+          aspectRatio: this.aspectRatio,
           layout: {
             padding: {
               left: 50,

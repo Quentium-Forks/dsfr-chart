@@ -69,6 +69,10 @@ export default {
       type: String,
       default: undefined,
     },
+    aspectRatio: {
+      type: Number,
+      default: 2,
+    },
     selectedPalette: {
       type: String,
       default: '',
@@ -220,8 +224,7 @@ export default {
           datasets: this.datasets,
         },
         options: {
-          aspectRatio: 2,
-          maintainAspectRatio: true,
+          aspectRatio: this.aspectRatio,
           scales: {
             r: {
               angleLines: {

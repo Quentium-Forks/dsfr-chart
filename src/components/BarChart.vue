@@ -85,7 +85,7 @@ export default {
       type: String,
       default: undefined,
     },
-    aspectratio: {
+    aspectRatio: {
       type: Number,
       default: 1,
     },
@@ -239,8 +239,7 @@ export default {
         options: {
           indexAxis: this.horizontal ? 'y' : 'x',
           responsive: true,
-          maintainAspectRatio: true, // Changez à true pour maintenir le ratio
-          aspectRatio: 2, // Ajustez ce ratio pour gérer la hauteur/largeur du graphique
+          aspectRatio: this.aspectRatio,
           scales: {
             x: {
               offset: true, // Remove any offset from the X-axis

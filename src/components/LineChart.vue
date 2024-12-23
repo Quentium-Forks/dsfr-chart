@@ -136,7 +136,7 @@ export default {
       type: String,
       default: undefined,
     },
-    aspectratio: {
+    aspectRatio: {
       type: Number,
       default: 2,
     },
@@ -407,8 +407,7 @@ export default {
         ],
         options: {
           responsive: true,
-          maintainAspectRatio: true,
-          aspectRatio: this.aspectratio,
+          aspectRatio: this.aspectRatio,
           scales: {
             x: {
               offset: true,
