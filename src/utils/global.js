@@ -1,4 +1,6 @@
-import { Chart } from 'chart.js';
+import { CategoryScale, Chart, Filler, LinearScale, PointElement, Tooltip } from 'chart.js';
+
+Chart.register(Tooltip, Filler, LinearScale, CategoryScale, PointElement);
 
 export const capitalize = function (string) {
   if (string) {

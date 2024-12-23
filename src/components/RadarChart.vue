@@ -44,10 +44,12 @@
 </template>
 
 <script>
-import Chart from 'chart.js/auto';
+import { Chart, RadarController, RadialLinearScale } from 'chart.js';
 import chroma from 'chroma-js';
 import { mixin, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateColors } from '@/utils/colors.js';
+
+Chart.register(RadarController, RadialLinearScale);
 
 export default {
   name: 'RadarChart',

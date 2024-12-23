@@ -83,9 +83,11 @@
 </template>
 
 <script>
-import Chart from 'chart.js/auto';
+import { Chart, ScatterController } from 'chart.js';
 import { mixin, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateScatterChartColors } from '@/utils/colors.js';
+
+Chart.register(ScatterController);
 
 export default {
   name: 'ScatterChart',

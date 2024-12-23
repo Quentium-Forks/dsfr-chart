@@ -45,9 +45,11 @@
 </template>
 
 <script>
-import Chart from 'chart.js/auto';
+import { BarController, BarElement, Chart } from 'chart.js';
 import { mixin, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateColors } from '@/utils/colors.js';
+
+Chart.register(BarController, BarElement);
 
 export default {
   name: 'BarChart',

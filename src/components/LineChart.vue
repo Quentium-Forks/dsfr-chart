@@ -88,9 +88,11 @@
 </template>
 
 <script>
-import Chart from 'chart.js/auto';
+import { Chart, LineController, LineElement } from 'chart.js';
 import { mixin, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateBarLineChartColors } from '@/utils/colors.js';
+
+Chart.register(LineController, LineElement);
 
 export default {
   name: 'LineChart',
