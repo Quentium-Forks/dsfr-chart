@@ -27,14 +27,14 @@
           </p>
         </div>
         <div
-          v-if="initdate !== undefined && targetdate !== undefined"
+          v-if="initDate !== undefined && targetDate !== undefined"
           class="gauge-container"
         >
           <p class="fr-text--xs fr-text-mention--grey">
-            {{ initdate }}
+            {{ initDate }}
           </p>
           <p class="fr-text--xs fr-text-mention--grey r-align">
-            {{ targetdate }}
+            {{ targetDate }}
           </p>
         </div>
         <div
@@ -91,11 +91,11 @@ export default {
       type: Number,
       required: true,
     },
-    targetdate: {
+    initDate: {
       type: String,
       default: undefined,
     },
-    initdate: {
+    targetDate: {
       type: String,
       default: undefined,
     },
