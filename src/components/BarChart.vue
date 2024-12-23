@@ -77,7 +77,7 @@ export default {
       type: [Boolean, String],
       default: false,
     },
-    barsize: {
+    barSize: {
       type: Number,
       default: undefined,
     },
@@ -198,7 +198,7 @@ export default {
         borderColor: this.colorParse[index],
         hoverBackgroundColor: this.colorHover[index],
         hoverBorderColor: this.colorHover[index],
-        barThickness: this.barsize || (this.stacked ? 32 : this.horizontal ? 20 : 32),
+        barThickness: this.barSize || (this.stacked ? 32 : this.horizontal ? 20 : 32),
         maxBarThickness: 32,
       }));
     },
