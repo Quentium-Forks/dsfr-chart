@@ -153,7 +153,7 @@ export default {
       type: Number,
       default: 2,
     },
-    formatdate: {
+    formatDate: {
       type: [Boolean, String],
       default: false,
     },
@@ -481,7 +481,7 @@ export default {
               ticks: {
                 padding: 10, // Espace supplémentaire autour des étiquettes
                 callback: (value) => {
-                  if (this.formatdate) {
+                  if (this.formatDate) {
                     return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
                   } else {
                     return value;

@@ -140,7 +140,7 @@ export default {
       type: Number,
       default: 2,
     },
-    formatdate: {
+    formatDate: {
       type: [Boolean, String],
       default: false,
     },
@@ -424,7 +424,7 @@ export default {
                 padding: 10, // Espace supplémentaire autour des étiquettes
                 labelOffset: 10,
                 callback: (value) => {
-                  if (this.formatdate) {
+                  if (this.formatDate) {
                     const date = new Date(value);
                     return date.getMonth() + 1 + '/' + date.getFullYear();
                   } else {

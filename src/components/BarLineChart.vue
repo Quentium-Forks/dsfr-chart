@@ -157,10 +157,6 @@ export default {
       type: Number,
       default: 2,
     },
-    formatdate: {
-      type: [Boolean, String],
-      default: false,
-    },
     selectedPalette: {
       type: String,
       default: 'categorical',

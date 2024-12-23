@@ -89,10 +89,6 @@ export default {
       type: Number,
       default: 1,
     },
-    formatdate: {
-      type: [Boolean, String],
-      default: false,
-    },
     selectedPalette: {
       type: String,
       default: '',
