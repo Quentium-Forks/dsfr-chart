@@ -344,8 +344,8 @@ export default {
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.pointerEvents = 'none';
 
-                let tooltipX = position.left + window.pageXOffset + tooltipModel.caretX + 10;
-                let tooltipY = position.top + window.pageYOffset + tooltipModel.caretY - 18;
+                let tooltipX = position.left + window.scrollX + tooltipModel.caretX + 10;
+                let tooltipY = position.top + window.scrollY + tooltipModel.caretY - 18;
 
                 tooltipEl.style.left = `${tooltipX}px`;
                 tooltipEl.style.top = `${tooltipY}px`;

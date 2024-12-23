@@ -335,8 +335,8 @@ export default {
                 tooltipEl.style.padding = `${tooltipModel.padding}px ${tooltipModel.padding}px`;
                 tooltipEl.style.pointerEvents = 'none';
 
-                let tooltipX = positionX + window.pageXOffset + tooltipModel.caretX + 10;
-                let tooltipY = positionY + window.pageYOffset + tooltipModel.caretY - 18;
+                let tooltipX = positionX + window.scrollX + tooltipModel.caretX + 10;
+                let tooltipY = positionY + window.scrollY + tooltipModel.caretY - 18;
 
                 if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
