@@ -437,37 +437,33 @@ export default {
         plugins: [
           {
             afterDraw: (chart) => {
-              if (chart.tooltip._active !== undefined) {
-                if (chart.tooltip._active.length !== 0) {
-                  let y;
-                  const x = chart.tooltip.getActiveElements()[0].element.tooltipPosition().x
-                  const index = chart.tooltip._active[0]._index;
-                  const yAxis = chart.scales.y;
-                  const xAxis = chart.scales.x;
-                  const ctx = chart.ctx;
+              if (chart.tooltip._active && chart.tooltip._active.length) {
+                const { ctx } = chart;
+                const x = chart.tooltip.getActiveElements()[0].element.tooltipPosition().x;
+                const index = chart.tooltip._active[0].index;
+
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(x, chart.scales.y.top);
+                ctx.lineTo(x, chart.scales.y.bottom);
+                ctx.lineWidth = 1;
+                ctx.strokeStyle = this.colorPrecisionBar;
+                ctx.setLineDash([10, 5]);
+                ctx.stroke();
+                ctx.restore();
+
+                this.yparse.forEach((yj) => {
+                  let y = chart.scales.y.getPixelForValue(yj[index]);
                   ctx.save();
                   ctx.beginPath();
-                  ctx.moveTo(x, yAxis.top);
-                  ctx.lineTo(x, yAxis.bottom);
-                  ctx.lineWidth = '1';
+                  ctx.moveTo(chart.scales.x.left, y);
+                  ctx.lineTo(chart.scales.x.right, y);
+                  ctx.lineWidth = 1;
                   ctx.strokeStyle = this.colorPrecisionBar;
                   ctx.setLineDash([10, 5]);
                   ctx.stroke();
                   ctx.restore();
-
-                  this.yparse.forEach( (yj) => {
-                    y = yAxis.getPixelForValue(yj[index]);
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.moveTo(xAxis.left, y);
-                    ctx.lineTo(xAxis.right, y);
-                    ctx.lineWidth = '1';
-                    ctx.strokeStyle = this.colorPrecisionBar;
-                    ctx.setLineDash([10, 5]);
-                    ctx.stroke();
-                    ctx.restore();
-                  });
-                }
+                });
               }
             },
           },
