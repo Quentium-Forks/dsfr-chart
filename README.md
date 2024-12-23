@@ -606,7 +606,7 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 <bar-line-chart
   x="[1, 2, 3, 4, 5]"
   y="[20, 25, 30, 35, 40]"
-  ybar="[15, 18, 22, 28, 33]"
+  y-bar="[15, 18, 22, 28, 33]"
   hline="[25]"
   hlinename='["Moyenne"]'
   hlinecolor='["#FF0000"]'

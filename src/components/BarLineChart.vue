@@ -36,7 +36,7 @@
               :style="{ 'background-color': colorBarParse }"
             />
             <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-              {{ capitalize(namebar) }}
+              {{ capitalize(nameBar) }}
             </p>
           </div>
           <div class="flex">
@@ -109,11 +109,11 @@ export default {
       type: String,
       required: true,
     },
-    ybar: {
+    y: {
       type: String,
       required: true,
     },
-    y: {
+    yBar: {
       type: String,
       required: true,
     },
@@ -121,7 +121,7 @@ export default {
       type: String,
       default: '',
     },
-    namebar: {
+    nameBar: {
       type: String,
       default: '',
     },
@@ -257,7 +257,7 @@ export default {
       // Récupération des paramètres
       this.xparse = JSON.parse(this.x);
       this.yparse = JSON.parse(this.y);
-      this.ybarparse = JSON.parse(this.ybar);
+      this.ybarparse = JSON.parse(this.yBar);
 
       // Récupération données Vline
       if (this.vline !== undefined) {
@@ -398,7 +398,7 @@ export default {
                 const index = chart.tooltip._active[0].index;
 
                 const y = chart.scales.yBar.getPixelForValue(this.yparse[index]);
-                const ybar = chart.scales.y.getPixelForValue(this.ybarparse[index]);
+                const yBar = chart.scales.y.getPixelForValue(this.ybarparse[index]);
 
                 ctx.save();
                 ctx.beginPath();
@@ -422,8 +422,8 @@ export default {
 
                 ctx.save();
                 ctx.beginPath();
-                ctx.moveTo(chart.scales.x.left, ybar);
-                ctx.lineTo(x, ybar);
+                ctx.moveTo(chart.scales.x.left, yBar);
+                ctx.lineTo(x, yBar);
                 ctx.lineWidth = '1';
                 ctx.strokeStyle = this.colorPrecisionBar;
                 ctx.setLineDash([10, 5]);
