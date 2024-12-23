@@ -127,7 +127,7 @@ export default {
       type: String,
       default: undefined,
     },
-    pointradius: {
+    pointRadius: {
       type: Number,
       default: 5,
     },
@@ -352,8 +352,8 @@ export default {
         fill: false,
         borderColor: this.colorParse[index],
         backgroundColor: this.colorParse[index],
-        pointRadius: this.pointradius,
-        pointHoverRadius: this.pointradius,
+        pointRadius: this.pointRadius,
+        pointHoverRadius: this.pointRadius,
         pointHoverBackgroundColor: this.colorHover[index],
         pointHoverBorderColor: this.colorHover[index],
         showLine: this.showline,
@@ -575,7 +575,7 @@ export default {
     ChangeShowPoint(index) {
       this.showPoint[index] = !this.showPoint[index];
       if (this.showPoint[index]) {
-        this.chart.data.datasets[index].pointRadius = this.pointradius;
+        this.chart.data.datasets[index].pointRadius = this.pointRadius;
         this.chart.data.datasets[index].showLine = this.showline;
       } else {
         this.chart.data.datasets[index].pointRadius = 0;
