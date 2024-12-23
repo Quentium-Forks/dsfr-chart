@@ -64,6 +64,10 @@ export default {
       type: String,
       required: true,
     },
+    valueReg: {
+      type: Number,
+      default: undefined,
+    },
     date: {
       type: String,
       required: true,
@@ -71,10 +75,6 @@ export default {
     region: {
       type: String,
       required: true,
-    },
-    valuereg: {
-      type: Number,
-      default: undefined,
     },
     name: {
       type: String,
@@ -215,7 +215,7 @@ export default {
 
       // Update left column properties for region-specific display
       this.leftColProps.localisation = this.getReg(this.region).label;
-      this.leftColProps.value = this.valuereg;
+      this.leftColProps.valueReg = this.valueReg;
       this.leftColProps.min = this.scaleMin;
       this.leftColProps.max = this.scaleMax;
     },

@@ -931,7 +931,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 -   **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département.
 
--   **valuereg** : _(String | Number)_ La valeur de l'indicateur à l'échelle régionale. Cette valeur sera affichée dans la barre latérale.
+-   **value-reg** : _(String | Number)_ La valeur de l'indicateur à l'échelle régionale. Cette valeur sera affichée dans la barre latérale.
 
 -   **name** : _(String)_ Nom de l'indicateur.
 
@@ -959,7 +959,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
     "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
     "2B": 16
   }'
-  valuereg="10"
+  value-reg="10"
   name="Nom de l'indicateur"
   region="93"
   selected-palette="categorical"
@@ -1013,10 +1013,10 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 | **paramètre**   | **type**         | **obligatoire** | **description**                                                               |
 |-----------------|------------------|-----------------|-------------------------------------------------------------------------------|
 | data            | string           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| valuereg        | string ou number | oui             | Valeur de l'indicateur à l'échelle nationale |
+| value-reg       | string ou number | oui             | Valeur de l'indicateur à l'échelle nationale |
 | name            | string           | oui             | nom de l'indicateur |
-| level          | String ('dep' ou 'reg')           | Non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions) |
-| selectedpalette | string           | non             | palette de couleurs utilisée pour la carte |
+| level           | String ('dep' ou 'reg')           | Non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions) |
+| selectedPalette | string           | non             | palette de couleurs utilisée pour la carte |
 | highlightIndex | Number, String ou Array           | non             | Code ou liste des codes géographiques à mettre en avant
 
 
@@ -1025,10 +1025,10 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 | **paramètre**   | **type**         | **obligatoire** | **description**                                                               |
 |-----------------|------------------|-----------------|-------------------------------------------------------------------------------|
 | data            | string           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| valuereg        | string ou number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
+| value-reg       | string ou number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
 | name            | string           | oui             | nom de l'indicateur                                                           |
 | region          | string           | oui             | code de la région à afficher                                                  |
-| selectedpalette | string           | non             | palette de couleurs utilisée pour la carte
+| selectedPalette | string           | non             | palette de couleurs utilisée pour la carte
 
 
 # X. Composant DataBox

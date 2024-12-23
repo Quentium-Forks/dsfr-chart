@@ -47,7 +47,7 @@
         {{ props['names'] }}
       </p>
       <p class="fr-text--md fr-text--bold fr-my-0">
-        {{ convertFloatToHuman(props['value']) }}
+        {{ convertFloatToHuman(props['valueReg']) }}
       </p>
     </div>
     <div class="scale">
