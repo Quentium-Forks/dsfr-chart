@@ -193,10 +193,6 @@ export default {
       type: String,
       default: 'sequentialAscending', // Aucune palette définie par défaut
     },
-    highlightIndex: {
-      type: Number,
-      default: -1, // Si aucune donnée n'est mise en avant, on met tout en neutre
-    },
   },
   data() {
     this.chart = undefined;

@@ -148,10 +148,6 @@ export default {
       type: String,
       default: '',
     },
-    highlightIndex: {
-      type: Number,
-      default: -1,
-    },
     unitTooltip: {
       type: String,
       default: '', // Default to an empty string if no unit is specified
