@@ -37,14 +37,9 @@
           >
             <span
               class="legende_dot"
-              :style="{ 'background-color': colorParse[index], opacity: opacity[index] }"
-              @click="ChangeShowLine(index)"
+              :style="{ 'background-color': colorParse[index] }"
             />
-            <p
-              class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0"
-              :style="{ opacity: opacity[index] }"
-              @click="ChangeShowLine(index)"
-            >
+            <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
               {{ capitalize(item) }}
             </p>
           </div>
@@ -177,8 +172,6 @@ export default {
       datasets: [],
       xAxisType: 'category',
       labels: undefined,
-      opacity: [],
-      showLine: [],
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -232,8 +225,6 @@ export default {
       this.datasets = [];
       this.xAxisType = '';
       this.labels = undefined;
-      this.opacity = [];
-      this.showLine = [];
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
@@ -261,7 +252,6 @@ export default {
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
-        this.showLine.push(true);
         if (tmpNameParse[i] !== undefined) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
@@ -530,17 +520,15 @@ export default {
                 label: (tooltipItems) => {
                   const label = [];
                   this.datasets.forEach((set, i) => {
-                    if (this.showLine[i]) {
-                      if (this.xAxisType === 'linear') {
-                        const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
-                        if (index !== -1) {
-                          label.push(this.yparse[i][index]);
-                        } else {
-                          label.push(undefined);
-                        }
+                    if (this.xAxisType === 'linear') {
+                      const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
+                      if (index !== -1) {
+                        label.push(this.yparse[i][index]);
                       } else {
-                        label.push(set.data[tooltipItems.dataIndex]);
+                        label.push(undefined);
                       }
+                    } else {
+                      label.push(set.data[tooltipItems.dataIndex]);
                     }
                   });
                   return label;
@@ -549,13 +537,7 @@ export default {
                   return tooltipItems[0].label;
                 },
                 labelTextColor: () => {
-                  const colors = [];
-                  this.showLine.forEach((show, i) => {
-                    if (show) {
-                      colors.push(this.colorParse[i]);
-                    }
-                  });
-                  return colors;
+                  return this.colorParse;
                 },
               },
               external: (context) => {
@@ -642,19 +624,6 @@ export default {
           },
         },
       });
-    },
-    ChangeShowLine(index) {
-      this.showLine[index] = !this.showLine[index];
-      this.chart.data.datasets[index].showLine = this.showLine[index];
-      this.opacity.length = 0;
-      this.showLine.forEach((show) => {
-        if (show) {
-          this.opacity.push(1);
-        } else {
-          this.opacity.push(0.3);
-        }
-      });
-      this.chart.update('none');
     },
   },
 };

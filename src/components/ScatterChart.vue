@@ -172,7 +172,6 @@ export default {
       xAxisType: 'category',
       labels: undefined,
       opacity: [],
-      showPoint: [],
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -226,7 +225,6 @@ export default {
       this.xAxisType = 'category';
       this.labels = undefined;
       this.opacity = [];
-      this.showPoint = [];
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
@@ -263,7 +261,6 @@ export default {
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
-        this.showPoint.push(true);
         if (tmpNameParse[i] !== undefined) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
@@ -468,32 +465,24 @@ export default {
                 label: (tooltipItems) => {
                   const label = [];
                   this.datasets.forEach((set, i) => {
-                    if (this.showPoint[i]) {
-                      if (this.xAxisType === 'linear') {
-                        const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
-                        if (index !== -1) {
-                          label.push(this.convertIntToHuman(this.yparse[i][index]));
-                        } else {
-                          label.push(undefined);
-                        }
+                    if (this.xAxisType === 'linear') {
+                      const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
+                      if (index !== -1) {
+                        label.push(this.convertIntToHuman(this.yparse[i][index]));
                       } else {
-                        label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
+                        label.push(undefined);
                       }
+                    } else {
+                      label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
                     }
                   });
                   return label;
                 },
                 title: (tooltipItems) => {
-                  return tooltipItems[0].parsed.x;
+                  return tooltipItems[0].label;
                 },
                 labelTextColor: () => {
-                  const colors = [];
-                  this.showPoint.forEach((show, i) => {
-                    if (show) {
-                      colors.push(this.colorParse[i]);
-                    }
-                  });
-                  return colors;
+                  return this.colorParse;
                 },
               },
               external: (context) => {
@@ -571,25 +560,6 @@ export default {
           },
         },
       });
-    },
-    ChangeShowPoint(index) {
-      this.showPoint[index] = !this.showPoint[index];
-      if (this.showPoint[index]) {
-        this.chart.data.datasets[index].pointRadius = this.pointRadius;
-        this.chart.data.datasets[index].showLine = this.showLine;
-      } else {
-        this.chart.data.datasets[index].pointRadius = 0;
-        this.chart.data.datasets[index].showLine = false;
-      }
-      this.opacity.length = 0;
-      this.showPoint.forEach((show) => {
-        if (show) {
-          this.opacity.push(1);
-        } else {
-          this.opacity.push(0.3);
-        }
-      });
-      this.chart.update('none');
     },
     loadColors() {
       const { colorParse, colorHover, vlineColorParse, hlineColorParse } = generateScatterChartColors({
