@@ -79,7 +79,7 @@ export default {
       type: Number,
       default: undefined,
     },
-    percentvalue: {
+    percent: {
       type: Number,
       default: undefined,
     },
@@ -135,10 +135,10 @@ export default {
   },
   methods: {
     createChart() {
-      if (this.percentvalue === undefined) {
+      if (this.percent === undefined) {
         this.percentage = Math.round((100 * (this.value - this.init)) / (this.target - this.init));
       } else {
-        this.percentage = Math.round(this.percentvalue);
+        this.percentage = Math.round(this.percent);
       }
       this.width = Math.min(100, this.percentage);
     },
