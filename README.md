@@ -483,7 +483,7 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
   x='[["Jan", "Feb", "Mar", "Apr", "May", "Jun"]]'
   y="[[5, 10, 15, 20, 25, 30]]"
   selected-palette="neutral"
-  :highlightIndex="[2, 4]"
+  highlightIndex="[2, 4]"
   unit-tooltip="k€"
 ></bar-chart>
 ```
@@ -519,7 +519,7 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
 
 - **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes de listes, par exemple `x='[["Label1", "Label2"]]'` et `y='[[10, 20], [30, 40]]'`.
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `horizontal="true"` avec `stacked="true"`.
-- **Indexation** : Les index utilisés dans `highlightIndex` correspondent aux positions des barres dans vos données `x`. Par exemple, `:highlightIndex="[0, 2]"` mettra en avant la première et la troisième barre.
+- **Indexation** : Les index utilisés dans `highlightIndex` correspondent aux positions des barres dans vos données `x`. Par exemple, `highlightIndex="[0, 2]"` mettra en avant la première et la troisième barre.
 
 ---
 
@@ -533,7 +533,7 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
   y="[[50, 70, 30, 90]]"
   name='["Ventes"]'
   selected-palette="neutral"
-  :highlightIndex="[3]"
+  highlightIndex="[3]"
   horizontal="true"
   unit-tooltip="k€"
 ></bar-chart>
@@ -897,7 +897,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
   value-nat="10"
   name="Nom de l'indicateur"
   selected-palette="sequentialAscending"
-  :highlightIndex='["75", "13"]'
+  highlightIndex='["75", "13"]'
 ></map-chart>
 ```
 
@@ -917,7 +917,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
   name="Nom de l'indicateur"
   level="reg"
   selected-palette="divergentDescending"
-  :highlightIndex='["84", "93"]'
+  highlightIndex='["84", "93"]'
 ></map-chart>
 ```
 
@@ -963,7 +963,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
   name="Nom de l'indicateur"
   region="93"
   selected-palette="categorical"
-  :highlightIndex='["93", "84"]'
+  highlightIndex='["93", "84"]'
 ></map-chart-reg>
 ```
 
@@ -1001,7 +1001,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
   value-nat="65"
   name="Taux de réussite"
   selected-palette="neutral"
-  :highlightIndex='["01", "02"]'
+  highlightIndex='["01", "02"]'
   level="dep"
 ></map-chart>
 ```
