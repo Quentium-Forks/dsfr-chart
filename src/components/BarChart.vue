@@ -87,7 +87,7 @@ export default {
     },
     aspectRatio: {
       type: Number,
-      default: 1,
+      default: 2,
     },
     selectedPalette: {
       type: String,
