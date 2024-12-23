@@ -308,7 +308,7 @@ export default {
     },
     loadColors() {
       let yparseSimple = this.yparse
-      if (this.selectedPalette === 'categorical') {
+      if (this.selectedPalette === '' || this.selectedPalette === 'categorical') {
         yparseSimple = this.yparse[0];
       }
 
