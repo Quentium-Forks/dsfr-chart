@@ -163,7 +163,7 @@ export default {
         }
       }
 
-      for (let i = 0; i < this.yparse.length; i++) {
+      for (let i = 0; i < this.yparse[0].length; i++) {
         if (tmpNameParse[i] !== undefined) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
@@ -172,21 +172,19 @@ export default {
       }
 
       // Assignation des labels
-      this.labels = this.xparse;
-      this.datasets = [
-        {
-          data: this.yparse,
-          borderColor: this.colorParse,
-          backgroundColor: this.colorParse,
-          hoverBackgroundColor: this.colorHover,
-          hoverBorderColor: this.colorHover,
-        },
-      ];
+      this.labels = this.xparse[0];
 
       // Chargement des couleurs
       this.loadColors();
 
       // Préparation des datasets
+      this.datasets = this.yparse.map((dataSet, index) => ({
+        data: dataSet,
+        borderColor: this.colorParse[index],
+        backgroundColor: this.colorParse[index],
+        hoverBorderColor: this.colorHover[index],
+        hoverBackgroundColor: this.colorHover[index],
+      }));
     },
     createChart() {
       if (this.chart) this.chart.destroy();
@@ -222,13 +220,14 @@ export default {
               backgroundColor: '#6b6b6b',
               callbacks: {
                 label: (tooltipItems) => {
-                  return this.datasets[0].data[tooltipItems.dataIndex];
+                  const value = this.datasets[tooltipItems.datasetIndex].data[tooltipItems.dataIndex];
+                  return this.convertIntToHuman(value);
                 },
                 title: (tooltipItems) => {
-                  return this.labels[tooltipItems[0].dataIndex];
+                  return tooltipItems[0].label;
                 },
                 labelTextColor: (tooltipItems) => {
-                  return this.colorParse[tooltipItems.dataIndex];
+                  return this.colorParse[tooltipItems.datasetIndex][tooltipItems.dataIndex];
                 },
               },
               external: (context) => {
@@ -323,14 +322,14 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
-      this.loadColors();
+      // this.loadColors();
 
       // Mise à jour des couleurs dans le graphique
-      this.chart.data.datasets.forEach((dataset) => {
-        dataset.borderColor = this.colorParse;
-        dataset.backgroundColor = this.colorParse;
-        dataset.hoverBorderColor = this.colorHover;
-        dataset.hoverBackgroundColor = this.colorHover;
+      this.chart.data.datasets.forEach((dataset, i) => {
+        dataset.borderColor = this.colorParse[i];
+        dataset.backgroundColor = this.colorParse[i];
+        dataset.hoverBorderColor = this.colorHover[i];
+        dataset.hoverBackgroundColor = this.colorHover[i];
       });
 
       this.chart.update('none');
