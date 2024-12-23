@@ -5,11 +5,7 @@
   >
     <div class="r_col fr-col-12">
       <div class="chart">
-        <!-- Tooltip personnalisé -->
-        <div
-          class="linechart_tooltip"
-          :style="{ opacity: 0, position: 'absolute' }"
-        >
+        <div class="linechart_tooltip">
           <div class="tooltip_header fr-text--sm fr-mb-0" />
           <div class="tooltip_body">
             <div class="tooltip_value" />
@@ -276,16 +272,14 @@ export default {
               backgroundColor: '#6b6b6b',
               callbacks: {
                 label: (tooltipItems) => {
-                  const datasetIndex = tooltipItems.datasetIndex;
-                  const index = tooltipItems.dataIndex;
-                  const value = this.datasets[datasetIndex].data[index];
+                  const value = this.datasets[tooltipItems.datasetIndex].data[tooltipItems.dataIndex];
                   return this.convertIntToHuman(value);
                 },
-                title: (tooltipItems) => tooltipItems[0].label,
+                title: (tooltipItems) => {
+                  return tooltipItems[0].label;
+                },
                 labelTextColor: (tooltipItems) => {
-                  const datasetIndex = tooltipItems.datasetIndex;
-                  const index = tooltipItems.dataIndex;
-                  return this.colorParse[datasetIndex][index];
+                  return this.colorParse[tooltipItems.datasetIndex][tooltipItems.dataIndex];
                 },
               },
               external: (context) => {
