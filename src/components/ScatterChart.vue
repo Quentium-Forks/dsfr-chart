@@ -479,7 +479,7 @@ export default {
                   return label;
                 },
                 title: (tooltipItems) => {
-                  return tooltipItems[0].label;
+                  return tooltipItems[0].parsed.x;
                 },
                 labelTextColor: () => {
                   return this.colorParse;
