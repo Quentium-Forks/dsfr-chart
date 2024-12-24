@@ -329,7 +329,7 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
-      // this.loadColors();
+      this.loadColors();
 
       // Mise à jour des couleurs dans le graphique
       this.chart.data.datasets.forEach((dataset, i) => {
