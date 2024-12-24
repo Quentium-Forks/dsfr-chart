@@ -388,7 +388,7 @@ export default {
                 ctx.moveTo(x, chart.scales.y.top);
                 ctx.lineTo(x, chart.scales.y.bottom);
                 ctx.lineWidth = 1;
-                ctx.strokeStyle = self.colorPrecisionBar;
+                ctx.strokeStyle = this.colorPrecisionBar;
                 ctx.setLineDash([10, 5]);
                 ctx.stroke();
                 ctx.restore();
@@ -398,7 +398,7 @@ export default {
                 ctx.moveTo(chart.scales.x.left, y);
                 ctx.lineTo(chart.scales.x.right, y);
                 ctx.lineWidth = 1;
-                ctx.strokeStyle = self.colorPrecisionBar;
+                ctx.strokeStyle = this.colorPrecisionBar;
                 ctx.setLineDash([10, 5]);
                 ctx.stroke();
                 ctx.restore();
