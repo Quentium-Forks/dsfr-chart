@@ -88,7 +88,9 @@ Puis lancez les tests:
 
 `npm run test`
 
-_Si vous voulez accepter les régressions visuelles et les considérer comme la nouvelle norme, utilisez la commande `npm run test:update-snapshots`_
+_Note 1: Si vous voulez accepter les régressions visuelles et les considérer comme la nouvelle norme, utilisez la commande `npm run test:update-snapshots`_
+
+_Note 2: Playwright échoue parfois à charger les stories de Storybook, ce qui fait échouer les tests. Pour palier à ce problème augmentez le temps (en ms) attendu par la fonction ``sleep`` dans le fichier ``visual-regression.test.js``._
 
 ## Publication NPM
 
