@@ -64,7 +64,7 @@ export default {
       type: String,
       required: true,
     },
-    valueReg: {
+    value: {
       type: Number,
       default: undefined,
     },
@@ -105,8 +105,7 @@ export default {
         colMin: '',
         colMax: '',
         value: 0,
-        levelNat: false,
-        locaParent: '',
+        valueReg: 0,
         date: '',
       },
       FranceProps: {
@@ -146,13 +145,20 @@ export default {
   },
   methods: {
     createChart() {
-      // Initialize region data
       const parentWidget = this.$refs[this.widgetId];
       const self = this;
-      this.dataParse = JSON.parse(this.data);
 
-      // Define color scale
+      // Parsing des données
+      try {
+        this.dataParse = JSON.parse(this.data);
+      } catch (error) {
+        console.error('Erreur lors du parsing des données x ou y:', error);
+        return;
+      }
+
+      // Choisir les couleurs extrêmes basées sur la palette
       const palette = this.choosePalette();
+
       this.colLeft = palette[0];
       this.colRight = palette[palette.length - 1];
       this.leftColProps.colMin = this.colLeft;
@@ -163,16 +169,19 @@ export default {
       const values = [];
       let listDep = [];
 
-      // Display only departments within the selected region
       self.FranceProps.displayDep = {};
-      listDep = this.getDepsFromReg(this.region); // Get departments for the specified region
+
+      // Afficher uniquement les départements de la région sélectionnée
+      listDep = this.getDepsFromReg(this.region);
       listDep.forEach((key) => {
         values.push(self.dataParse[key]);
       });
 
-      // Define color scale based on regional values
+      // Calcul des min et max pour l'échelle
       this.scaleMin = Math.min(...values);
       this.scaleMax = Math.max(...values);
+
+      // Define color scale based on regional values
       const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colLeft, this.colRight]);
 
       let xmin = [],
@@ -213,9 +222,10 @@ export default {
         this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
       }
 
-      // Update left column properties for region-specific display
+      // Remplir les colonnes de gauche
       this.leftColProps.localisation = this.getReg(this.region).label;
-      this.leftColProps.valueReg = this.valueReg;
+      this.leftColProps.value = this.value;
+      this.leftColProps.valueReg = this.dataParse[this.zoomDep];
       this.leftColProps.min = this.scaleMin;
       this.leftColProps.max = this.scaleMax;
     },

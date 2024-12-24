@@ -173,13 +173,13 @@ export default {
       type: String,
       required: true,
     },
-    valueNat: {
+    value: {
       type: Number,
       default: undefined,
     },
     date: {
       type: String,
-      default: undefined,
+      required: true,
     },
     level: {
       type: String,
@@ -219,8 +219,6 @@ export default {
         colMax: '',
         value: 0,
         valueNat: 0,
-        levelNat: false,
-        locaParent: 'en France',
         date: '',
         textMention: '',
         borderDefault: '',
@@ -267,29 +265,33 @@ export default {
   },
   methods: {
     createChart() {
-      const palette = this.choosePalette();
-
-      // Choisir les couleurs extrêmes basées sur la palette
-      this.colLeft = palette[0]; // La couleur minimale
-      this.colRight = palette[palette.length - 1]; // La couleur maximale
-
-      this.leftColProps.date = this.date;
-      this.leftColProps.colMin = this.colLeft; // Colonne gauche, couleur minimale
-      this.leftColProps.colMax = this.colRight; // Colonne droite, couleur maximale
-      this.leftColProps.names = this.name;
-      this.leftColProps.min = this.scaleMin;
-      this.leftColProps.max = this.scaleMax;
       const parentWidget = this.$refs[this.widgetId];
       const self = this;
 
-      // Parse the data
-      this.dataParse = JSON.parse(this.data);
-      const values = [];
+      // Parsing des données
+      try {
+        this.dataParse = JSON.parse(this.data);
+      } catch (error) {
+        console.error('Erreur lors du parsing des données x ou y:', error);
+        return;
+      }
 
-      // Remplir la carte avec les départements/régions
+      const palette = this.choosePalette();
+
+      // Choisir les couleurs extrêmes basées sur la palette
+      this.colLeft = palette[0];
+      this.colRight = palette[palette.length - 1];
+      this.leftColProps.colMin = this.colLeft;
+      this.leftColProps.colMax = this.colRight;
+      this.leftColProps.date = this.date;
+      this.leftColProps.names = this.name;
+
+      const values = [];
       let listDep = [];
+
       self.FranceProps.displayDep = {};
 
+      // Remplir la carte avec les départements/régions
       if (this.zoomDep !== undefined) {
         if (this.level === 'dep') {
           const a = this.getDep(this.zoomDep).region_value;
@@ -299,7 +301,8 @@ export default {
         } else {
           listDep = [this.getAcad(this.zoomDep).value];
         }
-        for (const key in listDep) {
+
+        for (const key of listDep) {
           values.push(self.dataParse[key]);
         }
       } else {
@@ -309,8 +312,8 @@ export default {
       }
 
       // Calcul des min et max pour l'échelle
-      this.scaleMin = Math.min.apply(null, values);
-      this.scaleMax = Math.max.apply(null, values);
+      this.scaleMin = Math.min(...values);
+      this.scaleMax = Math.max(...values);
 
       let xmin = [],
         xmax = [],
@@ -369,9 +372,8 @@ export default {
         } else {
           this.leftColProps.localisation = this.getAcad(this.zoomDep).label;
         }
-        this.leftColProps.value = this.dataParse[this.zoomDep];
-        this.leftColProps.levelNat = this.valueNat !== undefined;
-        this.leftColProps.valueNat = this.valueNat;
+        this.leftColProps.value = this.value;
+        this.leftColProps.valueNat = this.dataParse[this.zoomDep];
 
         if (this.level === 'dep') {
           this.displayFrance = 'none';
@@ -397,8 +399,8 @@ export default {
         }
       } else {
         this.leftColProps.localisation = 'France';
-        this.leftColProps.value = this.valueNat;
-        this.leftColProps.levelNat = false;
+        this.leftColProps.value = this.value;
+        this.leftColProps.valueNat = 0;
         if (this.level === 'dep') {
           this.FranceProps.viewBox = '0 0 262 262';
         } else if (this.level === 'reg') {
