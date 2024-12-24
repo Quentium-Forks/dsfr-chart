@@ -31,9 +31,7 @@
             v-for="(rowItem, rowIndex) in xparse"
             :key="rowIndex"
           >
-            <td
-              :class="getClass(rowItem)"
-            >
+            <td :class="getClass(rowItem)">
               {{ rowItem }}
             </td>
             <td

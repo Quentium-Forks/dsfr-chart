@@ -466,7 +466,7 @@ export default {
                 suggestedMin: 0,
                 suggestedMax: this.ymax,
                 maxTicksLimit: 5,
-                callback: (value) =>{
+                callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';
                   } else if (value >= 1000000 || value <= -1000000) {
@@ -477,7 +477,7 @@ export default {
                   return value;
                 },
               },
-              afterFit: (axis) =>{
+              afterFit: (axis) => {
                 this.legendLeftMargin = axis.width;
               },
             },

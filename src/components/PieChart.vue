@@ -309,7 +309,7 @@ export default {
       });
     },
     loadColors() {
-      let yparseSimple = this.yparse
+      let yparseSimple = this.yparse;
       if (this.selectedPalette === '' || this.selectedPalette === 'categorical') {
         yparseSimple = this.yparse[0];
       }
