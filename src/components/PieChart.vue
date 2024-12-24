@@ -321,7 +321,7 @@ export default {
       });
 
       this.colorParse = [colorParse.flat()];
-      this.colorHover = colorHover;
+      this.colorHover = [colorHover.flat()];
     },
     choosePalette() {
       // Using the refactored choosePalette function from utils
