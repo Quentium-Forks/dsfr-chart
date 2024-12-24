@@ -11,9 +11,8 @@
             <div class="tooltip_value" />
           </div>
         </div>
-        <!-- Canvas pour le graphique -->
+
         <canvas :ref="chartId" />
-        <!-- Légende -->
 
         <div class="chart_legend fr-mb-0 fr-mt-4v">
           <div
@@ -30,7 +29,7 @@
             </p>
           </div>
         </div>
-        <!-- Date de mise à jour -->
+
         <div
           v-if="date !== undefined"
           class="flex fr-mt-1w"

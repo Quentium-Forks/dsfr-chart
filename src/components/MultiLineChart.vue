@@ -339,7 +339,6 @@ export default {
         this.xAxisType = 'category';
       }
 
-      // Définir ymax
       this.ymax = Math.max.apply(null, this.hlineParse.concat(this.yparse.flat()));
 
       // Chargement des couleurs

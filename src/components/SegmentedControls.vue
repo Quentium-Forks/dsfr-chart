@@ -1,7 +1,6 @@
 <template>
   <fieldset class="fr-segmented fr-segmented--no-legend fr-segmented--sm">
     <div class="fr-segmented__elements">
-      <!-- Première option -->
       <div class="fr-segmented__element">
         <input
           :ref="idcontrol + '-1'"
@@ -25,7 +24,6 @@
         </label>
       </div>
 
-      <!-- Deuxième option -->
       <div class="fr-segmented__element">
         <input
           :ref="idcontrol + '-2'"

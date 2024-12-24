@@ -14,7 +14,7 @@
           </div>
         </div>
         <canvas :ref="chartId" />
-        <!-- Légende pour les séries de données -->
+
         <div class="chart_legend fr-mb-0 fr-mt-4v">
           <div
             v-for="(item, index) in nameParse"
@@ -30,7 +30,7 @@
             </p>
           </div>
         </div>
-        <!-- Légende pour les lignes horizontales -->
+
         <div
           v-for="(item, index) in hlineNameParse"
           :key="index"
@@ -49,7 +49,7 @@
             {{ capitalize(item) }}
           </p>
         </div>
-        <!-- Légende pour les lignes verticales -->
+
         <div
           v-for="(item, index) in vlineNameParse"
           :key="index"
@@ -339,7 +339,6 @@ export default {
         this.xAxisType = 'category';
       }
 
-      // Set ymax
       this.ymax = Math.max.apply(null, this.hlineParse);
 
       // Chargement des couleurs
