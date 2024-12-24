@@ -342,9 +342,6 @@ export default {
       // Définir ymax
       this.ymax = Math.max.apply(null, this.hlineParse.concat(this.yparse.flat()));
 
-      // Assignation des labels
-      this.labels = this.xparse[0];
-
       // Chargement des couleurs
       this.loadColors();
 
