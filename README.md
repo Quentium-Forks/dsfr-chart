@@ -56,15 +56,15 @@ Il existe deux possibilités :
 - Charger tous les composants :
 
 ```html
-<script src="./Charts/dsfr-chart.umd.js"></script>
-<link rel="stylesheet" href="./Charts/dsfr-chart.css" />
+<script src="./DSFRChart.js"></script>
+<link rel="stylesheet" href="./DSFRChart.css">
 ```
 
 - Charger uniquement un ou plusieurs composants nécessaires (ex : ScatterChart) :
 
 ```html
-<script src="./ScatterChart/scatter-chart.umd.js"></script>
-<link rel="stylesheet" href="./ScatterChart/scatter-chart.css" />
+<script src="./ScatterChart.js"></script>
+<link rel="stylesheet" href="./ScatterChart.css">
 ```
 
 ## Fonctionnement
