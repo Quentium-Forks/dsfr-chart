@@ -10,7 +10,7 @@ Afin de pouvoir commencer à développer et contribuer au DSFR, il faut tout d'a
 
 Il suffit ensuite de cloner votre fork, en téléchargeant les sources depuis le bouton “clone” de GitHub, ou via un terminal avec commande :
 
-```
+```bash
 git clone https://github.com/<VOTRE_NOM_UTILISATEUR_GITHUB>/dsfr-chart
 ```
 
@@ -84,13 +84,13 @@ Pour les exécuter il faut dans un premier temps build le projet :
 
 `npm run build`
 
-Puis lancez les tests:
+Puis lancer les tests:
 
 `npm run test`
 
-_Note 1: Si vous voulez accepter les régressions visuelles et les considérer comme la nouvelle norme, utilisez la commande `npm run test:update-snapshots`_
+_Note 1: Pour accepter les régressions visuelles et les considérer comme la nouvelle norme, utiliser la commande `npm run test:update-snapshots`_
 
-_Note 2: Playwright échoue parfois à charger les stories de Storybook, ce qui fait échouer les tests. Pour palier à ce problème augmentez le temps (en ms) attendu par la fonction ``sleep`` dans le fichier ``visual-regression.test.js``._
+_Note 2: Playwright échoue parfois à charger les stories de Storybook, ce qui fait échouer les tests. Pour palier à ce problème, augmenter le temps (en ms) attendu par la fonction `sleep` dans le fichier `visual-regression.test.js`._
 
 ## Publication NPM
 
