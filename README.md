@@ -656,8 +656,8 @@ Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise :
 
 ```html
 <pie-chart
-  x='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
-  y="[11.7, 74.8, 9.3, 1.6, 2.6]"
+  x='[["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]'
+  y="[[11.7, 74.8, 9.3, 1.6, 2.6]]"
   name='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
   unit-tooltip="%"
   selectedPalette="categorical"
@@ -674,8 +674,8 @@ L’option **fill="true"** permet de remplir l’intérieur du graphique pour ob
 
 ```html
 <pie-chart
-  x='["Groupe A", "Groupe B", "Groupe C"]'
-  y="[10, 20, 30]"
+  x='[["Groupe A", "Groupe B", "Groupe C"]]'
+  y="[[10, 20, 30]]"
   fill="true"
   unit-tooltip="%"
   selectedPalette="divergentAscending"
