@@ -38,6 +38,10 @@
     :id="id + '-table-' + source"
     :class="showChart || currentSource !== source ? 'fr-hidden' : ''"
   />
+  <div
+    :id="id + '-table-default'"
+    :class="showChart ? 'fr-hidden' : ''"
+  />
 
   <button
     class="fr-btn fr-btn--secondary"
@@ -73,7 +77,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  source: {
+  defaultSource: {
     type: String,
     default: null,
   },
@@ -85,7 +89,7 @@ const chartSources = ref([]);
 
 chartSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="chart"]`)].map((el) => el.getAttribute('databox-source'));
 
-const currentSource = ref(props.source || chartSources.value[0]);
+const currentSource = ref(props.defaultSource || chartSources.value[0]);
 
 const generateOptions = (source) => {
   return source.map((option) => ({
