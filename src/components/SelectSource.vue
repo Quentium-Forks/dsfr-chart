@@ -66,6 +66,9 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-@import '@/styles/selectSource.scss';
+<style scoped>
+.select-widget {
+  max-width: 300px;
+  margin-bottom: 0 !important;
+}
 </style>

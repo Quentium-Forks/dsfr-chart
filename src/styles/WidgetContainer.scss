@@ -1,14 +1,4 @@
 .widget_container {
-  .ml-lg {
-    margin-left: 0;
-  }
-
-  @media (min-width: 62em) {
-    .ml-lg {
-      margin-left: 3rem;
-    }
-  }
-
   .chart canvas {
     max-width: 100%;
   }
