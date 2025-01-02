@@ -1,7 +1,7 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType"
-    :to="'#' + databoxId + '-' + databoxType"
+    :disabled="!databoxId && !databoxType && !databoxSource"
+    :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
       :ref="widgetId"
@@ -110,6 +110,10 @@ export default {
     databoxType: {
       type: String,
       default: null,
+    },
+    databoxSource: {
+      type: String,
+      default: 'default',
     },
     x: {
       type: String,
@@ -488,7 +492,7 @@ export default {
               intersect: false,
               external: (context) => {
                 // Tooltip Element
-                const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType) : this.$el.nextElementSibling;
+                const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) : this.$el.nextElementSibling;
 
                 const tooltipEl = dom.querySelector('.linechart_tooltip');
 

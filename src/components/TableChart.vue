@@ -1,7 +1,7 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType"
-    :to="'#' + databoxId + '-' + databoxType"
+    :disabled="!databoxId && !databoxType && !databoxSource"
+    :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
       :ref="widgetId"
@@ -67,6 +67,10 @@ export default {
     databoxType: {
       type: String,
       default: null,
+    },
+    databoxSource: {
+      type: String,
+      default: 'default',
     },
     x: {
       type: String,
