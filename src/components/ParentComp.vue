@@ -34,14 +34,14 @@
     :class="!showChart || currentSource !== source ? 'fr-hidden' : ''"
   />
   <div
-    v-for="source in chartSources"
+    v-for="source in tableSources.filter((source) => source !== 'global')"
     :id="id + '-table-' + source"
     :class="showChart || currentSource !== source ? 'fr-hidden' : ''"
   />
   <div
-    v-if="chartSources[0] !== 'default'"
-    :id="id + '-table-default'"
-    :class="showChart ? 'fr-hidden' : ''"
+    v-if="tableSources.includes('global')"
+    :id="id + '-table-global'"
+    :class="showChart || tableSources.includes(currentSource) ? 'fr-hidden' : ''"
   />
 
   <button
@@ -87,10 +87,13 @@ const props = defineProps({
 const showChart = ref(true);
 
 const chartSources = ref([]);
+const tableSources = ref([]);
 
 chartSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="chart"]`)].map((el) => el.getAttribute('databox-source') || 'default');
 
-const currentSource = ref(props.defaultSource || chartSources.value[0]);
+tableSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="table"]`)].map((el) => el.getAttribute('databox-source') || 'global')
+
+const currentSource = ref(chartSources.value.includes(props.defaultSource) ? props.defaultSource : chartSources.value[0]);
 
 const generateOptions = (source) => {
   return source.map((option) => ({

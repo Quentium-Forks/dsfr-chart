@@ -70,7 +70,7 @@ export default {
     },
     databoxSource: {
       type: String,
-      default: 'default',
+      default: 'global',
     },
     x: {
       type: String,
