@@ -2,7 +2,7 @@
   <h1>{{ title }}</h1>
 
   <div
-    v-if="chartSources.length > 0"
+    v-if="chartSources.length > 1"
     class="fr-select-group"
   >
     <label
@@ -39,6 +39,7 @@
     :class="showChart || currentSource !== source ? 'fr-hidden' : ''"
   />
   <div
+    v-if="chartSources[0] !== 'default'"
     :id="id + '-table-default'"
     :class="showChart ? 'fr-hidden' : ''"
   />
@@ -87,7 +88,7 @@ const showChart = ref(true);
 
 const chartSources = ref([]);
 
-chartSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="chart"]`)].map((el) => el.getAttribute('databox-source'));
+chartSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="chart"]`)].map((el) => el.getAttribute('databox-source') || 'default');
 
 const currentSource = ref(props.defaultSource || chartSources.value[0]);
 
