@@ -1,46 +1,51 @@
 <template>
-  <div
-    :ref="widgetId"
-    class="widget_container fr-grid-row"
+  <Teleport
+    :disabled="!databoxId && !databoxType"
+    :to="'#' + databoxId + '-' + databoxType"
   >
-    <div class="r_col fr-col-12">
-      <div class="chart">
-        <div class="linechart_tooltip">
-          <div class="tooltip_header fr-text--sm fr-mb-0" />
-          <div class="tooltip_body">
-            <div class="tooltip_value" />
+    <div
+      :ref="widgetId"
+      class="widget_container fr-grid-row"
+    >
+      <div class="r_col fr-col-12">
+        <div class="chart">
+          <div class="linechart_tooltip">
+            <div class="tooltip_header fr-text--sm fr-mb-0" />
+            <div class="tooltip_body">
+              <div class="tooltip_value" />
+            </div>
           </div>
-        </div>
 
-        <canvas :ref="chartId" />
+          <canvas :ref="chartId" />
 
-        <div class="chart_legend fr-mb-0 fr-mt-4v">
+          <div class="chart_legend fr-mb-0 fr-mt-4v">
+            <div
+              v-for="(item, index) in nameParse"
+              :key="index"
+              class="flex fr-mt-3v fr-mb-1v"
+            >
+              <span
+                class="legende_dot"
+                :style="{ 'background-color': legendColors[index] }"
+              />
+              <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
+                {{ capitalize(item) }}
+              </p>
+            </div>
+          </div>
+
           <div
-            v-for="(item, index) in nameParse"
-            :key="index"
-            class="flex fr-mt-3v fr-mb-1v"
+            v-if="date !== undefined"
+            class="flex fr-mt-1w"
           >
-            <span
-              class="legende_dot"
-              :style="{ 'background-color': legendColors[index] }"
-            />
-            <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-              {{ capitalize(item) }}
+            <p class="fr-text--xs">
+              Mise à jour : {{ date }}
             </p>
           </div>
         </div>
-
-        <div
-          v-if="date !== undefined"
-          class="flex fr-mt-1w"
-        >
-          <p class="fr-text--xs">
-            Mise à jour : {{ date }}
-          </p>
-        </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script>
@@ -54,6 +59,14 @@ export default {
   name: 'BarChart',
   mixins: [mixin],
   props: {
+    databoxId: {
+      type: String,
+      default: null,
+    },
+    databoxType: {
+      type: String,
+      default: null,
+    },
     x: {
       type: String,
       required: true,
@@ -284,7 +297,9 @@ export default {
               },
               external: (context) => {
                 // Tooltip Element
-                const tooltipEl = this.$el.querySelector('.linechart_tooltip');
+                const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType) : this.$el.nextElementSibling;
+
+                const tooltipEl = dom.querySelector('.linechart_tooltip');
 
                 const tooltipModel = context.tooltip;
 

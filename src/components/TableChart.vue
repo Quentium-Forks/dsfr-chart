@@ -1,51 +1,56 @@
 <template>
-  <div
-    :ref="widgetId"
-    class="widget_container fr-grid-row"
+  <Teleport
+    :disabled="!databoxId && !databoxType"
+    :to="'#' + databoxId + '-' + databoxType"
   >
     <div
-      :ref="tableId"
-      class="fr-table scroll"
-      :style="{ maxHeight: '25rem' }"
+      :ref="widgetId"
+      class="widget_container fr-grid-row"
     >
-      <table aria-labelledby="table-caption">
-        <caption id="table-caption">
-          {{ tableName }}
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">
-              {{ tableName }}
-            </th>
-            <th
-              v-for="(item, index) in nameParse"
-              :key="index"
-              scope="col"
+      <div
+        :ref="tableId"
+        class="fr-table scroll"
+        :style="{ maxHeight: '25rem' }"
+      >
+        <table aria-labelledby="table-caption">
+          <caption id="table-caption">
+            {{ tableName }}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">
+                {{ tableName }}
+              </th>
+              <th
+                v-for="(item, index) in nameParse"
+                :key="index"
+                scope="col"
+              >
+                {{ item }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(rowItem, rowIndex) in xparse"
+              :key="rowIndex"
             >
-              {{ item }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(rowItem, rowIndex) in xparse"
-            :key="rowIndex"
-          >
-            <td :class="getClass(rowItem)">
-              {{ rowItem }}
-            </td>
-            <td
-              v-for="(colItem, colIndex) in yparse"
-              :key="colIndex"
-              :class="getClass(colItem[rowIndex])"
-            >
-              {{ convertIntToHumanTable(colItem[rowIndex]) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              <td :class="getClass(rowItem)">
+                {{ rowItem }}
+              </td>
+              <td
+                v-for="(colItem, colIndex) in yparse"
+                :key="colIndex"
+                :class="getClass(colItem[rowIndex])"
+              >
+                {{ convertIntToHumanTable(colItem[rowIndex]) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script>
@@ -55,6 +60,14 @@ export default {
   name: 'TableChart',
   mixins: [mixin],
   props: {
+    databoxId: {
+      type: String,
+      default: null,
+    },
+    databoxType: {
+      type: String,
+      default: null,
+    },
     x: {
       type: String,
       required: true,

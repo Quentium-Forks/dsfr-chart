@@ -1,48 +1,53 @@
 <template>
-  <div
-    :ref="widgetId"
-    class="widget_container fr-grid-row"
+  <Teleport
+    :disabled="!databoxId && !databoxType"
+    :to="'#' + databoxId + '-' + databoxType"
   >
-    <LeftCol :props="leftColProps" />
-    <div class="r_col fr-col-12 fr-col-lg-9">
-      <button
-        v-if="zoomDep !== undefined"
-        class="fr-btn fr-btn--sm fr-icon-arrow-go-back-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-ml-4w"
-        @click="resetGeoFilters"
-      >
-        Retour
-      </button>
-      <div class="map m-lg">
-        <div
-          class="map_tooltip"
-          :style="{ top: tooltip.top, left: tooltip.left, visibility: tooltip.visibility }"
+    <div
+      :ref="widgetId"
+      class="widget_container fr-grid-row"
+    >
+      <LeftCol :props="leftColProps" />
+      <div class="r_col fr-col-12 fr-col-lg-9">
+        <button
+          v-if="zoomDep !== undefined"
+          class="fr-btn fr-btn--sm fr-icon-arrow-go-back-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-ml-4w"
+          @click="resetGeoFilters"
         >
-          <div class="tooltip_header fr-text--sm fr-mb-0">
-            {{ tooltip.place }}
-          </div>
-          <div class="tooltip_body">
-            <div class="tooltip_value-content">
-              <div class="tooltip_value">
-                {{ convertStringToLocaleNumber(tooltip.value) }}
+          Retour
+        </button>
+        <div class="map m-lg">
+          <div
+            class="map_tooltip"
+            :style="{ top: tooltip.top, left: tooltip.left, visibility: tooltip.visibility }"
+          >
+            <div class="tooltip_header fr-text--sm fr-mb-0">
+              {{ tooltip.place }}
+            </div>
+            <div class="tooltip_body">
+              <div class="tooltip_value-content">
+                <div class="tooltip_value">
+                  {{ convertStringToLocaleNumber(tooltip.value) }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          class="france_container no_select"
-          :style="{ display: displayFrance }"
-        >
-          <france
-            :props="FranceProps"
-            :onclick="changeGeoLevel"
-            :ondblclick="resetGeoFilters"
-            :onenter="displayTooltip"
-            :onleave="hideTooltip"
-          />
+          <div
+            class="france_container no_select"
+            :style="{ display: displayFrance }"
+          >
+            <france
+              :props="FranceProps"
+              :onclick="changeGeoLevel"
+              :ondblclick="resetGeoFilters"
+              :onenter="displayTooltip"
+              :onleave="hideTooltip"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script>
@@ -60,6 +65,14 @@ export default {
   },
   mixins: [mixin],
   props: {
+    databoxId: {
+      type: String,
+      default: null,
+    },
+    databoxType: {
+      type: String,
+      default: null,
+    },
     data: {
       type: String,
       required: true,
