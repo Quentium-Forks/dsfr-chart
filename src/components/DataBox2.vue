@@ -83,31 +83,74 @@
       </div>
     </div>
 
-    <!-- Source & tendency -->
-    <div class="fr-p-2w databox__source">
+    <div class="fr-p-2w databox__data">
+      <!-- Source -->
       <div
         v-if="chartSources.length > 1"
-        class="fr-select-group"
+        class="databox__source"
       >
-        <label
-          class="fr-label fr-text--xs fr-mb-0"
-          for="select"
-        > Choisir une source de données </label>
+        <div class="fr-select-group">
+          <label
+            class="fr-label fr-text--xs fr-mb-0"
+            for="select"
+          > 
+            Choisir une source de données
+          </label>
 
-        <select
-          id="select"
-          v-model="currentSource"
-          name="select"
-          class="fr-select fr-mt-0"
-        >
-          <option
-            v-for="option in generateOptions(chartSources)"
-            :key="option.value"
-            :value="option.value"
+          <select
+            id="select"
+            v-model="currentSource"
+            name="select"
+            class="fr-select fr-mt-0"
           >
-            {{ option.label }}
-          </option>
-        </select>
+            <option
+              v-for="option in generateOptions(chartSources)"
+              :key="option.value"
+              :value="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tendency -->
+      <div
+        v-if="trend"
+        class="databox__tendency"
+      >
+        <p
+          v-if="trend.includes('-')"
+          class="fr-text--xs fr-m-0"
+        >
+          En baisse
+          <span
+            class="fr-badge fr-badge--error fr-badge--no-icon fr-badge--sm fr-ml-1v"
+            :aria-label="'Baisse de ' + trend.replace('-', '').trim()"
+          >
+            <span
+              class="fr-pr-1v"
+              aria-hidden="true"
+            >↘ </span>
+            {{ trend.replace('-', '').trim() }}
+          </span>
+        </p>
+        <p
+          v-else
+          class="fr-text--xs fr-m-0"
+        >
+          En hausse
+          <span
+            class="fr-badge fr-badge--success fr-badge--no-icon fr-badge--sm fr-ml-1v"
+            :aria-label="'Hausse de ' + trend.trim()"
+          >
+            <span
+              class="fr-pr-1v"
+              aria-hidden="true"
+            >↗ </span>
+            {{ trend.trim() }}
+          </span>
+        </p>
       </div>
     </div>
 
@@ -216,10 +259,6 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  defaultSource: {
-    type: String,
-    default: null,
-  },
   tooltipTitle: {
     type: String,
     default: '',
@@ -235,6 +274,14 @@ const props = defineProps({
   date: {
     type: String,
     required: true,
+  },
+  defaultSource: {
+    type: String,
+    default: null,
+  },
+  trend: {
+    type: [String, Number],
+    default: null,
   },
   segmentedControl: {
     type: [Boolean, String],
@@ -334,11 +381,15 @@ const screenshotChart = () => {
 
 <style scoped>
 .databox__header,
-.databox__source,
+.databox__data,
 .databox__footer {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+}
+
+.databox__tendency {
+  margin: auto 0 0 auto;
 }
 
 .databox__content {
