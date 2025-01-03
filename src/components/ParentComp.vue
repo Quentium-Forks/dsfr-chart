@@ -29,13 +29,15 @@
   </div>
 
   <div
-    v-for="source in chartSources"
+    v-for="(source, i) in chartSources"
     :id="id + '-chart-' + source"
+    :key="i"
     :class="!showChart || currentSource !== source ? 'fr-hidden' : ''"
   />
   <div
-    v-for="source in tableSources.filter((source) => source !== 'global')"
+    v-for="(source, i) in tableSources.filter((source) => source !== 'global')"
     :id="id + '-table-' + source"
+    :key="i"
     :class="showChart || currentSource !== source ? 'fr-hidden' : ''"
   />
   <div
