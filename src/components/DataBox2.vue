@@ -61,7 +61,8 @@
                 <li v-if="screenshot">
                   <button
                     class="fr-translate__language fr-nav__link"
-                    aria-current="true"
+                    title="Prendre une capture d'écran"
+                    @click="screenshotChart()"
                   >
                     Capture d'écran
                   </button>
@@ -69,7 +70,8 @@
                 <li v-if="download">
                   <button
                     class="fr-translate__language fr-nav__link"
-                    :aria-current="screenshot ? false : true"
+                    title="Télécharger les données en CSV"
+                    @click="downloadCSV(selectedView)"
                   >
                     Télécharger en CSV
                   </button>
@@ -90,9 +92,7 @@
         <label
           class="fr-label fr-text--xs fr-mb-0"
           for="select"
-        >
-          Choisir une source de données
-        </label>
+        > Choisir une source de données </label>
 
         <select
           id="select"
@@ -280,6 +280,55 @@ const selectedView = ref('chart');
 
 const changeView = (view) => {
   selectedView.value = view;
+};
+
+const downloadCSV = (mode) => {
+  const dom = document.querySelector(`[databox-id="${props.id}"][databox-type="${mode}"][databox-source="${currentSource.value}"]`);
+  const x = JSON.parse(dom.getAttribute('x'));
+  const y = JSON.parse(dom.getAttribute('y'));
+  const name = JSON.parse(dom.getAttribute('name'));
+  const tableName = dom.getAttribute('table-name');
+
+  let csv = [];
+  if (mode === 'chart') {
+    csv.push(',' + x[0].join(',') + '\n');
+
+    y.forEach((y, i) => {
+      csv.push(`${name[i]},${y.join(',')}\n`);
+    });
+  } else if (mode === 'table') {
+    // For x as abscisse
+    // csv.push(tableName + ',' + x.join(',') + '\n');
+
+    // y.forEach((y, i) => {
+    //   csv.push(`Série ${i + 1},${y.join(',')}\n`);
+    // });
+
+    // For series as abscisse
+    csv.push(tableName + ',' + y.map((_, i) => `Série ${i + 1}`).join(',') + '\n');
+
+    x.forEach((x, i) => {
+      csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
+    });
+  }
+
+  const blob = new Blob(csv, { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = mode === 'chart' ? 'chart.csv' : 'table.csv';
+  a.click();
+  window.URL.revokeObjectURL(url);
+};
+
+const screenshotChart = () => {
+  const chart = document.getElementById(`${props.id}-chart-${currentSource.value}`);
+  const canvas = chart.querySelector('canvas');
+
+  const a = document.createElement('a');
+  a.href = canvas.toDataURL('image/png');
+  a.download = 'chart.png';
+  a.click();
 };
 </script>
 
