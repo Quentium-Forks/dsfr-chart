@@ -11,14 +11,14 @@
         <button
           class="fr-btn--tooltip fr-btn"
           type="button"
-          aria-describedby="tooltip-tooltipId"
+          :aria-describedby="'tooltip-' + id"
           title="Informations complémentaires sur le graphique"
         >
           Informations complémentaires sur le graphique
         </button>
 
         <div
-          id="tooltip-tooltipId"
+          :id="'tooltip-' + id"
           class="fr-tooltip fr-placement"
           role="tooltip"
           aria-hidden="true"
@@ -49,12 +49,12 @@
           <div class="fr-nav__item">
             <button
               class="fr-btn fr-btn--sm fr-icon-more-line fr-btn--tertiary-no-outline square"
-              aria-controls="translate-dropdownId"
+              :aria-controls="'translate-' + id"
               aria-expanded="false"
               title="Plus d'actions"
             />
             <div
-              id="translate-dropdownId"
+              :id="'translate-' + id"
               class="fr-collapse fr-translate__menu fr-menu"
             >
               <ul class="fr-menu__list">
@@ -161,16 +161,16 @@
         <div class="fr-segmented__elements">
           <div class="fr-segmented__element">
             <input
-              id="segmented-segmentedControlId-1"
+              :id="'segmented-chart-' + id"
               value="1"
               type="radio"
               checked
-              name="segmented-segmentedControlId"
+              :name="'segmented-' + id"
               @change="changeView('chart')"
             >
             <label
               class="fr-label"
-              for="segmented-segmentedControlId-1"
+              :for="'segmented-chart-' + id"
             >
               <span
                 class="fr-icon-pie-chart-2-fill fr-icon--sm"
@@ -181,15 +181,15 @@
           </div>
           <div class="fr-segmented__element">
             <input
-              id="segmented-segmentedControlId-2"
+              :id="'segmented-table-' + id"
               value="2"
               type="radio"
-              name="segmented-segmentedControlId"
+              :name="'segmented-' + id"
               @change="changeView('table')"
             >
             <label
               class="fr-label"
-              for="segmented-segmentedControlId-2"
+              :for="'segmented-table-' + id"
             >
               <span
                 class="fr-icon-table-2 fr-icon fr-icon--sm"
