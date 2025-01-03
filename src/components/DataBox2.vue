@@ -1,18 +1,22 @@
 <template>
   <div class="fr-card fr-card--shadow databox">
     <!-- Header -->
-    <div class="fr-p-2w databox__head">
+    <div class="fr-p-2w databox__header">
       <h3 class="fr-h6 fr-mb-0">
-        {title}
+        {{ title }}
       </h3>
+
       <div class="flex">
+        <!-- Tooltip -->
         <button
           class="fr-btn--tooltip fr-btn"
           type="button"
           aria-describedby="tooltip-tooltipId"
+          title="Informations complémentaires sur le graphique"
         >
           Informations complémentaires sur le graphique
         </button>
+
         <div
           id="tooltip-tooltipId"
           class="fr-tooltip fr-placement"
@@ -20,14 +24,25 @@
           aria-hidden="true"
         >
           <p class="fr-text--xs fr-mb-0 bold">
-            {tooltipTitle}
+            {{ tooltipTitle }}
           </p>
           <p class="fr-text--xs fr-mb-0">
-            {tooltipContent}
+            {{ tooltipContent }}
           </p>
         </div>
 
+        <!-- Modal -->
+        <button
+          v-if="fullscreen"
+          type="button"
+          class="fr-btn fr-btn--sm fr-icon-fullscreen-line fr-btn--tertiary-no-outline square"
+          aria-controls="modal-modalId"
+          title="Afficher la modale"
+        />
+
+        <!-- More actions -->
         <nav
+          v-if="screenshot || download"
           role="navigation"
           class="fr-translate fr-nav"
         >
@@ -43,7 +58,7 @@
               class="fr-collapse fr-translate__menu fr-menu"
             >
               <ul class="fr-menu__list">
-                <li>
+                <li v-if="screenshot">
                   <button
                     class="fr-translate__language fr-nav__link"
                     aria-current="true"
@@ -51,9 +66,12 @@
                     Capture d'écran
                   </button>
                 </li>
-                <li>
-                  <button class="fr-translate__language fr-nav__link">
-                    Télécharger CSV
+                <li v-if="download">
+                  <button
+                    class="fr-translate__language fr-nav__link"
+                    :aria-current="screenshot ? false : true"
+                  >
+                    Télécharger en CSV
                   </button>
                 </li>
               </ul>
@@ -72,7 +90,7 @@
         { Graphique }
       </div>
       <div
-        v-if="selectedView === 'table'"
+        v-else-if="selectedView === 'table'"
         id="databoxId-table"
       >
         { Table }
@@ -80,11 +98,15 @@
     </div>
 
     <!-- Footer -->
-    <div class="fr-p-2w databox__foot">
+    <div class="fr-p-2w databox__footer">
       <p class="fr-text--xs fr-mb-0">
-        {source}
+        {{ source }}, {{ date }}
       </p>
-      <fieldset class="fr-segmented fr-segmented--no-legend fr-segmented--sm">
+
+      <fieldset
+        v-if="segmentedControl"
+        class="fr-segmented fr-segmented--no-legend fr-segmented--sm"
+      >
         <legend class="fr-segmented__legend">
           Choisir votre vue
         </legend>
@@ -135,42 +157,76 @@
 </template>
 
 <script setup>
-/*
-    Expected props
-    - title
-    - tooltipId
-    - tooltipTitle
-    - tooltipContent
-    - dropdownId
-    - databoxId
-    - data
-    - source
-    - segmentedControlId
-*/
-
 import { ref } from 'vue';
 
-// État pour suivre la vue sélectionnée (par défaut : 'chart')
+const props = defineProps({
+  id: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  tooltipTitle: {
+    type: String,
+    default: '',
+  },
+  tooltipContent: {
+    type: String,
+    default: '',
+  },
+  source: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  segmentedControl: {
+    type: [Boolean, String],
+    default: true,
+  },
+  fullscreen: {
+    type: [Boolean, String],
+    default: false,
+  },
+  screenshot: {
+    type: [Boolean, String],
+    default: false,
+  },
+  download: {
+    type: [Boolean, String],
+    default: false,
+  }
+});
+
+// Cast props to boolean
+const segmentedControl = ref([true, 'true', ''].includes(props.segmentedControl));
+const fullscreen = ref([true, 'true', ''].includes(props.fullscreen));
+const screenshot = ref([true, 'true', ''].includes(props.screenshot));
+const download = ref([true, 'true', ''].includes(props.download));
+
 const selectedView = ref('chart');
 
-// Fonction pour changer de vue
 const changeView = (view) => {
   selectedView.value = view;
 };
 </script>
 
 <style scoped>
-.databox__head,
-.databox__foot {
-  align-items: baseline;
+.databox__header,
+.databox__footer {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
 }
 
 .databox__content {
-  align-items: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   text-align: center;
 }
