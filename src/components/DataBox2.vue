@@ -81,19 +81,67 @@
       </div>
     </div>
 
+    <!-- Source & tendency -->
+    <div class="fr-p-2w databox__source">
+      <div
+        v-if="chartSources.length > 1"
+        class="fr-select-group"
+      >
+        <label
+          class="fr-label fr-text--xs fr-mb-0"
+          for="select"
+        >
+          Choisir une source de données
+        </label>
+
+        <select
+          id="select"
+          v-model="currentSource"
+          name="select"
+          class="fr-select fr-mt-0"
+        >
+          <option
+            v-for="option in generateOptions(chartSources)"
+            :key="option.value"
+            :value="option.value"
+          >
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+    </div>
+
     <!-- Content -->
     <div class="fr-p-2w databox__content">
       <div
-        v-if="selectedView === 'chart'"
-        id="databoxId-chart"
+        :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
+        :aria-hidden="selectedView === 'chart'"
       >
-        { Graphique }
+        <!-- Bulk create all source divs for teleport -->
+        <div
+          v-for="(chartSource, i) in chartSources"
+          :id="id + '-chart-' + chartSource"
+          :key="i"
+          :class="currentSource !== chartSource ? 'fr-hidden' : ''"
+        />
       </div>
       <div
-        v-else-if="selectedView === 'table'"
-        id="databoxId-table"
+        :class="selectedView === 'chart' ? 'fr-hidden' : 'w-full'"
+        :aria-hidden="selectedView === 'table'"
       >
-        { Table }
+        <!-- Bulk create all source divs for teleport -->
+        <div
+          v-for="(tableSource, i) in tableSources.filter((s) => s !== 'global')"
+          :id="id + '-table-' + tableSource"
+          :key="i"
+          :class="currentSource !== tableSource ? 'fr-hidden' : ''"
+        />
+        <!-- Also create a global chart in case only one table is provided -->
+        <div
+          v-if="tableSources.includes('global')"
+          :id="id + '-table-global'"
+          :class="tableSources.includes(currentSource) ? 'fr-hidden' : ''"
+        />
       </div>
     </div>
 
@@ -168,6 +216,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  defaultSource: {
+    type: String,
+    default: null,
+  },
   tooltipTitle: {
     type: String,
     default: '',
@@ -199,8 +251,24 @@ const props = defineProps({
   download: {
     type: [Boolean, String],
     default: false,
-  }
+  },
 });
+
+const chartSources = ref([]);
+const tableSources = ref([]);
+
+chartSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="chart"]`)].map((el) => el.getAttribute('databox-source') || 'default');
+
+tableSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="table"]`)].map((el) => el.getAttribute('databox-source') || 'global');
+
+const currentSource = ref(chartSources.value.includes(props.defaultSource) ? props.defaultSource : chartSources.value[0]);
+
+const generateOptions = (source) => {
+  return source.map((option) => ({
+    label: option.charAt(0).toUpperCase() + option.slice(1).replace(/-/g, ' '),
+    value: option,
+  }));
+};
 
 // Cast props to boolean
 const segmentedControl = ref([true, 'true', ''].includes(props.segmentedControl));
@@ -217,6 +285,7 @@ const changeView = (view) => {
 
 <style scoped>
 .databox__header,
+.databox__source,
 .databox__footer {
   display: flex;
   align-items: baseline;
@@ -233,6 +302,10 @@ const changeView = (view) => {
 
 .flex {
   display: flex;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .bold {
