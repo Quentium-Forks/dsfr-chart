@@ -11,75 +11,105 @@
 </head>
 
 <body>
-  <!-- TODO Databox 2 needs to be wrapped to get access to charts, to fix -->
-  <div style="max-width: 500px; padding: 40px">
-    <data-box2
-               id="abc"
-               title="Emplois en France de 1926 à 1950"
-               default-source="pole-emploi"
-               tooltip-title="Emplois en France"
-               tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
-               source="INSEE, Pôle Emploi, Autre source"
-               date="2021-01-01"
-               segmented-control="true"
-               screenshot="true"
-               download="true"
-               fullscreen="true">
-    </data-box2>
+  <!-- TODO Databox 2 needs to be wrapped to get access to charts, needs a fix -->
+  <div class="fr-grid-row">
+    <div class="fr-col-5">
+      <data-box2
+                 id="abc"
+                 title="Emplois en France de 1926 à 1950"
+                 default-source="pole-emploi"
+                 tooltip-title="Emplois en France"
+                 tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
+                 source="INSEE, Pôle Emploi, Autre source"
+                 date="2021-01-01"
+                 segmented-control="true"
+                 screenshot="true"
+                 download="true"
+                 fullscreen="true">
+      </data-box2>
+    </div>
+
+    <scatter-chart
+                   databox-id="abc"
+                   databox-type="chart"
+                   databox-source="insee"
+                   x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
+                   y="[[35, 35, 37, 37, 39, 41, 43, 48, 51, 52, 54, 55, 56], [76, 83, 82, 80, 81, 80, 81, 80, 81, 80, 79, 75, 72], [54, 56, 58, 57, 59, 60, 62, 64, 66, 66, 66, 65, 64]]"
+                   name='["Femmes", "Hommes", "Ensemble"]'
+                   unit-tooltip="%"
+                   show-line="true">
+    </scatter-chart>
+
+    <scatter-chart
+                   databox-id="abc"
+                   databox-type="chart"
+                   databox-source="pole-emploi"
+                   x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
+                   y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
+                   name='["Femmes", "Hommes", "Ensemble"]'
+                   unit-tooltip="%"
+                   show-line="true">
+    </scatter-chart>
+
+    <scatter-chart
+                   databox-id="abc"
+                   databox-type="chart"
+                   x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
+                   y="[[67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79], [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28], [38, 42, 39, 43, 40, 44, 41, 45, 42, 46, 43, 47, 44]]"
+                   name='["Femmes", "Hommes", "Ensemble"]'
+                   unit-tooltip="%"
+                   show-line="true">
+    </scatter-chart>
+
+    <table-chart
+                 databox-id="abc"
+                 databox-type="table"
+                 databox-source="pole-emploi"
+                 x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
+                 y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
+                 table-name="Années">
+    </table-chart>
+
+    <table-chart
+                 databox-id="abc"
+                 databox-type="table"
+                 x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
+                 y="[[35, 35, 37, 37, 39, 41, 43, 48, 51, 52, 54, 55, 56], [76, 83, 82, 80, 81, 80, 81, 80, 81, 80, 79, 75, 72], [54, 56, 58, 57, 59, 60, 62, 64, 66, 66, 66, 65, 64]]"
+                 table-name="Années globales">
+    </table-chart>
+
+    <div class="fr-col-7">
+      <data-box2
+                 id="def"
+                 title="Statut des emplois en France en 2018"
+                 default-source="pole-emploi"
+                 tooltip-title="Statut des emplois en France"
+                 tooltip-content="Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi."
+                 source="Insee, enquête Emploi"
+                 date="04/11/2024"
+                 segmented-control="false"
+                 screenshot="false"
+                 download="false"
+                 fullscreen="false">
+      </data-box2>
+    </div>
+
+    <pie-chart
+               databox-id="def"
+               databox-type="chart"
+               databox-source="table"
+               x='[["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]'
+               y="[[11.7, 74.8, 9.3, 1.6, 2.6]]"
+               name='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
+               unit-tooltip="%">
+    </pie-chart>
   </div>
 
-  <scatter-chart
-                 databox-id="abc"
-                 databox-type="chart"
-                 databox-source="insee"
-                 x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
-                 y="[[35, 35, 37, 37, 39, 41, 43, 48, 51, 52, 54, 55, 56], [76, 83, 82, 80, 81, 80, 81, 80, 81, 80, 79, 75, 72], [54, 56, 58, 57, 59, 60, 62, 64, 66, 66, 66, 65, 64]]"
-                 name='["Femmes", "Hommes", "Ensemble"]'
-                 unit-tooltip="%"
-                 show-line="true">
-  </scatter-chart>
-
-  <scatter-chart
-                 databox-id="abc"
-                 databox-type="chart"
-                 databox-source="pole-emploi"
-                 x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
-                 y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
-                 name='["Femmes", "Hommes", "Ensemble"]'
-                 unit-tooltip="%"
-                 show-line="true">
-  </scatter-chart>
-
-  <scatter-chart
-                 databox-id="abc"
-                 databox-type="chart"
-                 x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
-                 y="[[67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79], [40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28], [38, 42, 39, 43, 40, 44, 41, 45, 42, 46, 43, 47, 44]]"
-                 name='["Femmes", "Hommes", "Ensemble"]'
-                 unit-tooltip="%"
-                 show-line="true">
-  </scatter-chart>
-
-  <table-chart
-               databox-id="abc"
-               databox-type="table"
-               databox-source="pole-emploi"
-               x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
-               y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
-               table-name="Années">
-  </table-chart>
-
-  <table-chart
-               databox-id="abc"
-               databox-type="table"
-               x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
-               y="[[35, 35, 37, 37, 39, 41, 43, 48, 51, 52, 54, 55, 56], [76, 83, 82, 80, 81, 80, 81, 80, 81, 80, 79, 75, 72], [54, 56, 58, 57, 59, 60, 62, 64, 66, 66, 66, 65, 64]]"
-               table-name="Années globales">
-  </table-chart>
-
-  <script type="module" src="./src/main.js"></script>
+  <script
+          type="module"
+          src="./src/main.js"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener('DOMContentLoaded', function () {
       if (window.dsfr && window.dsfr.start) {
         window.dsfr.start();
       }
