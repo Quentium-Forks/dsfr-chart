@@ -12,8 +12,9 @@
 
 <body>
   <!-- TODO Databox 2 needs to be wrapped to get access to charts, needs a fix -->
-  <div class="fr-grid-row">
+  <div class="fr-grid-row fr-grid-row--gutters">
     <div class="fr-col-7">
+      <p>Databox complète avec tout les paramètres, comportant 3 graphiques scatter de source différente (le 3ème n'en a pas mais est quand même interprété si jamais la source est omise). Il n'y a que 2 tableaux, un seul relié à la source pole emploi, celui n'ayant pas de source est considéré comme global, donc est affiché sur les deux autres graphiques.</p>
       <data-box2
                  id="abc"
                  title="Emplois en France de 1926 à 1950"
@@ -80,6 +81,7 @@
     </table-chart>
 
     <div class="fr-col-5">
+      <p>Autre type de graphique, pie chart, avec le moins d'option possible (utilisation quotidienne). Le besoin de source n'est pas utile car il n'y a que un chart. On peut rajouter un table sans source aussi qui sera correctement relié par l'id car il n'y a qu'un seul graphique.</p>
       <data-box2
                  id="def"
                  title="Statut des emplois en France en 2018"
@@ -103,11 +105,18 @@
                name='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
                unit-tooltip="%">
     </pie-chart>
+
+    <!-- Pour relier ce graphique au pie chart, mettre segmented-control à true -->
+    <table-chart
+                 databox-id="def"
+                 databox-type="table"
+                 x='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
+                 y="[[11.7, 74.8, 9.3, 1.6, 2.6]]"
+                 table-name="Nomenclature">
+    </table-chart>
   </div>
 
-  <script
-          type="module"
-          src="./src/main.js"></script>
+  <script type="module" src="./src/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       if (window.dsfr && window.dsfr.start) {
