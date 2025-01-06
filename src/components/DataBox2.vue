@@ -400,6 +400,10 @@ const screenshotChart = () => {
   text-align: center;
 }
 
+.fr-tooltip {
+  max-width: 220px;
+}
+
 .flex {
   display: flex;
 }
