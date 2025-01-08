@@ -1,12 +1,12 @@
 <template>
-  <div class="fr-card fr-card--shadow databox">
+  <div class="fr-card fr-card--shadow databox" :id="'container-' + id">
     <!-- Header -->
     <div class="fr-p-2w databox__header">
       <h3 class="fr-h6 fr-mb-0">
         {{ title }}
       </h3>
 
-      <div class="flex">
+      <div :class="'flex sreenshot-hide-' + id">
         <!-- Tooltip -->
         <button
           class="fr-btn--tooltip fr-btn"
@@ -36,9 +36,39 @@
           v-if="fullscreen"
           type="button"
           class="fr-btn fr-btn--sm fr-icon-fullscreen-line fr-btn--tertiary-no-outline square"
-          aria-controls="modal-modalId"
+          data-fr-opened="false"
+          :aria-controls="'modal-' + id"
           title="Afficher la modale"
         />
+
+        <dialog :aria-labelledby="'fr-modal-title-modal-' + id" 
+                role="dialog" 
+                :id="'modal-' + id" 
+                class="fr-modal">
+          <div class="fr-container fr-container--fluid fr-container-md">
+              <div class="fr-grid-row fr-grid-row--center">
+                <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+                    <div class="fr-modal__body">
+                      <div class="fr-modal__header">
+                          <button class="fr-btn--close fr-btn" 
+                                  title="Fermer la fenêtre modale" 
+                                  :aria-controls="'modal-' + id">
+                            Fermer
+                          </button>
+                      </div>
+                      <div class="fr-modal__content">
+                          <h1 :id="'fr-modal-title-modal-' + id" 
+                                class="fr-modal__title">
+                            <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
+                            {{ modalTitle }}
+                          </h1>
+                          <p>{{ modalContent }}</p>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </dialog>
 
         <!-- More actions -->
         <nav
@@ -92,13 +122,13 @@
         <div class="fr-select-group">
           <label
             class="fr-label fr-text--xs fr-mb-0"
-            for="select"
+            :for="'select-' + id"
           > 
             Choisir une source de données
           </label>
 
           <select
-            id="select"
+            :id="'select-' + id"
             v-model="currentSource"
             name="select"
             class="fr-select fr-mt-0"
@@ -129,7 +159,7 @@
             :aria-label="'Baisse de ' + trend.replace('-', '').trim()"
           >
             <span
-              class="fr-pr-1v"
+              :class="'fr-pr-1v sreenshot-hide-' + id"
               aria-hidden="true"
             >↘ </span>
             {{ trend.replace('-', '').trim() }}
@@ -145,7 +175,7 @@
             :aria-label="'Hausse de ' + trend.trim()"
           >
             <span
-              class="fr-pr-1v"
+              :class="'fr-pr-1v sreenshot-hide-' + id"
               aria-hidden="true"
             >↗ </span>
             {{ trend.trim() }}
@@ -196,7 +226,7 @@
 
       <fieldset
         v-if="segmentedControl"
-        class="fr-segmented fr-segmented--no-legend fr-segmented--sm"
+        :class="'fr-segmented fr-segmented--no-legend fr-segmented--sm sreenshot-hide-' + id"
       >
         <legend class="fr-segmented__legend">
           Choisir votre vue
@@ -248,6 +278,7 @@
 </template>
 
 <script setup>
+import html2canvas from 'html2canvas';
 import { ref } from 'vue';
 
 const props = defineProps({
@@ -299,6 +330,14 @@ const props = defineProps({
     type: [Boolean, String],
     default: false,
   },
+  modalTitle: {
+    type: String,
+    default: ''
+  },
+  modalContent: {
+    type: String,
+    default: ''
+  }
 });
 
 const chartSources = ref([]);
@@ -369,13 +408,36 @@ const downloadCSV = (mode) => {
 };
 
 const screenshotChart = () => {
-  const chart = document.getElementById(`${props.id}-chart-${currentSource.value}`);
-  const canvas = chart.querySelector('canvas');
+  const databox = document.getElementById(`container-${props.id}`)
 
-  const a = document.createElement('a');
-  a.href = canvas.toDataURL('image/png');
-  a.download = 'chart.png';
-  a.click();
+  const dom = databox.querySelectorAll('.sreenshot-hide-' + props.id)
+  dom.forEach(item => item.style.display = 'none')
+
+  const data = databox.querySelector('.databox__data')
+  const select = databox.querySelector(`#select-${props.id}`)
+  const tendency = databox.querySelector('.databox__tendency')
+
+  // Do not remove above lines. Needed for image custom CSS
+  data.style.display = 'block'
+  select.style.boxShadow = 'none'
+  select.style.appearence = 'none'
+  tendency.style.marginTop = '20px'
+
+  // Transform databox to canvas to screenshot it
+  html2canvas(databox).then(function(canvas) {
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = 'chart.png';
+    a.click();
+
+    dom.forEach(item => item.style.removeProperty('display'))
+    
+    // Do not remove above lines. Needed for resetting image custom CSS
+    data.style.removeProperty('display')
+    select.style.removeProperty('box-shadow')
+    select.style.removeProperty('appearence')
+    tendency.style.removeProperty('margin-top')
+  });
 };
 </script>
 

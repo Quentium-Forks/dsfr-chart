@@ -12,7 +12,6 @@
 
 <body>
   <div class="fr-container">
-    <!-- TODO Databox 2 needs to be wrapped to get access to charts, needs a fix -->
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-7">
         <p>Databox complète avec tout les paramètres, comportant 3 graphiques scatter de source différente (le 3ème n'en a pas mais est quand même interprété si jamais la source est omise). Il n'y a que 2 tableaux, un seul relié à la source pole emploi, celui n'ayant pas de source est considéré comme global, donc est affiché sur les deux autres graphiques.</p>
@@ -28,7 +27,9 @@
                    segmented-control="true"
                    screenshot="true"
                    download="true"
-                   fullscreen="true">
+                   fullscreen="true"
+                   modal-title="Titre de la modale"
+                   modal-content="Contenu de la modale">
         </data-box2>
 
         <scatter-chart
@@ -69,7 +70,8 @@
                      databox-source="pole-emploi"
                      x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
                      y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
-                     table-name="Années">
+                     table-name="Années"
+                     name='["Femmes", "Hommes", "Ensemble"]'>
         </table-chart>
     
         <table-chart
@@ -77,7 +79,8 @@
                      databox-type="table"
                      x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
                      y="[[35, 35, 37, 37, 39, 41, 43, 48, 51, 52, 54, 55, 56], [76, 83, 82, 80, 81, 80, 81, 80, 81, 80, 79, 75, 72], [54, 56, 58, 57, 59, 60, 62, 64, 66, 66, 66, 65, 64]]"
-                     table-name="Années globales">
+                     table-name="Années globales"
+                     name='["Femmes", "Hommes", "Ensemble"]'>
         </table-chart>
       </div>
   
@@ -113,7 +116,8 @@
                      databox-type="table"
                      x='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
                      y="[[11.7, 74.8, 9.3, 1.6, 2.6]]"
-                     table-name="Nomenclature">
+                     table-name="Nomenclature"
+                     name='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'>
         </table-chart>
       </div>
     </div>
