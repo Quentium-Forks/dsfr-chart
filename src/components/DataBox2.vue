@@ -41,34 +41,9 @@
           title="Afficher la modale"
         />
 
-        <dialog :aria-labelledby="'fr-modal-title-modal-' + id" 
-                role="dialog" 
-                :id="'modal-' + id" 
-                class="fr-modal">
-          <div class="fr-container fr-container--fluid fr-container-md">
-              <div class="fr-grid-row fr-grid-row--center">
-                <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
-                    <div class="fr-modal__body">
-                      <div class="fr-modal__header">
-                          <button class="fr-btn--close fr-btn" 
-                                  title="Fermer la fenêtre modale" 
-                                  :aria-controls="'modal-' + id">
-                            Fermer
-                          </button>
-                      </div>
-                      <div class="fr-modal__content">
-                          <h1 :id="'fr-modal-title-modal-' + id" 
-                                class="fr-modal__title">
-                            <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
-                            {{ modalTitle }}
-                          </h1>
-                          <p>{{ modalContent }}</p>
-                      </div>
-                    </div>
-                </div>
-              </div>
-          </div>
-        </dialog>
+        <Teleport to="body">
+          <dialog-modal :id="id" :modal-title="modalTitle" :modal-content="modalContent" />
+        </Teleport>
 
         <!-- More actions -->
         <nav
@@ -278,6 +253,7 @@
 </template>
 
 <script setup>
+import DialogModal from './DialogModal.vue';
 import html2canvas from 'html2canvas';
 import { ref } from 'vue';
 
