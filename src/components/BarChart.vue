@@ -387,7 +387,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import '@/styles/Tooltip.scss';
 @import '@/styles/Rcol.scss';
 @import '@/styles/WidgetContainer.scss';
