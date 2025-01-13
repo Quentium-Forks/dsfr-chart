@@ -356,36 +356,23 @@ const downloadCSV = (mode) => {
   const x = JSON.parse(dom.getAttribute('x'));
   const y = JSON.parse(dom.getAttribute('y'));
   const name = JSON.parse(dom.getAttribute('name'));
-  const tableName = dom.getAttribute('table-name');
+  const tableName = dom.getAttribute('table-name') ?? '';
 
   let csv = [];
-  if (mode === 'chart') {
-    csv.push(',' + x[0].join(',') + '\n');
+  
+  csv.push(tableName + ',' + name.join(',') + '\n');
+  
+  const rows = mode === 'chart' ? x[0] : x;
 
-    y.forEach((y, i) => {
-      csv.push(`${name[i]},${y.join(',')}\n`);
-    });
-  } else if (mode === 'table') {
-    // For x as abscisse
-    // csv.push(tableName + ',' + x.join(',') + '\n');
-
-    // y.forEach((y, i) => {
-    //   csv.push(`Série ${i + 1},${y.join(',')}\n`);
-    // });
-
-    // For series as abscisse
-    csv.push(tableName + ',' + y.map((_, i) => `Série ${i + 1}`).join(',') + '\n');
-
-    x.forEach((x, i) => {
-      csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
-    });
-  }
+  rows.forEach((x, i) => {
+    csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
+  });
 
   const blob = new Blob(csv, { type: 'text/csv' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = mode === 'chart' ? 'chart.csv' : 'table.csv';
+  a.download = 'data.csv';
   a.click();
   window.URL.revokeObjectURL(url);
 };
