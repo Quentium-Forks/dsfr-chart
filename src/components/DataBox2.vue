@@ -1,5 +1,8 @@
 <template>
-  <div class="fr-card fr-card--shadow databox" :id="'container-' + id">
+  <div
+    :id="'container-' + id"
+    class="fr-card fr-card--shadow databox"
+  >
     <!-- Header -->
     <div class="fr-p-2w databox__header">
       <h3 class="fr-h6 fr-mb-0">
@@ -42,7 +45,11 @@
         />
 
         <Teleport to="body">
-          <dialog-modal :id="id" :modal-title="modalTitle" :modal-content="modalContent" />
+          <dialog-modal
+            :id="id"
+            :modal-title="modalTitle"
+            :modal-content="modalContent"
+          />
         </Teleport>
 
         <!-- More actions -->
@@ -308,12 +315,12 @@ const props = defineProps({
   },
   modalTitle: {
     type: String,
-    default: ''
+    default: '',
   },
   modalContent: {
     type: String,
-    default: ''
-  }
+    default: '',
+  },
 });
 
 const chartSources = ref([]);
@@ -384,35 +391,35 @@ const downloadCSV = (mode) => {
 };
 
 const screenshotChart = () => {
-  const databox = document.getElementById(`container-${props.id}`)
+  const databox = document.getElementById(`container-${props.id}`);
 
-  const dom = databox.querySelectorAll('.sreenshot-hide-' + props.id)
-  dom.forEach(item => item.style.display = 'none')
+  const dom = databox.querySelectorAll('.sreenshot-hide-' + props.id);
+  dom.forEach((item) => (item.style.display = 'none'));
 
-  const data = databox.querySelector('.databox__data')
-  const select = databox.querySelector(`#select-${props.id}`)
-  const tendency = databox.querySelector('.databox__tendency')
+  const data = databox.querySelector('.databox__data');
+  const select = databox.querySelector(`#select-${props.id}`);
+  const tendency = databox.querySelector('.databox__tendency');
 
   // Do not remove above lines. Needed for image custom CSS
-  data.style.display = 'block'
-  select.style.boxShadow = 'none'
-  select.style.appearence = 'none'
-  tendency.style.marginTop = '20px'
+  data.style.display = 'block';
+  select.style.boxShadow = 'none';
+  select.style.appearence = 'none';
+  tendency.style.marginTop = '20px';
 
   // Transform databox to canvas to screenshot it
-  html2canvas(databox).then(function(canvas) {
+  html2canvas(databox).then(function (canvas) {
     const a = document.createElement('a');
     a.href = canvas.toDataURL('image/png');
     a.download = 'chart.png';
     a.click();
 
-    dom.forEach(item => item.style.removeProperty('display'))
-    
+    dom.forEach((item) => item.style.removeProperty('display'));
+
     // Do not remove above lines. Needed for resetting image custom CSS
-    data.style.removeProperty('display')
-    select.style.removeProperty('box-shadow')
-    select.style.removeProperty('appearence')
-    tendency.style.removeProperty('margin-top')
+    data.style.removeProperty('display');
+    select.style.removeProperty('box-shadow');
+    select.style.removeProperty('appearence');
+    tendency.style.removeProperty('margin-top');
   });
 };
 </script>

@@ -1,8 +1,8 @@
 <template>
   <dialog
+    :id="'modal-' + id"
     :aria-labelledby="'fr-modal-title-modal-' + id"
     role="dialog"
-    :id="'modal-' + id"
     class="fr-modal"
   >
     <div class="fr-container fr-container--fluid fr-container-md">
@@ -19,8 +19,11 @@
               </button>
             </div>
             <div class="fr-modal__content">
-              <h1 :id="'fr-modal-title-modal-' + id" class="fr-modal__title">
-                <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
+              <h1
+                :id="'fr-modal-title-modal-' + id"
+                class="fr-modal__title"
+              >
+                <span class="fr-icon-arrow-right-line fr-icon--lg" />
                 {{ modalTitle }}
               </h1>
               <p>{{ modalContent }}</p>
@@ -33,18 +36,18 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
   id: {
     type: String,
     required: true,
   },
   modalTitle: {
     type: String,
-    default: ""
+    default: '',
   },
   modalContent: {
     type: String,
-    default: "",
+    default: '',
   },
 });
 </script>
