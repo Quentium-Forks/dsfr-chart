@@ -1,22 +1,19 @@
-import { html } from "lit";
+import { html } from 'lit';
 
-import { Default as PieChart } from "./PieChart.stories";
+import { Default as PieChart } from './PieChart.stories';
 
 const meta = {
-  component: "data-box",
-  subcomponents: {
-    PieChart: "pie-chart",
-  },
+  component: 'data-box',
   args: {
     segmentedControl: true,
     screenshot: true,
     download: true,
     fullscreen: true,
-    modalTitle: "Titre de la modale",
-    modalContent: "Contenu de la modale",
-    id: "storybook-databox",
-    date: "04/11/2024",
-    trend: "-15%",
+    modalTitle: 'Titre de la modale',
+    modalContent: 'Contenu de la modale',
+    id: 'storybook-databox',
+    date: '04/11/2024',
+    trend: '-15%',
   },
 };
 
@@ -24,11 +21,10 @@ export default meta;
 
 export const SinglePieChart = {
   args: {
-    title: "Statut des emplois en France en 2018",
-    tooltipTitle: "Statut des emplois en France",
-    tooltipContent:
-      "Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi.",
-    source: "Insee, enquête Emploi",
+    title: 'Statut des emplois en France en 2018',
+    tooltipTitle: 'Statut des emplois en France',
+    tooltipContent: "Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi.",
+    source: 'Insee, enquête Emploi',
   },
   render: (args) => html`
     <data-box
@@ -65,16 +61,15 @@ export const SinglePieChart = {
       table-name="Nomenclature"
     >
     </table-chart>
-  `,
+  `
 };
 
-export const MuiltipleScatterCharts = {
+export const MultipleScatterCharts = {
   args: {
-    title: "Emplois en France de 1926 à 1950",
-    tooltipTitle: "Emplois en France",
-    tooltipContent:
-      "Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source.",
-    source: "INSEE, Pôle Emploi, Autre source",
+    title: 'Emplois en France de 1926 à 1950',
+    tooltipTitle: 'Emplois en France',
+    tooltipContent: "Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source.",
+    source: 'INSEE, Pôle Emploi, Autre source',
   },
   render: (args) => html`
     <data-box
@@ -144,5 +139,5 @@ export const MuiltipleScatterCharts = {
       table-name="Années globales"
     >
     </table-chart>
-  `,
+  `
 };
