@@ -9,7 +9,7 @@
         {{ title }}
       </h3>
 
-      <div :class="'flex sreenshot-hide-' + id">
+      <div :class="'flex screenshot-hide-' + id">
         <!-- Tooltip -->
         <button
           class="fr-btn--tooltip fr-btn"
@@ -141,7 +141,7 @@
             :aria-label="'Baisse de ' + trend.replace('-', '').trim()"
           >
             <span
-              :class="'fr-pr-1v sreenshot-hide-' + id"
+              :class="'fr-pr-1v screenshot-hide-' + id"
               aria-hidden="true"
             >↘ </span>
             {{ trend.replace('-', '').trim() }}
@@ -157,7 +157,7 @@
             :aria-label="'Hausse de ' + trend.trim()"
           >
             <span
-              :class="'fr-pr-1v sreenshot-hide-' + id"
+              :class="'fr-pr-1v screenshot-hide-' + id"
               aria-hidden="true"
             >↗ </span>
             {{ trend.trim() }}
@@ -208,7 +208,7 @@
 
       <fieldset
         v-if="segmentedControl"
-        :class="'fr-segmented fr-segmented--no-legend fr-segmented--sm sreenshot-hide-' + id"
+        :class="'fr-segmented fr-segmented--no-legend fr-segmented--sm screenshot-hide-' + id"
       >
         <legend class="fr-segmented__legend">
           Choisir votre vue
@@ -393,7 +393,7 @@ const downloadCSV = (mode) => {
 const screenshotChart = () => {
   const databox = document.getElementById(`container-${props.id}`);
 
-  const dom = databox.querySelectorAll('.sreenshot-hide-' + props.id);
+  const dom = databox.querySelectorAll('.screenshot-hide-' + props.id);
   dom.forEach((item) => (item.style.display = 'none'));
 
   const data = databox.querySelector('.databox__data');
@@ -403,7 +403,7 @@ const screenshotChart = () => {
   // Do not remove above lines. Needed for image custom CSS
   data.style.display = 'block';
   select.style.boxShadow = 'none';
-  select.style.appearence = 'none';
+  select.style.appearance = 'none';
   tendency.style.marginTop = '20px';
 
   // Transform databox to canvas to screenshot it
@@ -418,7 +418,7 @@ const screenshotChart = () => {
     // Do not remove above lines. Needed for resetting image custom CSS
     data.style.removeProperty('display');
     select.style.removeProperty('box-shadow');
-    select.style.removeProperty('appearence');
+    select.style.removeProperty('appearance');
     tendency.style.removeProperty('margin-top');
   });
 };
