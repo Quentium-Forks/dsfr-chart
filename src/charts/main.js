@@ -1,7 +1,6 @@
 import { defineCustomElement } from 'vue';
 
-import ParentComp from '@/components/ParentComp.vue';
-import DataBox2 from '@/components/DataBox2.vue';
+import DataBox from '@/components/DataBox.vue';
 
 import LineChart from '@/components/LineChart.vue';
 import BarChart from '@/components/BarChart.vue';
@@ -15,8 +14,7 @@ import GaugeChart from '@/components/GaugeChart.vue';
 import TableChart from '@/components/TableChart.vue';
 import RadarChart from '@/components/RadarChart.vue';
 
-customElements.define('parent-comp', defineCustomElement(ParentComp, { shadowRoot: false }));
-customElements.define('data-box2', defineCustomElement(DataBox2, { shadowRoot: false }));
+customElements.define('data-box', defineCustomElement(DataBox, { shadowRoot: false }));
 
 customElements.define('line-chart', defineCustomElement(LineChart, { shadowRoot: false }));
 customElements.define('bar-chart', defineCustomElement(BarChart, { shadowRoot: false }));

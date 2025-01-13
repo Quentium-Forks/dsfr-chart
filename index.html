@@ -15,7 +15,7 @@
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-7">
         <p>Databox complète avec tout les paramètres, comportant 3 graphiques scatter de source différente (le 3ème n'en a pas mais est quand même interprété si jamais la source est omise). Il n'y a que 2 tableaux, un seul relié à la source pole emploi, celui n'ayant pas de source est considéré comme global, donc est affiché sur les deux autres graphiques.</p>
-        <data-box2
+        <data-box
                    id="abc"
                    title="Emplois en France de 1926 à 1950"
                    tooltip-title="Emplois en France"
@@ -30,7 +30,7 @@
                    fullscreen="true"
                    modal-title="Titre de la modale"
                    modal-content="Contenu de la modale">
-        </data-box2>
+        </data-box>
 
         <scatter-chart
                        databox-id="abc"
@@ -87,7 +87,7 @@
   
       <div class="fr-col-5">
         <p>Autre type de graphique, pie chart, avec le moins d'option possible (utilisation quotidienne). Le besoin de source n'est pas utile car il n'y a que un chart. On peut rajouter un table sans source aussi qui sera correctement relié par l'id car il n'y a qu'un seul graphique.</p>
-        <data-box2
+        <data-box
                    id="def"
                    title="Statut des emplois en France en 2018"
                    tooltip-title="Statut des emplois en France"
@@ -101,7 +101,7 @@
                    fullscreen="true"
                    modal-title="Titre de la modale 2"
                    modal-content="Contenu de la modale 2">
-        </data-box2>
+        </data-box>
 
         <pie-chart
                    databox-id="def"
