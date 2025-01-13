@@ -16,7 +16,7 @@
         >
           Retour
         </button>
-        <div class="map m-lg">
+        <div class="map">
           <div
             class="map_tooltip"
             :style="{ top: tooltip.top, left: tooltip.left, visibility: tooltip.visibility }"
