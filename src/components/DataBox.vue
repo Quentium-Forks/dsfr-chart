@@ -260,9 +260,9 @@
 </template>
 
 <script setup>
-import DialogModal from './DialogModal.vue';
-import html2canvas from 'html2canvas';
 import { ref } from 'vue';
+import html2canvas from 'html2canvas';
+import DialogModal from '@/components/DialogModal.vue';
 
 const props = defineProps({
   id: {

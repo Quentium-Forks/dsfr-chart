@@ -51,9 +51,9 @@
 </template>
 
 <script>
+import * as d3 from 'd3-scale';
 import LeftCol from '@/components/LeftCol.vue';
 import maps from '@/components/maps';
-import * as d3 from 'd3-scale';
 import { mixin, isMobile } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
 
