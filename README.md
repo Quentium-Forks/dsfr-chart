@@ -743,26 +743,27 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 ### Obligatoires :
 
--   **x** : _(String)_ Les noms de chaque groupe sous la forme d’une liste de listes entre crochets.
+- **x** : _(String)_ Les noms de chaque groupe sous la forme d’une liste de listes entre crochets.
 
--   **y** : _(String)_ Les valeurs de chaque groupe sous la forme d’une liste de listes entre crochets.
+- **y** : _(String)_ Les valeurs de chaque groupe sous la forme d’une liste de listes entre crochets.
 
 
 ### Optionnels :
 
--   **name** : _(String)_ Les noms des séries de données sous forme d'une liste entre crochets.
+- **name** : _(String)_ Les noms des séries de données sous forme d'une liste entre crochets.
 
--   **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
+- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
 
-    -   `'categorical'` : Palette catégorielle par défaut.
-    -   `'sequentialAscending'` : Palette séquentielle ascendante.
-    -   `'sequentialDescending'` : Palette séquentielle descendante.
-    -   `'divergentAscending'` : Palette divergente ascendante.
-    -   `'divergentDescending'` : Palette divergente descendante.
-    -   `'neutral'` : Palette neutre.
-    -   `'defaultColor'` : Couleur par défaut.
-    -   _(laisser vide pour utiliser la palette par défaut)_
--   **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+    - `'categorical'` : Palette catégorielle par défaut.
+    - `'sequentialAscending'` : Palette séquentielle ascendante.
+    - `'sequentialDescending'` : Palette séquentielle descendante.
+    - `'divergentAscending'` : Palette divergente ascendante.
+    - `'divergentDescending'` : Palette divergente descendante.
+    - `'neutral'` : Palette neutre.
+    - `'defaultColor'` : Couleur par défaut.
+    - _(laisser vide pour utiliser la palette par défaut)_
+
+- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 
 
 ----------
@@ -786,22 +787,22 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 ## Notes supplémentaires
 
--   **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
+- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
 
--   **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une valeur du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
+- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une valeur du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 
 
 ----------
 
 ## Conseils d'utilisation
 
--   **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes de listes. Par exemple :
+- **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes de listes. Par exemple :
 
-    -   Pour `x` : `x='[["Label1", "Label2", "Label3"]]'`
-    -   Pour `y` : `y='[[10, 20, 30], [15, 25, 35]]'`
--   **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `selectedPalette` avec `unitTooltip`.
+    - Pour `x` : `x='[["Label1", "Label2", "Label3"]]'`
+    - Pour `y` : `y='[[10, 20, 30], [15, 25, 35]]'`
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `selectedPalette` avec `unitTooltip`.
 
--   **Personnalisation des séries** : Le paramètre `name` est utilisé pour spécifier les noms des séries de données. Si vous avez plusieurs séries (plusieurs listes dans `y`), vous devez fournir une liste de noms correspondante dans `name`.
+- **Personnalisation des séries** : Le paramètre `name` est utilisé pour spécifier les noms des séries de données. Si vous avez plusieurs séries (plusieurs listes dans `y`), vous devez fournir une liste de noms correspondante dans `name`.
 
 
 ----------
@@ -867,30 +868,31 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 ### Obligatoires :
 
--   **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département ou de région, associe la valeur de l’indicateur dans cette zone géographique.
+- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département ou de région, associe la valeur de l’indicateur dans cette zone géographique.
 
--   **value-nat** : _(String | Number)_ La valeur de l'indicateur à l'échelle nationale. Cette valeur sera affichée dans la barre latérale.
+- **value-nat** : _(String | Number)_ La valeur de l'indicateur à l'échelle nationale. Cette valeur sera affichée dans la barre latérale.
 
--   **name** : _(String)_ Nom de l'indicateur.
+- **name** : _(String)_ Nom de l'indicateur.
 
 
 ### Optionnels :
 
--   **level** : _(String)_ Choix du niveau de zoom. Les valeurs possibles sont :
+- **level** : _(String)_ Choix du niveau de zoom. Les valeurs possibles sont :
 
-    -   `'dep'` : Carte avec découpage par départements (par défaut).
-    -   `'reg'` : Carte avec découpage par régions.
--   **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour la carte. Les valeurs possibles sont :
+    - `'dep'` : Carte avec découpage par départements (par défaut).
+    - `'reg'` : Carte avec découpage par régions.
 
-    -   `'categorical'`
-    -   `'sequentialAscending'` (par défaut)
-    -   `'sequentialDescending'`
-    -   `'divergentAscending'`
-    -   `'divergentDescending'`
-    -   `'neutral'`
-    -   _(laisser vide pour utiliser la palette par défaut)_
--   **highlightIndex** : _(Number | String | Array)_ Code ou liste des codes géographiques à mettre en avant sur la carte. Si aucune donnée n'est mise en avant, toutes les zones sont affichées avec la couleur neutre. Par défaut, `-1` signifie aucune mise en avant.
+- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour la carte. Les valeurs possibles sont :
 
+    - `'categorical'`
+    - `'sequentialAscending'` (par défaut)
+    - `'sequentialDescending'`
+    - `'divergentAscending'`
+    - `'divergentDescending'`
+    - `'neutral'`
+    - _(laisser vide pour utiliser la palette par défaut)_
+
+- **highlightIndex** : _(Number | String | Array)_ Code ou liste des codes géographiques à mettre en avant sur la carte. Si aucune donnée n'est mise en avant, toutes les zones sont affichées avec la couleur neutre. Par défaut, `-1` signifie aucune mise en avant.
 
 ----------
 
@@ -950,17 +952,17 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 #### Paramètres spécifiques :
 
--   **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département.
+- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département.
 
--   **value-reg** : _(String | Number)_ La valeur de l'indicateur à l'échelle régionale. Cette valeur sera affichée dans la barre latérale.
+- **value-reg** : _(String | Number)_ La valeur de l'indicateur à l'échelle régionale. Cette valeur sera affichée dans la barre latérale.
 
--   **name** : _(String)_ Nom de l'indicateur.
+- **name** : _(String)_ Nom de l'indicateur.
 
--   **region** : _(String)_ Code de la région à afficher.
+- **region** : _(String)_ Code de la région à afficher.
 
--   **selectedPalette** : _(String)_ Palette de couleurs utilisée pour la carte (identique à MapChart).
+- **selectedPalette** : _(String)_ Palette de couleurs utilisée pour la carte (identique à MapChart).
 
--   **highlightIndex** : _(Number | String | Array)_ Code ou liste des codes des départements à mettre en avant.
+- **highlightIndex** : _(Number | String | Array)_ Code ou liste des codes des départements à mettre en avant.
 
 
 ## Exemple :
@@ -992,22 +994,22 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 ## Notes supplémentaires
 
--   **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
+- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
 
--   **highlightIndex** : Vous pouvez mettre en avant certaines zones géographiques en spécifiant leurs codes dans une liste. Les zones mises en avant seront affichées avec une couleur différente pour attirer l'attention.
+- **highlightIndex** : Vous pouvez mettre en avant certaines zones géographiques en spécifiant leurs codes dans une liste. Les zones mises en avant seront affichées avec une couleur différente pour attirer l'attention.
 
--   **level** : Par défaut, la carte affiche le découpage par départements (`'dep'`). En spécifiant `level="reg"`, vous pouvez afficher la carte avec le découpage par régions.
+- **level** : Par défaut, la carte affiche le découpage par départements (`'dep'`). En spécifiant `level="reg"`, vous pouvez afficher la carte avec le découpage par régions.
 
 
 ----------
 
 ## Conseils d'utilisation
 
--   **Format des données** : Les clés du dictionnaire `data` doivent correspondre aux codes des départements ou régions (par exemple, `"75"` pour Paris, `"84"` pour la région Auvergne-Rhône-Alpes).
+- **Format des données** : Les clés du dictionnaire `data` doivent correspondre aux codes des départements ou régions (par exemple, `"75"` pour Paris, `"84"` pour la région Auvergne-Rhône-Alpes).
 
--   **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser votre carte, comme utiliser `selectedPalette` avec `highlightIndex`.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser votre carte, comme utiliser `selectedPalette` avec `highlightIndex`.
 
--   **Personnalisation des couleurs** : Si vous souhaitez mettre en avant certaines zones, utilisez le paramètre `highlightIndex` en combinaison avec une palette appropriée.
+- **Personnalisation des couleurs** : Si vous souhaitez mettre en avant certaines zones, utilisez le paramètre `highlightIndex` en combinaison avec une palette appropriée.
 
 
 ----------
@@ -1083,22 +1085,22 @@ Le composant `DataBox` est un composant polyvalent qui permet d'afficher des don
 Voici la liste des props disponibles pour le composant `DataBox` :
 
 ### Obligatoires
-* id `(String)` identifiant unique de la DataBox
-* title `(String)` titre de la DataBox 
-* source `(String)` source des données affichées
-* date `(String)` date des données affichées
+- **id** `(String)` : identifiant unique de la DataBox
+- **title** `(String)` : titre de la DataBox 
+- **source** `(String)` : source des données affichées
+- **date** `(String)` : date des données affichées
 
 ### Optionnelles
-* tooltipTitle `(String)` (par défaut : '') titre de la tooltip
-* tooltipContent `(String)` (par défaut : '') contenu de la tooltip
-* defaultSource `(String)` (par défaut : null) source à afficher par défaut
-* trend `(String)` (par défaut : null) tendance de l'évolution des données
-* segmentedControl `(Boolean)` (défaut : true) afficher le système de vue graphique/tableau
-* fullscreen `(Boolean)` (défaut : false) donner la possibilité d'ouvrir le graphique dans une modale
-* screenshot `(Boolean)` (défaut : false) permettre une capture d'écran de la DataBox
-* download `(Boolean)` (défaut : false) télécharger les données du graphique au format CSV
-* modalTitle `(String)` (défaut : '') titre de la modale
-* modalContent `(String)` (défaut : '') contenu de la modale
+- **tooltipTitle** `(String)` (défaut : '') : titre de la tooltip
+- **tooltipContent** `(String)` (défaut : '') : contenu de la tooltip
+- **defaultSource** `(String)` (défaut : null) : source à afficher par défaut
+- **trend** `(String)` (défaut : null) : tendance de l'évolution des données
+- **segmentedControl** `(Boolean)` (défaut : true) : afficher le système de vue graphique/tableau
+- **fullscreen** `(Boolean)` (défaut : false) : donner la possibilité d'ouvrir le graphique dans une modale
+- **screenshot** `(Boolean)` (défaut : false) : permettre une capture d'écran de la DataBox
+- **download** `(Boolean)` (défaut : false) : télécharger les données du graphique au format CSV
+- **modalTitle** `(String)` (défaut : '') : titre de la modale
+- **modalContent** `(String)` (défaut : '') : contenu de la modale
 
 ### Mise en place du graphique
 
@@ -1106,37 +1108,37 @@ L'ensemble de ces informations permettront d'afficher une databox sans graphique
 
 Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en spécifiant les attributs suivants qui permettront de faire le lien entre la Databox et le graphique :
 
-* databox-id : identifiant de la DataBox
-* databox-type : valeurs possibles : "chart" pour la vue du graphique et "table" pour la vue du tableau d'alternative textuelle
-* databox-source : correspond au paramètre defaultSource de la DataBox
+- databox-id : identifiant de la DataBox
+- databox-type : valeurs possibles : "chart" pour la vue du graphique et "table" pour la vue du tableau d'alternative textuelle
+- databox-source : correspond au paramètre defaultSource de la DataBox
 
 ```html
 <data-box
-    id="abc"
-    title="Emplois en France de 1926 à 1950"
-    tooltip-title="Emplois en France"
-    tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
-    source="INSEE, Pôle Emploi, Autre source"
-    date="2021-01-01"
-    default-source="pole-emploi"
-    trend="5%"
-    segmented-control="true"
-    screenshot="true"
-    download="true"
-    fullscreen="true"
-    modal-title="Titre de la modale"
-    modal-content="Contenu de la modale">
+  id="abc"
+  title="Emplois en France de 1926 à 1950"
+  tooltip-title="Emplois en France"
+  tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
+  source="INSEE, Pôle Emploi, Autre source"
+  date="2021-01-01"
+  default-source="pole-emploi"
+  trend="5%"
+  segmented-control="true"
+  screenshot="true"
+  download="true"
+  fullscreen="true"
+  modal-title="Titre de la modale"
+  modal-content="Contenu de la modale">
 </data-box>
 
 <scatter-chart
-    databox-id="abc"
-    databox-type="chart"
-    databox-source="pole-emploi"
-    x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
-    y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
-    name='["Femmes", "Hommes", "Ensemble"]'
-    unit-tooltip="%"
-    show-line="true">
+  databox-id="abc"
+  databox-type="chart"
+  databox-source="pole-emploi"
+  x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
+  y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
+  name='["Femmes", "Hommes", "Ensemble"]'
+  unit-tooltip="%"
+  show-line="true">
 </scatter-chart>
 
 <table-chart
@@ -1145,8 +1147,8 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
   databox-source="pole-emploi"
   x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
   y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
-  table-name="Années"
-  name='["Femmes", "Hommes", "Ensemble"]'>
+  name='["Femmes", "Hommes", "Ensemble"]'
+  table-name="Années">
 </table-chart>
 ```
 
