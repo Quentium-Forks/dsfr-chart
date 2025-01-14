@@ -67,131 +67,13 @@ Il existe deux possibilités :
 <link rel="stylesheet" href="./ScatterChart.css">
 ```
 
-## Fonctionnement
-
 ### Les différentes représentations graphiques
-
-# Introduction DSFR Chart
 
 Ce catalogue présente l'ensemble des graphiques disponibles dans le module complémentaire au Système de design de l'État (DSFR) pour la visualisation de données. Les différents types de graphiques sont disponibles en thème clair et thème sombre. Par ailleurs, les options de chacun des graphiques sont également présentés dans ce document.
 
-# I. Nuage de points / ScatterChart
+# I. Graphique en ligne (LineChart)
 
-Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
-
-## Paramètres
-
-### Obligatoires :
-
-- **x** : _(String)_ Les valeurs sur l'axe des abscisses sous forme d'une liste de listes entre crochets.
-- **y** : _(String)_ Les valeurs sur l'axe des ordonnées sous forme d'une liste de listes entre crochets.
-
-### Optionnels :
-
-- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
-
-  - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'defaultColor'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
-
-- **highlightIndex** : _(Number | Array)_ Index ou liste d'index des points à mettre en avant (utilisé principalement avec la palette `'neutral'`).
-- **show-line** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
-
----
-
-## Exemples
-
-### 1. Nuage de points simple
-
-**Exemple**:
-
-```html
-<scatter-chart x="[[1, 5, 8]]" y="[[30, 10, 20]]"></scatter-chart>
-```
-
----
-
-### 2. Nuage de points reliés
-
-On peut choisir de relier les points d'un `ScatterChart` avec l'option **show-line**. On lui affecte la valeur `true` dans le cas où l’on veut relier les points.
-
-**Exemple**:
-
-```html
-<scatter-chart
-  x="[[1, 5, 8]]"
-  y="[[30, 10, 20]]"
-  show-line="true"
-></scatter-chart>
-```
-
----
-
-### 3. Nuage de points avec palette divergente ascendante
-
-Vous pouvez spécifier une palette de couleurs pour le graphique en utilisant le paramètre **selectedPalette**.
-
-**Exemple**:
-
-```html
-<scatter-chart
-  x="[[1, 5, 8], [2, 6, 9]]"
-  y="[[30, 10, 20], [15, 25, 35]]"
-  selectedPalette="divergentAscending"
-></scatter-chart>
-```
-
----
-
-### 4. Nuage de points avec mise en avant de points spécifiques
-
-Pour mettre en avant des points spécifiques, utilisez la palette `'neutral'` et spécifiez les index des points à mettre en avant avec **highlightIndex**.
-
-**Exemple**:
-
-```html
-<scatter-chart
-  x="[[1, 5, 8]]"
-  y="[[30, 10, 20]]"
-  selectedPalette="neutral"
-  highlightIndex="[1, 2]"
-></scatter-chart>
-```
-
----
-
-### 5. Nuage de points avec lignes et mise en avant
-
-Il est possible de combiner plusieurs options pour personnaliser davantage votre graphique.
-
-**Exemple**:
-
-```html
-<scatter-chart
-  x="[[1, 3, 5, 7]]"
-  y="[[10, 20, 15, 25]]"
-  show-line="true"
-  selectedPalette="neutral"
-  highlightIndex="[2]"
-></scatter-chart>
-```
-
----
-
-## Notes supplémentaires
-
-- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
-- **highlightIndex** : En combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des points spécifiques du graphique. Les index commencent à **0**.
-- **show-line** : Utile pour visualiser les tendances ou les relations entre les points en les reliant par des lignes.
-
-# II. Graphique en lignes (LineChart)
-
-Les graphiques en lignes sont accessibles à travers la balise : `<line-chart>`.
+Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
 ## Paramètres
 
@@ -218,7 +100,7 @@ Les graphiques en lignes sont accessibles à travers la balise : `<line-chart>`.
 
 ---
 
-### 1. Graphique en lignes simple
+### 1. Graphique en ligne simple
 
 **Exemple**:
 
@@ -228,7 +110,7 @@ Les graphiques en lignes sont accessibles à travers la balise : `<line-chart>`.
 
 ---
 
-### 2. Graphique en lignes avec palette divergente ascendante
+### 2. Graphique en ligne avec palette divergente ascendante
 
 **Exemple**:
 
@@ -242,7 +124,7 @@ Les graphiques en lignes sont accessibles à travers la balise : `<line-chart>`.
 
 ---
 
-### 3. Graphique en lignes avec mise en avant de points spécifiques
+### 3. Graphique en ligne avec mise en avant de points spécifiques
 
 **Exemple**:
 
@@ -257,7 +139,7 @@ Les graphiques en lignes sont accessibles à travers la balise : `<line-chart>`.
 
 ---
 
-### 4. Graphique en lignes avec unité personnalisée dans l'infobulle
+### 4. Graphique en ligne avec unité personnalisée dans l'infobulle
 
 **Exemple**:
 
@@ -303,7 +185,7 @@ Les graphiques en lignes sont accessibles à travers la balise : `<line-chart>`.
 
 ---
 
-# II. Graphique en multilignes (ou LineChart multiples)
+# Graphique en multilignes (LineChart multiples)
 
 Les graphiques en multilignes (ou LineChart multiples) sont accessibles à travers la balise : `<multi-line-chart>`.
 
@@ -389,9 +271,9 @@ Les graphiques en multilignes (ou LineChart multiples) sont accessibles à trave
 
 ---
 
-# III. Diagramme en barres (BarChart)
+# II. Graphique en barre (BarChart)
 
-Les graphiques en barres sont accessibles à travers la balise : `<bar-chart>`.
+Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 
 ## Paramètres
 
@@ -416,7 +298,7 @@ Les graphiques en barres sont accessibles à travers la balise : `<bar-chart>`.
 
 - **highlightIndex** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'neutral'`).
 - **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
-- **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barres horizontales. Mettre à `true` pour activer.
+- **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barre horizontales. Mettre à `true` pour activer.
 - **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer.
 
 ---
@@ -539,7 +421,7 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
 ></bar-chart>
 ```
 
-# V. Options de lignes verticales et horizontales
+### Options de lignes verticales et horizontales
 
 Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lignes verticales et horizontales pour mettre en évidence des seuils ou des valeurs spécifiques.
 
@@ -598,7 +480,31 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 
 ---
 
-## Exemple combinant plusieurs options
+# III. Graphique en ligne / Diagramme en barres (BarLineChart)
+
+Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-line-chart>`.
+
+## Paramètres
+
+### Obligatoires :
+
+- **x** : _(String)_ Les valeurs sur l'axe des abscisses sous forme d'une liste entre crochets.
+- **y** : _(String)_ Les valeurs sur l'axe des ordonnées sous forme d'une liste entre crochets.
+- **y-bar** : _(String)_ Les valeurs pour les barres sous forme d'une liste entre crochets.
+
+### Optionnels :
+
+- **hline** : _(String)_ Les positions des lignes horizontales sur l’axe des ordonnées sous forme d’une liste entre crochets.
+- **hlinename** : _(String)_ Les noms des lignes horizontales sous forme d’une liste entre crochets.
+- **hlinecolor** : _(String)_ Les couleurs des lignes horizontales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
+- **vline** : _(String)_ Les positions des lignes verticales sur l’axe des abscisses sous forme d’une liste entre crochets.
+- **vlinename** : _(String)_ Les noms des lignes verticales sous forme d’une liste entre crochets.
+- **vlinecolor** : _(String)_ Les couleurs des lignes verticales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
+- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique principal (barres et lignes). Les valeurs possibles sont les mêmes que précédemment.
+- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique.
+- **unitTooltipBar** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) des barres.
+
+---
 
 ## Exemple :
 
@@ -615,12 +521,127 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
   vlinecolor='["#0000FF"]'
   selectedPalette="sequentialAscending"
   unit-tooltip="kW"
+  unit-tooltip-bar="kWh"
 ></bar-line-chart>
 ```
 
 ---
 
-# VI. Diagramme circulaire (PieChart)
+# IV. Nuage de points (ScatterChart)
+
+Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
+
+## Paramètres
+
+### Obligatoires :
+
+- **x** : _(String)_ Les valeurs sur l'axe des abscisses sous forme d'une liste de listes entre crochets.
+- **y** : _(String)_ Les valeurs sur l'axe des ordonnées sous forme d'une liste de listes entre crochets.
+
+### Optionnels :
+
+- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
+
+  - `'categorical'` : Palette catégorielle par défaut.
+  - `'sequentialAscending'` : Palette séquentielle ascendante.
+  - `'sequentialDescending'` : Palette séquentielle descendante.
+  - `'divergentAscending'` : Palette divergente ascendante.
+  - `'divergentDescending'` : Palette divergente descendante.
+  - `'neutral'` : Palette neutre.
+  - `'defaultColor'` : Couleur par défaut.
+  - _(laisser vide pour utiliser la palette par défaut)_
+
+- **highlightIndex** : _(Number | Array)_ Index ou liste d'index des points à mettre en avant (utilisé principalement avec la palette `'neutral'`).
+- **show-line** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
+
+---
+
+## Exemples
+
+### 1. Nuage de points simple
+
+**Exemple**:
+
+```html
+<scatter-chart x="[[1, 5, 8]]" y="[[30, 10, 20]]"></scatter-chart>
+```
+
+---
+
+### 2. Nuage de points reliés
+
+On peut choisir de relier les points d'un `ScatterChart` avec l'option **show-line**. On lui affecte la valeur `true` dans le cas où l’on veut relier les points.
+
+**Exemple**:
+
+```html
+<scatter-chart
+  x="[[1, 5, 8]]"
+  y="[[30, 10, 20]]"
+  show-line="true"
+></scatter-chart>
+```
+
+---
+
+### 3. Nuage de points avec palette divergente ascendante
+
+Vous pouvez spécifier une palette de couleurs pour le graphique en utilisant le paramètre **selectedPalette**.
+
+**Exemple**:
+
+```html
+<scatter-chart
+  x="[[1, 5, 8], [2, 6, 9]]"
+  y="[[30, 10, 20], [15, 25, 35]]"
+  selectedPalette="divergentAscending"
+></scatter-chart>
+```
+
+---
+
+### 4. Nuage de points avec mise en avant de points spécifiques
+
+Pour mettre en avant des points spécifiques, utilisez la palette `'neutral'` et spécifiez les index des points à mettre en avant avec **highlightIndex**.
+
+**Exemple**:
+
+```html
+<scatter-chart
+  x="[[1, 5, 8]]"
+  y="[[30, 10, 20]]"
+  selectedPalette="neutral"
+  highlightIndex="[1, 2]"
+></scatter-chart>
+```
+
+---
+
+### 5. Nuage de points avec lignes et mise en avant
+
+Il est possible de combiner plusieurs options pour personnaliser davantage votre graphique.
+
+**Exemple**:
+
+```html
+<scatter-chart
+  x="[[1, 3, 5, 7]]"
+  y="[[10, 20, 15, 25]]"
+  show-line="true"
+  selectedPalette="neutral"
+  highlightIndex="[2]"
+></scatter-chart>
+```
+
+---
+
+## Notes supplémentaires
+
+- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
+- **highlightIndex** : En combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des points spécifiques du graphique. Les index commencent à **0**.
+- **show-line** : Utile pour visualiser les tendances ou les relations entre les points en les reliant par des lignes.
+
+# V. Diagramme circulaire (PieChart)
 
 Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise : `<pie-chart>`.
 
@@ -714,7 +735,7 @@ L’option **fill="true"** permet de remplir l’intérieur du graphique pour ob
 
 ---
 
-# VII. Diagramme en étoile (RadarChart)
+# VI. Diagramme en étoile (RadarChart)
 
 Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise : `<radar-chart>`.
 
@@ -818,7 +839,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 </radar-chart>
 ```
 
-# VIII. Jauges (ou GaugeChart)
+# VII. Jauge (GaugeChart)
 
 Ce graphique est généré avec la balise `<gauge-chart> `
 
@@ -838,7 +859,7 @@ Les paramètres obligatoires sont :
 
 ---
 
-# IX. Cartes (MapChart)
+# VIII. Cartes (MapChart)
 
 Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
@@ -1030,10 +1051,15 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 | region          | string           | oui             | code de la région à afficher                                                  |
 | selectedPalette | string           | non             | palette de couleurs utilisée pour la carte
 
+---
 
-# X. Composant DataBox
+# IX. DataBox
 
 Le composant `DataBox` est un composant polyvalent qui permet d'afficher des données sous différentes formes, notamment des indicateurs, des graphiques, des tableaux, etc. Il intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants pour des actions supplémentaires.
+
+---
+
+# X. Couleurs
 
 ---
 
@@ -1078,7 +1104,7 @@ Par défaut la couleur de la ligne sera #161616 et son nom V1, V2, … Cela peut
 ```
 ### Barre horizontale
 
-Il est possible d’ajouter une ou plusieurs barre(s) verticale(s) par l’intermédiaire du paramètre :
+Il est possible d’ajouter une ou plusieurs barres verticales par l’intermédiaire du paramètre :
 
 - **hline** : La ou les valeur(s) sur l’axe des ordonnées sous la forme d’une liste entre crochets
 
