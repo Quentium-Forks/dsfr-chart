@@ -65,33 +65,16 @@
                     </ul>
                   </div>
                 </li>
-                <!-- <li class="fr-sidemenu__item">
-                  <button
-                    class="fr-sidemenu__btn"
-                    aria-expanded="false"
-                    aria-controls="sidemenu-9"
-                  >
-                    IX. Les composants
-                  </button>
-                  <div
-                    id="sidemenu-9"
-                    class="fr-collapse"
-                  >
-                    <ul class="fr-sidemenu__list">
-                      <li class="fr-sidemenu__item">
-                        <a
-                          id="sidemenu-9.1"
-                          class="fr-sidemenu__link"
-                          href="#databox"
-                          target="_self"
-                        >1. La Databox</a>
-                      </li>
-                    </ul>
-                  </div>
-                </li> -->
                 <li class="fr-sidemenu__item">
                   <a
-                    id="sidemenu-colors"
+                    class="fr-sidemenu__link"
+                    href="#databox"
+                    target="_self"
+                  >IX. La Databox
+                  </a>
+                </li>
+                <li class="fr-sidemenu__item">
+                  <a
                     class="fr-sidemenu__link"
                     href="#colors"
                     target="_self"
@@ -101,7 +84,6 @@
                 </li>
                 <li class="fr-sidemenu__item">
                   <a
-                    id="sidemenu-accessibility"
                     class="fr-sidemenu__link"
                     href="#accessibility"
                     target="_self"
@@ -167,6 +149,7 @@
             />
           </div>
         </div>
+        <DataBoxSection />
         <ColorsAccessibility />
       </div>
     </section>
@@ -188,6 +171,7 @@ import { FAKE_DATA }  from './fakeData';
 import CodeBlock from './CodeBlock.vue';
 import ColorsAccessibility from './ColorsAccessibility.vue';
 import Intro from './Intro.vue';
+import DataBoxSection from './DataBoxSection.vue';
 
 const PALETTE_LABELS = {
   defaultColor: 'Palette par défaut',
