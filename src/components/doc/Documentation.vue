@@ -170,6 +170,7 @@
 <script setup>
 import { ref } from 'vue';
 import LineChart from '../LineChart.vue'
+import MultiLineChart from '../MultiLineChart.vue'
 import BarChart from '../BarChart.vue'
 import BarLineChart from '../BarLineChart.vue'
 import PieChart from '../PieChart.vue'
@@ -206,7 +207,7 @@ const examples = ref([
       desc: "Indices des prix des logements neufs et anciens, France métropolitaine. Base 100 en moyenne en 2015. Insee, 04/11/2024",
       props: FAKE_DATA.lineChart.simpleLine
     }, {
-      component: LineChart,
+      component: MultiLineChart,
       heading: "2. Graphique en lignes multiples",
       title: "Taux d'activité selon le sexe depuis 1975",
       desc: "France hors Mayotte, personnes de 15 à 64 ans vivant en logement ordinaire. Insee, 04/11/2024",
