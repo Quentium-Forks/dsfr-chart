@@ -1031,25 +1031,25 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 ## Résumé des paramètres de MapChart
 
+| **paramètre**   | **type**                | **obligatoire** | **description**                                                               |
+|-----------------|-------------------------|-----------------|-------------------------------------------------------------------------------|
+| data            | String                  | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
+| value-reg       | String ou Number        | oui             | Valeur de l'indicateur à l'échelle nationale                                  |
+| name            | String                  | oui             | nom de l'indicateur                                                           |
+| level           | String ('dep' ou 'reg') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions)      |
+| selectedPalette | String                  | non             | palette de couleurs utilisée pour la carte                                    |
+| highlightIndex  | Number, String ou Array | non             | Code ou liste des codes géographiques à mettre en avant                       |
+
+
+## Résumé des paramètres de MapChartReg
+
 | **paramètre**   | **type**         | **obligatoire** | **description**                                                               |
 |-----------------|------------------|-----------------|-------------------------------------------------------------------------------|
-| data            | string           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| value-reg       | string ou number | oui             | Valeur de l'indicateur à l'échelle nationale |
-| name            | string           | oui             | nom de l'indicateur |
-| level           | String ('dep' ou 'reg')           | Non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions) |
-| selectedPalette | string           | non             | palette de couleurs utilisée pour la carte |
-| highlightIndex | Number, String ou Array           | non             | Code ou liste des codes géographiques à mettre en avant
-
-
-## Résumé des paramètres de MapChart-reg
-
-| **paramètre**   | **type**         | **obligatoire** | **description**                                                               |
-|-----------------|------------------|-----------------|-------------------------------------------------------------------------------|
-| data            | string           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| value-reg       | string ou number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
-| name            | string           | oui             | nom de l'indicateur                                                           |
-| region          | string           | oui             | code de la région à afficher                                                  |
-| selectedPalette | string           | non             | palette de couleurs utilisée pour la carte
+| data            | String           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
+| value-reg       | String ou Number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
+| name            | String           | oui             | nom de l'indicateur                                                           |
+| region          | String           | oui             | code de la région à afficher                                                  |
+| selectedPalette | String           | non             | palette de couleurs utilisée pour la carte                                    |
 
 ---
 
