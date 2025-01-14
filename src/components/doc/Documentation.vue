@@ -141,23 +141,27 @@
           </p>
            
           <div
-            v-for="chart in section"
-            :id="chart.title"
-            :key="chart.title"
+            v-for="graph in section.graphs"
+            :id="graph.title"
+            :key="graph.title"
             class="chart_container"
           >
+            <h3 v-if="graph.heading">
+              {{ graph.heading }}
+            </h3>
+            <hr v-if="graph.heading">
             <h3 class="fr-h6 fr-text--bold fr-mb-0">
-              {{ chart.title }}
+              {{ graph.title }}
             </h3>
             <p class="fr-text--sm">
-              {{ chart.desc }}
+              {{ graph.desc }}
             </p>
             <p class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w">
               Palette par défaut
             </p>
             <component
-              :is="chart.component"
-              v-bind="chart.props"
+              :is="graph.component"
+              v-bind="graph.props"
             />
             <CodeBlock />
           </div>
@@ -171,11 +175,11 @@
 import { ref } from 'vue';
 import LineChart from '../LineChart.vue'
 import BarChart from '../BarChart.vue'
-import BarLineChart from '../BarLineChart.vuevue'
+import BarLineChart from '../BarLineChart.vue'
 import PieChart from '../PieChart.vue'
 import RadarChart from '../RadarChart.vue'
 import ScatterChart from '../ScatterChart.vue'
-import FAKE_DATA  from '../fakeData';
+import FAKE_DATA  from '../../fakeData.json';
 import CodeBlock from './CodeBlock.vue';
 
 const examples = ref([
@@ -207,31 +211,31 @@ const examples = ref([
         heading:"1. Barres verticales",
         title: "Projection de la population française",
         desc: "Population au 1er janvier - Données issues du scénario central des projections de population 2013-2070. Insee, 04/11/2024",
-        props: FAKE_DATA.barChar.vertical
+        props: FAKE_DATA.barChart.vertical
       },
       {component: BarChart,
         heading:"",
         title: "Pratique de l'internet des plus de 60 ans en 2018",
         desc: "France hors Mayotte, individus de 15 ans ou plus vivant dans un ménage ordinaire. Insee, enquête Technologies de l'information et de la communication auprès des ménages, 04/11/2024",
-        props: FAKE_DATA.barChar.unicolor
+        props: FAKE_DATA.barChart.unicolor
       },
       {component: BarChart,
         heading:"",
         title: "Les régions les plus pluvieuses de France en 2023",
         desc: "France métropolitaine uniquement. Météo France, 04/11/2024",
-        props: FAKE_DATA.barChar.unicolor
+        props: FAKE_DATA.barChart.unicolor
       },
       {component: BarChart,
         heading:"2. Barres horizontales",
         title: "Émissions de gaz à effet de serre par habitant en France",
         desc: "En tonnes équivalent CO₂ par habitant. France métropolitaine. Insee, 12/02/2024",
-        props: FAKE_DATA.barChar.horizontal
+        props: FAKE_DATA.barChart.horizontal
       },
       {component: BarChart,
         heading:"3. Barres empilées",
         title: "Satisfaction des français à l'égard des services publics",
         desc: "Étude IFOP pour TF1, janvier 2024 - Le regard des Français sur les services publics : satisfaction, jugement sur leur financement par les impôts et attentes. Ifop, enquête Emploi, 04/01/2024",
-        props: FAKE_DATA.barChar.stacked
+        props: FAKE_DATA.barChart.stacked
       },
     ]
   },
