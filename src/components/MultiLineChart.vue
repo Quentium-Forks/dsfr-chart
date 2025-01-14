@@ -451,7 +451,7 @@ export default {
         plugins: [
           {
             afterDraw: (chart) => {
-              if (chart.tooltip._active && chart.tooltip._active.length) {
+              if (chart.tooltip?._active && chart.tooltip?._active.length) {
                 const { ctx } = chart;
                 const x = chart.tooltip.getActiveElements()[0].element.tooltipPosition().x;
                 const index = chart.tooltip._active[0].index;
