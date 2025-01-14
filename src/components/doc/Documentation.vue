@@ -166,9 +166,8 @@
               :component="graph.component"
             />
           </div>
-          
-          <ColorsAccessibility />
         </div>
+        <ColorsAccessibility />
       </div>
     </section>
   </div>
