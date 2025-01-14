@@ -169,7 +169,12 @@
 
 <script setup>
 import { ref } from 'vue';
-import LineChart from './LineChart.vue'
+import LineChart from '../LineChart.vue'
+import BarChart from '../BarChart.vue'
+import BarLineChart from '../BarLineChart.vuevue'
+import PieChart from '../PieChart.vue'
+import RadarChart from '../RadarChart.vue'
+import ScatterChart from '../ScatterChart.vue'
 import FAKE_DATA  from '../fakeData';
 import CodeBlock from './CodeBlock.vue';
 
@@ -182,10 +187,111 @@ const examples = ref([
             permettre la comparaison.`,
     graphs: [{
       component: LineChart,
+      heading: "1. Graphique en ligne simple",
       title: "Évolution du prix des logements anciens entre 2001 et 2020",
       desc: "Indices des prix des logements neufs et anciens, France métropolitaine. Base 100 en moyenne en 2015. Insee, 04/11/2024",
       props: FAKE_DATA.lineChart.simpleLine
+    }, {
+      component: LineChart,
+      heading: "2. Graphique en lignes multiples",
+      title: "Taux d'activité selon le sexe depuis 1975",
+      desc: "France hors Mayotte, personnes de 15 à 64 ans vivant en logement ordinaire. Insee, 04/11/2024",
+      props: FAKE_DATA.lineChart.multiLine
     }]
+  },
+  {
+    title:"II. Diagramme en barres",
+    desc: "Un diagramme en barres montre les dénombrements de valeurs pour les niveaux d'une variable catégorielle, séquentielle ou neutre. Les barres peuvent être présentées de manière horizontale, verticale ou être empilées.",
+    graphs: [
+      {component: BarChart,
+        heading:"1. Barres verticales",
+        title: "Projection de la population française",
+        desc: "Population au 1er janvier - Données issues du scénario central des projections de population 2013-2070. Insee, 04/11/2024",
+        props: FAKE_DATA.barChar.vertical
+      },
+      {component: BarChart,
+        heading:"",
+        title: "Pratique de l'internet des plus de 60 ans en 2018",
+        desc: "France hors Mayotte, individus de 15 ans ou plus vivant dans un ménage ordinaire. Insee, enquête Technologies de l'information et de la communication auprès des ménages, 04/11/2024",
+        props: FAKE_DATA.barChar.unicolor
+      },
+      {component: BarChart,
+        heading:"",
+        title: "Les régions les plus pluvieuses de France en 2023",
+        desc: "France métropolitaine uniquement. Météo France, 04/11/2024",
+        props: FAKE_DATA.barChar.unicolor
+      },
+      {component: BarChart,
+        heading:"2. Barres horizontales",
+        title: "Émissions de gaz à effet de serre par habitant en France",
+        desc: "En tonnes équivalent CO₂ par habitant. France métropolitaine. Insee, 12/02/2024",
+        props: FAKE_DATA.barChar.horizontal
+      },
+      {component: BarChart,
+        heading:"3. Barres empilées",
+        title: "Satisfaction des français à l'égard des services publics",
+        desc: "Étude IFOP pour TF1, janvier 2024 - Le regard des Français sur les services publics : satisfaction, jugement sur leur financement par les impôts et attentes. Ifop, enquête Emploi, 04/01/2024",
+        props: FAKE_DATA.barChar.stacked
+      },
+    ]
+  },
+  {
+    title: "III. Graphique en ligne / Diagramme en barres",
+    desc: "Il est également possible de combiner un graphique en ligne et un diagramme en barres, pour permettre la comparaison entre des données présentées différemment.",
+    graphs: [
+      {component: BarLineChart,
+        title: "Évolution du nombre de naissances et du taux de natalité"
+        ,desc: "France hors Mayotte, naissances en milliers et taux de natalité pour mille femmes. Insee, 16/01/2024",
+        props: FAKE_DATA.barLineChart.default
+      },
+    ]
+  },
+  {
+    title:"I. Nuage de points",
+    desc: "Le nuage de points est largement utilisée pour présenter plusieurs séries de données. C’est une représentation graphique qui est particulièrement utile lorsque les valeurs des données sur l'axe Y dépendent des valeurs d’un autre axe X.",
+    graphs: [
+      {component: ScatterChart,
+        heading: "IV. Nuage de points simple",
+        title: "Évolution du taux moyen d'émissions de CO₂ en France",
+        desc: "Véhicules particuliers neufs vendus en France. Ademe, 04/11/2024",
+        props: FAKE_DATA.scatterChart.default
+      },
+      {component: ScatterChart,
+        heading: "2. Nuage de points reliés",
+        title: "Carrières complètes selon le sexe et la génération en 2016",
+        desc: "Retraités ayant perçu un droit direct au cours de l’année, résidant en France, vivants au 31 décembre 2016 ; tous régimes confondus. Insee, 09/09/2011",
+        props: FAKE_DATA.scatterChart.linked
+      }
+    ]
+  },
+  {
+    title: "V. Diagramme circulaire",
+    desc: "Un diagramme circulaire permet de représenter un petit nombre de valeurs par des angles proportionnels à la fréquence de ces valeurs. Chacune des « parts » représente une catégorie de données qui forment un ensemble, et la taille de chaque « part » est proportionnelle à son poids dans l'ensemble. Le diagramme circulaire peut être plein ou creux.",
+    graphs: [
+      {component: PieChart,
+        heading: "1. Diagramme circulaire creux (donut)",
+        title: "Statut des emplois en France",
+        desc: "Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi. Insee, enquête Emploi, 04/11/2024",
+        props: FAKE_DATA.pieChart.dougnut
+      },
+      {component: PieChart,
+        heading: "2. Diagramme circulaire plein",
+        title: "Structure des dépenses publiques en France en 2022",
+        desc: "France métropolitaine. Insee, 30/11/2023",
+        props: FAKE_DATA.pieChart.fill
+      }
+    ]
+  },
+  {
+    title: "VI. Diagramme en étoile",
+    desc: "Le diagramme en étoile ou radar chart a été conçu pour représenter une ou plusieurs séries de valeurs sur plusieurs variables quantitatives.",
+    graphs: [
+      {component: RadarChart,
+        title: "Statut des emplois par tranche d'âge",
+        desc: "Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi. Insee, enquête Emploi, 04/11/2024",
+        props: FAKE_DATA.radarChart.default
+      }
+    ]
   }
 ])
 
