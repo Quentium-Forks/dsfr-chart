@@ -120,7 +120,7 @@
           :key="section.title"
           class="part_container"
         >
-          <h2 :id="section.id">
+          <h2>
             {{ section.title }}
           </h2>
           <p>
@@ -161,7 +161,10 @@
               :is="graph.component"
               v-bind="graph.props"
             />
-            <CodeBlock />
+            <CodeBlock
+              :graph-props="graph.props"
+              :component="graph.component"
+            />
           </div>
           
           <ColorsAccessibility />
