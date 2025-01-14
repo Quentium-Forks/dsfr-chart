@@ -46,38 +46,42 @@
               </p>
               <ul class="fr-sidemenu__list">
                 <li
-                  v-for="section in examples"
+                  v-for="(section, i) in examples"
                   :key="section.title"
                   class="fr-sidemenu__item"
                 >
                   <button
                     class="fr-sidemenu__btn"
                     aria-expanded="false"
-                    aria-controls="sidemenu-1"
+                    :aria-controls="`sidemenu-${i}`"
                   >
                     {{ section.title }}
                   </button>
                   <div
-                    id="sidemenu-1"
+                    :id="`sidemenu-${i}`"
                     class="fr-collapse"
                   >
                     <ul class="fr-sidemenu__list">
-                      <li
-                        v-for="chart in section.charts"
-                        :key="chart.title"
-                        class="fr-sidemenu__item"
+                      <template
+                        v-for="(graph, j) in section.graphs"
                       >
-                        <a
-                          id="sidemenu-1.1"
-                          class="fr-sidemenu__link"
-                          href="#line_chart.1"
-                          target="_self"
-                        >{{ chart.title }}</a>
-                      </li>
+                        <li
+                          v-if="graph.heading"
+                          :key="graph.heading"
+                          class="fr-sidemenu__item"
+                        >
+                          <a
+                            :id="`sidemenu-${i}.${j}`"
+                            class="fr-sidemenu__link"
+                            :href="'#' + encodeURIComponent(graph.heading)"
+                            target="_self"
+                          >{{ graph.heading }}</a>
+                        </li>
+                      </template>
                     </ul>
                   </div>
                 </li>
-            
+                <!--             
                 <li class="fr-sidemenu__item">
                   <button
                     class="fr-sidemenu__btn"
@@ -120,7 +124,7 @@
                     target="_self"
                   >XI. Accessibilité
                   </a>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -142,11 +146,13 @@
            
           <div
             v-for="graph in section.graphs"
-            :id="graph.title"
             :key="graph.title"
             class="chart_container"
           >
-            <h3 v-if="graph.heading">
+            <h3
+              v-if="graph.heading"
+              :id="encodeURIComponent(graph.heading)"
+            >
               {{ graph.heading }}
             </h3>
             <hr v-if="graph.heading">
@@ -197,6 +203,7 @@ const examples = ref([
             permet d’affiche une seule ligne ou en présenter plusieurs pour
             permettre la comparaison.`,
     graphs: [{
+      id: 'line_chart.1',
       component: LineChart,
       heading: "1. Graphique en ligne simple",
       title: "Évolution du prix des logements anciens entre 2001 et 2020",
