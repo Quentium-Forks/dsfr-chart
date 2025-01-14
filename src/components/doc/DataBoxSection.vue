@@ -1,8 +1,11 @@
 <template>
   <div 
     id="databox"
-    class="part_container"
+    class="part_container fr-mb-6w"
   >
+    <h2 id="colors">
+      IX. La Databox
+    </h2>
     <DataBox :id="id" />
     <PieChart
       v-bind="FAKE_DATA.pieChart.doughnut"
