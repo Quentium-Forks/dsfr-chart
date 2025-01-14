@@ -14,10 +14,10 @@
     </p>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #5C68E5"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #5C68E5"
       />
     </div>
@@ -31,73 +31,73 @@
     </p>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #5C68E5"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #5C68E5"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #82B5F2"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #699BD6"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #29598F"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #4878B1"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #31A7AE"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #00828A"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #81EEF5"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #51C1C8"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #B478F1"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #BC8AF2"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #CFB1F5"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #CFB1F5"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #CECECE"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #A4A4A4"
       />
     </div>
@@ -114,19 +114,19 @@
     </p>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #DBDAFF"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #B8B9FF"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #00005F"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #3647CA"
       />
     </div>
@@ -144,55 +144,55 @@
     </p>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #298641"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #298641"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #79D289"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #449D57"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #EFB900"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #AF8800"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #FFA373"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #FFA373"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #E91719"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #E16834"
       />
     </div>
     <div class="flex fr-mt-3v">
       <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #B1B1B1"
       /> <span
-        class="legende_dot"
+        class="color_dot"
         style="background-color: #808080"
       />
     </div>
@@ -254,3 +254,16 @@
     </section>
   </div>
 </template>
+
+<style scoped>
+.color_dot {
+    min-width: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    background-color: var(--blue-france-sun-113-625);
+    display: inline-block;
+    margin-top: 0rem;
+    margin-left: 1rem;
+}
+</style>

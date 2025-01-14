@@ -343,49 +343,7 @@ const examples = ref([
 
 </script>
 
-<style>
-.code-toolbar {
-    background-color: #f5f2f0;
-    overflow: scroll;
-}
-
-.attr-name,
-.builtin,
-.char,
-.inserted,
-.selector,
-.string {
-    color: #690;
-}
-
-.punctuation {
-    color: #999;
-}
-
-.tag {
-    color: #905;
-}
-
-.titre_class {
-    color: #000091;
-}
-
-.flex {
-    display: flex;
-    margin-bottom: 1rem;
-}
-
-.legende_dot {
-    min-width: 1.5rem;
-    width: 1.5rem;
-    height: 1.5rem;
-    min-width: 1.5rem;
-    background-color: var(--blue-france-sun-113-625);
-    display: inline-block;
-    margin-top: 0rem;
-    margin-left: 1rem;
-}
-
+<style scoped>
 .fr-display-button {
     position: fixed;
     bottom: 3.5rem;

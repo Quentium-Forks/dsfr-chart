@@ -20,7 +20,7 @@
         <template
               v-for="(prop, i) in Object.keys(graphProps)"
               :key="i"
-            ><span class="token attr-name">{{ prop }}</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="titre_class">{{ graphProps[prop] }}</span><span class="token punctuation">"</span></span>
+            ><span class="token attr-name">{{ prop }}</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="class">{{ graphProps[prop] }}</span><span class="token punctuation">"</span></span>
         </template><span class="token punctuation">&gt;</span>
     <!-- Tag close --><span class="token tag"><span class="token punctuation">&lt;/</span>{{ tag }}</span><span class="token punctuation">&gt;</span></code></pre>
       </div>
@@ -36,3 +36,31 @@ const componentToTag = str => str?.replace(/[A-Z]/g, letter => `-${letter.toLowe
 const tag = componentToTag(component?.name)
 const id = Math.floor(Math.random() * 1000)
 </script>
+
+<style scoped>
+.code-toolbar {
+    background-color: #f5f2f0;
+    overflow: scroll;
+}
+
+.attr-name,
+.builtin,
+.char,
+.inserted,
+.selector,
+.string {
+    color: #690;
+}
+
+.punctuation {
+    color: #999;
+}
+
+.tag {
+    color: #905;
+}
+
+.class {
+    color: #000091;
+}
+</style>
