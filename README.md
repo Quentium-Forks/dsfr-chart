@@ -1057,6 +1057,99 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 Le composant `DataBox` est un composant polyvalent qui permet d'afficher des données sous différentes formes, notamment des indicateurs, des graphiques, des tableaux, etc. Il intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants pour des actions supplémentaires.
 
+## Utilisation de base
+
+```html
+<data-box
+    id="abc"
+    title="Emplois en France de 1926 à 1950"
+    tooltip-title="Emplois en France"
+    tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
+    source="INSEE, Pôle Emploi, Autre source"
+    date="2021-01-01"
+    default-source="pole-emploi"
+    trend="5%"
+    segmented-control="true"
+    screenshot="true"
+    download="true"
+    fullscreen="true"
+    modal-title="Titre de la modale"
+    modal-content="Contenu de la modale">
+</data-box>
+```
+
+## Props
+
+Voici la liste des props disponibles pour le composant `DataBox` :
+
+### Obligatoires
+* id `(String)` identifiant unique de la DataBox
+* title `(String)` titre de la DataBox 
+* source `(String)` source des données affichées
+* date `(String)` date des données affichées
+
+### Optionnelles
+* tooltipTitle `(String)` (par défaut : '') titre de la tooltip
+* tooltipContent `(String)` (par défaut : '') contenu de la tooltip
+* defaultSource `(String)` (par défaut : null) source à afficher par défaut
+* trend `(String)` (par défaut : null) tendance de l'évolution des données
+* segmentedControl `(Boolean)` (défaut : true) afficher le système de vue graphique/tableau
+* fullscreen `(Boolean)` (défaut : false) donner la possibilité d'ouvrir le graphique dans une modale
+* screenshot `(Boolean)` (défaut : false) permettre une capture d'écran de la DataBox
+* download `(Boolean)` (défaut : false) télécharger les données du graphique au format CSV
+* modalTitle `(String)` (défaut : '') titre de la modale
+* modalContent `(String)` (défaut : '') contenu de la modale
+
+### Mise en place du graphique
+
+L'ensemble de ces informations permettront d'afficher une databox sans graphique.
+
+Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en spécifiant les attributs suivants qui permettront de faire le lien entre la Databox et le graphique :
+
+* databox-id : identifiant de la DataBox
+* databox-type : valeurs possibles : "chart" pour la vue du graphique et "table" pour la vue du tableau d'alternative textuelle
+* databox-source : correspond au paramètre defaultSource de la DataBox
+
+```html
+<data-box
+    id="abc"
+    title="Emplois en France de 1926 à 1950"
+    tooltip-title="Emplois en France"
+    tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
+    source="INSEE, Pôle Emploi, Autre source"
+    date="2021-01-01"
+    default-source="pole-emploi"
+    trend="5%"
+    segmented-control="true"
+    screenshot="true"
+    download="true"
+    fullscreen="true"
+    modal-title="Titre de la modale"
+    modal-content="Contenu de la modale">
+</data-box>
+
+<scatter-chart
+    databox-id="abc"
+    databox-type="chart"
+    databox-source="pole-emploi"
+    x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
+    y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
+    name='["Femmes", "Hommes", "Ensemble"]'
+    unit-tooltip="%"
+    show-line="true">
+</scatter-chart>
+
+<table-chart
+  databox-id="abc"
+  databox-type="table"
+  databox-source="pole-emploi"
+  x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
+  y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
+  table-name="Années"
+  name='["Femmes", "Hommes", "Ensemble"]'>
+</table-chart>
+```
+
 ---
 
 # X. Couleurs
