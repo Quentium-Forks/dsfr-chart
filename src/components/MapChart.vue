@@ -8,7 +8,7 @@
       class="widget_container fr-grid-row"
     >
       <LeftCol :props="leftColProps" />
-      <div class="r_col fr-col-12 fr-col-lg-9">
+      <div class="fr-col-12 fr-col-lg-9 align-stretch">
         <button
           v-if="zoomDep !== undefined"
           class="fr-btn fr-btn--sm fr-icon-arrow-go-back-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-ml-4w"

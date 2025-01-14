@@ -7,9 +7,9 @@
       :ref="widgetId"
       class="widget_container fr-grid-row"
     >
-      <div class="r_col fr-col-12">
+      <div class="fr-col-12">
         <div class="chart">
-          <div class="linechart_tooltip">
+          <div class="tooltip">
             <div class="tooltip_header fr-text--sm fr-mb-0" />
             <div class="tooltip_body">
               <div class="tooltip_value">
@@ -34,7 +34,7 @@
           </div>
           <canvas :ref="chartId" />
           <div class="chart_legend fr-mb-0 fr-mt-4v">
-            <div class="flex">
+            <div class="flex fr-mt-3v fr-mb-1v">
               <span
                 class="legende_dot"
                 :style="{ 'background-color': colorBarParse }"
@@ -43,7 +43,7 @@
                 {{ capitalize(nameBar) }}
               </p>
             </div>
-            <div class="flex">
+            <div class="flex fr-mt-3v fr-mb-1v">
               <span
                 class="legende_dot"
                 :style="{ 'background-color': colorParse }"
@@ -58,11 +58,11 @@
               class="flex"
             >
               <span
-                class="legende_dash_line1"
+                class="legende_dash_line"
                 :style="{ 'background-color': hlineColorParse[index] }"
               />
               <span
-                class="legende_dash_line2"
+                class="legende_dash_line legende_dash_line_end"
                 :style="{ 'background-color': hlineColorParse[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
@@ -75,11 +75,11 @@
               class="flex"
             >
               <span
-                class="legende_dash_line1"
+                class="legende_dash_line"
                 :style="{ 'background-color': vlineColorParse[index] }"
               />
               <span
-                class="legende_dash_line2"
+                class="legende_dash_line legende_dash_line_end"
                 :style="{ 'background-color': vlineColorParse[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
@@ -415,7 +415,7 @@ export default {
         plugins: [
           {
             afterDraw: (chart) => {
-              if (chart.tooltip._active && chart.tooltip._active.length) {
+              if (chart.tooltip?._active && chart.tooltip?._active.length) {
                 const { ctx } = chart;
                 const x = chart.tooltip.getActiveElements()[0].element.tooltipPosition().x;
                 const index = chart.tooltip._active[0].index;
@@ -554,7 +554,7 @@ export default {
                 // Tooltip Element
                 const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) : this.$el.nextElementSibling;
 
-                const tooltipEl = dom.querySelector('.linechart_tooltip');
+                const tooltipEl = dom.querySelector('.tooltip');
 
                 const tooltipModel = context.tooltip;
 
@@ -671,7 +671,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/Tooltip.scss';
-@import '@/styles/Rcol.scss';
-@import '@/styles/WidgetContainer.scss';
+
 </style>

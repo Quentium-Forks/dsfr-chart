@@ -260,9 +260,9 @@
 </template>
 
 <script setup>
-import DialogModal from './DialogModal.vue';
+import { computed, ref } from 'vue';
 import html2canvas from 'html2canvas';
-import { ref } from 'vue';
+import DialogModal from '@/components/DialogModal.vue';
 
 const props = defineProps({
   id: {
@@ -294,7 +294,7 @@ const props = defineProps({
     default: null,
   },
   trend: {
-    type: [String, Number],
+    type: String,
     default: null,
   },
   segmentedControl: {
@@ -340,10 +340,10 @@ const generateOptions = (source) => {
 };
 
 // Cast props to boolean
-const segmentedControl = ref([true, 'true', ''].includes(props.segmentedControl));
-const fullscreen = ref([true, 'true', ''].includes(props.fullscreen));
-const screenshot = ref([true, 'true', ''].includes(props.screenshot));
-const download = ref([true, 'true', ''].includes(props.download));
+const segmentedControl = computed(() => [true, 'true', ''].includes(props.segmentedControl));
+const fullscreen = computed(() => [true, 'true', ''].includes(props.fullscreen));
+const screenshot = computed(() => [true, 'true', ''].includes(props.screenshot));
+const download = computed(() => [true, 'true', ''].includes(props.download));
 
 const selectedView = ref('chart');
 
