@@ -4,13 +4,13 @@
       <button
         class="fr-accordion__btn"
         aria-expanded="false"
-        :aria-controls="'accordion-' + tag"
+        :aria-controls="'accordion-' + id"
       >
         Extrait de code
       </button>
     </h3>
     <div
-      :id="'accordion-' + tag"
+      :id="'accordion-' + id"
       class="fr-collapse"
     >
       <!-- No indentation because it will be reflected in code pre -->
@@ -34,4 +34,5 @@ const { graphProps, component } = defineProps(['graphProps', 'component'])
 const componentToTag = str => str?.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)?.replace('-', '');
 
 const tag = componentToTag(component?.name)
+const id = Math.floor(Math.random() * 1000)
 </script>
