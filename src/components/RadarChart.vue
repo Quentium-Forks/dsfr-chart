@@ -275,6 +275,7 @@ export default {
             },
             tooltip: {
               enabled: false,
+              mode: 'index',
               displayColors: false,
               backgroundColor: '#6b6b6b',
               callbacks: {
