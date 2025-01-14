@@ -260,7 +260,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import html2canvas from 'html2canvas';
 import DialogModal from '@/components/DialogModal.vue';
 
@@ -340,10 +340,10 @@ const generateOptions = (source) => {
 };
 
 // Cast props to boolean
-const segmentedControl = ref([true, 'true', ''].includes(props.segmentedControl));
-const fullscreen = ref([true, 'true', ''].includes(props.fullscreen));
-const screenshot = ref([true, 'true', ''].includes(props.screenshot));
-const download = ref([true, 'true', ''].includes(props.download));
+const segmentedControl = computed(() => [true, 'true', ''].includes(props.segmentedControl));
+const fullscreen = computed(() => [true, 'true', ''].includes(props.fullscreen));
+const screenshot = computed(() => [true, 'true', ''].includes(props.screenshot));
+const download = computed(() => [true, 'true', ''].includes(props.download));
 
 const selectedView = ref('chart');
 
