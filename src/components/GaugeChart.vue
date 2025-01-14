@@ -7,7 +7,7 @@
       :ref="widgetId"
       class="widget_container fr-grid-row"
     >
-      <div class="r_col fr-col-12">
+      <div class="fr-col-12">
         <div class="chart">
           <div class="gauge-container">
             <div
@@ -52,7 +52,7 @@
           </div>
           <div
             v-if="legend"
-            class="flex fr-mt-3v"
+            class="flex fr-mt-3v fr-mb-1v"
           >
             <span class="legende_dot actual_legend" />
             <p class="fr-text--sm fr-text--bold fr-ml-2v fr-mb-0">

@@ -7,9 +7,9 @@
       :ref="widgetId"
       class="widget_container fr-grid-row"
     >
-      <div class="r_col fr-col-12">
+      <div class="fr-col-12">
         <div class="chart">
-          <div class="linechart_tooltip">
+          <div class="tooltip">
             <div class="tooltip_header fr-text--sm fr-mb-0" />
             <div class="tooltip_body">
               <div class="tooltip_value">
@@ -253,7 +253,7 @@ export default {
                 // Tooltip Element
                 const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) : this.$el.nextElementSibling;
 
-                const tooltipEl = dom.querySelector('.linechart_tooltip');
+                const tooltipEl = dom.querySelector('.tooltip');
 
                 const tooltipModel = context.tooltip;
 
@@ -365,7 +365,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/Tooltip.scss';
-@import '@/styles/Rcol.scss';
-@import '@/styles/WidgetContainer.scss';
+
 </style>

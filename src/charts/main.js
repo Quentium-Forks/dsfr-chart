@@ -1,5 +1,7 @@
 import { defineCustomElement } from 'vue';
 
+import '@/styles/style.scss';
+
 import DataBox from '@/components/DataBox.vue';
 
 import BarChart from '@/components/BarChart.vue';
