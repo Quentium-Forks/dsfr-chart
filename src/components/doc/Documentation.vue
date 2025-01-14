@@ -156,13 +156,19 @@
               {{ graph.heading }}
             </h3>
             <hr v-if="graph.heading">
-            <p class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w">
+            <p v-if="!graph.noPallete" class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w">
               {{ PALETTE_LABELS?.[graph.props.selectedPalette] ?? 'Palette par défaut' }}
             </p>
-            <h3 class="fr-h6 fr-text--bold fr-mb-0">
+            <h3
+              v-if="graph.title"
+              class="fr-h6 fr-text--bold fr-mb-0"
+            >
               {{ graph.title }}
             </h3>
-            <p class="fr-text--sm">
+            <p
+              v-if="graph.desc"
+              class="fr-text--sm"
+            >
               {{ graph.desc }}
             </p>
             <component
@@ -185,6 +191,9 @@ import BarLineChart from '../BarLineChart.vue'
 import PieChart from '../PieChart.vue'
 import RadarChart from '../RadarChart.vue'
 import ScatterChart from '../ScatterChart.vue'
+import GaugeChart from '../GaugeChart.vue'
+import MapChart from '../MapChart.vue'
+import MapChartReg from '../MapChartReg.vue';
 import { FAKE_DATA }  from './fakeData';
 import CodeBlock from './CodeBlock.vue';
 
@@ -310,7 +319,38 @@ const examples = ref([
         props: FAKE_DATA.radarChart.default
       }
     ]
-  }
+  },
+  {
+    title: "VII. Jauge",
+    desc: "La jauge permet d'afficher des valeurs numériques ou des mesures dans une plage, pour visualiser l'avancement d'un objectif par exemple.",
+    graphs: [
+      {component: GaugeChart,
+        noPallete: true,
+        props: FAKE_DATA.gaugeChart.default
+      }
+    ]
+  },
+  {
+    title: "VIII. Cartes",
+    desc: " Les cartes permettent d’afficher une série de données réparties par département ou région. Les cartes sont actuellement disponibles aux niveaux départemental et régional, et il est également possible d’isoler une région pour en afficher les départements. ",
+    graphs: [
+      {component: MapChart,
+        noPallete: true,
+        heading: "1. Découpage départemental",
+        props: FAKE_DATA.mapChart.departements
+      },
+      {component: MapChart,
+        noPallete: true,
+        heading: "2. Découpage régional",
+        props: FAKE_DATA.mapChart.regions
+      },
+      {component: MapChartReg,
+        noPallete: true,
+        heading: "3. Régions",
+        props: FAKE_DATA.mapChart.singleRegion
+      }
+    ]
+  },
 ])
 
 </script>
