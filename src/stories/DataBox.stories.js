@@ -23,7 +23,7 @@ const meta = {
 
 export default meta;
 
-export const SinglePieChart = {
+export const Single = {
   args: {
     title: 'Statut des emplois en France en 2018',
     tooltipTitle: 'Statut des emplois en France',
@@ -69,7 +69,7 @@ export const SinglePieChart = {
   `
 };
 
-export const MultipleScatterCharts = {
+export const Multiple = {
   args: {
     title: 'Emplois en France de 1926 à 1950',
     tooltipTitle: 'Emplois en France',
