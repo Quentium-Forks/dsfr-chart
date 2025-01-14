@@ -34,36 +34,47 @@
                   :key="section.title"
                   class="fr-sidemenu__item"
                 >
-                  <button
-                    class="fr-sidemenu__btn"
-                    aria-expanded="false"
-                    :aria-controls="`sidemenu-${i}`"
-                  >
-                    {{ section.title }}
-                  </button>
-                  <div
-                    :id="`sidemenu-${i}`"
-                    class="fr-collapse"
-                  >
-                    <ul class="fr-sidemenu__list">
-                      <template
-                        v-for="(graph, j) in section.graphs"
-                      >
-                        <li
-                          v-if="graph.heading"
-                          :key="graph.heading"
-                          class="fr-sidemenu__item"
+                  <template v-if="section.graphs.length === 1">
+                    <a
+                      class="fr-sidemenu__link"
+                      :href="'#' + encodeURIComponent(section.title)"
+                      target="_self"
+                    >
+                      {{ section.title }}
+                    </a>
+                  </template>
+                  <template v-else>
+                    <button
+                      class="fr-sidemenu__btn"
+                      aria-expanded="false"
+                      :aria-controls="`sidemenu-${i}`"
+                    >
+                      {{ section.title }}
+                    </button>
+                    <div
+                      :id="`sidemenu-${i}`"
+                      class="fr-collapse"
+                    >
+                      <ul class="fr-sidemenu__list">
+                        <template
+                          v-for="(graph, j) in section.graphs"
                         >
-                          <a
-                            :id="`sidemenu-${i}.${j}`"
-                            class="fr-sidemenu__link"
-                            :href="'#' + encodeURIComponent(graph.heading)"
-                            target="_self"
-                          >{{ graph.heading }}</a>
-                        </li>
-                      </template>
-                    </ul>
-                  </div>
+                          <li
+                            v-if="graph.heading"
+                            :key="graph.heading"
+                            class="fr-sidemenu__item"
+                          >
+                            <a
+                              :id="`sidemenu-${i}.${j}`"
+                              class="fr-sidemenu__link"
+                              :href="'#' + encodeURIComponent(graph.heading)"
+                              target="_self"
+                            >{{ graph.heading }}</a>
+                          </li>
+                        </template>
+                      </ul>
+                    </div>
+                  </template>
                 </li>
                 <li class="fr-sidemenu__item">
                   <a
@@ -102,7 +113,7 @@
           :key="section.title"
           class="part_container"
         >
-          <h2>
+          <h2 :id="encodeURIComponent(section.title)">
             {{ section.title }}
           </h2>
           <p>
@@ -250,11 +261,11 @@ const examples = ref([
     ]
   },
   {
-    title:"I. Nuage de points",
+    title:"IV. Nuage de points",
     desc: "Le nuage de points est largement utilisée pour présenter plusieurs séries de données. C’est une représentation graphique qui est particulièrement utile lorsque les valeurs des données sur l'axe Y dépendent des valeurs d’un autre axe X.",
     graphs: [
       {component: ScatterChart,
-        heading: "IV. Nuage de points simple",
+        heading: "1. Nuage de points simple",
         title: "Évolution du taux moyen d'émissions de CO₂ en France",
         desc: "Véhicules particuliers neufs vendus en France. Ademe, 04/11/2024",
         props: FAKE_DATA.scatterChart.default
