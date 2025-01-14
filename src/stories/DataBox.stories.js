@@ -12,8 +12,7 @@ const meta = {
     modalTitle: 'Titre de la modale',
     modalContent: 'Contenu de la modale',
     id: 'storybook-databox',
-    date: '04/11/2024',
-    trend: '-15%'
+    date: '04/11/2024'
   },
   argTypes: {
     date: {
@@ -29,7 +28,8 @@ export const SinglePieChart = {
     title: 'Statut des emplois en France en 2018',
     tooltipTitle: 'Statut des emplois en France',
     tooltipContent: "Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi.",
-    source: 'Insee, enquête Emploi'
+    source: 'Insee, enquête Emploi',
+    trend: '-15%'
   },
   render: (args) => html`
     <data-box
@@ -74,7 +74,8 @@ export const MultipleScatterCharts = {
     title: 'Emplois en France de 1926 à 1950',
     tooltipTitle: 'Emplois en France',
     tooltipContent: "Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source.",
-    source: 'INSEE, Pôle Emploi, Autre source'
+    source: 'INSEE, Pôle Emploi, Autre source',
+    trend: '+15 points'
   },
   render: (args) => html`
     <data-box
