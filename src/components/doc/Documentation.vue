@@ -150,14 +150,14 @@
               {{ graph.heading }}
             </h3>
             <hr v-if="graph.heading">
+            <p class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w">
+              {{ PALETTE_LABELS?.[graph.props.selectedPalette] ?? 'Palette par défaut' }}
+            </p>
             <h3 class="fr-h6 fr-text--bold fr-mb-0">
               {{ graph.title }}
             </h3>
             <p class="fr-text--sm">
               {{ graph.desc }}
-            </p>
-            <p class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w">
-              Palette par défaut
             </p>
             <component
               :is="graph.component"
@@ -179,8 +179,15 @@ import BarLineChart from '../BarLineChart.vue'
 import PieChart from '../PieChart.vue'
 import RadarChart from '../RadarChart.vue'
 import ScatterChart from '../ScatterChart.vue'
-import FAKE_DATA  from '../../fakeData.json';
+import { FAKE_DATA }  from './fakeData';
 import CodeBlock from './CodeBlock.vue';
+
+const PALETTE_LABELS = {
+  defaultColor: 'Palette par défaut',
+  neutral: 'Palette unicolore',
+  sequentialDescending: 'Palette séquentielle',
+  divergentDescending: 'Palette séquentielle divergente'
+}
 
 const examples = ref([
   {
@@ -223,7 +230,7 @@ const examples = ref([
         heading:"",
         title: "Les régions les plus pluvieuses de France en 2023",
         desc: "France métropolitaine uniquement. Météo France, 04/11/2024",
-        props: FAKE_DATA.barChart.unicolor
+        props: FAKE_DATA.barChart.sequential
       },
       {component: BarChart,
         heading:"2. Barres horizontales",
@@ -276,7 +283,7 @@ const examples = ref([
         heading: "1. Diagramme circulaire creux (donut)",
         title: "Statut des emplois en France",
         desc: "Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi. Insee, enquête Emploi, 04/11/2024",
-        props: FAKE_DATA.pieChart.dougnut
+        props: FAKE_DATA.pieChart.doughnut
       },
       {component: PieChart,
         heading: "2. Diagramme circulaire plein",
