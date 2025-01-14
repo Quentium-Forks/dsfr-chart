@@ -35,7 +35,10 @@
           <canvas :ref="chartId" />
           <div class="chart_legend fr-mb-0 fr-mt-4v">
             <div class="flex fr-mt-1w fr-mb-0">
-              <span class="legende_dot" />
+              <span
+                class="legende_dot"
+                :style="{ 'background-color': colorParse }"
+              />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
                 {{ capitalize(name) }}
               </p>
