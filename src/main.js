@@ -8,4 +8,10 @@ import '@/styles/style.scss';
 import { createApp } from 'vue';
 import Documentation from '@/components/doc/Documentation.vue';
 
+document.addEventListener('DOMContentLoaded', function () {
+  if (window.dsfr && window.dsfr.start) {
+    window.dsfr.start();
+  }
+});
+
 createApp(Documentation).mount('#root');
