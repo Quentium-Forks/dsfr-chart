@@ -184,7 +184,7 @@ export default {
         if (tmpNameParse[i] !== undefined) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
-          this.nameParse.push('Serie' + (i + 1));
+          this.nameParse.push('Série ' + (i + 1));
         }
       }
 
