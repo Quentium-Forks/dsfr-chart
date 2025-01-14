@@ -1,23 +1,7 @@
 <template>
   <div class="fr-container">
     <section class="fr-grid-row fr-grid-row--center fr-mt-4w fr-mt-md-8w">
-      <div class="fr-col-12 fr-col-md-10 fr-mb-4w">
-        <h1 class="fr-pt-2w">
-          DSFR Charts
-        </h1>
-        <p>
-          Cette page a pour objectif de présenter l'ensemble des représentations
-          graphiques proposées par la librairie
-          <a
-            id="dsfr-charts-github-page"
-            href="https://github.com/GouvernementFR/dsfr-chart"
-            target="_blank"
-          >DSFR Charts</a>.<br>
-          Tous les graphiques proposés sont disponibles dans le thème clair et
-          dans le thème sombre. Il est possible de changer le thème affiché par
-          l'intermédiaire du bouton en bas à droite.
-        </p>
-      </div>
+      <Intro />
 
       <!-- SIDE MENU -->
       <div class="fr-col-12 fr-col-md-3">
@@ -81,8 +65,7 @@
                     </ul>
                   </div>
                 </li>
-                <!--             
-                <li class="fr-sidemenu__item">
+                <!-- <li class="fr-sidemenu__item">
                   <button
                     class="fr-sidemenu__btn"
                     aria-expanded="false"
@@ -105,10 +88,10 @@
                       </li>
                     </ul>
                   </div>
-                </li>
+                </li> -->
                 <li class="fr-sidemenu__item">
                   <a
-                    id="sidemenu-10"
+                    id="sidemenu-colors"
                     class="fr-sidemenu__link"
                     href="#colors"
                     target="_self"
@@ -118,13 +101,13 @@
                 </li>
                 <li class="fr-sidemenu__item">
                   <a
-                    id="sidemenu-11"
+                    id="sidemenu-accessibility"
                     class="fr-sidemenu__link"
                     href="#accessibility"
                     target="_self"
                   >XI. Accessibilité
                   </a>
-                </li> -->
+                </li>
               </ul>
             </div>
           </div>
@@ -156,7 +139,10 @@
               {{ graph.heading }}
             </h3>
             <hr v-if="graph.heading">
-            <p v-if="!graph.noPallete" class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w">
+            <p
+              v-if="!graph.noPallete"
+              class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w"
+            >
               {{ PALETTE_LABELS?.[graph.props.selectedPalette] ?? 'Palette par défaut' }}
             </p>
             <h3
@@ -177,6 +163,8 @@
             />
             <CodeBlock />
           </div>
+          
+          <ColorsAccessibility />
         </div>
       </div>
     </section>
@@ -196,6 +184,8 @@ import MapChart from '../MapChart.vue'
 import MapChartReg from '../MapChartReg.vue';
 import { FAKE_DATA }  from './fakeData';
 import CodeBlock from './CodeBlock.vue';
+import ColorsAccessibility from './ColorsAccessibility.vue';
+import Intro from './Intro.vue';
 
 const PALETTE_LABELS = {
   defaultColor: 'Palette par défaut',
@@ -355,7 +345,7 @@ const examples = ref([
 
 </script>
 
-<style scoped>
+<style>
 .code-toolbar {
     background-color: #f5f2f0;
     overflow: scroll;
