@@ -294,7 +294,7 @@ const props = defineProps({
     default: null,
   },
   trend: {
-    type: [String, Number],
+    type: String,
     default: null,
   },
   segmentedControl: {
