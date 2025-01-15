@@ -26,15 +26,15 @@
         fullscreen="false"
       />
       <!-- Div to allow create the element to teleport to -->
-      <div
+      <!-- <div
         databox-id="def"
         databox-type="chart"
-      />
-      <PieChart
+      /> -->
+      <!-- <PieChart
         databox-id="def"
         databox-type="chart"
         v-bind="chartData.pieChart.doughnut"
-      />
+      /> -->
     </div>
   </div>
 </template>
