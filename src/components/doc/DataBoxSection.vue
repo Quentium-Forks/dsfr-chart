@@ -1,46 +1,89 @@
 <template>
-  <div class="part_container fr-mb-6w">
+  <div class="part_container">
     <h2 id="IX.-Databox">
       IX. Databox
     </h2>
     <p>
       Le composant DataBox est un composant polyvalent qui permet d'afficher des données sous différentes formes, notamment des indicateurs, des graphiques, des tableaux, etc. Il intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants pour des actions supplémentaires.
     </p>
-    <div class="chart_container">
-      <h3 class="fr-h6 fr-text--bold fr-mb-0">
-        Évolution du nombre de naissances et du taux de natalité
+    <div class="chart_container fr-mb-6w">
+      <h3 id="IX.-Databox-simple">
+        1. Databox simple
       </h3>
-      <p class="fr-text--sm">
-        France hors Mayotte, naissances en milliers et taux de natalité pour mille femmes. Insee, 16/01/2024
-      </p>
-      <DataBox
-        id="def"
-        title="Statut des emplois en France en 2018"
-        tooltip-title="Statut des emplois en France"
-        tooltip-content="Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi."
-        source="Insee, enquête Emploi"
-        date="04/11/2024"
-        segmented-control="true"
-        screenshot="false"
-        download="false"
-        fullscreen="false"
+      <hr>
+      <data-box
+        v-bind="chartData.dataBox.simple"
       />
-      <!-- Div to allow create the element to teleport to -->
-      <!-- <div
-        databox-id="def"
-        databox-type="chart"
-      /> -->
-      <!-- <PieChart
-        databox-id="def"
+      <pie-chart
+        databox-id="simple"
         databox-type="chart"
         v-bind="chartData.pieChart.doughnut"
-      /> -->
+      />
+      <table-chart
+        databox-id="simple"
+        databox-type="table"
+        :x="JSON.stringify(JSON.parse(chartData.pieChart.doughnut.x)[0])"
+        :y="chartData.pieChart.doughnut.y"
+        name="[&quot;Valeur&quot;]"
+        table-name="Nomenclature"
+      />
+    </div>
+
+    <div class="chart_container fr-mb-6w">
+      <h3 id="IX.-Databox-complète-multi-source">
+        2. Databox complète multi source
+      </h3>
+      <hr>
+      <data-box
+        v-bind="chartData.dataBox.complete"
+      />
+      <scatter-chart
+        databox-id="complete"
+        databox-type="chart"
+        databox-source="insee"
+        v-bind="chartData.scatterChart.linked"
+        :y="defaultScatterData"
+      />
+      <scatter-chart
+        databox-id="complete"
+        databox-type="chart"
+        databox-source="pole-emploi"
+        v-bind="chartData.scatterChart.linked"
+        :y="sortedScatterData"
+      />
+      <scatter-chart
+        databox-id="complete"
+        databox-type="chart"
+        v-bind="chartData.scatterChart.linked"
+        :y="reversedScatterData"
+      />
+      <table-chart
+        databox-id="complete"
+        databox-type="table"
+        databox-source="insee"
+        :x="JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0])"
+        :y="defaultScatterData"
+        :name="chartData.scatterChart.linked.name"
+        table-name="Années INSEE"
+      />
+      <table-chart
+        databox-id="complete"
+        databox-type="table"
+        :x="JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0])"
+        :y="reversedScatterData"
+        :name="chartData.scatterChart.linked.name"
+        table-name="Années"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
 import { chartData } from '@/assets/data';
-import DataBox from '../DataBox.vue';
-import PieChart from '../PieChart.vue';
+
+const scatterData = JSON.parse(chartData.scatterChart.linked.y);
+
+const defaultScatterData = JSON.stringify(scatterData)
+const sortedScatterData = JSON.stringify(scatterData.map(arr => arr.sort((a, b) => a - b)))
+const reversedScatterData = JSON.stringify(scatterData.map(arr => arr.reverse()))
 </script>

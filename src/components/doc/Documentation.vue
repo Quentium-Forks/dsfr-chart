@@ -75,13 +75,40 @@
                   </template>
                 </li>
                 <li class="fr-sidemenu__item">
-                  <a
-                    class="fr-sidemenu__link"
-                    href="#IX.-Databox"
-                    target="_self"
+                  <button
+                    class="fr-sidemenu__btn"
+                    aria-expanded="false"
+                    aria-controls="sidemenu-99"
                   >
                     IX. Databox
-                  </a>
+                  </button>
+                  <div
+                    id="sidemenu-99"
+                    class="fr-collapse"
+                  >
+                    <ul class="fr-sidemenu__list">
+                      <li class="fr-sidemenu__item">
+                        <a
+                          id="sidemenu-99.1"
+                          class="fr-sidemenu__link"
+                          href="#IX.-Databox-simple"
+                          target="_self"
+                        >
+                          1. Databox simple
+                        </a>
+                      </li>
+                      <li class="fr-sidemenu__item">
+                        <a
+                          id="sidemenu-99.2"
+                          class="fr-sidemenu__link"
+                          href="#IX.-Databox-complète-multi-source"
+                          target="_self"
+                        >
+                          2. Databox complète multi source
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </li>
                 <li class="fr-sidemenu__item">
                   <a
