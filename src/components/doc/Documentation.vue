@@ -77,7 +77,7 @@
                 <li class="fr-sidemenu__item">
                   <a
                     class="fr-sidemenu__link"
-                    href="#databox"
+                    href="#IX.-Databox"
                     target="_self"
                   >
                     IX. Databox
@@ -86,7 +86,7 @@
                 <li class="fr-sidemenu__item">
                   <a
                     class="fr-sidemenu__link"
-                    href="#colors"
+                    href="#X.-Couleurs"
                     target="_self"
                   >
                     X. Les couleurs
@@ -95,7 +95,7 @@
                 <li class="fr-sidemenu__item">
                   <a
                     class="fr-sidemenu__link"
-                    href="#accessibility"
+                    href="#XI.-Accessibilité"
                     target="_self"
                   >
                     XI. Accessibilité
@@ -161,7 +161,8 @@
         </div>
 
         <DataBoxSection />
-        <ColorsAccessibility />
+        <ColorsSection />
+        <AccessibilitySection />
       </div>
     </section>
   </div>
@@ -171,8 +172,9 @@
 import { chartExamples } from '@/assets/data';
 import Intro from './Intro.vue';
 import CodeBlock from './CodeBlock.vue';
-import ColorsAccessibility from './ColorsAccessibility.vue';
 import DataBoxSection from './DataBoxSection.vue';
+import ColorsSection from './ColorsSection.vue';
+import AccessibilitySection from './AccessibilitySection.vue';
 
 const PALETTE_LABELS = {
   defaultColor: 'Palette par défaut',
