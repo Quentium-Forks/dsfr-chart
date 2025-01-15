@@ -37,7 +37,7 @@
                   <template v-if="section.graphs.length === 1">
                     <a
                       class="fr-sidemenu__link"
-                      :href="'#' + encodeURIComponent(section.title)"
+                      :href="'#' + encodeURIComponent(section.title.replace(/ /g, '-'))"
                       target="_self"
                     >
                       {{ section.title }}
@@ -65,7 +65,7 @@
                             <a
                               :id="`sidemenu-${i}.${j}`"
                               class="fr-sidemenu__link"
-                              :href="'#' + encodeURIComponent(graph.heading)"
+                              :href="'#' + encodeURIComponent(graph.heading.replace(/ /g, '-'))"
                               target="_self"
                             >{{ graph.heading }}</a>
                           </li>
@@ -80,7 +80,7 @@
                     href="#databox"
                     target="_self"
                   >
-                    IX. La Databox
+                    IX. Databox
                   </a>
                 </li>
                 <li class="fr-sidemenu__item">
@@ -113,7 +113,7 @@
           :key="section.title"
           class="part_container"
         >
-          <h2 :id="encodeURIComponent(section.title)">
+          <h2 :id="encodeURIComponent(section.title.replace(/ /g, '-'))">
             {{ section.title }}
           </h2>
           <p>
@@ -126,11 +126,11 @@
           >
             <h3
               v-if="graph.heading"
-              :id="encodeURIComponent(graph.heading)"
+              :id="encodeURIComponent(graph.heading.replace(/ /g, '-'))"
             >
               {{ graph.heading }}
             </h3>
-            <hr v-if="graph.heading">
+            <hr>
             <p
               v-if="!graph.noPalette"
               class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w"

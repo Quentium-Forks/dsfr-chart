@@ -41,7 +41,7 @@ export const chartData = {
       unitTooltip: '%',
     },
     sequential: {
-      x: '[["Nouvelle-Aquitaine", "Hauts-de-France", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Normandie", "Bretagne", "Pays de la Loire", "Occitanie", "Grand Est", "Centre-Val de Loire", "Île-de-France", "Provence-Alpes-Côte d&#39;Azur", "Corse"]]',
+      x: '[["Nouvelle-Aquitaine", "Hauts-de-France", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Normandie", "Bretagne", "Pays de la Loire", "Occitanie", "Grand Est", "Centre-Val de Loire", "Île-de-France", "Provence-Alpes-Côte d\'Azur", "Corse"]]',
       y: '[[1071, 927, 921, 850, 845, 838, 821, 793, 789, 771, 734, 485, 482]]',
       name: '["Hauteur des précipitations (en mm)"]',
       selectedPalette: 'sequentialDescending',
@@ -117,8 +117,8 @@ export const chartData = {
       value: '360000',
       init: '100000',
       target: '2000000',
-      initdate: '(en 2022)',
-      targetdate: '(en 2026)',
+      initDate: '(en 2022)',
+      targetDate: '(en 2026)',
     },
   },
   mapChart: {

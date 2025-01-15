@@ -4,7 +4,7 @@
     class="part_container fr-mb-6w"
   >
     <h2 id="colors">
-      IX. La Databox
+      IX. Databox
     </h2>
     <DataBox :id="id" />
     <PieChart
