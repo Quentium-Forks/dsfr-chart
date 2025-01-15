@@ -14,4 +14,4 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-createApp(Documentation).mount('#root');
+createApp(Documentation).mount('#app');
