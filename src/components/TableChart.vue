@@ -10,6 +10,7 @@
       <div
         :ref="tableId"
         class="fr-table"
+        :style="{ maxHeight: '25rem', overflow: 'auto' }"
       >
         <div class="fr-table__wrapper">
           <div class="fr-table__container">
