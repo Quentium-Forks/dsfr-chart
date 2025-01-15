@@ -194,26 +194,10 @@ const PALETTE_LABELS = {
 const examples = ref([
   {
     title: 'I. Graphique en ligne',
-    desc: `Un graphique en ligne est un type de visualisation de données qui
-            affiche les valeurs sous forme de points sur une ligne. Elle
-            permet d’affiche une seule ligne ou en présenter plusieurs pour
-            permettre la comparaison.`,
+    desc: 'Un graphique en ligne est un type de visualisation de données qui affiche les valeurs sous forme de points sur une ligne. Elle permet d’affiche une seule ligne ou en présenter plusieurs pour permettre la comparaison.',
     graphs: [
-      {
-        id: 'line_chart.1',
-        component: LineChart,
-        heading: '1. Graphique en ligne simple',
-        title: 'Évolution du prix des logements anciens entre 2001 et 2020',
-        desc: 'Indices des prix des logements neufs et anciens, France métropolitaine. Base 100 en moyenne en 2015. Insee, 04/11/2024',
-        props: FAKE_DATA.lineChart.simpleLine,
-      },
-      {
-        component: MultiLineChart,
-        heading: '2. Graphique en lignes multiples',
-        title: "Taux d'activité selon le sexe depuis 1975",
-        desc: 'France hors Mayotte, personnes de 15 à 64 ans vivant en logement ordinaire. Insee, 04/11/2024',
-        props: FAKE_DATA.lineChart.multiLine,
-      },
+      { component: LineChart, heading: '1. Graphique en ligne simple', title: 'Évolution du prix des logements anciens entre 2001 et 2020', desc: 'Indices des prix des logements neufs et anciens, France métropolitaine. Base 100 en moyenne en 2015. Insee, 04/11/2024', props: FAKE_DATA.lineChart.simpleLine },
+      { component: MultiLineChart, heading: '2. Graphique en lignes multiples', title: "Taux d'activité selon le sexe depuis 1975", desc: 'France hors Mayotte, personnes de 15 à 64 ans vivant en logement ordinaire. Insee, 04/11/2024', props: FAKE_DATA.lineChart.multiLine },
     ],
   },
   {
