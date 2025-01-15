@@ -4,13 +4,13 @@
       <button
         class="fr-accordion__btn"
         aria-expanded="false"
-        :aria-controls="'accordion-' + id"
+        :aria-controls="'accordion-' + tag + '-' + id"
       >
         Extrait de code
       </button>
     </h3>
     <div
-      :id="'accordion-' + id"
+      :id="'accordion-' + tag + '-' + id"
       class="fr-collapse"
     >
       <!-- No indentation because it will be reflected in code pre -->
