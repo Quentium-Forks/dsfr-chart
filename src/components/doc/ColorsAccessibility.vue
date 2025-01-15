@@ -211,49 +211,24 @@
     </p>
 
     <div class="chart_container">
-      <table-chart
-        x="[&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;,&quot;E&quot;,&quot;F&quot;,&quot;G&quot;,&quot;H&quot;,&quot;I&quot;,&quot;J&quot;]"
-        y="[[1000000, 50,40,39,49,40, 50,40,39,49],[30, 150,340,379,439,40, 50,40,39,49],[30, 150,340,379,439,40, 50,40,39,49],[30, 150,340,379,439,40, 50,40,39,49],[30, 150,340,379,439,40, 50,40,39,49],[30, 150,340,379,439,40, 50,40,39,49],[30, 150,340,379,439,40, 50,40,39,49],[30, 150,340,379,439,40, 50,40,39,49]]"
-        varname="Jours"
+      <component
+        :is="TableChart"
+        v-bind="FAKE_DATA.tableChart.default"
       />
     </div>
 
-    <section class="fr-accordion fr-mt-4w fr-mb-6w">
-      <h3 class="fr-accordion__title">
-        <button
-          class="fr-accordion__btn"
-          aria-expanded="false"
-          aria-controls="accordion-23"
-        >
-          Extrait de code
-        </button>
-      </h3>
-      <div
-        id="accordion-23"
-        class="fr-collapse"
-      >
-        <div class="code-toolbar">
-          <pre>
-            <code>
-                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table-chart</span>
-                <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span><span class="titre_class">[["A","B","C","D","E","F","G","H","I","J"],
-                ["A","B","C","D","E","F","G","H","I","J"]]</span><span class="token punctuation">'</span>
-                </span><span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span><span class="titre_class">[[40, 50,40,39,49,40, 50,40,39,49],
-                [30, 150,340,379,439,40, 50,40,39,49],
-                [30, 150,340,379,439,40, 50,40,39,49],
-                [30, 150,340,379,439,40, 50,40,39,49],
-                [30, 150,340,379,439,40, 50,40,39,49],
-                [30, 150,340,379,439,40, 50,40,39,49],
-                [30, 150,340,379,439,40, 50,40,39,49],
-                [30, 150,340,379,439,40, 50,40,39,49]]</span><span class="token punctuation">'</span>
-                <span class="token attr-name">varname</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span><span class="titre_class">Jours</span><span class="token punctuation">'</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">&lt;/</span>table-chart</span><span class="token punctuation">&gt;</span>
-            </code>
-        </pre>
-        </div>
-      </div>
-    </section>
+    <CodeBlock
+      :component="TableChart"
+      :attributes="FAKE_DATA.tableChart.default"
+    />
   </div>
 </template>
+
+<script setup>
+import TableChart from '../TableChart.vue';
+import CodeBlock from './CodeBlock.vue';
+import { FAKE_DATA } from './fakeData';
+</script>
 
 <style scoped>
 .color_dot {

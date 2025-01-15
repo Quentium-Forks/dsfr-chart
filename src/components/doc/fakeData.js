@@ -95,8 +95,8 @@ export const FAKE_DATA = {
   },
   radarChart: {
     default: {
-      x: '[["Logement, chauffage, éclairage", "Alimentation, boissons, tabac", "Autres biens et services", "Transports", "Communications, loisirs, culture", "Hôtels, cafés, restaurants", "Habillement et chaussures"],     ["Logement, chauffage, éclairage", "Alimentation, boissons, tabac", "Autres biens et services", "Transports", "Communications, loisirs, culture", "Hôtels, cafés, restaurants", "Habillement et chaussures"]]',
-      y: '[[22.6, 28.9, 8.4, 10.7, 8.5, 5.3, 12.8],[31.3, 15.9, 13.4, 12.9, 10.5, 8.5, 3.0]]',
+      x: '[["Logement, chauffage, éclairage", "Alimentation, boissons, tabac", "Autres biens et services", "Transports", "Communications, loisirs, culture", "Hôtels, cafés, restaurants", "Habillement et chaussures"], ["Logement, chauffage, éclairage", "Alimentation, boissons, tabac", "Autres biens et services", "Transports", "Communications, loisirs, culture", "Hôtels, cafés, restaurants", "Habillement et chaussures"]]',
+      y: '[[22.6, 28.9, 8.4, 10.7, 8.5, 5.3, 12.8], [31.3, 15.9, 13.4, 12.9, 10.5, 8.5, 3.0]]',
       name: '["1963", "2023"]',
       unitTooltip: '%'
     }
@@ -151,5 +151,12 @@ export const FAKE_DATA = {
       region: '93',
       date: '21/12/2022'
     },
-  }
+  },
+  tableChart: {
+    default: {
+      x: '["A","B","C","D","E","F","G","H","I","J"]',
+      y: '[[40, 50, 40, 39, 49, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49]]',
+      tableName: "Indicateur",
+    },
+  },
 }

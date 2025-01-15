@@ -155,8 +155,8 @@
               v-bind="graph.props"
             />
             <CodeBlock
-              :graph-props="graph.props"
               :component="graph.component"
+              :attributes="graph.props"
             />
           </div>
         </div>
