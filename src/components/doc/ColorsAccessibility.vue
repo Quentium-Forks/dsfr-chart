@@ -192,13 +192,13 @@
     <div class="chart_container">
       <component
         :is="TableChart"
-        v-bind="FAKE_DATA.tableChart.default"
+        v-bind="chartData.tableChart.default"
       />
     </div>
 
     <CodeBlock
       :component="TableChart"
-      :attributes="FAKE_DATA.tableChart.default"
+      :attributes="chartData.tableChart.default"
     />
   </div>
 </template>
@@ -206,7 +206,7 @@
 <script setup>
 import TableChart from '../TableChart.vue';
 import CodeBlock from './CodeBlock.vue';
-import { FAKE_DATA } from './fakeData';
+import { chartData } from '@/assets/data';
 </script>
 
 <style scoped>
@@ -215,7 +215,6 @@ import { FAKE_DATA } from './fakeData';
   width: 1.5rem;
   height: 1.5rem;
   min-width: 1.5rem;
-  background-color: var(--blue-france-sun-113-625);
   display: inline-block;
   margin-top: 0rem;
   margin-left: 1rem;

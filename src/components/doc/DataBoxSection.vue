@@ -8,7 +8,7 @@
     </h2>
     <DataBox :id="id" />
     <PieChart
-      v-bind="FAKE_DATA.pieChart.doughnut"
+      v-bind="chartData.pieChart.doughnut"
       :databox-id="id"
       databox-type="chart"
     />
@@ -18,7 +18,7 @@
 <script setup>
 import DataBox from '../DataBox.vue';
 import PieChart from '../PieChart.vue';
-import { FAKE_DATA } from './fakeData';
+import { chartData } from '@/assets/data';
 
 const id = 'databox-1';
 </script>
