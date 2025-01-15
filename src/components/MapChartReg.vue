@@ -82,7 +82,7 @@ export default {
       required: true,
     },
     value: {
-      type: Number,
+      type: [Number, String],
       default: undefined,
     },
     date: {

@@ -114,9 +114,9 @@ export const chartData = {
   },
   gaugeChart: {
     default: {
-      value: '360000',
-      init: '100000',
-      target: '2000000',
+      value: 360000,
+      init: 100000,
+      target: 2000000,
       initDate: '(en 2022)',
       targetDate: '(en 2026)',
     },
