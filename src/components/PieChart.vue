@@ -1,5 +1,6 @@
 <template>
   <Teleport
+    :defer="true"
     :disabled="!databoxId && !databoxType && databoxSource === 'default'"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
