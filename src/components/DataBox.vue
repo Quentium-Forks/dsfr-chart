@@ -21,15 +21,22 @@
         </button>
 
         <div
+          v-if="tooltipTitle || tooltipContent"
           :id="'tooltip-' + id"
           class="fr-tooltip fr-placement"
           role="tooltip"
           aria-hidden="true"
         >
-          <p class="fr-text--xs fr-mb-0 bold">
+          <p
+            v-if="tooltipTitle"
+            class="fr-text--xs fr-mb-0 bold"
+          >
             {{ tooltipTitle }}
           </p>
-          <p class="fr-text--xs fr-mb-0">
+          <p
+            v-if="tooltipContent"
+            class="fr-text--xs fr-mb-0"
+          >
             {{ tooltipContent }}
           </p>
         </div>
