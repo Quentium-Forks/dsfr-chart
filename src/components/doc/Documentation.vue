@@ -165,6 +165,8 @@
         <AccessibilitySection />
       </div>
     </section>
+    
+    <DisplayMode />
   </div>
 </template>
 
@@ -175,6 +177,7 @@ import CodeBlock from './CodeBlock.vue';
 import DataBoxSection from './DataBoxSection.vue';
 import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
+import DisplayMode from './DisplayMode.vue';
 
 const PALETTE_LABELS = {
   defaultColor: 'Palette par défaut',
@@ -183,11 +186,3 @@ const PALETTE_LABELS = {
   divergentDescending: 'Palette séquentielle divergente',
 };
 </script>
-
-<style scoped>
-.fr-display-button {
-  position: fixed;
-  bottom: 3.5rem;
-  right: 2rem;
-}
-</style>
