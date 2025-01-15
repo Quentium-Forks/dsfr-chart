@@ -5,49 +5,55 @@
   >
     <div
       :ref="widgetId"
-      class="widget_container fr-grid-row"
+      class="widget_container"
     >
       <div
         :ref="tableId"
-        class="fr-table scroll"
+        class="fr-table"
         :style="{ maxHeight: '25rem' }"
       >
-        <table aria-labelledby="table-caption">
-          <caption id="table-caption">
-            {{ tableName }}
-          </caption>
-          <thead>
-            <tr>
-              <th scope="col">
-                {{ tableName }}
-              </th>
-              <th
-                v-for="(item, index) in nameParse"
-                :key="index"
-                scope="col"
-              >
-                {{ item }}
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="(rowItem, rowIndex) in xparse"
-              :key="rowIndex"
-            >
-              <td :class="getClass(rowItem)">
-                {{ rowItem }}
-              </td>
-              <td
-                v-for="(colItem, colIndex) in yparse"
-                :key="colIndex"
-                :class="getClass(colItem[rowIndex])"
-              >
-                {{ convertIntToHumanTable(colItem[rowIndex]) }}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="fr-table__wrapper">
+          <div class="fr-table__container">
+            <div class="fr-table__content">
+              <table>
+                <caption>
+                  {{ tableName }}
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      {{ tableName }}
+                    </th>
+                    <th
+                      v-for="(item, index) in nameParse"
+                      :key="index"
+                      scope="col"
+                    >
+                      {{ item }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr
+                    v-for="(rowItem, rowIndex) in xparse"
+                    :key="rowIndex"
+                  >
+                    <td :class="getClass(rowItem)">
+                      {{ rowItem }}
+                    </td>
+                    <td
+                      v-for="(colItem, colIndex) in yparse"
+                      :key="colIndex"
+                      :class="getClass(colItem[rowIndex])"
+                    >
+                      {{ convertIntToHumanTable(colItem[rowIndex]) }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </Teleport>
