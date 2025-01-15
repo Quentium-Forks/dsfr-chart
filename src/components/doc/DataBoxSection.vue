@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <div
     id="databox"
     class="part_container fr-mb-6w"
   >
@@ -20,5 +20,5 @@ import DataBox from '../DataBox.vue';
 import PieChart from '../PieChart.vue';
 import { FAKE_DATA } from './fakeData';
 
-const id ="databox-1"
+const id = 'databox-1';
 </script>
