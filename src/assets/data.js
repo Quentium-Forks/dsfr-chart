@@ -198,19 +198,19 @@ export const chartExamples = [
     graphs: [{ component: BarLineChart, title: 'Évolution du nombre de naissances et du taux de natalité', desc: 'France hors Mayotte, naissances en milliers et taux de natalité pour mille femmes. Insee, 16/01/2024', props: chartData.barLineChart.default }],
   },
   {
-    title: 'IV. Nuage de points',
-    desc: 'Le nuage de points est largement utilisée pour présenter plusieurs séries de données. C’est une représentation graphique qui est particulièrement utile lorsque les valeurs des données sur l’axe Y dépendent des valeurs d’un autre axe X.',
-    graphs: [
-      { component: ScatterChart, heading: '1. Nuage de points simple', title: "Évolution du taux moyen d'émissions de CO₂ en France", desc: 'Véhicules particuliers neufs vendus en France. Ademe, 04/11/2024', props: chartData.scatterChart.default },
-      { component: ScatterChart, heading: '2. Nuage de points reliés', title: 'Carrières complètes selon le sexe et la génération en 2016', desc: 'Retraités ayant perçu un droit direct au cours de l’année, résidant en France, vivants au 31 décembre 2016 ; tous régimes confondus. Insee, 09/09/2011', props: chartData.scatterChart.linked },
-    ],
-  },
-  {
-    title: 'V. Diagramme circulaire',
+    title: 'IV. Diagramme circulaire',
     desc: 'Un diagramme circulaire permet de représenter un petit nombre de valeurs par des angles proportionnels à la fréquence de ces valeurs. Chacune des « parts » représente une catégorie de données qui forment un ensemble, et la taille de chaque « part » est proportionnelle à son poids dans l’ensemble. Le diagramme circulaire peut être plein ou creux.',
     graphs: [
       { component: PieChart, heading: '1. Diagramme circulaire creux (donut)', title: 'Statut des emplois en France', desc: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi. Insee, enquête Emploi, 04/11/2024', props: chartData.pieChart.doughnut },
       { component: PieChart, heading: '2. Diagramme circulaire plein', title: 'Structure des dépenses publiques en France en 2022', desc: 'France métropolitaine. Insee, 30/11/2023', props: chartData.pieChart.fill },
+    ],
+  },
+  {
+    title: 'V. Nuage de points',
+    desc: 'Le nuage de points est largement utilisée pour présenter plusieurs séries de données. C’est une représentation graphique qui est particulièrement utile lorsque les valeurs des données sur l’axe Y dépendent des valeurs d’un autre axe X.',
+    graphs: [
+      { component: ScatterChart, heading: '1. Nuage de points simple', title: "Évolution du taux moyen d'émissions de CO₂ en France", desc: 'Véhicules particuliers neufs vendus en France. Ademe, 04/11/2024', props: chartData.scatterChart.default },
+      { component: ScatterChart, heading: '2. Nuage de points reliés', title: 'Carrières complètes selon le sexe et la génération en 2016', desc: 'Retraités ayant perçu un droit direct au cours de l’année, résidant en France, vivants au 31 décembre 2016 ; tous régimes confondus. Insee, 09/09/2011', props: chartData.scatterChart.linked },
     ],
   },
   {

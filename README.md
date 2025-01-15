@@ -527,7 +527,101 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 
 ---
 
-# IV. Nuage de points (ScatterChart)
+# IV. Diagramme circulaire (PieChart)
+
+Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise : `<pie-chart>`.
+
+## Paramètres
+
+### Obligatoires :
+
+- **x** : _(String)_ Les noms de chaque groupe sous la forme d’une liste entre crochets.
+- **y** : _(String)_ Les valeurs de chaque groupe sous la forme d’une liste entre crochets.
+
+### Optionnels :
+
+- **name** : _(String)_ Les noms des séries de données sous forme d'une liste entre crochets.
+- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
+
+  - `'categorical'` : Palette catégorielle par défaut.
+  - `'sequentialAscending'` : Palette séquentielle ascendante.
+  - `'sequentialDescending'` : Palette séquentielle descendante.
+  - `'divergentAscending'` : Palette divergente ascendante.
+  - `'divergentDescending'` : Palette divergente descendante.
+  - `'neutral'` : Palette neutre.
+  - `'defaultColor'` : Couleur par défaut.
+  - _(laisser vide pour utiliser la palette par défaut)_
+
+- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+- **fill** : _(Boolean)_ Permet de remplir l’intérieur du graphique. Mettre à `true` pour un diagramme circulaire plein.
+
+---
+
+### 1. Diagramme circulaire creux (donut)
+
+## Exemple :
+
+```html
+<pie-chart
+  x='[["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]'
+  y="[[11.7, 74.8, 9.3, 1.6, 2.6]]"
+  name='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
+  unit-tooltip="%"
+  selectedPalette="categorical"
+></pie-chart>
+```
+
+---
+
+### 2. Diagramme circulaire plein
+
+L’option **fill="true"** permet de remplir l’intérieur du graphique pour obtenir un diagramme circulaire plein.
+
+## Exemple :
+
+```html
+<pie-chart
+  x='[["Groupe A", "Groupe B", "Groupe C"]]'
+  y="[[10, 20, 30]]"
+  fill="true"
+  unit-tooltip="%"
+  selectedPalette="divergentAscending"
+></pie-chart>
+```
+
+---
+
+## Notes supplémentaires
+
+- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
+- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une portion du diagramme. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
+- **fill** : Par défaut, le PieChart est affiché sous forme de donut (creux au centre). En définissant **fill="true"**, vous obtiendrez un diagramme circulaire plein.
+
+---
+
+## Conseils d'utilisation
+
+- **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes, par exemple `x='["Groupe A", "Groupe B"]'`.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `fill="true"` avec `selectedPalette`.
+- **Personnalisation des séries** : Le paramètre `name` peut être utilisé pour spécifier des noms de séries personnalisés.
+
+---
+
+## Exemple combinant plusieurs options
+
+```html
+<pie-chart
+  x='["Catégorie 1", "Catégorie 2", "Catégorie 3"]'
+  y="[40, 35, 25]"
+  fill="true"
+  unit-tooltip="€"
+  selectedPalette="sequentialDescending"
+></pie-chart>
+```
+
+---
+
+# V. Nuage de points (ScatterChart)
 
 Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
 
@@ -640,100 +734,6 @@ Il est possible de combiner plusieurs options pour personnaliser davantage votre
 - **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
 - **highlightIndex** : En combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des points spécifiques du graphique. Les index commencent à **0**.
 - **show-line** : Utile pour visualiser les tendances ou les relations entre les points en les reliant par des lignes.
-
-# V. Diagramme circulaire (PieChart)
-
-Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise : `<pie-chart>`.
-
-## Paramètres
-
-### Obligatoires :
-
-- **x** : _(String)_ Les noms de chaque groupe sous la forme d’une liste entre crochets.
-- **y** : _(String)_ Les valeurs de chaque groupe sous la forme d’une liste entre crochets.
-
-### Optionnels :
-
-- **name** : _(String)_ Les noms des séries de données sous forme d'une liste entre crochets.
-- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
-
-  - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'defaultColor'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
-
-- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
-- **fill** : _(Boolean)_ Permet de remplir l’intérieur du graphique. Mettre à `true` pour un diagramme circulaire plein.
-
----
-
-### 1. Diagramme circulaire creux (donut)
-
-## Exemple :
-
-```html
-<pie-chart
-  x='[["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]'
-  y="[[11.7, 74.8, 9.3, 1.6, 2.6]]"
-  name='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
-  unit-tooltip="%"
-  selectedPalette="categorical"
-></pie-chart>
-```
-
----
-
-### 2. Diagramme circulaire plein
-
-L’option **fill="true"** permet de remplir l’intérieur du graphique pour obtenir un diagramme circulaire plein.
-
-## Exemple :
-
-```html
-<pie-chart
-  x='[["Groupe A", "Groupe B", "Groupe C"]]'
-  y="[[10, 20, 30]]"
-  fill="true"
-  unit-tooltip="%"
-  selectedPalette="divergentAscending"
-></pie-chart>
-```
-
----
-
-## Notes supplémentaires
-
-- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
-- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une portion du diagramme. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
-- **fill** : Par défaut, le PieChart est affiché sous forme de donut (creux au centre). En définissant **fill="true"**, vous obtiendrez un diagramme circulaire plein.
-
----
-
-## Conseils d'utilisation
-
-- **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes, par exemple `x='["Groupe A", "Groupe B"]'`.
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `fill="true"` avec `selectedPalette`.
-- **Personnalisation des séries** : Le paramètre `name` peut être utilisé pour spécifier des noms de séries personnalisés.
-
----
-
-## Exemple combinant plusieurs options
-
-```html
-<pie-chart
-  x='["Catégorie 1", "Catégorie 2", "Catégorie 3"]'
-  y="[40, 35, 25]"
-  fill="true"
-  unit-tooltip="€"
-  selectedPalette="sequentialDescending"
-></pie-chart>
-```
-
----
 
 # VI. Diagramme en étoile (RadarChart)
 
