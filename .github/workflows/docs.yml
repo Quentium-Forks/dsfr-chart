@@ -1,14 +1,14 @@
-name: HTML docs
+name: Build HTML docs
 
 on:
   workflow_dispatch:
   push:
     tags:
-      - "v*"
+      - 'v*'
 
 jobs:
   docs:
-    name: Build docs
+    name: Deploy docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: npm clean-install
 
-      - name: Build docs
+      - name: Build
         run: npm run build:docs
 
       - name: Deploy
@@ -31,3 +31,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           force_orphan: true
+          user_name: 'GitHub Action'
+          user_email: 'action@github.com'
+          full_commit_message: 'Update documentation'
