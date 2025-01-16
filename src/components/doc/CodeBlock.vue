@@ -19,13 +19,13 @@
           v-for="(comp, i) in components"
           :key="i"
         >
-    <!-- Tag open --><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>{{ componentToTag(comp.name) }}</span></span>
+    <!-- Tag open --><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>{{ toKebabCase(comp.name) }}</span></span>
   <template
             v-for="(value, attr, j) in attributes[i]"
             :key="j"
-          >      <span class="token attr-name">{{ attr }}</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span><span class="class">{{ value }}</span><span class="token punctuation">'</span></span>
+          >      <span class="token attr-name">{{ toKebabCase(attr) }}</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span><span class="class">{{ value }}</span><span class="token punctuation">'</span></span>
   </template>  <span class="token punctuation">&gt;</span>
-    <!-- Tag close --><span class="token tag"><span class="token punctuation">&lt;/</span>{{ componentToTag(comp.name) }}</span><span class="token punctuation">&gt;</span>
+    <!-- Tag close --><span class="token tag"><span class="token punctuation">&lt;/</span>{{ toKebabCase(comp.name) }}</span><span class="token punctuation">&gt;</span>
 </span></code></pre>
       </div>
     </div>
@@ -47,9 +47,9 @@ const props = defineProps({
 const components = Array.isArray(props.component) ? props.component : [props.component];
 const attributes = Array.isArray(props.attributes) ? props.attributes : [props.attributes];
 
-const componentToTag = (str) => str?.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)?.replace('-', '');
+const toKebabCase = (str) => str.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`).replace(/^-/, '');
 
-const tag = componentToTag(components[0]?.name);
+const tag = toKebabCase(components[0]?.name);
 const id = Math.floor(Math.random() * 1000);
 </script>
 
