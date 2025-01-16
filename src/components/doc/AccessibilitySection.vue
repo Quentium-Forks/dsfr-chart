@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
+import { chartData } from '@/assets/data';
 import TableChart from '../TableChart.vue';
 import CodeBlock from './CodeBlock.vue';
-import { chartData } from '@/assets/data';
 </script>
