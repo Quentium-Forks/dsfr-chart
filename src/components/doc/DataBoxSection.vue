@@ -27,6 +27,14 @@
         name="[&quot;Pourcentage&quot;]"
         table-name="Catégories"
       />
+      <CodeBlock
+        :component="[{name: 'data-box'}, {name: 'pie-chart'}, {name: 'table-chart'}]"
+        :attributes="[
+          chartData.dataBox.simple,
+          chartData.pieChart.doughnut,
+          {x: JSON.stringify(JSON.parse(chartData.pieChart.doughnut.x)[0]), y: chartData.pieChart.doughnut.y, name: '[&quot;Pourcentage&quot;]', tableName: 'Catégories'}
+        ]"
+      />
     </div>
 
     <div class="chart_container fr-mb-6w">
@@ -74,12 +82,23 @@
         :name="chartData.scatterChart.linked.name"
         table-name="Années"
       />
+      <CodeBlock
+        :component="[{name: 'data-box'}, {name: 'scatter-chart'}, {name: 'scatter-chart'}, {name: 'scatter-chart'}, {name: 'table-chart'}, {name: 'table-chart'}]"
+        :attributes="[
+          chartData.dataBox.complete,
+          {...chartData.scatterChart.linked, y: defaultScatterData},
+          {...chartData.scatterChart.linked, y: sortedScatterData},
+          {...chartData.scatterChart.linked, y: reversedScatterData},
+          {x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: defaultScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années INSEE'},
+          {x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'}]"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
 import { chartData } from '@/assets/data';
+import CodeBlock from './CodeBlock.vue';
 
 const scatterData = JSON.parse(chartData.scatterChart.linked.y);
 
