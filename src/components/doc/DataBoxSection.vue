@@ -32,7 +32,7 @@
         :attributes="[
           chartData.dataBox.simple,
           chartData.pieChart.doughnut,
-          {x: JSON.stringify(JSON.parse(chartData.pieChart.doughnut.x)[0]), y: chartData.pieChart.doughnut.y, name: '[&quot;Pourcentage&quot;]', tableName: 'Catégories'}
+          {dataBoxId: 'simple', dataBoxType: 'table', x: JSON.stringify(JSON.parse(chartData.pieChart.doughnut.x)[0]), y: chartData.pieChart.doughnut.y, name: '[&quot;Pourcentage&quot;]', tableName: 'Catégories'}
         ]"
       />
     </div>
@@ -62,6 +62,7 @@
       <scatter-chart
         databox-id="complete"
         databox-type="chart"
+        databox-source="autre"
         v-bind="chartData.scatterChart.linked"
         :y="reversedScatterData"
       />
@@ -86,11 +87,11 @@
         :component="[{name: 'data-box'}, {name: 'scatter-chart'}, {name: 'scatter-chart'}, {name: 'scatter-chart'}, {name: 'table-chart'}, {name: 'table-chart'}]"
         :attributes="[
           chartData.dataBox.complete,
-          {...chartData.scatterChart.linked, y: defaultScatterData},
-          {...chartData.scatterChart.linked, y: sortedScatterData},
-          {...chartData.scatterChart.linked, y: reversedScatterData},
-          {x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: defaultScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années INSEE'},
-          {x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'}]"
+          {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'insee', ...chartData.scatterChart.linked, y: defaultScatterData },
+          {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'pole-emploi', ...chartData.scatterChart.linked, y: sortedScatterData },
+          {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'autre', ...chartData.scatterChart.linked, y: reversedScatterData },
+          {dataBoxId: 'complete', dataBoxType: 'table', x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: defaultScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années INSEE'},
+          {dataBoxId: 'complete', dataBoxType: 'table', x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'}]"
       />
     </div>
   </div>
