@@ -201,10 +201,10 @@
 import { chartExamples } from '@/assets/data';
 import Intro from './Intro.vue';
 import CodeBlock from './CodeBlock.vue';
+import DisplayMode from './DisplayMode.vue';
 import DataBoxSection from './DataBoxSection.vue';
 import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
-import DisplayMode from './DisplayMode.vue';
 
 const PALETTE_LABELS = {
   defaultColor: 'Palette par défaut',
