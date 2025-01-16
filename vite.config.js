@@ -5,22 +5,22 @@ import path from 'path';
 export default {
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
-    outDir: "docs",
+    outDir: 'docs',
     rollupOptions: {
       output: {
-        entryFileNames: "[name].min.js",
+        entryFileNames: '[name].min.js',
         assetFileNames: (entry) => {
           if (entry.names[0].match(/\.svg$/)) {
-            return "img/[name].min[extname]";
+            return 'img/[name].min[extname]';
           } else if (entry.names[0].match(/\.(ttf|otf|woff|woff2)?$/)) {
-            return "fonts/[name][extname]";
+            return 'fonts/[name][extname]';
           }
 
-          return "[name][extname]";
+          return '[name][extname]';
         },
       },
     },
@@ -29,21 +29,7 @@ export default {
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) =>
-            [
-              "data-box",
-              "bar-chart",
-              "bar-line-chart",
-              "gauge-chart",
-              "line-chart",
-              "map-chart-reg",
-              "map-chart",
-              "multiline-chart",
-              "pie-chart",
-              "radar-chart",
-              "scatter-chart",
-              "table-chart",
-            ].includes(tag),
+          isCustomElement: (tag) => ['data-box', 'bar-chart', 'bar-line-chart', 'gauge-chart', 'line-chart', 'map-chart', 'map-chart-reg', 'multiline-chart', 'pie-chart', 'radar-chart', 'scatter-chart', 'table-chart'].includes(tag),
         },
       },
     }),
