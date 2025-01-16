@@ -25,7 +25,7 @@
         :x="JSON.stringify(JSON.parse(chartData.pieChart.doughnut.x)[0])"
         :y="chartData.pieChart.doughnut.y"
         name="[&quot;Valeur&quot;]"
-        table-name="Nomenclature"
+        table-name="Catégories"
       />
     </div>
 

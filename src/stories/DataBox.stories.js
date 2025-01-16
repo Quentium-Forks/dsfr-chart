@@ -63,7 +63,7 @@ export const Single = {
       x="${PieChart.args.name}"
       y="${PieChart.args.y}"
       name="${PieChart.args.name}"
-      table-name="Nomenclature"
+      table-name="Catégories"
     >
     </table-chart>
   `
