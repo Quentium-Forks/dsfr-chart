@@ -119,6 +119,8 @@
           date="21/12/2022"
         />
 
+        <BarSubSeriesChart v-bind="chartData.barChart.horizontalCustom" />
+
         <div
           v-for="section in chartExamples"
           :key="section.title"
@@ -188,6 +190,8 @@ import DisplayMode from './DisplayMode.vue';
 import DataBoxSection from './DataBoxSection.vue';
 import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
+import BarSubSeriesChart from '../BarSubSeriesChart.vue';
+import { chartData } from '../../assets/data';
 
 const PALETTE_LABELS = {
   default: 'Palette par défaut',

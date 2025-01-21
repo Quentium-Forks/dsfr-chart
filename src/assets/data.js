@@ -50,6 +50,15 @@ export const chartData = {
       barSize: 20,
       unitTooltip: 'tonnes',
     },
+    horizontalCustom: {
+      x: '[["2000", "2010", "2020"]]',
+      y: '[[11.1, 10.5, 8.4]]',
+      name: '["Empreinte carbone"]',
+      horizontal: true,
+      unitTooltip: 'tonnes',
+      subX: '[["x1.1", "x1.2"], ["x2.1", "x2.2", "x2.3", "x2.4"], ["x3.1", "x3.2"]]',
+      subY: '[[1.1, 1.2], [2.1, 2.2, 2.3, 2.4], [3.1, 3.2]]',
+    },
     stacked: {
       x: '[["Ensemble des Français", "Agglomération parisienne", "Communauté urbaine de province", "Commune rurale"]]',
       y: '[[15, 19, 15, 13], [45, 40, 47, 41], [36, 32, 34, 44], [4, 9, 4, 2]]',
