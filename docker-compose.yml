@@ -1,0 +1,8 @@
+services:
+  playwright:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./tests/__snapshots__:/usr/src/app/tests/__snapshots__
+    working_dir: /usr/src/app
