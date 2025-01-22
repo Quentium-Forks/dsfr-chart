@@ -20,7 +20,7 @@
 }
 
 .fr-tooltip {
-  max-width: 220px;
+  max-width: min(14rem, calc(66.66667vw - 1.33333rem));
 }
 
 .flex {
@@ -29,12 +29,4 @@
 
 .w-full {
   width: 100%;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.square {
-  aspect-ratio: 1;
 }
