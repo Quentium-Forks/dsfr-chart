@@ -19,6 +19,7 @@
           <button v-on:click="resetSub" v-if="isSubLevel2" class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary">
             Réinitialiser
           </button>
+          <p v-if="subTitle" id="sub-title">{{ subTitle }}</p>
 
           <canvas :ref="chartId" />
 
@@ -145,7 +146,8 @@ export default {
       colorHover: [],
       isSmall: false,
       legendColors: [],
-      isSubLevel2: false
+      isSubLevel2: false,
+      subTitle: null
     };
   },
   created() {
@@ -389,6 +391,11 @@ export default {
 
             if (activePoints.length > 0) {
               const index = activePoints[0].index;
+              const clickedLabel = this.chart.data.labels[index]
+
+              if (!this.subTitle) {
+                this.subTitle = clickedLabel // update title for 2nd level
+              }
 
               // Chec if the category is the main category 
               if (this.subYParse[index] && !this.isSubLevel2) {
@@ -428,8 +435,10 @@ export default {
     },
     resetSub() {
       this.isSubLevel2 = false
+      this.subTitle = null
       this.chart.data.labels = this.xparse[0];
       this.chart.data.datasets[0].data = this.yparse[0];
+      document.getElementById('sub-title').innerHTML = ''
       this.chart.update();
     },
   },
