@@ -282,7 +282,6 @@ export default {
               },
             },
             y: {
-              reverse: true, // true, order by asc // false, order by desc
               stacked: this.stacked,
               offset: true,
               grid: {

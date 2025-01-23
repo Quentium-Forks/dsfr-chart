@@ -51,13 +51,13 @@ export const chartData = {
       unitTooltip: 'tonnes',
     },
     horizontalCustom: {
-      x: '[["2000", "2010", "2020"]]',
-      y: '[[11.1, 10.5, 8.4]]',
-      name: '["Empreinte carbone"]',
+      x: '[["Chômage et retour à l’emploi", "Croissance", "Droit au travail", "Consommation", "Industrie", "Retraites", "Fiscalité", "Attractivité", "Souveraineté", "Egalité professionnelle", "Entrepreneuriat", "Formation"]]',
+      y: '[[51, 47.1, 36.1, 33.1, 32.8, 31.1, 27.9, 27.2, 19.1, 15.1, 9.1, 3.6]]',
+      name: '["Thématiques les plus visibles"]',
       horizontal: true,
-      unitTooltip: 'tonnes',
-      subX: '[["x1.1", "x1.2"], ["x2.1", "x2.2", "x2.3", "x2.4"], ["x3.1", "x3.2"]]',
-      subY: '[[1.1, 1.2], [2.1, 2.2, 2.3, 2.4], [3.1, 3.2]]',
+      unitTooltip: '%',
+      subX: '[["Droit au travail", "Solidarité", "Droit du travail", "Jeunesse", "Industrie", "Retraites", "Fiscalité", "Egalité professionnelle", "Seniors", "Corps intermédiaire", "Entrepeneuriat", "Formation"], ["Croissance 1", "Croissance 2"], ["Droit au travail 1", "Droit au travail 2"], ["Consommation 1", "Consommation 2"], ["Industrie 1", "Industrie 2"], ["Retraites 1", "Retraites 2"], ["Fiscalité 1", "Fiscalité 2"], ["Attractivité 1", "Attractivité 2"], ["Souveraineté 1", "Souveraineté 2"], ["Egalité professionnelle 1", "Egalité professionnelle 2"], ["Entrepreneuriat 1", "Entrepreneuriat 2"], ["Formation 1", "Formation 2"]]',
+      subY: '[[37, 36, 34, 34, 25, 24, 22, 21, 14, 11, 9, 5], [15, 20], [5, 20], [12, 22], [23, 40], [44, 100], [6, 10], [16, 88], [21, 35], [29, 34], [100, 145], [88, 99]]'
     },
     stacked: {
       x: '[["Ensemble des Français", "Agglomération parisienne", "Communauté urbaine de province", "Commune rurale"]]',
