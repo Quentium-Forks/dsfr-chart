@@ -27,7 +27,7 @@ export const chartData = {
   },
   barChart: {
     vertical: {
-      x: '[["2025", "2030", "2035", "2040", "2050", "2060", "2070"]]',
+      x: '[[2025, 2030, 2035, 2040, 2050, 2060, 2070]]',
       y: '[[69.1, 70.3, 71.4, 72.5, 74, 75.2, 76.4]]',
       name: '["Population en millions"]',
       selectedPalette: 'defaultColor',
@@ -48,7 +48,7 @@ export const chartData = {
       unitTooltip: 'mm',
     },
     horizontal: {
-      x: '[["2000", "2010", "2020"], ["2000", "2010", "2020"]]',
+      x: '[[2000, 2010, 2020], [2000, 2010, 2020]]',
       y: '[[11.1, 10.5, 8.4], [8.8, 7.5, 5.6]]',
       name: '["Empreinte carbone", "Émission sur le territoire national"]',
       horizontal: true,
