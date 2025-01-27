@@ -157,7 +157,6 @@
             >
               {{ graph.heading }}
             </h3>
-            <hr>
             <p
               v-if="!graph.noPalette"
               class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w"
