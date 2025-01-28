@@ -603,20 +603,13 @@ export default {
                   const divValue = tooltipEl.querySelector('.tooltip_value');
                   divValue.innerHTML = '';
 
-                  // Check if `.tooltip_dot` element exists and get its attribute node name
-                  const tooltipDot = tooltipEl.querySelector('.tooltip_dot');
-                  const nodeName = tooltipDot ? tooltipDot.attributes[0].nodeName : 'data-attribute'; // Default attribute if `.tooltip_dot` is missing
-
-                  // Iterate through each line in the body and add formatted HTML with correct colors
                   bodyLines[0].forEach((line, i) => {
+                    const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
                     if (line !== undefined) {
-                      const lineColor = tooltipModel.labelTextColors[i] || this.colorParse[i]; // Use tooltipModel color if available, fallback to this.colorParse
-
-                      // Append the line with color and optional unitTooltip
                       divValue.innerHTML += `
-                      <div class="tooltip_value-content" style="display: flex; justify-content: space-between; align-items: center;">
-                        <span ${nodeName}="" class="tooltip_dot" style="background-color:${lineColor};"></span>
-                        ${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}<br>
+                      <div class="tooltip_value-content">
+                        <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>
+                        <p class="tooltip_place fr-mb-0">${displayValue}</p>
                       </div>
                     `;
                     }
