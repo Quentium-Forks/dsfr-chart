@@ -22,7 +22,7 @@
       <table-chart
         databox-id="simple"
         databox-type="table"
-        :x="JSON.stringify(JSON.parse(chartData.pieChart.doughnut.x)[0])"
+        :x="tableParse(chartData.pieChart.doughnut.x)"
         :y="chartData.pieChart.doughnut.y"
         name="[&quot;Pourcentage&quot;]"
         table-name="Catégories"
@@ -32,7 +32,7 @@
         :attributes="[
           chartData.dataBox.simple,
           {dataBoxId: 'simple', dataBoxType: 'chart', ...chartData.pieChart.doughnut},
-          {dataBoxId: 'simple', dataBoxType: 'table', x: JSON.stringify(JSON.parse(chartData.pieChart.doughnut.x)[0]), y: chartData.pieChart.doughnut.y, name: '[&quot;Pourcentage&quot;]', tableName: 'Catégories'}
+          {dataBoxId: 'simple', dataBoxType: 'table', x: tableParse(chartData.pieChart.doughnut.x), y: chartData.pieChart.doughnut.y, name: '[&quot;Pourcentage&quot;]', tableName: 'Catégories'}
         ]"
       />
     </div>
@@ -70,7 +70,7 @@
         databox-id="complete"
         databox-type="table"
         databox-source="insee"
-        :x="JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0])"
+        :x="tableParse(chartData.scatterChart.linked.x)"
         :y="defaultScatterData"
         :name="chartData.scatterChart.linked.name"
         table-name="Années INSEE"
@@ -78,7 +78,7 @@
       <table-chart
         databox-id="complete"
         databox-type="table"
-        :x="JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0])"
+        :x="tableParse(chartData.scatterChart.linked.x)"
         :y="reversedScatterData"
         :name="chartData.scatterChart.linked.name"
         table-name="Années"
@@ -90,8 +90,8 @@
           {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'insee', ...chartData.scatterChart.linked, y: defaultScatterData },
           {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'pole-emploi', ...chartData.scatterChart.linked, y: sortedScatterData },
           {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'autre', ...chartData.scatterChart.linked, y: reversedScatterData },
-          {dataBoxId: 'complete', dataBoxType: 'table', x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: defaultScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années INSEE'},
-          {dataBoxId: 'complete', dataBoxType: 'table', x: JSON.stringify(JSON.parse(chartData.scatterChart.linked.x)[0]), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'}]"
+          {dataBoxId: 'complete', dataBoxType: 'table', x: tableParse(chartData.scatterChart.linked.x), y: defaultScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années INSEE'},
+          {dataBoxId: 'complete', dataBoxType: 'table', x: tableParse(chartData.scatterChart.linked.x), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'}]"
       />
     </div>
   </div>
@@ -106,4 +106,6 @@ const scatterData = JSON.parse(chartData.scatterChart.linked.y);
 const defaultScatterData = JSON.stringify(scatterData);
 const sortedScatterData = JSON.stringify(scatterData.map((arr) => arr.sort((a, b) => a - b)));
 const reversedScatterData = JSON.stringify(scatterData.map((arr) => arr.reverse()));
+
+const tableParse = (data) => JSON.stringify(JSON.parse(data)[0]);
 </script>
