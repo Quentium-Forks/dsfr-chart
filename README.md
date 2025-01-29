@@ -187,7 +187,7 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
 # Graphique en multilignes (LineChart multiples)
 
-Les graphiques en multilignes (ou LineChart multiples) sont accessibles à travers la balise : `<multi-line-chart>`.
+Les graphiques en multilignes (ou LineChart multiples) sont accessibles à travers la balise : `<multiline-chart>`.
 
 ## Paramètres
 
