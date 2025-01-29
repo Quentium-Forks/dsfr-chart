@@ -6,6 +6,7 @@
     <div
       :ref="widgetId"
       class="widget_container fr-grid-row"
+      :data-index="selectedIndex"
     >
       <div class="fr-col-12">
         <div class="chart">
@@ -16,12 +17,16 @@
             </div>
           </div>
 
-          <button v-on:click="resetSub" 
-                  v-if="isSubLevel2" 
-                  class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary">
+          <button
+            v-if="isSubLevel2" 
+            class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary" 
+            @click="resetSub"
+          >
             Réinitialiser
           </button>
-          <p v-if="subTitle">{{ subTitle }}</p>
+          <p v-if="subTitle">
+            {{ subTitle }}
+          </p>
 
           <canvas :ref="chartId" />
 
@@ -137,6 +142,7 @@ export default {
     return {
       widgetId: '',
       chartId: '',
+      selectedIndex: -1,
       legendLeftMargin: 100,
       datasets: [],
       labels: undefined,
@@ -406,6 +412,7 @@ export default {
               if (this.subYParse[index] && !this.isSubLevel2) {
                 this.updateChart(index)
                 this.isSubLevel2 = true
+                this.selectedIndex = index
               }
             }
           }
