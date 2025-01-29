@@ -538,8 +538,8 @@ export default {
                   divDate.innerHTML = titleLines[0];
 
                   const divValue = tooltipEl.querySelector('.tooltip_value');
-
                   divValue.innerHTML = '';
+
                   bodyLines[0].forEach((line, i) => {
                     const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
                     if (line !== undefined) {
