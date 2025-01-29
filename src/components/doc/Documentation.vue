@@ -120,7 +120,32 @@
         />
 
         <BarSubSeriesChart v-bind="chartData.barChart.horizontalCustom" />
+        <!-- <BarSubSeriesChart v-bind="chartData.barChart.horizontalCustom" /> -->
+         <div>
+          <data-box
+            id="bar-sub-series"
+            title="POC Graphe thématiques"
+            tooltip-title="Test title"
+            tooltip-content="Test content"
+            source="Test source"
+            date="2021-01-01"
+          ></data-box>
+   
+          <bar-sub-series
+            databox-id="bar-sub-series"
+            databox-type="chart"
+            x='[["Chômage et retour à l’emploi", "Croissance", "Droit au travail", "Consommation", "Industrie", "Retraites", "Fiscalité", "Attractivité", "Souveraineté", "Egalité professionnelle", "Entrepreneuriat", "Formation"]]'
+            y='[[51, 47.1, 36.1, 33.1, 32.8, 31.1, 27.9, 27.2, 19.1, 15.1, 9.1, 3.6]]'
+            name='["Thématiques les plus visibles"]'
+            horizontal="true"
+            unitTooltip='%'
+            subX='[["Droit au travail", "Solidarité", "Droit du travail", "Jeunesse", "Industrie", "Retraites", "Fiscalité", "Egalité professionnelle", "Seniors", "Corps intermédiaire", "Entrepeneuriat", "Formation"], ["Croissance 1", "Croissance 2"], ["Droit au travail 1", "Droit au travail 2"], ["Consommation 1", "Consommation 2"], ["Industrie 1", "Industrie 2"], ["Retraites 1", "Retraites 2"], ["Fiscalité 1", "Fiscalité 2"], ["Attractivité 1", "Attractivité 2"], ["Souveraineté 1", "Souveraineté 2"], ["Egalité professionnelle 1", "Egalité professionnelle 2"], ["Entrepreneuriat 1", "Entrepreneuriat 2"], ["Formation 1", "Formation 2"]]'
+            subY='[[37, 36, 34, 34, 25, 24, 22, 21, 14, 11, 9, 5], [15, 20], [5, 20], [12, 22], [23, 40], [44, 100], [6, 10], [16, 88], [21, 35], [29, 34], [100, 145], [88, 99]]'
+            aspectRatio="1"
+          ></bar-sub-series>
+         </div>
 
+        <br><br><br><br><br><br><br><br>
         <div
           v-for="section in chartExamples"
           :key="section.title"
