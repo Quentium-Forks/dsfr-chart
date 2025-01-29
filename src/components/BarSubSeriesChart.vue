@@ -16,10 +16,12 @@
             </div>
           </div>
 
-          <button v-on:click="resetSub" v-if="isSubLevel2" class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary">
+          <button v-on:click="resetSub" 
+                  v-if="isSubLevel2" 
+                  class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary">
             Réinitialiser
           </button>
-          <p v-if="subTitle" id="sub-title">{{ subTitle }}</p>
+          <p v-if="subTitle">{{ subTitle }}</p>
 
           <canvas :ref="chartId" />
 
@@ -140,6 +142,8 @@ export default {
       labels: undefined,
       xparse: [],
       yparse: [],
+      subXParse: [],
+      subYParse: [],
       nameParse: [],
       tmpColorParse: [],
       colorParse: [],
@@ -386,6 +390,8 @@ export default {
             },
           },
           onClick: (e) => {
+            if (!this.subYParse) return
+
             const activePoints = this.chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
 
             if (activePoints.length > 0) {
@@ -421,10 +427,10 @@ export default {
       this.chart.update('none');
     },
     updateChart(categorie) {
-      const enfants = this.subYParse[categorie];
+      const children = this.subYParse[categorie];
           
       // If the catgory doesn't have any children, let's do nothing
-      if (!enfants || enfants.length === 0) {
+      if (!children || children.length === 0) {
         return;
       }
     
@@ -437,7 +443,6 @@ export default {
       this.subTitle = null
       this.chart.data.labels = this.xparse[0];
       this.chart.data.datasets[0].data = this.yparse[0];
-      document.getElementById('sub-title').innerHTML = ''
       this.chart.update();
     },
   },
