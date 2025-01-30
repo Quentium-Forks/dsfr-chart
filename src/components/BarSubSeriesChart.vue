@@ -18,8 +18,8 @@
           </div>
 
           <button
-            v-if="isSubLevel2" 
-            class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary" 
+            v-if="isSubLevel"
+            class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary"
             @click="resetSub"
           >
             Réinitialiser
@@ -91,6 +91,14 @@ export default {
       type: String,
       required: true,
     },
+    subX: {
+      type: String,
+      default: null,
+    },
+    subY: {
+      type: String,
+      default: null,
+    },
     name: {
       type: String,
       default: undefined,
@@ -127,14 +135,6 @@ export default {
       type: String,
       default: '',
     },
-    subX: {
-      type: String,
-      default: null
-    },
-    subY: {
-      type: String,
-      default: null
-    },
   },
   data() {
     this.chart = undefined;
@@ -143,7 +143,6 @@ export default {
       widgetId: '',
       chartId: '',
       selectedIndex: -1,
-      legendLeftMargin: 100,
       datasets: [],
       labels: undefined,
       xparse: [],
@@ -156,8 +155,8 @@ export default {
       colorHover: [],
       isSmall: false,
       legendColors: [],
-      isSubLevel2: false,
-      subTitle: null
+      isSubLevel: false,
+      subTitle: null,
     };
   },
   created() {
@@ -189,12 +188,12 @@ export default {
       this.labels = [];
       this.xparse = [];
       this.yparse = [];
+      this.subXParse = [];
+      this.subYParse = [];
       this.nameParse = [];
       this.tmpColorParse = [];
       this.colorParse = [];
       this.colorHover = [];
-      this.subXParse = [];
-      this.subYParse = [];
     },
     getData() {
       // Parsing des données
@@ -280,7 +279,7 @@ export default {
           aspectRatio: this.aspectRatio,
           scales: {
             x: {
-              offset: true, // Remove any offset from the X-axis
+              offset: true,
               stacked: this.stacked,
               grid: {
                 display: false,
@@ -288,7 +287,7 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                padding: 15, // Espace supplémentaire autour des étiquettes
+                padding: this.horizontal ? 5 : 15, // Espace supplémentaire autour des étiquettes
               },
             },
             y: {
@@ -396,26 +395,27 @@ export default {
             },
           },
           onClick: (e) => {
-            if (!this.subYParse) return
+            if (!this.subYParse) return;
 
             const activePoints = this.chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
 
             if (activePoints.length > 0) {
               const index = activePoints[0].index;
-              const clickedLabel = this.chart.data.labels[index]
+              const clickedLabel = this.chart.data.labels[index];
 
               if (!this.subTitle) {
-                this.subTitle = clickedLabel // update title for 2nd level
+                // Update title for 2nd level
+                this.subTitle = clickedLabel;
               }
 
-              // Chec if the category is the main category 
-              if (this.subYParse[index] && !this.isSubLevel2) {
-                this.updateChart(index)
-                this.isSubLevel2 = true
-                this.selectedIndex = index
+              // Check if the category is the main category
+              if (this.subYParse[index] && !this.isSubLevel) {
+                this.updateChart(index);
+                this.isSubLevel = true;
+                this.selectedIndex = index;
               }
             }
-          }
+          },
         },
       });
     },
@@ -435,26 +435,25 @@ export default {
     },
     updateChart(categorie) {
       const children = this.subYParse[categorie];
-          
+
       // If the catgory doesn't have any children, let's do nothing
       if (!children || children.length === 0) {
         return;
       }
-    
+
       this.chart.data.labels = this.subXParse[categorie];
       this.chart.data.datasets[0].data = this.subYParse[categorie];
       this.chart.update();
     },
     resetSub() {
-      this.isSubLevel2 = false
-      this.subTitle = null
+      this.isSubLevel = false;
+      this.subTitle = null;
       this.chart.data.labels = this.xparse[0];
       this.chart.data.datasets[0].data = this.yparse[0];
       this.chart.update();
     },
   },
 };
-
 </script>
 
 <style scoped lang="scss">
