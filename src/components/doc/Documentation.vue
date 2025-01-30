@@ -101,12 +101,6 @@
           Ce catalogue présente l'ensemble des graphiques disponibles dans le module complémentaire au Système de design de l'État (DSFR) pour la visualisation de données. Les options de chacun des graphiques sont également présentés dans ce document.
         </p>
 
-        <input
-          v-model="selectedIndex"
-          type="number"
-          value="1"
-        >
-        {{ selectedIndex === -1 ? JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.x)[0]) : JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.subX)[selectedIndex]) }}
         <div>
           <data-box
             id="bar-sub-series"
@@ -220,7 +214,7 @@ onMounted(() => {
     observer = new MutationObserver((mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.attributeName === 'data-index') {
-          selectedIndex.value = mutation.target.getAttribute('data-index');
+          selectedIndex.value = parseInt(mutation.target.getAttribute('data-index'));
         }
       }
     });
