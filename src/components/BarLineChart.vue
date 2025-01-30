@@ -479,7 +479,7 @@ export default {
                 dash: [3],
               },
               ticks: {
-                padding: 8,
+                padding: 10,
                 suggestedMin: 0,
                 suggestedMax: this.ymax,
                 maxTicksLimit: 5,
@@ -511,7 +511,7 @@ export default {
                 dash: [3],
               },
               ticks: {
-                padding: 8,
+                padding: 10,
                 maxTicksLimit: 5,
                 suggestedMin: 0,
                 callback: (value) => {

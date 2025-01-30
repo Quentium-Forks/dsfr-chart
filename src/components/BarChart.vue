@@ -122,7 +122,6 @@ export default {
     return {
       widgetId: '',
       chartId: '',
-      legendLeftMargin: 100,
       datasets: [],
       labels: undefined,
       xparse: [],
@@ -251,7 +250,7 @@ export default {
           aspectRatio: this.aspectRatio,
           scales: {
             x: {
-              offset: true, // Remove any offset from the X-axis
+              offset: true,
               stacked: this.stacked,
               grid: {
                 display: false,
@@ -259,7 +258,7 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                padding: 15, // Espace supplémentaire autour des étiquettes
+                padding: this.horizontal ? 5 : 15,
               },
             },
             y: {
@@ -274,7 +273,7 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
-                padding: 5, // Espace supplémentaire autour des étiquettes
+                padding: 5,
               },
             },
           },

@@ -442,7 +442,7 @@ export default {
                 dash: [3],
               },
               ticks: {
-                padding: 10, // Espace supplémentaire autour des étiquettes
+                padding: 10,
                 labelOffset: 10,
                 callback: (value) => {
                   if (this.formatDate) {
@@ -465,7 +465,7 @@ export default {
               suggestedMax: this.ymax,
               ticks: {
                 position: 'left',
-                padding: 10, // Espace supplémentaire autour des étiquettes
+                padding: 10,
                 maxTicksLimit: 5,
                 callback: (value) => {
                   if (value >= 1e9 || value <= -1e9) {

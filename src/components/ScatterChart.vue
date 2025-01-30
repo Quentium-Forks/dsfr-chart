@@ -451,7 +451,7 @@ export default {
                 dash: [3],
               },
               ticks: {
-                padding: 4,
+                padding: 5,
                 autoSkip: true,
                 maxTicksLimit: 5,
                 suggestedMax: this.ymax,

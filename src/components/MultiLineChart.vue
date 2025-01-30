@@ -493,7 +493,7 @@ export default {
                 lineWidth: 1,
               },
               ticks: {
-                padding: 10, // Espace supplémentaire autour des étiquettes
+                padding: 10,
                 callback: (value) => {
                   if (this.formatDate) {
                     return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
@@ -514,7 +514,7 @@ export default {
               },
               suggestedMax: this.ymax,
               ticks: {
-                padding: 4,
+                padding: 5,
                 maxTicksLimit: 5,
                 callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
