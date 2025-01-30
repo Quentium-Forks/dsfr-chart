@@ -206,20 +206,21 @@ let observer = null;
 onMounted(() => {
   let target = document.querySelector('.widget_container');
   let options = {
-    subtree: true,
-    attributes: true,
+    attributes: true, // Listens for attribute changes.
+    subtree: false, // Prevents observing descendants of the target element.
+    childList: false, // Ignores additions or removals of child elements.
   };
-  observer = new MutationObserver((mutationList) => {
-    for (const mutation of mutationList) {
-      if (mutation.attributeName === 'data-index') {
-        selectedIndex.value = mutation.target.getAttribute('data-index');
+  if (target) {
+    observer = new MutationObserver((mutationList) => {
+      for (const mutation of mutationList) {
+        if (mutation.attributeName === 'data-index') {
+          selectedIndex.value = mutation.target.getAttribute('data-index');
+        }
       }
-    }
+    });
 
-    //Analyse mutationList here for conditional processing
-  });
-
-  observer.observe(target, options);
+    observer.observe(target, options);
+  }
 });
 
 onUnmounted(() => observer && observer.disconnect());
