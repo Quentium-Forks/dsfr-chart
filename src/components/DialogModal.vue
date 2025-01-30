@@ -26,7 +26,7 @@
                 <span class="fr-icon-arrow-right-line fr-icon--lg" />
                 {{ modalTitle }}
               </h1>
-              <p>{{ modalContent }}</p>
+              <div v-html="modalContent"></div>
             </div>
           </div>
         </div>
