@@ -101,6 +101,12 @@
           Ce catalogue présente l'ensemble des graphiques disponibles dans le module complémentaire au Système de design de l'État (DSFR) pour la visualisation de données. Les options de chacun des graphiques sont également présentés dans ce document.
         </p>
 
+        <input
+          v-model="selectedIndex"
+          type="number"
+          value="1"
+        >
+        {{ selectedIndex === -1 ? JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.x)[0]) : JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.subX)[selectedIndex]) }}
         <div>
           <data-box
             id="bar-sub-series"
@@ -121,8 +127,8 @@
           <table-chart
             databox-id="bar-sub-series"
             databox-type="table"
-            :x="JSON.stringify(JSON.parse(x)[0])"
-            :y="y"
+            :x="selectedIndex === -1 ? JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.x)[0]) : JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.subX)[selectedIndex])"
+            :y="selectedIndex === -1 ? chartData.barSubSeriesChart.horizontal.y : JSON.stringify([JSON.parse(chartData.barSubSeriesChart.horizontal.subY)[selectedIndex]])"
             name="[&quot;Pourcentage&quot;]"
             table-name="Thématiques les plus visibles"
           />
@@ -237,10 +243,5 @@ window.addEventListener('hashchange', () => {
   currentPage.value = window.location.hash.slice(1);
 })
 
-const x = ref('[]');
-const y = ref('[]');
 const selectedIndex = ref(-1);
-
-x.value = chartData.barSubSeriesChart.horizontal.x;
-y.value = chartData.barSubSeriesChart.horizontal.y;
 </script>

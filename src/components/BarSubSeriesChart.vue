@@ -451,6 +451,8 @@ export default {
       this.chart.data.labels = this.xparse[0];
       this.chart.data.datasets[0].data = this.yparse[0];
       this.chart.update();
+
+      this.selectedIndex = -1;
     },
   },
 };

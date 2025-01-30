@@ -125,6 +125,20 @@ export default {
       nameParse: [],
     };
   },
+  watch: {
+    x() {
+      this.resetData();
+      this.getData();
+    },
+    y() {
+      this.resetData();
+      this.getData();
+    },
+    name() {
+      this.resetData();
+      this.getData();
+    },
+  },
   created() {
     this.tableId = 'dsfr-table-' + Math.floor(Math.random() * 1000);
     this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
