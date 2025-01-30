@@ -8,6 +8,11 @@ export default {
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    watch: {
+      usePolling: true
+    },
+  },
   base: './',
   build: {
     outDir: 'docs',
