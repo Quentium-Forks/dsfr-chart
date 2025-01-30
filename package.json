@@ -33,6 +33,7 @@
     "build": "vite build --config=vite-components.config.js",
     "build-bar": "LIBRARY=BarChart vite build --config=vite-components.config.js",
     "build-bar-line": "LIBRARY=BarLineChart vite build --config=vite-components.config.js",
+    "build-bar-sub-series": "LIBRARY=BarSubSeriesChart vite build --config=vite-components.config.js",
     "build-databox": "LIBRARY=DataBox vite build --config=vite-components.config.js",
     "build-gauge": "LIBRARY=GaugeChart vite build --config=vite-components.config.js",
     "build-line": "LIBRARY=LineChart vite build --config=vite-components.config.js",

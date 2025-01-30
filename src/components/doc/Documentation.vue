@@ -129,10 +129,10 @@
             date="2021-01-01"
           />
 
-          <bar-sub-series
+          <bar-sub-series-chart
             databox-id="bar-sub-series"
             databox-type="chart"
-            v-bind="chartData.barChart.horizontalCustom"
+            v-bind="chartData.barSubSeriesChart.horizontal"
             aspect-ratio="1"
           />
 
@@ -259,6 +259,6 @@ const x = ref('[]');
 const y = ref('[]');
 const selectedIndex = ref(-1);
 
-x.value = chartData.barChart.horizontalCustom.x;
-y.value = chartData.barChart.horizontalCustom.y;
+x.value = chartData.barSubSeriesChart.horizontal.x;
+y.value = chartData.barSubSeriesChart.horizontal.y;
 </script>
