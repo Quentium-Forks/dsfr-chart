@@ -117,6 +117,7 @@ export default {
       tableId: '',
       xparse: [],
       yparse: [],
+      lineParse: [],
       nameParse: [],
     };
   },
@@ -138,15 +139,15 @@ export default {
     getData() {
       // Parsing des données
       try {
-        this.xparse = JSON.parse(this.x);
-        this.yparse = JSON.parse(this.y);
+        this.xparse = JSON.parse(this.x ?? '[]');
+        this.yparse = JSON.parse(this.y ?? '[]');
       } catch (error) {
         console.error('Erreur lors du parsing des données x ou y:', error);
         return;
       }
 
       try {
-        this.lineParse = JSON.parse(this.line);
+        this.lineParse = JSON.parse(this.line ?? '[]');
       } catch (error) {
         console.error('Erreur lors du parsing des données line:', error);
         return;
