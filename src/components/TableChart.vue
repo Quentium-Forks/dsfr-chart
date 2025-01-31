@@ -49,6 +49,18 @@
                       {{ convertIntToHumanTable(colItem[rowIndex]) }}
                     </td>
                   </tr>
+                  <tr
+                    v-for="(rowItem, rowIndex) in lineParse"
+                    :key="rowIndex"
+                  >
+                    <td
+                      v-for="(cellItem, cellIndex) in rowItem"
+                      :key="cellIndex"
+                      :class="getClass(cellItem)"
+                    >
+                      {{ convertIntToHumanTable(cellItem) }}
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -80,11 +92,15 @@ export default {
     },
     x: {
       type: String,
-      required: true,
+      default: undefined,
     },
     y: {
       type: String,
-      required: true,
+      default: undefined,
+    },
+    line: {
+      type: String,
+      default: undefined,
     },
     name: {
       type: String,
@@ -116,11 +132,25 @@ export default {
     resetData() {
       this.xparse = [];
       this.yparse = [];
+      this.lineParse = [];
       this.nameParse = [];
     },
     getData() {
-      this.xparse = JSON.parse(this.x);
-      this.yparse = JSON.parse(this.y);
+      // Parsing des données
+      try {
+        this.xparse = JSON.parse(this.x);
+        this.yparse = JSON.parse(this.y);
+      } catch (error) {
+        console.error('Erreur lors du parsing des données x ou y:', error);
+        return;
+      }
+
+      try {
+        this.lineParse = JSON.parse(this.line);
+      } catch (error) {
+        console.error('Erreur lors du parsing des données line:', error);
+        return;
+      }
 
       let tmpNameParse = [];
       if (this.name !== undefined) {
