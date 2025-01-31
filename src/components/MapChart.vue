@@ -289,7 +289,7 @@ export default {
       try {
         this.dataParse = JSON.parse(this.data);
       } catch (error) {
-        console.error('Erreur lors du parsing des données x ou y:', error);
+        console.error('Erreur lors du parsing des données data:', error);
         return;
       }
 
