@@ -57,8 +57,8 @@
                       v-for="(cellItem, cellIndex) in rowItem"
                       :key="cellIndex"
                       :class="getClass(cellItem)"
+                      v-html="cellItem"
                     >
-                      {{ convertIntToHumanTable(cellItem) }}
                     </td>
                   </tr>
                 </tbody>
