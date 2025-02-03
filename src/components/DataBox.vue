@@ -65,7 +65,7 @@
           role="navigation"
           class="fr-translate fr-nav"
         >
-          <div class="fr-nav__item">
+          <div class="fr-nav__item fr-nav__item--align-right">
             <button
               class="fr-btn fr-btn--sm fr-icon-more-line fr-btn--tertiary-no-outline fr-ratio-1x1"
               :aria-controls="'translate-' + id"
