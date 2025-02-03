@@ -144,6 +144,14 @@ export default {
       type: String,
       default: '',
     },
+    barSize: {
+      type: [Number, String],
+      default: 'flex',
+    },
+    maxBarSize: {
+      type: Number,
+      default: 32,
+    },
     vline: {
       type: String,
       default: undefined,
@@ -358,7 +366,8 @@ export default {
           hoverBackgroundColor: this.colorBarHover,
           pointRadius: 5,
           pointHoverRadius: 5,
-          barThickness: 32,
+          barThickness: this.barSize,
+          ...(this.maxBarSize ? {maxBarThickness: this.maxBarSize} : {}),
           type: 'bar',
           barPercentage: 0.5,
           order: 2,

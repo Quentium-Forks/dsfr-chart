@@ -92,8 +92,12 @@ export default {
       default: false,
     },
     barSize: {
+      type: [Number, String],
+      default: 'flex',
+    },
+    maxBarSize: {
       type: Number,
-      default: undefined,
+      default: 32,
     },
     date: {
       type: String,
@@ -210,8 +214,8 @@ export default {
         borderColor: this.colorParse[index],
         hoverBackgroundColor: this.colorHover[index],
         hoverBorderColor: this.colorHover[index],
-        barThickness: this.barSize || (this.stacked ? 32 : this.horizontal ? 20 : 32),
-        maxBarThickness: 32,
+        barThickness: this.barSize,
+        ...(this.maxBarSize ? {maxBarThickness: this.maxBarSize} : {}),
       }));
     },
     choosePalette() {
