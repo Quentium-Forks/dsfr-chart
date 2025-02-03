@@ -356,15 +356,29 @@ export default {
                 });
 
                 // Position the tooltip
-                const position = this.chart.canvas.getBoundingClientRect();
+                const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
+
+                const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
+                const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
+                
+                let tooltipX = positionX + tooltipModel.caretX + 10;
+                let tooltipY = positionY + tooltipModel.caretY - 20;
+                if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
+                }
+                if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 20;
+                }
+                if (tooltipX < positionX) {
+                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
+                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
+                }
+                
                 tooltipEl.style.position = 'absolute';
+                tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';
-
-                let tooltipX = position.left + window.scrollX + tooltipModel.caretX + 10;
-                let tooltipY = position.top + window.scrollY + tooltipModel.caretY - 18;
-
-                tooltipEl.style.left = `${tooltipX}px`;
-                tooltipEl.style.top = `${tooltipY}px`;
+                tooltipEl.style.left = tooltipX + 'px';
+                tooltipEl.style.top = tooltipY + 'px';
                 tooltipEl.style.opacity = 1;
               },
             },
