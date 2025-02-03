@@ -3,10 +3,25 @@
     <h2 id="IX.-Databox">
       IX. Databox
     </h2>
-    <p>
-      Le composant DataBox est un composant polyvalent qui permet d'afficher des données sous différentes formes, notamment des indicateurs, des graphiques, des tableaux, etc. Il intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants pour des actions supplémentaires.
-    </p>
-    <div class="chart_container fr-mb-6w">
+    <h3>Présentation</h3>
+    <p>Le composant <strong>DataBox</strong> est un composant permettant d'afficher dans un cadre normé des données sous différentes formes (graphiques, chiffres clés, tableaux, etc). Il est à utiliser pour composer un tableau de bord, ou toute page nécessitant de structurer la visualisation de données.</p>
+    <p>Polyvalente, la databox intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants permettant la mise à disposition d’actions supplémentaires.</p>
+
+    <h3>Structure</h3>
+    <p>La databox est composée des éléments suivants :</p>
+    <ul>
+      <li><strong>un titre</strong> (obligatoire)</li>
+      <li>une infobulle permettant de préciser la donnée affichée (optionnelle)</li>
+      <li>un bouton permettant l’affichage d’une modale en plein écran (optionnel)</li>
+      <li>un menu à points permettant l’affichage d’actions supplémentaires (optionnel)</li>
+      <li>un indicateur de tendance (optionnel)</li>
+      <li><strong>la donnée principale : chiffre, graphique ou tableau</strong> (obligatoire)</li>
+      <li><strong>une source</strong> (obligatoire)</li>
+      <li><strong>une date de mise à jour de la donnée</strong> (obligatoire)</li>
+      <li><strong>un contrôle segmenté pour afficher la donnée en vue tableau</strong> (obligatoire lorsque c’est un graphique qui est affiché)</li>
+    </ul>
+
+    <div class="chart_container fr-mb-6w fr-mt-6w">
       <h3 id="IX.-Databox-simple">
         1. Databox simple
       </h3>
@@ -94,6 +109,10 @@
           {dataBoxId: 'complete', dataBoxType: 'table', x: tableParse(chartData.scatterChart.linked.x), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'}]"
       />
     </div>
+
+    <h3>Occupation de l'espace</h3>
+    <p>Le menu à points peut contenir toutes les actions dont vous avez besoin pour votre projet.</p>
+    <p>La librairie DSFR Chart propose une fonctionnalité d’export CSC des données et de téléchargement de capture d'écran, mais elles ne doivent pas figurer obligatoirement si vous n’en avez pas le besoin.</p>
   </div>
 </template>
 
