@@ -367,7 +367,6 @@ export default {
           hoverBackgroundColor: this.colorBarHover,
           pointRadius: 5,
           pointHoverRadius: 5,
-          order: 2,
           barThickness: this.barSize,
           ...(this.maxBarSize ? {maxBarThickness: this.maxBarSize} : {}),
           barPercentage: 0.5,
@@ -384,7 +383,6 @@ export default {
           pointRadius: 5,
           pointHoverRadius: 5,
           yAxisID: 'yLine',
-          order: 1,
           tension: 0.4,
         },
       ];
