@@ -21,7 +21,7 @@
       <li><strong>un contrôle segmenté pour afficher la donnée en vue tableau</strong> (obligatoire lorsque c’est un graphique qui est affiché)</li>
     </ul>
 
-    <div class="chart_container fr-mb-6w fr-mt-6w">
+    <div class="chart_container fr-my-6w">
       <h3 id="IX.-Databox-simple">
         1. Databox simple
       </h3>
@@ -52,7 +52,7 @@
       />
     </div>
 
-    <div class="chart_container fr-mb-6w">
+    <div class="chart_container fr-my-6w">
       <h3 id="IX.-Databox-complète-multi-source">
         2. Databox complète multi source
       </h3>
