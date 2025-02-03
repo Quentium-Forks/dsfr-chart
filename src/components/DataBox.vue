@@ -63,7 +63,7 @@
         <nav
           v-if="screenshot || download"
           role="navigation"
-          class="fr-translate fr-nav"
+          class="fr-translate fr-nav more-actions-menu"
         >
           <div class="fr-nav__item fr-nav__item--align-right">
             <button

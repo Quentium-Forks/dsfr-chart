@@ -39,3 +39,40 @@
 .w-full {
   width: 100%;
 }
+
+// Mobile
+@media (max-width: 62em) {
+  .more-actions-menu {
+    .fr-nav__item {
+      &:has(>.fr-collapse--expanded) {
+        align-items: flex-end;
+      }
+
+      .fr-menu.fr-collapse--expanded {
+        filter: drop-shadow(var(--overlap-shadow));
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        z-index: calc(var(--ground) + 1000);
+      }
+
+      .fr-menu {
+        .fr-menu__list {
+          margin: 0;
+          --idle: transparent;
+          --hover: var(--background-overlap-grey-hover);
+          --active: var(--background-overlap-grey-active);
+          background-color: var(--background-overlap-grey);
+          padding: 0;
+          background-image: linear-gradient(0deg,var(--background-open-blue-france),var(--background-open-blue-france));
+          background-position: 0 0;
+          background-repeat: no-repeat;
+          background-size: 100% 1px;
+          margin-bottom: 2rem;
+          pointer-events: auto;
+          width: auto;
+        }
+      }
+    }
+  }
+}
