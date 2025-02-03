@@ -57,6 +57,8 @@
       }
 
       .fr-menu {
+        position: absolute;
+        
         .fr-menu__list {
           margin: 0;
           --idle: transparent;
