@@ -254,7 +254,7 @@ export default {
           aspectRatio: this.aspectRatio,
           scales: {
             x: {
-              offset: true,
+              offset: !this.horizontal,
               stacked: this.stacked,
               grid: {
                 display: false,
@@ -267,7 +267,7 @@ export default {
             },
             y: {
               stacked: this.stacked,
-              offset: true,
+              offset: this.horizontal,
               grid: {
                 drawTicks: false,
                 lineWidth: 1,
