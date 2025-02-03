@@ -5,10 +5,6 @@ import { Default as PieChart } from './PieChart.stories';
 const meta = {
   component: 'data-box',
   args: {
-    segmentedControl: true,
-    screenshot: true,
-    download: true,
-    fullscreen: true,
     modalTitle: 'Titre de la modale',
     modalContent: 'Contenu de la modale',
     id: 'storybook-databox',
@@ -23,13 +19,17 @@ const meta = {
 
 export default meta;
 
-export const Single = {
+export const Simple = {
   args: {
     title: 'Statut des emplois en France en 2018',
     tooltipTitle: 'Statut des emplois en France',
     tooltipContent: "Pour l'année 2018. France hors Mayotte, population des ménages, personnes en emploi.",
     source: 'Insee, enquête Emploi',
-    trend: '-15%'
+    trend: '-15%',
+    segmentedControl: true,
+    screenshot: false,
+    download: false,
+    fullscreen: false
   },
   render: (args) => html`
     <data-box
@@ -69,13 +69,17 @@ export const Single = {
   `
 };
 
-export const Multiple = {
+export const Complete = {
   args: {
     title: 'Emplois en France de 1926 à 1950',
     tooltipTitle: 'Emplois en France',
     tooltipContent: "Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source.",
     source: 'INSEE, Pôle Emploi, Autre source',
-    trend: '+15 points'
+    trend: '+15 points',
+    segmentedControl: true,
+    screenshot: true,
+    download: true,
+    fullscreen: true
   },
   render: (args) => html`
     <data-box
