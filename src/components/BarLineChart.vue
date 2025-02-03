@@ -128,11 +128,11 @@ export default {
       type: String,
       required: true,
     },
-    y: {
+    yBar: {
       type: String,
       required: true,
     },
-    yBar: {
+    yLine: {
       type: String,
       required: true,
     },
@@ -209,8 +209,8 @@ export default {
       xAxisType: 'category',
       labels: undefined,
       xparse: [],
-      yparse: [],
       ybarparse: [],
+      ylineparse: [],
       vlineParse: [],
       vlineColorParse: [],
       nameParse: [],
@@ -264,8 +264,8 @@ export default {
       this.xAxisType = 'category';
       this.labels = undefined;
       this.xparse = [];
-      this.yparse = [];
       this.ybarparse = [];
+      this.ylineparse = [];
       this.vlineParse = [];
       this.vlineColorParse = [];
       this.tmpVlineColorParse = [];
@@ -284,10 +284,10 @@ export default {
       // Parsing des données
       try {
         this.xparse = JSON.parse(this.x);
-        this.yparse = JSON.parse(this.y);
         this.ybarparse = JSON.parse(this.yBar);
+        this.ylineparse = JSON.parse(this.yLine);
       } catch (error) {
-        console.error('Erreur lors du parsing des données x ou y ou yBar:', error);
+        console.error('Erreur lors du parsing des données x ou y-bar ou y-line:', error);
         return;
       }
 
@@ -338,15 +338,15 @@ export default {
         const xsort = this.xparse.map((a) => a).sort((a, b) => a - b);
         xsort.forEach((k) => {
           const index = this.xparse.findIndex((element) => element === k);
-          dataLine.push(this.yparse[index]);
           dataBar.push(this.ybarparse[index]);
+          dataLine.push(this.ylineparse[index]);
         });
         this.labels = xsort;
         this.xAxisType = 'category';
       } else {
         // Cas où x est non numérique
-        dataLine = this.yparse;
         dataBar = this.ybarparse;
+        dataLine = this.ylineparse;
         this.labels = this.xparse;
         this.xAxisType = 'category';
       }
@@ -360,30 +360,30 @@ export default {
       this.datasets = [
         {
           data: dataBar,
-          backgroundColor: this.colorBarParse,
+          type: 'bar',
           borderColor: this.colorBarParse,
+          backgroundColor: this.colorBarParse,
           hoverBorderColor: this.colorBarHover,
           hoverBackgroundColor: this.colorBarHover,
           pointRadius: 5,
           pointHoverRadius: 5,
+          order: 2,
           barThickness: this.barSize,
           ...(this.maxBarSize ? {maxBarThickness: this.maxBarSize} : {}),
-          type: 'bar',
           barPercentage: 0.5,
-          order: 2,
         },
         {
           data: dataLine,
-          backgroundColor: 'rgba(0, 0, 0, 0)',
-          borderColor: this.colorParse,
           type: 'line',
+          borderColor: this.colorParse,
+          backgroundColor: 'rgba(0, 0, 0, 0)',
+          pointBorderColor: this.colorParse,
+          pointBackgroundColor: this.colorParse,
+          pointHoverBorderColor: this.colorHover,
+          pointHoverBackgroundColor: this.colorHover,
           pointRadius: 5,
           pointHoverRadius: 5,
-          pointBackgroundColor: this.colorParse,
-          pointBorderColor: this.colorParse,
-          pointHoverBackgroundColor: this.colorHover,
-          pointHoverBorderColor: this.colorHover,
-          yAxisID: 'yBar',
+          yAxisID: 'yLine',
           order: 1,
           tension: 0.4,
         },
@@ -429,8 +429,8 @@ export default {
                 const x = chart.tooltip.getActiveElements()[0].element.tooltipPosition().x;
                 const index = chart.tooltip._active[0].index;
 
-                const y = chart.scales.yBar.getPixelForValue(this.yparse[index]);
                 const yBar = chart.scales.y.getPixelForValue(this.ybarparse[index]);
+                const yLine = chart.scales.yLine.getPixelForValue(this.ylineparse[index]);
 
                 ctx.save();
                 ctx.beginPath();
@@ -444,8 +444,8 @@ export default {
 
                 ctx.save();
                 ctx.beginPath();
-                ctx.moveTo(chart.scales.x.right, y);
-                ctx.lineTo(x, y);
+                ctx.moveTo(chart.scales.x.right, yLine);
+                ctx.lineTo(x, yLine);
                 ctx.lineWidth = 1;
                 ctx.strokeStyle = this.colorPrecisionBar;
                 ctx.setLineDash([10, 5]);
@@ -456,7 +456,7 @@ export default {
                 ctx.beginPath();
                 ctx.moveTo(chart.scales.x.left, yBar);
                 ctx.lineTo(x, yBar);
-                ctx.lineWidth = '1';
+                ctx.lineWidth = 1;
                 ctx.strokeStyle = this.colorPrecisionBar;
                 ctx.setLineDash([10, 5]);
                 ctx.stroke();
@@ -507,10 +507,10 @@ export default {
                 this.legendLeftMargin = axis.width;
               },
             },
-            yBar: {
+            yLine: {
               type: 'linear',
               position: 'right',
-              id: 'yBar',
+              id: 'yLine',
               beginAtZero: true,
               grid: {
                 drawTicks: false,
