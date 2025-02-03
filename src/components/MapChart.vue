@@ -343,7 +343,8 @@ export default {
 
         if (self.zoomDep === undefined) {
           // Appliquer les couleurs à chaque département/région
-          const color = getColorsByIndex(key, palette);
+          const color = getColorsByIndex(key === '2A' || key === '2B' ? 20 : key, palette);
+          
           elCol.length !== 0 && elCol[0].setAttribute('fill', color);
           self.FranceProps.displayDep[className] = '';
         } else {
