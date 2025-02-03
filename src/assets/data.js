@@ -121,7 +121,7 @@ export const chartData = {
     },
   },
   mapChart: {
-    departements: {
+    departments: {
       data: `{"01": 10, "02": 83, "03": 67, "04": 6, "05": 47, "06": 96, "07": 77, "08": 75,
               "09": 57, "10": 58, "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41,
               "17": 79, "18": 38, "19": 42, "2A": 63, "2B": 16, "21": 25, "22": 26, "23": 37,
@@ -149,7 +149,7 @@ export const chartData = {
       level: 'reg',
       date: '21/12/2022',
     },
-    singleRegion: {
+    region: {
       data: `{"01": 10, "02": 83, "03": 67, "04": 6, "05": 47, "06": 96, "07": 77, "08": 75,
               "09": 57, "10": 58, "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41,
               "17": 79, "18": 38, "19": 42, "2A": 63, "2B": 16, "21": 25, "22": 26, "23": 37,
@@ -266,9 +266,9 @@ export const chartExamples = [
     title: 'VIII. Cartes',
     desc: 'Les cartes permettent d’afficher une série de données réparties par département ou région. Les cartes sont actuellement disponibles aux niveaux départemental et régional, et il est également possible d’isoler une région pour en afficher les départements.',
     graphs: [
-      { component: MapChart, noPalette: true, heading: '1. Découpage départemental', props: chartData.mapChart.departements },
+      { component: MapChart, noPalette: true, heading: '1. Découpage départemental', props: chartData.mapChart.departments },
       { component: MapChart, noPalette: true, heading: '2. Découpage régional', props: chartData.mapChart.regions },
-      { component: MapChartReg, noPalette: true, heading: '3. Régions', props: chartData.mapChart.singleRegion },
+      { component: MapChartReg, noPalette: true, heading: '3. Région', props: chartData.mapChart.region },
     ],
   },
 ];
