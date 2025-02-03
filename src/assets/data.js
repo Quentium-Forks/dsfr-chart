@@ -4,21 +4,20 @@ import GaugeChart from '@/components/GaugeChart.vue';
 import LineChart from '@/components/LineChart.vue';
 import MapChart from '@/components/MapChart.vue';
 import MapChartReg from '@/components/MapChartReg.vue';
-import MultiLineChart from '@/components/MultiLineChart.vue';
 import PieChart from '@/components/PieChart.vue';
 import RadarChart from '@/components/RadarChart.vue';
 import ScatterChart from '@/components/ScatterChart.vue';
 
 export const chartData = {
   lineChart: {
-    simpleLine: {
-      x: '[2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]',
-      y: '[51.50, 55.30, 61.50, 70.20, 81.10, 92.60, 100.20, 104.60, 96.90, 98.00, 104.90, 106.80, 104.70, 102.70, 100.20, 100.40, 102.90, 106.00, 109.10, 114.60]',
-      name: 'Indices des prix des logements anciens',
+    default: {
+      x: '[[2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]]',
+      y: '[[51.50, 55.30, 61.50, 70.20, 81.10, 92.60, 100.20, 104.60, 96.90, 98.00, 104.90, 106.80, 104.70, 102.70, 100.20, 100.40, 102.90, 106.00, 109.10, 114.60]]',
+      name: '["Indices des prix des logements anciens"]',
       selectedPalette: 'defaultColor',
       unitTooltip: 'points d’indice',
     },
-    multiLine: {
+    multiple: {
       x: '[[1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020], [1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020]]',
       y: '[[54.5, 58.2, 58.1, 59.6, 62.1, 64, 65.9, 67.1, 69, 69.2], [83.9, 83.2, 78.4, 75.9, 74.7, 75.3, 75.2, 75, 75.6, 74.8]]',
       name: '["Femmes", "Hommes"]',
@@ -217,8 +216,8 @@ export const chartExamples = [
     title: 'I. Graphique en ligne',
     desc: 'Un graphique en ligne est un type de visualisation de données qui affiche les valeurs sous forme de points sur une ligne. Elle permet d’affiche une seule ligne ou en présenter plusieurs pour permettre la comparaison.',
     graphs: [
-      { component: LineChart, heading: '1. Graphique en ligne simple', title: 'Évolution du prix des logements anciens entre 2001 et 2020', desc: 'Indices des prix des logements neufs et anciens, France métropolitaine. Base 100 en moyenne en 2015. Insee, 04/11/2024', props: chartData.lineChart.simpleLine },
-      { component: MultiLineChart, heading: '2. Graphique en lignes multiples', title: 'Taux d’activité selon le sexe depuis 1975', desc: 'France hors Mayotte, personnes de 15 à 64 ans vivant en logement ordinaire. Insee, 04/11/2024', props: chartData.lineChart.multiLine },
+      { component: LineChart, heading: '1. Graphique en ligne simple', title: 'Évolution du prix des logements anciens entre 2001 et 2020', desc: 'Indices des prix des logements neufs et anciens, France métropolitaine. Base 100 en moyenne en 2015. Insee, 04/11/2024', props: chartData.lineChart.default },
+      { component: LineChart, heading: '2. Graphique en lignes multiples', title: 'Taux d’activité selon le sexe depuis 1975', desc: 'France hors Mayotte, personnes de 15 à 64 ans vivant en logement ordinaire. Insee, 04/11/2024', props: chartData.lineChart.multiple },
     ],
   },
   {

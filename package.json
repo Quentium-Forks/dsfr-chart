@@ -19,7 +19,6 @@
     "build-line": "LIBRARY=LineChart vite build --config=vite-components.config.js",
     "build-map": "LIBRARY=MapChart vite build --config=vite-components.config.js",
     "build-mapreg": "LIBRARY=MapChartReg vite build --config=vite-components.config.js",
-    "build-multiline": "LIBRARY=MultiLineChart vite build --config=vite-components.config.js",
     "build-pie": "LIBRARY=PieChart vite build --config=vite-components.config.js",
     "build-radar": "LIBRARY=RadarChart vite build --config=vite-components.config.js",
     "build-scatter": "LIBRARY=ScatterChart vite build --config=vite-components.config.js",
