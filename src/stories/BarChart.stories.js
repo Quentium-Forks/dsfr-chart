@@ -20,6 +20,7 @@ export const Horizontal = {
     y: '[[11.1, 10.5, 8.4], [8.8, 7.5, 5.6]]',
     name: '["Empreinte carbone", "Émission sur le territoire national"]',
     horizontal: true,
+    barSize: 20,
     unitTooltip: 'tonnes'
   }
 };
