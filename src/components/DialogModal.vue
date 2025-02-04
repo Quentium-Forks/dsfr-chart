@@ -26,7 +26,8 @@
                 <span class="fr-icon-arrow-right-line fr-icon--lg" />
                 {{ modalTitle }}
               </h1>
-              <div v-html="modalContent"></div>
+              <!-- eslint-disable-next-line vue/no-v-html -->
+              <div v-html="modalContent" />
             </div>
           </div>
         </div>
