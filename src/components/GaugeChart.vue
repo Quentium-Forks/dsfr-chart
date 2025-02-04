@@ -31,7 +31,7 @@
             </p>
           </div>
           <div
-            v-if="initDate !== undefined && targetDate !== undefined"
+            v-if="initDate && targetDate"
             class="gauge-container"
           >
             <p class="fr-text--xs fr-text-mention--grey">
@@ -60,7 +60,7 @@
             </p>
           </div>
           <div
-            v-if="date !== undefined"
+            v-if="date"
             class="flex fr-mt-1w"
           >
             <p class="fr-text--xs">

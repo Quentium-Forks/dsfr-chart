@@ -10,7 +10,7 @@
       <LeftCol :props="leftColProps" />
       <div class="fr-col-12 fr-col-lg-9 align-stretch">
         <button
-          v-if="zoomDep !== undefined"
+          v-if="zoomDep"
           class="fr-btn fr-btn--sm fr-icon-arrow-go-back-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-ml-4w"
           @click="resetGeoFilters"
         >

@@ -88,7 +88,7 @@
             </div>
           </div>
           <div
-            v-if="date !== undefined"
+            v-if="date"
             class="flex fr-mt-1w"
           >
             <p class="fr-text--xs">
@@ -203,7 +203,6 @@ export default {
     return {
       widgetId: '',
       chartId: '',
-      legendLeftMargin: 0,
       display: '',
       datasets: [],
       xAxisType: 'category',
@@ -226,11 +225,6 @@ export default {
       colorBarHover: undefined,
       isSmall: false,
     };
-  },
-  computed: {
-    style() {
-      return this.legendLeftMargin + 'px';
-    },
   },
   created() {
     configureChartDefaults();
@@ -257,7 +251,6 @@ export default {
       if (this.chart) {
         this.chart.destroy();
       }
-      this.legendLeftMargin = 0;
       this.display = '';
       this.datasets = [];
       this.xAxisType = 'category';
@@ -493,9 +486,6 @@ export default {
                   return value;
                 },
               },
-              afterFit: (axis) => {
-                this.legendLeftMargin = axis.width;
-              },
             },
             yLine: {
               type: 'linear',
@@ -521,9 +511,6 @@ export default {
                   }
                   return value;
                 },
-              },
-              afterFit: (axis) => {
-                this.legendLeftMargin = axis.width;
               },
             },
           },
@@ -621,7 +608,7 @@ export default {
                 
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 20;
-                if (tooltipX + tooltipEl.clientWidth + this.legendLeftMargin > positionX + canvasWidth) {
+                if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
                 }
                 if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
