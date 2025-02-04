@@ -1,7 +1,7 @@
 <template>
   <div class="part_container">
     <h2 id="Databox">
-      IX. Databox
+      Databox
     </h2>
     <h3>Présentation</h3>
     <p>Le composant <strong>DataBox</strong> est un composant permettant d'afficher dans un cadre normé des données sous différentes formes (graphiques, chiffres clés, tableaux, etc). Il est à utiliser pour composer un tableau de bord, ou toute page nécessitant de structurer la visualisation de données.</p>
@@ -23,7 +23,7 @@
 
     <div class="chart_container fr-my-6w">
       <h3 id="Databox-simple">
-        1. Databox simple
+        Databox simple
       </h3>
       <hr>
       <data-box
@@ -54,7 +54,7 @@
 
     <div class="chart_container fr-my-6w">
       <h3 id="Databox-complète-multi-source">
-        2. Databox complète multi source
+        Databox complète multi source
       </h3>
       <hr>
       <data-box

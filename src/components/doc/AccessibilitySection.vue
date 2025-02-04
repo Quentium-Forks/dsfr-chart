@@ -1,7 +1,7 @@
 <template>
   <div class="part_container fr-mb-10w">
     <h2 id="Accessibilité">
-      XI. Accessibilité
+      Accessibilité
     </h2>
     <p>Pour permettre d’offrir une alternative à la visualisation des données et ainsi s’adapter tous les publics, il est possible d’accompagner les graphiques d’une présentation des résultats sous la forme de tableaux.</p>
 

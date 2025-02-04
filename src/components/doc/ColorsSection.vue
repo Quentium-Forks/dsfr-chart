@@ -1,7 +1,7 @@
 <template>
   <div class="part_container fr-mb-6w">
     <h2 id="Couleurs">
-      X. Les couleurs
+      Les couleurs
     </h2>
     <h3 class="fr-mt-5w">
       Graphiques unicolores
