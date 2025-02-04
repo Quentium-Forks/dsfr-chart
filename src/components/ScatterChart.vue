@@ -170,10 +170,6 @@ export default {
       type: String,
       default: '',
     },
-    highlightIndex: {
-      type: Number,
-      default: -1,
-    },
     unitTooltip: {
       type: String,
       default: '',
@@ -566,7 +562,6 @@ export default {
         yparse: this.yparse,
         tmpColorParse: this.tmpColorParse,
         selectedPalette: this.selectedPalette,
-        highlightIndex: this.highlightIndex,
         vlineParse: this.vlineParse,
         tmpVlineColorParse: this.tmpVlineColorParse,
         hlineParse: this.hlineParse,
