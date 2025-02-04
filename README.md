@@ -71,7 +71,7 @@ Il existe deux possibilités :
 
 Ce catalogue présente l'ensemble des graphiques disponibles dans le module complémentaire au Système de design de l'État (DSFR) pour la visualisation de données. Les différents types de graphiques sont disponibles en thème clair et thème sombre. Par ailleurs, les options de chacun des graphiques sont également présentés dans ce document.
 
-# I. Graphique en ligne (LineChart)
+# Graphique en ligne (LineChart)
 
 Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
@@ -95,7 +95,6 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
   - `'defaultColor'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
-- **highlightIndex** : _(Number | Array)_ Index ou liste d'index des points à mettre en avant (utilisé principalement avec la palette `'neutral'`).
 - **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 
 ---
@@ -105,7 +104,7 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 **Exemple**:
 
 ```html
-<line-chart x="[1, 2, 3, 4]" y="[10, 20, 30, 40]" unit-tooltip="%"></line-chart>
+<line-chart x="[[1, 2, 3, 4]]" y="[[10, 20, 30, 40]]"></line-chart>
 ```
 
 ---
@@ -116,38 +115,37 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
 ```html
 <line-chart
-  x="[1, 2, 3, 4]"
-  y="[10, 20, 30, 40]"
+  x="[[1, 2, 3, 4]]"
+  y="[[10, 20, 30, 40]]"
   selectedPalette="divergentAscending"
 ></line-chart>
 ```
 
 ---
 
-### 3. Graphique en ligne avec mise en avant de points spécifiques
+### 3. Graphique en ligne avec unité personnalisée dans l'infobulle
 
 **Exemple**:
 
 ```html
 <line-chart
-  x="[1, 2, 3, 4]"
-  y="[10, 20, 30, 40]"
-  selectedPalette="neutral"
-  highlightIndex="[2]"
+  x="[[1, 2, 3, 4]]"
+  y="[[1000, 2000, 3000, 4000]]"
+  unit-tooltip="€"
 ></line-chart>
 ```
 
 ---
 
-### 4. Graphique en ligne avec unité personnalisée dans l'infobulle
+### 4. Graphique en ligne avec deux courbes
 
 **Exemple**:
 
 ```html
 <line-chart
-  x="[1, 2, 3, 4]"
-  y="[1000, 2000, 3000, 4000]"
-  unit-tooltip="€"
+  x="[[1, 2, 3], [1, 2, 3]]"
+  y="[[30, 10, 20], [10, 20, 30]]"
+  unit-tooltip="%"
 ></line-chart>
 ```
 
@@ -156,7 +154,6 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 ## Notes supplémentaires
 
 - **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
-- **highlightIndex** : Utilisé en combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des points spécifiques du graphique. Les index commencent à **0**.
 - **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole un point du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 
 ---
@@ -164,8 +161,8 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 ## Conseils d'utilisation
 
 - **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes, par exemple `x="[1, 2, 3]"`.
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, par exemple en utilisant `selectedPalette` avec `highlightIndex` et `unitTooltip`.
-- **Indexation** : Les index utilisés dans `highlightIndex` correspondent aux positions des points dans vos données `y`. Par exemple, `highlightIndex="[0]"` mettra en avant le premier point.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, par exemple en utilisant `selectedPalette` avec `unitTooltip`.
+- **Personnalisation des séries** : Chaque série de données sera représentée par une ligne distincte. Les couleurs des lignes seront attribuées en fonction de la palette sélectionnée.
 
 ---
 
@@ -175,103 +172,14 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
 ```html
 <line-chart
-  x="[1, 2, 3, 4, 5]"
-  y="[15, 25, 35, 45, 55]"
-  selectedPalette="neutral"
-  highlightIndex="[2, 4]"
+  x="[[1, 2, 3, 4, 5]]"
+  y="[[15, 25, 35, 45, 55]]"
+  selectedPalette="categorical"
   unit-tooltip="kWh"
 ></line-chart>
 ```
 
----
-
-# Graphique en multilignes (LineChart multiples)
-
-Les graphiques en multilignes (ou LineChart multiples) sont accessibles à travers la balise : `<multiline-chart>`.
-
-## Paramètres
-
-### Obligatoires :
-
-- **x** : _(String)_ Les valeurs sur l'axe des abscisses sous forme d'une liste de listes entre crochets.
-- **y** : _(String)_ Les valeurs sur l'axe des ordonnées sous forme d'une liste de listes entre crochets.
-
-### Optionnels :
-
-- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
-
-  - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'defaultColor'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
-
-- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
-
----
-
-**Exemple**:
-
-```html
-<multiline-chart
-  x="[[1, 2, 3], [1, 2, 3]]"
-  y="[[30, 10, 20], [10, 20, 30]]"
-  selectedPalette="divergentAscending"
-  unit-tooltip="%"
-></multiline-chart>
-```
----
-
-## Notes supplémentaires
-
-- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées pour chaque ligne du graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
-- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole un point du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
-
----
-
-## Autres exemples
-
-### 1. Multilignes avec palette séquentielle ascendante et unité personnalisée
-
-**Exemple**:
-
-```html
-<multiline-chart
-  x="[[1, 2, 3], [1, 2, 3]]"
-  y="[[100, 200, 300], [150, 250, 350]]"
-  selectedPalette="sequentialAscending"
-  unit-tooltip="€"
-></multiline-chart>
-```
-
----
-
-### 2. Multilignes avec palette neutre
-
-**Exemple**:
-
-```html
-<multiline-chart
-  x="[[1, 2, 3], [1, 2, 3]]"
-  y="[[5, 15, 25], [10, 20, 30]]"
-  selectedPalette="neutral"
-></multiline-chart>
-```
-
----
-
-## Conseils d'utilisation
-
-- **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes de listes, par exemple `x="[[1, 2, 3], [1, 2, 3]]"`.
-- **Combinaison des options** : Vous pouvez combiner les options `selectedPalette` et `unitTooltip` pour personnaliser davantage votre graphique.
-- **Personnalisation des séries** : Chaque série de données sera représentée par une ligne distincte. Les couleurs des lignes seront attribuées en fonction de la palette sélectionnée.
-
----
-
-# II. Graphique en barre (BarChart)
+# Graphique en barre (BarChart)
 
 Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 
@@ -480,7 +388,7 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 
 ---
 
-# III. Graphique en ligne / Diagramme en barres (BarLineChart)
+# Graphique en ligne / Diagramme en barres (BarLineChart)
 
 Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-line-chart>`.
 
@@ -527,7 +435,7 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 
 ---
 
-# IV. Diagramme circulaire (PieChart)
+# Diagramme circulaire (PieChart)
 
 Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise : `<pie-chart>`.
 
@@ -621,7 +529,184 @@ L’option **fill="true"** permet de remplir l’intérieur du graphique pour ob
 
 ---
 
-# V. Nuage de points (ScatterChart)
+# Cartes (MapChart)
+
+Les cartes sont accessibles à travers la balise : `<map-chart>`.
+
+## Paramètres
+
+### Obligatoires :
+
+- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département ou de région, associe la valeur de l’indicateur dans cette zone géographique.
+
+- **value** : _(String | Number)_ La valeur de l'indicateur à l'échelle nationale. Cette valeur sera affichée dans la barre latérale.
+
+- **name** : _(String)_ Nom de l'indicateur.
+
+### Optionnels :
+
+- **level** : _(String)_ Choix du niveau de zoom. Les valeurs possibles sont :
+
+    - `'dep'` : Carte avec découpage par départements (par défaut).
+    - `'reg'` : Carte avec découpage par régions.
+
+- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour la carte. Les valeurs possibles sont :
+
+    - `'categorical'`
+    - `'sequentialAscending'` (par défaut)
+    - `'sequentialDescending'`
+    - `'divergentAscending'`
+    - `'divergentDescending'`
+    - `'neutral'`
+    - _(laisser vide pour utiliser la palette par défaut)_
+
+----------
+
+## Exemples
+
+### 1. Carte avec découpage par départements
+
+## Exemple :
+
+```html
+<map-chart
+  data='{
+    "01": 72, "02": 83, "03": 67, "04": 36, "05": 47, "06": 96, "07": 77, "08": 75, "09": 57, "10": 58,
+    "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41, "17": 79, "18": 38, "19": 42, "21": 25,
+    "22": 26, "23": 37, "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 12, "30": 6, "31": 5,
+    "32": 22, "33": 40, "34": 19, "35": 13, "36": 32, "37": 0, "38": 82, "39": 13, "40": 78, "41": 92,
+    "42": 10, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72, "48": 61, "49": 27, "50": 47, "51": 41,
+    "52": 44, "53": 29, "54": 22, "55": 4, "56": 57, "57": 94, "58": 46, "59": 33, "60": 0, "61": 15,
+    "62": 60, "63": 71, "64": 0, "65": 91, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 96,
+    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72, "80": 52, "81": 48,
+    "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64, "88": 78, "89": 100, "90": 85, "91": 87,
+    "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
+    "2B": 16
+  }'
+  value="10"
+  name="Nom de l'indicateur"
+  selected-palette="sequentialAscending"
+></map-chart>
+```
+
+----------
+
+### 2. Carte avec découpage par régions
+
+## Exemple :
+
+```html
+<map-chart
+  data='{
+    "84": 1, "32": 10, "93": 20, "44": 30, "76": 40, "28": 50, "75": 60, "24": 70, "53": 80, "94": 90,
+    "52": 100, "01": 95, "02": 85, "03": 75, "04": 65, "06": 55, "27": 100, "11": 35
+  }'
+  value="10"
+  name="Nom de l'indicateur"
+  level="reg"
+  selected-palette="divergentDescending"
+></map-chart>
+```
+
+----------
+
+### 3. Carte régionale détaillée (MapChartReg)
+
+Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`.
+
+#### Paramètres spécifiques :
+
+- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département.
+
+- **value** : _(String | Number)_ La valeur de l'indicateur à l'échelle régionale. Cette valeur sera affichée dans la barre latérale.
+
+- **name** : _(String)_ Nom de l'indicateur.
+
+- **region** : _(String)_ Code de la région à afficher.
+
+- **selectedPalette** : _(String)_ Palette de couleurs utilisée pour la carte (identique à MapChart).
+
+## Exemple :
+
+```html
+<map-chart-reg
+  data='{
+    "01": 72, "02": 83, "03": 67, "04": 36, "05": 47, "06": 96, "07": 77, "08": 75, "09": 57, "10": 58,
+    "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41, "17": 79, "18": 38, "19": 42, "21": 25,
+    "22": 26, "23": 37, "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 12, "30": 6, "31": 5,
+    "32": 22, "33": 40, "34": 19, "35": 13, "36": 32, "37": 0, "38": 82, "39": 13, "40": 78, "41": 92,
+    "42": 10, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72, "48": 61, "49": 27, "50": 47, "51": 41,
+    "52": 44, "53": 29, "54": 22, "55": 4, "56": 57, "57": 94, "58": 46, "59": 33, "60": 0, "61": 15,
+    "62": 60, "63": 71, "64": 0, "65": 91, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 96,
+    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72, "80": 52, "81": 48,
+    "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64, "88": 78, "89": 100, "90": 85, "91": 87,
+    "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
+    "2B": 16
+  }'
+  value="10"
+  name="Nom de l'indicateur"
+  region="93"
+  selected-palette="categorical"
+></map-chart-reg>
+```
+
+----------
+
+## Notes supplémentaires
+
+- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
+
+- **level** : Par défaut, la carte affiche le découpage par départements (`'dep'`). En spécifiant `level="reg"`, vous pouvez afficher la carte avec le découpage par régions.
+
+----------
+
+## Conseils d'utilisation
+
+- **Format des données** : Les clés du dictionnaire `data` doivent correspondre aux codes des départements ou régions (par exemple, `"75"` pour Paris, `"84"` pour la région Auvergne-Rhône-Alpes).
+
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser votre carte.
+
+----------
+
+## Exemple combinant plusieurs options
+
+## Exemple :
+
+```html
+<map-chart
+  data='{"01": 72, "02": 83, "03": 67, "04": 36, "05": 47}'
+  value="65"
+  name="Taux de réussite"
+  selected-palette="neutral"
+  level="dep"
+></map-chart>
+```
+
+----------
+
+## Résumé des paramètres de MapChart
+
+| **paramètre**   | **type**                | **obligatoire** | **description**                                                               |
+|-----------------|-------------------------|-----------------|-------------------------------------------------------------------------------|
+| data            | String                  | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
+| value           | String ou Number        | oui             | Valeur de l'indicateur à l'échelle nationale                                  |
+| name            | String                  | oui             | nom de l'indicateur                                                           |
+| level           | String ('dep' ou 'reg') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions)      |
+| selectedPalette | String                  | non             | palette de couleurs utilisée pour la carte                                    |
+
+## Résumé des paramètres de MapChartReg
+
+| **paramètre**   | **type**         | **obligatoire** | **description**                                                               |
+|-----------------|------------------|-----------------|-------------------------------------------------------------------------------|
+| data            | String           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
+| value           | String ou Number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
+| name            | String           | oui             | nom de l'indicateur                                                           |
+| region          | String           | oui             | code de la région à afficher                                                  |
+| selectedPalette | String           | non             | palette de couleurs utilisée pour la carte                                    |
+
+---
+
+# Nuage de points (ScatterChart)
 
 Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
 
@@ -645,7 +730,6 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
   - `'defaultColor'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
-- **highlightIndex** : _(Number | Array)_ Index ou liste d'index des points à mettre en avant (utilisé principalement avec la palette `'neutral'`).
 - **show-line** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
 
 ---
@@ -694,48 +778,12 @@ Vous pouvez spécifier une palette de couleurs pour le graphique en utilisant le
 
 ---
 
-### 4. Nuage de points avec mise en avant de points spécifiques
-
-Pour mettre en avant des points spécifiques, utilisez la palette `'neutral'` et spécifiez les index des points à mettre en avant avec **highlightIndex**.
-
-**Exemple**:
-
-```html
-<scatter-chart
-  x="[[1, 5, 8]]"
-  y="[[30, 10, 20]]"
-  selectedPalette="neutral"
-  highlightIndex="[1, 2]"
-></scatter-chart>
-```
-
----
-
-### 5. Nuage de points avec lignes et mise en avant
-
-Il est possible de combiner plusieurs options pour personnaliser davantage votre graphique.
-
-**Exemple**:
-
-```html
-<scatter-chart
-  x="[[1, 3, 5, 7]]"
-  y="[[10, 20, 15, 25]]"
-  show-line="true"
-  selectedPalette="neutral"
-  highlightIndex="[2]"
-></scatter-chart>
-```
-
----
-
 ## Notes supplémentaires
 
 - **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
-- **highlightIndex** : En combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des points spécifiques du graphique. Les index commencent à **0**.
 - **show-line** : Utile pour visualiser les tendances ou les relations entre les points en les reliant par des lignes.
 
-# VI. Diagramme en étoile (RadarChart)
+# Diagramme en étoile (RadarChart)
 
 Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise : `<radar-chart>`.
 
@@ -746,7 +794,6 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 - **x** : _(String)_ Les noms de chaque groupe sous la forme d’une liste de listes entre crochets.
 
 - **y** : _(String)_ Les valeurs de chaque groupe sous la forme d’une liste de listes entre crochets.
-
 
 ### Optionnels :
 
@@ -764,7 +811,6 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
     - _(laisser vide pour utiliser la palette par défaut)_
 
 - **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
-
 
 ----------
 
@@ -791,7 +837,6 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 - **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une valeur du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 
-
 ----------
 
 ## Conseils d'utilisation
@@ -803,7 +848,6 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `selectedPalette` avec `unitTooltip`.
 
 - **Personnalisation des séries** : Le paramètre `name` est utilisé pour spécifier les noms des séries de données. Si vous avez plusieurs séries (plusieurs listes dans `y`), vous devez fournir une liste de noms correspondante dans `name`.
-
 
 ----------
 
@@ -840,7 +884,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 </radar-chart>
 ```
 
-# VII. Jauge (GaugeChart)
+# Jauge (GaugeChart)
 
 Ce graphique est généré avec la balise `<gauge-chart> `
 
@@ -860,202 +904,7 @@ Les paramètres obligatoires sont :
 
 ---
 
-# VIII. Cartes (MapChart)
-
-Les cartes sont accessibles à travers la balise : `<map-chart>`.
-
-## Paramètres
-
-### Obligatoires :
-
-- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département ou de région, associe la valeur de l’indicateur dans cette zone géographique.
-
-- **value-nat** : _(String | Number)_ La valeur de l'indicateur à l'échelle nationale. Cette valeur sera affichée dans la barre latérale.
-
-- **name** : _(String)_ Nom de l'indicateur.
-
-
-### Optionnels :
-
-- **level** : _(String)_ Choix du niveau de zoom. Les valeurs possibles sont :
-
-    - `'dep'` : Carte avec découpage par départements (par défaut).
-    - `'reg'` : Carte avec découpage par régions.
-
-- **selectedPalette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour la carte. Les valeurs possibles sont :
-
-    - `'categorical'`
-    - `'sequentialAscending'` (par défaut)
-    - `'sequentialDescending'`
-    - `'divergentAscending'`
-    - `'divergentDescending'`
-    - `'neutral'`
-    - _(laisser vide pour utiliser la palette par défaut)_
-
-- **highlightIndex** : _(Number | String | Array)_ Code ou liste des codes géographiques à mettre en avant sur la carte. Si aucune donnée n'est mise en avant, toutes les zones sont affichées avec la couleur neutre. Par défaut, `-1` signifie aucune mise en avant.
-
-----------
-
-## Exemples
-
-### 1. Carte avec découpage par départements
-
-## Exemple :
-
-```html
-<map-chart
-  data='{
-    "01": 72, "02": 83, "03": 67, "04": 36, "05": 47, "06": 96, "07": 77, "08": 75, "09": 57, "10": 58,
-    "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41, "17": 79, "18": 38, "19": 42, "21": 25,
-    "22": 26, "23": 37, "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 12, "30": 6, "31": 5,
-    "32": 22, "33": 40, "34": 19, "35": 13, "36": 32, "37": 0, "38": 82, "39": 13, "40": 78, "41": 92,
-    "42": 10, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72, "48": 61, "49": 27, "50": 47, "51": 41,
-    "52": 44, "53": 29, "54": 22, "55": 4, "56": 57, "57": 94, "58": 46, "59": 33, "60": 0, "61": 15,
-    "62": 60, "63": 71, "64": 0, "65": 91, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 96,
-    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72, "80": 52, "81": 48,
-    "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64, "88": 78, "89": 100, "90": 85, "91": 87,
-    "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
-    "2B": 16
-  }'
-  value-nat="10"
-  name="Nom de l'indicateur"
-  selected-palette="sequentialAscending"
-  highlightIndex='["75", "13"]'
-></map-chart>
-```
-
-----------
-
-### 2. Carte avec découpage par régions
-
-## Exemple :
-
-```html
-<map-chart
-  data='{
-    "84": 1, "32": 10, "93": 20, "44": 30, "76": 40, "28": 50, "75": 60, "24": 70, "53": 80, "94": 90,
-    "52": 100, "01": 95, "02": 85, "03": 75, "04": 65, "06": 55, "27": 100, "11": 35
-  }'
-  value-nat="10"
-  name="Nom de l'indicateur"
-  level="reg"
-  selected-palette="divergentDescending"
-  highlightIndex='["84", "93"]'
-></map-chart>
-```
-
-----------
-
-### 3. Carte régionale détaillée (MapChart-reg)
-
-Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`.
-
-#### Paramètres spécifiques :
-
-- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département.
-
-- **value-reg** : _(String | Number)_ La valeur de l'indicateur à l'échelle régionale. Cette valeur sera affichée dans la barre latérale.
-
-- **name** : _(String)_ Nom de l'indicateur.
-
-- **region** : _(String)_ Code de la région à afficher.
-
-- **selectedPalette** : _(String)_ Palette de couleurs utilisée pour la carte (identique à MapChart).
-
-- **highlightIndex** : _(Number | String | Array)_ Code ou liste des codes des départements à mettre en avant.
-
-
-## Exemple :
-
-```html
-<map-chart-reg
-  data='{
-    "01": 72, "02": 83, "03": 67, "04": 36, "05": 47, "06": 96, "07": 77, "08": 75, "09": 57, "10": 58,
-    "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41, "17": 79, "18": 38, "19": 42, "21": 25,
-    "22": 26, "23": 37, "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 12, "30": 6, "31": 5,
-    "32": 22, "33": 40, "34": 19, "35": 13, "36": 32, "37": 0, "38": 82, "39": 13, "40": 78, "41": 92,
-    "42": 10, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72, "48": 61, "49": 27, "50": 47, "51": 41,
-    "52": 44, "53": 29, "54": 22, "55": 4, "56": 57, "57": 94, "58": 46, "59": 33, "60": 0, "61": 15,
-    "62": 60, "63": 71, "64": 0, "65": 91, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 96,
-    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72, "80": 52, "81": 48,
-    "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64, "88": 78, "89": 100, "90": 85, "91": 87,
-    "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
-    "2B": 16
-  }'
-  value-reg="10"
-  name="Nom de l'indicateur"
-  region="93"
-  selected-palette="categorical"
-  highlightIndex='["93", "84"]'
-></map-chart-reg>
-```
-
-----------
-
-## Notes supplémentaires
-
-- **selectedPalette** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
-
-- **highlightIndex** : Vous pouvez mettre en avant certaines zones géographiques en spécifiant leurs codes dans une liste. Les zones mises en avant seront affichées avec une couleur différente pour attirer l'attention.
-
-- **level** : Par défaut, la carte affiche le découpage par départements (`'dep'`). En spécifiant `level="reg"`, vous pouvez afficher la carte avec le découpage par régions.
-
-
-----------
-
-## Conseils d'utilisation
-
-- **Format des données** : Les clés du dictionnaire `data` doivent correspondre aux codes des départements ou régions (par exemple, `"75"` pour Paris, `"84"` pour la région Auvergne-Rhône-Alpes).
-
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser votre carte, comme utiliser `selectedPalette` avec `highlightIndex`.
-
-- **Personnalisation des couleurs** : Si vous souhaitez mettre en avant certaines zones, utilisez le paramètre `highlightIndex` en combinaison avec une palette appropriée.
-
-
-----------
-
-## Exemple combinant plusieurs options
-
-## Exemple :
-
-```html
-<map-chart
-  data='{"01": 72, "02": 83, "03": 67, "04": 36, "05": 47}'
-  value-nat="65"
-  name="Taux de réussite"
-  selected-palette="neutral"
-  highlightIndex='["01", "02"]'
-  level="dep"
-></map-chart>
-```
-
-----------
-
-## Résumé des paramètres de MapChart
-
-| **paramètre**   | **type**                | **obligatoire** | **description**                                                               |
-|-----------------|-------------------------|-----------------|-------------------------------------------------------------------------------|
-| data            | String                  | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| value-reg       | String ou Number        | oui             | Valeur de l'indicateur à l'échelle nationale                                  |
-| name            | String                  | oui             | nom de l'indicateur                                                           |
-| level           | String ('dep' ou 'reg') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions)      |
-| selectedPalette | String                  | non             | palette de couleurs utilisée pour la carte                                    |
-| highlightIndex  | Number, String ou Array | non             | Code ou liste des codes géographiques à mettre en avant                       |
-
-
-## Résumé des paramètres de MapChartReg
-
-| **paramètre**   | **type**         | **obligatoire** | **description**                                                               |
-|-----------------|------------------|-----------------|-------------------------------------------------------------------------------|
-| data            | String           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| value-reg       | String ou Number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
-| name            | String           | oui             | nom de l'indicateur                                                           |
-| region          | String           | oui             | code de la région à afficher                                                  |
-| selectedPalette | String           | non             | palette de couleurs utilisée pour la carte                                    |
-
----
-
-# IX. DataBox
+# DataBox
 
 Le composant `DataBox` est un composant polyvalent qui permet d'afficher des données sous différentes formes, notamment des indicateurs, des graphiques, des tableaux, etc. Il intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants pour des actions supplémentaires.
 
@@ -1157,11 +1006,11 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
 
 ---
 
-# X. Couleurs
+# Couleurs
 
 ---
 
-# XI. Accessibilité
+# Accessibilité
 
 ### Tableaux
 
@@ -1175,7 +1024,7 @@ Les paramètres obligatoires sont :
 
 ---
 
-# XII. Options
+# Options
 
 ### Barre verticale
 
