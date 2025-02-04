@@ -18,8 +18,14 @@
             >
               Dans cette rubrique
             </button>
-            <div id="sidemenu" class="fr-collapse">
-              <p id="sidemenu-title" class="fr-sidemenu__title fr-sr-only">
+            <div
+              id="sidemenu"
+              class="fr-collapse"
+            >
+              <p
+                id="sidemenu-title"
+                class="fr-sidemenu__title fr-sr-only"
+              >
                 Menu de navigation
               </p>
               <ul class="fr-sidemenu__list">
@@ -46,13 +52,14 @@
                             class="fr-sidemenu__link"
                             :href="
                               '#' +
-                              encodeURIComponent(
-                                section.title.replace(/ /g, '-')
-                              )
+                                encodeURIComponent(
+                                  section.title.replace(/ /g, '-')
+                                )
                             "
                             target="_self"
-                            >{{ section.title }}</a
                           >
+                            {{ section.title }}
+                          </a>
                         </template>
                         <template v-else>
                           <button
@@ -62,7 +69,10 @@
                           >
                             {{ section.title }}
                           </button>
-                          <div :id="`sidemenu-${i}`" class="fr-collapse">
+                          <div
+                            :id="`sidemenu-${i}`"
+                            class="fr-collapse"
+                          >
                             <ul class="fr-sidemenu__list">
                               <template v-for="(graph, j) in section.graphs">
                                 <li
@@ -75,13 +85,14 @@
                                     class="fr-sidemenu__link"
                                     :href="
                                       '#' +
-                                      encodeURIComponent(
-                                        graph.heading.replace(/ /g, '-')
-                                      )
+                                        encodeURIComponent(
+                                          graph.heading.replace(/ /g, '-')
+                                        )
                                     "
                                     target="_self"
-                                    >{{ graph.heading }}</a
                                   >
+                                    {{ graph.heading }}
+                                  </a>
                                 </li>
                               </template>
                             </ul>
@@ -99,7 +110,10 @@
                   >
                     Databox
                   </button>
-                  <div id="sidemenu-99" class="fr-collapse">
+                  <div
+                    id="sidemenu-99"
+                    class="fr-collapse"
+                  >
                     <ul class="fr-sidemenu__list">
                       <li class="fr-sidemenu__item">
                         <a
@@ -107,8 +121,9 @@
                           class="fr-sidemenu__link"
                           href="#Databox-simple"
                           target="_self"
-                          >Databox simple</a
                         >
+                          Databox simple
+                        </a>
                       </li>
                       <li class="fr-sidemenu__item">
                         <a
@@ -116,24 +131,30 @@
                           class="fr-sidemenu__link"
                           href="#Databox-complète-multi-source"
                           target="_self"
-                          >Databox complète multi source</a
                         >
+                          Databox complète multi source
+                        </a>
                       </li>
                     </ul>
                   </div>
                 </li>
                 <li class="fr-sidemenu__item">
-                  <a class="fr-sidemenu__link" href="#Couleurs" target="_self"
-                    >Les couleurs</a
+                  <a
+                    class="fr-sidemenu__link"
+                    href="#Couleurs"
+                    target="_self"
                   >
+                    Les couleurs
+                  </a>
                 </li>
                 <li class="fr-sidemenu__item">
                   <a
                     class="fr-sidemenu__link"
                     href="#Accessibilité"
                     target="_self"
-                    >Accessibilité</a
                   >
+                    Accessibilité
+                  </a>
                 </li>
               </ul>
             </div>
@@ -170,17 +191,29 @@
             >
               {{
                 PALETTE_LABELS?.[graph.props.selectedPalette] ??
-                "Palette par défaut"
+                  "Palette par défaut"
               }}
             </p>
-            <h3 v-if="graph.title" class="fr-h6 fr-text--bold fr-mb-0">
+            <h3
+              v-if="graph.title"
+              class="fr-h6 fr-text--bold fr-mb-0"
+            >
               {{ graph.title }}
             </h3>
-            <p v-if="graph.desc" class="fr-text--sm">
+            <p
+              v-if="graph.desc"
+              class="fr-text--sm"
+            >
               {{ graph.desc }}
             </p>
-            <component :is="graph.component" v-bind="graph.props" />
-            <CodeBlock :component="graph.component" :attributes="graph.props" />
+            <component
+              :is="graph.component"
+              v-bind="graph.props"
+            />
+            <CodeBlock
+              :component="graph.component"
+              :attributes="graph.props"
+            />
           </div>
         </div>
 
