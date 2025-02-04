@@ -61,7 +61,7 @@
 
         <!-- More actions -->
         <nav
-          v-if="screenshot || download"
+          v-if="screenshot || download || actions.length"
           role="navigation"
           class="fr-translate fr-nav more-actions-menu"
         >
@@ -93,6 +93,18 @@
                     @click="downloadCSV(selectedView)"
                   >
                     Télécharger en CSV
+                  </button>
+                </li>
+                <li
+                  v-for="(action, i) in actions"
+                  :key="i"
+                >
+                  <button
+                    :id="toKebabCase(action)"
+                    class="fr-translate__language fr-nav__link"
+                    :title="action"
+                  >
+                    {{ action }}
                   </button>
                 </li>
               </ul>
@@ -288,6 +300,14 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  modalTitle: {
+    type: String,
+    default: '',
+  },
+  modalContent: {
+    type: String,
+    default: '',
+  },
   source: {
     type: String,
     required: true,
@@ -320,13 +340,9 @@ const props = defineProps({
     type: [Boolean, String],
     default: false,
   },
-  modalTitle: {
-    type: String,
-    default: '',
-  },
-  modalContent: {
-    type: String,
-    default: '',
+  actions: {
+    type: [Array, String],
+    default: () => [],
   },
 });
 
@@ -351,12 +367,20 @@ const segmentedControl = computed(() => [true, 'true', ''].includes(props.segmen
 const fullscreen = computed(() => [true, 'true', ''].includes(props.fullscreen));
 const screenshot = computed(() => [true, 'true', ''].includes(props.screenshot));
 const download = computed(() => [true, 'true', ''].includes(props.download));
+const actions = computed(() => typeof props.actions === 'string' ? JSON.parse(props.actions) : props.actions);
 
 const selectedView = ref('chart');
 
 const changeView = (view) => {
   selectedView.value = view;
 };
+
+const toKebabCase = (str) =>
+  str
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]/g, '-')
+    .toLowerCase();
 
 const downloadCSV = (mode) => {
   const dom = document.querySelector(`[databox-id="${props.id}"][databox-type="${mode}"][databox-source="${currentSource.value}"]`);

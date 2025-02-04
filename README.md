@@ -1067,6 +1067,8 @@ Le composant `DataBox` est un composant polyvalent qui permet d'afficher des don
     title="Emplois en France de 1926 à 1950"
     tooltip-title="Emplois en France"
     tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
+    modal-title="Titre de la modale"
+    modal-content="Contenu de la modale"
     source="INSEE, Pôle Emploi, Autre source"
     date="2021-01-01"
     default-source="pole-emploi"
@@ -1075,8 +1077,7 @@ Le composant `DataBox` est un composant polyvalent qui permet d'afficher des don
     screenshot="true"
     download="true"
     fullscreen="true"
-    modal-title="Titre de la modale"
-    modal-content="Contenu de la modale">
+    actions='["Source officielle", "Pôle emploi"]'>
 </data-box>
 ```
 
@@ -1091,16 +1092,17 @@ Voici la liste des props disponibles pour le composant `DataBox` :
 - **date** `(String)` : date des données affichées
 
 ### Optionnelles
-- **tooltipTitle** `(String)` (défaut : '') : titre de la tooltip
-- **tooltipContent** `(String)` (défaut : '') : contenu de la tooltip
-- **defaultSource** `(String)` (défaut : null) : source à afficher par défaut
+- **tooltip-title** `(String)` (défaut : '') : titre de la tooltip
+- **tooltip-content** `(String)` (défaut : '') : contenu de la tooltip
+- **modal-title** `(String)` (défaut : '') : titre de la modale
+- **modal-content** `(String)` (défaut : '') : contenu de la modale
+- **default-source** `(String)` (défaut : null) : source à afficher par défaut
 - **trend** `(String)` (défaut : null) : tendance de l'évolution des données
-- **segmentedControl** `(Boolean)` (défaut : true) : afficher le système de vue graphique/tableau
+- **segmented-control** `(Boolean)` (défaut : true) : afficher le système de vue graphique/tableau
 - **fullscreen** `(Boolean)` (défaut : false) : donner la possibilité d'ouvrir le graphique dans une modale
 - **screenshot** `(Boolean)` (défaut : false) : permettre une capture d'écran de la DataBox
 - **download** `(Boolean)` (défaut : false) : télécharger les données du graphique au format CSV
-- **modalTitle** `(String)` (défaut : '') : titre de la modale
-- **modalContent** `(String)` (défaut : '') : contenu de la modale
+- **actions** `(Array)` (défaut : []) : liste des actions supplémentaires à afficher dans le menu (pour se greffer par la suite avec l'id)
 
 ### Mise en place du graphique
 
@@ -1118,6 +1120,8 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
   title="Emplois en France de 1926 à 1950"
   tooltip-title="Emplois en France"
   tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
+  modal-title="Titre de la modale"
+  modal-content="Contenu de la modale"
   source="INSEE, Pôle Emploi, Autre source"
   date="2021-01-01"
   default-source="pole-emploi"
@@ -1126,8 +1130,7 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
   screenshot="true"
   download="true"
   fullscreen="true"
-  modal-title="Titre de la modale"
-  modal-content="Contenu de la modale">
+  actions='["Source officielle", "Pôle emploi"]'>
 </data-box>
 
 <scatter-chart

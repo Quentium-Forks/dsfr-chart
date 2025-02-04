@@ -74,12 +74,15 @@ export const Complete = {
     title: 'Emplois en France de 1926 à 1950',
     tooltipTitle: 'Emplois en France',
     tooltipContent: "Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source.",
+    modalTitle: 'Titre de la modale',
+    modalContent: 'Contenu de la modale',
     source: 'INSEE, Pôle Emploi, Autre source',
     trend: '+15 points',
     segmentedControl: true,
     screenshot: true,
     download: true,
-    fullscreen: true
+    fullscreen: true,
+    actions: ['Source officielle', 'Pôle emploi']
   },
   render: (args) => html`
     <data-box
