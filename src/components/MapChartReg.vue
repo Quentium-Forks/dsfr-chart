@@ -208,13 +208,13 @@ export default {
 
       // Iterate over each department in the region and set colors
       for (const key in self.dataParse) {
-        const className = this.getClassMap(key, 'dep'); // Use department-level mapping
+        const className = this.getClassMap(key, 'dep');
         const elCol = parentWidget.getElementsByClassName(className);
 
         if (listDep.includes(key)) {
           // If the department is in the selected region
           elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
-          self.FranceProps.displayDep[className] = ''; // Show the department
+          self.FranceProps.displayDep[className] = '';
           const polygon = elCol[0].getBBox();
           xmin.push(polygon.x);
           ymin.push(polygon.y);

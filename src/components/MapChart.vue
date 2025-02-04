@@ -337,6 +337,7 @@ export default {
         ymin = [],
         ymax = [];
 
+      // Iterate over each department in the region and set colors
       for (const key in self.dataParse) {
         const className = this.getClassMap(key, this.level);
         const elCol = parentWidget.getElementsByClassName(className);
@@ -377,14 +378,14 @@ export default {
         // Logic for zoom level and dimensions adjustment
         if (this.level === 'dep') {
           this.leftColProps.localisation = this.getDep(this.zoomDep).label;
-          xmin = Math.min.apply(null, xmin);
-          ymin = Math.min.apply(null, ymin);
-          xmax = Math.max.apply(null, xmax);
-          ymax = Math.max.apply(null, ymax);
-          const width = xmax - xmin;
-          const height = ymax - ymin;
+          const xminValue = Math.min(...xmin);
+          const yminValue = Math.min(...ymin);
+          const xmaxValue = Math.max(...xmax);
+          const ymaxValue = Math.max(...ymax);
+          const width = xmaxValue - xminValue;
+          const height = ymaxValue - yminValue;
           const size = Math.max(width, height);
-          this.FranceProps.viewBox = xmin + ' ' + ymin + ' ' + size + ' ' + size;
+          this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
         } else if (this.level === 'reg') {
           this.leftColProps.localisation = this.getReg(this.zoomDep).label;
         } else {
