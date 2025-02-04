@@ -1,6 +1,6 @@
 <template>
   <div class="part_container">
-    <h2 id="IX.-Databox">
+    <h2 id="Databox">
       IX. Databox
     </h2>
     <h3>Présentation</h3>
@@ -22,7 +22,7 @@
     </ul>
 
     <div class="chart_container fr-my-6w">
-      <h3 id="IX.-Databox-simple">
+      <h3 id="Databox-simple">
         1. Databox simple
       </h3>
       <hr>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="chart_container fr-my-6w">
-      <h3 id="IX.-Databox-complète-multi-source">
+      <h3 id="Databox-complète-multi-source">
         2. Databox complète multi source
       </h3>
       <hr>
