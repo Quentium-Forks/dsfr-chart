@@ -204,7 +204,6 @@ export default {
       hlineColorParse: [],
       tmpHlineColorParse: [],
       hlineNameParse: [],
-      ymax: 0,
       colorHover: [],
       isSmall: false,
     };
@@ -257,7 +256,6 @@ export default {
       this.hlineColorParse = [];
       this.tmpHlineColorParse = [];
       this.hlineNameParse = [];
-      this.ymax = 0;
       this.colorHover = [];
     },
     getData() {
@@ -356,8 +354,6 @@ export default {
         this.xAxisType = 'category';
       }
 
-      this.ymax = Math.max.apply(null, this.hlineParse);
-
       // Chargement des couleurs
       this.loadColors();
 
@@ -427,34 +423,25 @@ export default {
           aspectRatio: this.aspectRatio,
           scales: {
             x: {
+              offset: true,
               type: this.xAxisType,
               grid: {
                 drawOnChartArea: false,
-                lineWidth: 1,
               },
               ticks: {
-                callback: (value) => {
-                  if (this.formatDate) {
-                    return value.toString().substring(5, 7) + '/' + value.toString().substring(0, 4);
-                  } else {
-                    return value;
-                  }
-                },
+                padding: 10,
               },
             },
             y: {
               grid: {
                 drawTicks: false,
-                lineWidth: 1,
               },
               border: {
                 dash: [3],
               },
               ticks: {
                 padding: 5,
-                autoSkip: true,
                 maxTicksLimit: 5,
-                suggestedMax: this.ymax,
                 callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';

@@ -1120,7 +1120,7 @@ const allToken = {
     dark: '#242424',
   },
   'text-mention-grey': {
-    light: '#666666',
+    light: '#6b6b6b',
     dark: '#929292',
   },
   'border-default-grey': {

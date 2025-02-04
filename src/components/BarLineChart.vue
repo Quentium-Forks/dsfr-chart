@@ -220,7 +220,6 @@ export default {
       hlineColorParse: [],
       tmpHlineColorParse: [],
       hlineNameParse: [],
-      ymax: 0,
       colorParse: undefined,
       colorBarParse: undefined,
       colorHover: undefined,
@@ -274,7 +273,6 @@ export default {
       this.hlineColorParse = [];
       this.tmpHlineColorParse = [];
       this.hlineNameParse = [];
-      this.ymax = 0;
       this.colorParse = undefined;
       this.colorBarParse = undefined;
       this.colorHover = undefined;
@@ -350,8 +348,6 @@ export default {
         this.labels = this.xparse;
         this.xAxisType = 'category';
       }
-
-      this.ymax = Math.max.apply(null, this.hlineParse);
 
       // Chargement des couleurs
       this.loadColors();
@@ -470,9 +466,8 @@ export default {
               offset: true,
               type: this.xAxisType,
               grid: {
-                drawTicks: true,
+                drawTicks: false,
                 drawOnChartArea: false,
-                lineWidth: 1,
               },
             },
             y: {
@@ -480,15 +475,12 @@ export default {
               position: 'left',
               grid: {
                 drawTicks: false,
-                lineWidth: 1,
               },
               border: {
                 dash: [3],
               },
               ticks: {
                 padding: 10,
-                suggestedMin: 0,
-                suggestedMax: this.ymax,
                 maxTicksLimit: 5,
                 callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
@@ -512,7 +504,6 @@ export default {
               beginAtZero: true,
               grid: {
                 drawTicks: false,
-                lineWidth: 1,
               },
               border: {
                 dash: [3],
@@ -520,7 +511,6 @@ export default {
               ticks: {
                 padding: 10,
                 maxTicksLimit: 5,
-                suggestedMin: 0,
                 callback: (value) => {
                   if (value >= 1000000000 || value <= -1000000000) {
                     return value / 1e9 + 'B';

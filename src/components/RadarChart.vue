@@ -261,11 +261,11 @@ export default {
                 borderDash: [3, 3],
               },
               ticks: {
-                display: false, // Hide the tick labels
+                display: false,
                 backdropColor: 'transparent',
               },
               grid: {
-                color: '#666666',
+                color: '#6b6b6b',
               },
             },
           },

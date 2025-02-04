@@ -257,8 +257,8 @@ export default {
               offset: !this.horizontal,
               stacked: this.stacked,
               grid: {
-                display: false,
-                borderColor: 'transparent',
+                drawTicks: false,
+                drawOnChartArea: false,
               },
               ticks: {
                 beginAtZero: true,
@@ -270,7 +270,6 @@ export default {
               offset: this.horizontal,
               grid: {
                 drawTicks: false,
-                lineWidth: 1,
               },
               border: {
                 dash: [3],
