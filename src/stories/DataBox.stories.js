@@ -32,10 +32,6 @@ export const Simple = {
       source="${args.source}"
       date="${args.date}"
       trend="${args.trend}"
-      segmented-control="${args.segmentedControl}"
-      screenshot="${args.screenshot}"
-      download="${args.download}"
-      fullscreen="${args.fullscreen}"
     >
     </data-box>
     <pie-chart
@@ -130,5 +126,25 @@ export const Complete = {
       table-name="Années"
     >
     </table-chart>
+  `
+};
+
+export const Number = {
+  args: chartData.dataBox.number,
+  render: (args) => html`
+    <data-box
+      id="${args.id}"
+      title="${args.title}"
+      tooltip-title="${args.tooltipTitle}"
+      tooltip-content="${args.tooltipContent}"
+      modal-title="${args.modalTitle}"
+      modal-content="${args.modalContent}"
+      value="${args.value}"
+      source="${args.source}"
+      date="${args.date}"
+      trend="${args.trend}"
+      segmented-control="${args.segmentedControl}"
+    >
+    </data-box>
   `
 };
