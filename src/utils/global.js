@@ -20,15 +20,6 @@ export const convertFloatToHuman = function (float) {
   }
 };
 
-export const changeDateFormat = function (date) {
-  if (date !== undefined && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
-    const dateArray = date.split('-');
-    return `${dateArray[2]}/${dateArray[1]}/${dateArray[0]}`;
-  } else {
-    return '';
-  }
-};
-
 export const convertIntToHuman = function (int) {
   let res = parseFloat(int);
   if (Math.floor(res / 1000000000) >= 10) {
@@ -60,15 +51,6 @@ export const convertIntToHumanTable = function (int) {
   } else {
     return parseFloat(res).toFixed(2).toLocaleString('fr-FR');
   }
-};
-
-export const convertDateToHuman = function (string) {
-  const date = new Date(string);
-  return date.toLocaleDateString('fr-FR');
-};
-
-export const testIfNaN = function (float) {
-  return isNaN(parseFloat(float));
 };
 
 export const isMobile = function () {
@@ -1152,8 +1134,6 @@ export const mixin = {
     convertFloatToHuman,
     convertIntToHuman,
     convertIntToHumanTable,
-    convertDateToHuman,
-    testIfNaN,
     getDep,
     getReg,
     getAcad,
