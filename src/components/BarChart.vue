@@ -81,7 +81,7 @@ export default {
     },
     name: {
       type: String,
-      default: undefined,
+      default: '',
     },
     stacked: {
       type: [Boolean, String],
@@ -96,15 +96,15 @@ export default {
       default: 'flex',
     },
     maxBarSize: {
-      type: Number,
+      type: [Number, String],
       default: 32,
     },
     date: {
       type: String,
-      default: undefined,
+      default: '',
     },
     aspectRatio: {
-      type: Number,
+      type: [Number, String],
       default: 2,
     },
     selectedPalette: {
@@ -127,7 +127,7 @@ export default {
       widgetId: '',
       chartId: '',
       datasets: [],
-      labels: undefined,
+      labels: [],
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -179,7 +179,7 @@ export default {
       }
 
       let tmpNameParse = [];
-      if (this.name !== undefined) {
+      if (this.name) {
         try {
           tmpNameParse = JSON.parse(this.name);
         } catch (error) {
@@ -189,7 +189,7 @@ export default {
 
       // Assignation des noms de séries
       for (let i = 0; i < this.yparse.length; i++) {
-        if (tmpNameParse[i] !== undefined) {
+        if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
           this.nameParse.push('Série ' + (i + 1));

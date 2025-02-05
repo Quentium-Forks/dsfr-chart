@@ -118,35 +118,31 @@ export default {
     },
     name: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vline: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vlinecolor: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vlinename: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hline: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hlinecolor: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hlinename: {
       type: String,
-      default: undefined,
-    },
-    pointRadius: {
-      type: Number,
-      default: 5,
+      default: '',
     },
     showLine: {
       type: [Boolean, String],
@@ -154,10 +150,10 @@ export default {
     },
     date: {
       type: String,
-      default: undefined,
+      default: '',
     },
     aspectRatio: {
-      type: Number,
+      type: [Number, String],
       default: 2,
     },
     formatDate: {
@@ -182,7 +178,7 @@ export default {
       display: '',
       datasets: [],
       xAxisType: 'category',
-      labels: undefined,
+      labels: [],
       opacity: [],
       xparse: [],
       yparse: [],
@@ -224,7 +220,7 @@ export default {
       }
       this.datasets = [];
       this.xAxisType = 'category';
-      this.labels = undefined;
+      this.labels = [];
       this.opacity = [];
       this.xparse = [];
       this.yparse = [];
@@ -252,7 +248,7 @@ export default {
       }
 
       let tmpNameParse = [];
-      if (this.name !== undefined) {
+      if (this.name) {
         try {
           tmpNameParse = JSON.parse(this.name);
         } catch (error) {
@@ -261,7 +257,7 @@ export default {
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
-        if (tmpNameParse[i] !== undefined) {
+        if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
           this.nameParse.push('Série ' + (i + 1));
@@ -269,18 +265,18 @@ export default {
       }
 
       // Récupération données Vline
-      if (this.vline !== undefined) {
+      if (this.vline) {
         this.vlineParse = JSON.parse(this.vline);
         let tmpVlineNameParse = [];
-        if (this.vlinename !== undefined) {
+        if (this.vlinename) {
           tmpVlineNameParse = JSON.parse(this.vlinename);
         }
-        if (this.vlinecolor !== undefined) {
+        if (this.vlinecolor) {
           this.tmpVlineColorParse = JSON.parse(this.vlinecolor);
         }
 
         for (let i = 0; i < this.vlineParse.length; i++) {
-          if (tmpVlineNameParse[i] !== undefined) {
+          if (tmpVlineNameParse[i]) {
             this.vlineNameParse.push(tmpVlineNameParse[i]);
           } else {
             this.vlineNameParse.push('V' + (i + 1));
@@ -289,18 +285,18 @@ export default {
       }
 
       // Récupération données Hline
-      if (this.hline !== undefined) {
+      if (this.hline) {
         this.hlineParse = JSON.parse(this.hline);
         let tmpHlineNameParse = [];
-        if (this.hlinename !== undefined) {
+        if (this.hlinename) {
           tmpHlineNameParse = JSON.parse(this.hlinename);
         }
-        if (this.hlinecolor !== undefined) {
+        if (this.hlinecolor) {
           this.tmpHlineColorParse = JSON.parse(this.hlinecolor);
         }
 
         for (let i = 0; i < this.hlineParse.length; i++) {
-          if (tmpHlineNameParse[i] !== undefined) {
+          if (tmpHlineNameParse[i]) {
             this.hlineNameParse.push(tmpHlineNameParse[i]);
           } else {
             this.hlineNameParse.push('H' + (i + 1));
@@ -328,7 +324,7 @@ export default {
           });
           data.push(dj);
         });
-        this.labels = undefined;
+        this.labels = [];
         this.xAxisType = 'linear';
       } else {
         // Cas où x est non numérique
@@ -346,8 +342,8 @@ export default {
         fill: false,
         borderColor: this.colorParse[index],
         backgroundColor: this.colorParse[index],
-        pointRadius: this.pointRadius,
-        pointHoverRadius: this.pointRadius,
+        pointRadius: 5,
+        pointHoverRadius: 5,
         pointHoverBackgroundColor: this.colorHover[index],
         pointHoverBorderColor: this.colorHover[index],
         showLine: this.showLine,
@@ -454,8 +450,6 @@ export default {
                       const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
                       if (index !== -1) {
                         label.push(this.convertIntToHuman(this.yparse[i][index]));
-                      } else {
-                        label.push(undefined);
                       }
                     } else {
                       label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
@@ -509,7 +503,7 @@ export default {
 
                   bodyLines[0].forEach((line, i) => {
                     const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
-                    if (line !== undefined) {
+                    if (line) {
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
                           <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>

@@ -83,14 +83,14 @@ export default {
     },
     name: {
       type: String,
-      default: undefined,
+      default: '',
     },
     date: {
       type: String,
-      default: undefined,
+      default: '',
     },
     aspectRatio: {
-      type: Number,
+      type: [Number, String],
       default: 2,
     },
     selectedPalette: {
@@ -110,7 +110,7 @@ export default {
       chartId: '',
       display: '',
       datasets: [],
-      labels: undefined,
+      labels: [],
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -143,7 +143,7 @@ export default {
       }
       this.display = '';
       this.datasets = [];
-      this.labels = undefined;
+      this.labels = [];
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
@@ -162,7 +162,7 @@ export default {
       }
 
       let tmpNameParse = [];
-      if (this.name !== undefined) {
+      if (this.name) {
         try {
           tmpNameParse = JSON.parse(this.name);
         } catch (error) {
@@ -171,7 +171,7 @@ export default {
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
-        if (tmpNameParse[i] !== undefined) {
+        if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
           this.nameParse.push('Série ' + (i + 1));
@@ -323,7 +323,7 @@ export default {
 
                   // Process each line in bodyLines to display in the tooltip
                   bodyLines[0].forEach((line, i) => {
-                    if (line !== undefined && tooltipModel.dataPoints[i]) {
+                    if (line && tooltipModel.dataPoints[i]) {
                       // Get the color for the specific dataset index safely
                       const dataPoint = tooltipModel.dataPoints[i];
                       const datasetIndex = dataPoint.datasetIndex;

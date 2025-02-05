@@ -83,7 +83,7 @@ export default {
     },
     value: {
       type: [Number, String],
-      default: undefined,
+      default: '',
     },
     date: {
       type: String,
@@ -113,7 +113,7 @@ export default {
       scaleMax: 0,
       colLeft: '',
       colRight: '',
-      zoomDep: undefined,
+      zoomDep: '',
       leftColProps: {
         localisation: '',
         names: [],
@@ -300,7 +300,7 @@ export default {
       this.createChart();
     },
     resetGeoFilters() {
-      this.zoomDep = undefined;
+      this.zoomDep = '';
       this.createChart();
     },
     changeTheme(theme) {

@@ -93,23 +93,23 @@ export default {
     },
     x: {
       type: String,
-      default: undefined,
+      default: '',
     },
     y: {
       type: String,
-      default: undefined,
+      default: '',
     },
     line: {
       type: String,
-      default: undefined,
+      default: '',
     },
     name: {
       type: String,
-      default: undefined,
+      default: '',
     },
     tableName: {
       type: String,
-      default: undefined,
+      default: '',
     },
   },
   data() {
@@ -139,23 +139,27 @@ export default {
     },
     getData() {
       // Parsing des données
-      try {
-        this.xparse = JSON.parse(this.x ?? '[]');
-        this.yparse = JSON.parse(this.y ?? '[]');
-      } catch (error) {
-        console.error('Erreur lors du parsing des données x ou y:', error);
-        return;
+      if (this.x && this.y) {
+        try {
+          this.xparse = JSON.parse(this.x ?? '[]');
+          this.yparse = JSON.parse(this.y ?? '[]');
+        } catch (error) {
+          console.error('Erreur lors du parsing des données x ou y:', error);
+          return;
+        }
       }
 
-      try {
-        this.lineParse = JSON.parse(this.line ?? '[]');
-      } catch (error) {
-        console.error('Erreur lors du parsing des données line:', error);
-        return;
+      if (this.line) {
+        try {
+          this.lineParse = JSON.parse(this.line ?? '[]');
+        } catch (error) {
+          console.error('Erreur lors du parsing des données line:', error);
+          return;
+        }
       }
 
       let tmpNameParse = [];
-      if (this.name !== undefined) {
+      if (this.name) {
         try {
           tmpNameParse = JSON.parse(this.name);
         } catch (error) {
@@ -164,7 +168,7 @@ export default {
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
-        if (tmpNameParse[i] !== undefined) {
+        if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
           this.nameParse.push('Série ' + (i + 1));

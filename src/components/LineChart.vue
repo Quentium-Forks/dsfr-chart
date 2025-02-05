@@ -132,38 +132,38 @@ export default {
     },
     name: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vline: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vlinecolor: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vlinename: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hline: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hlinecolor: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hlinename: {
       type: String,
-      default: undefined,
+      default: '',
     },
     date: {
       type: String,
-      default: undefined,
+      default: '',
     },
     aspectRatio: {
-      type: Number,
+      type: [Number, String],
       default: 2,
     },
     formatDate: {
@@ -188,7 +188,7 @@ export default {
       display: '',
       datasets: [],
       xAxisType: 'category',
-      labels: undefined,
+      labels: [],
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -230,7 +230,7 @@ export default {
       this.display = '';
       this.datasets = [];
       this.xAxisType = '';
-      this.labels = undefined;
+      this.labels = [];
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
@@ -257,7 +257,7 @@ export default {
       }
 
       let tmpNameParse = [];
-      if (this.name !== undefined) {
+      if (this.name) {
         try {
           tmpNameParse = JSON.parse(this.name);
         } catch (error) {
@@ -266,7 +266,7 @@ export default {
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
-        if (tmpNameParse[i] !== undefined) {
+        if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
           this.nameParse.push('Série ' + (i + 1));
@@ -274,18 +274,18 @@ export default {
       }
 
       // Récupération données Vline
-      if (this.vline !== undefined) {
+      if (this.vline) {
         this.vlineParse = JSON.parse(this.vline);
         let tmpVlineNameParse = [];
-        if (this.vlinename !== undefined) {
+        if (this.vlinename) {
           tmpVlineNameParse = JSON.parse(this.vlinename);
         }
-        if (this.vlinecolor !== undefined) {
+        if (this.vlinecolor) {
           this.tmpVlineColorParse = JSON.parse(this.vlinecolor);
         }
 
         for (let i = 0; i < this.vlineParse.length; i++) {
-          if (tmpVlineNameParse[i] !== undefined) {
+          if (tmpVlineNameParse[i]) {
             this.vlineNameParse.push(tmpVlineNameParse[i]);
           } else {
             this.vlineNameParse.push('V' + (i + 1));
@@ -294,18 +294,18 @@ export default {
       }
 
       // Récupération données Hline
-      if (this.hline !== undefined) {
+      if (this.hline) {
         this.hlineParse = JSON.parse(this.hline);
         let tmpHlineNameParse = [];
-        if (this.hlinename !== undefined) {
+        if (this.hlinename) {
           tmpHlineNameParse = JSON.parse(this.hlinename);
         }
-        if (this.hlinecolor !== undefined) {
+        if (this.hlinecolor) {
           this.tmpHlineColorParse = JSON.parse(this.hlinecolor);
         }
 
         for (let i = 0; i < this.hlineParse.length; i++) {
-          if (tmpHlineNameParse[i] !== undefined) {
+          if (tmpHlineNameParse[i]) {
             this.hlineNameParse.push(tmpHlineNameParse[i]);
           } else {
             this.hlineNameParse.push('H' + (i + 1));
@@ -333,7 +333,7 @@ export default {
           });
           data.push(dj);
         });
-        this.labels = undefined;
+        this.labels = [];
         this.xAxisType = 'linear';
       } else {
         // Cas où x est non numérique
@@ -365,7 +365,7 @@ export default {
       this.colorHover = [];
       const palette = this.choosePalette();
       for (let i = 0; i < this.yparse.length; i++) {
-        if (this.tmpColorParse[i] !== undefined) {
+        if (this.tmpColorParse[i]) {
           const color = this.tmpColorParse[i];
           this.colorParse.push(color);
           this.colorHover.push(chroma(color).brighten(0.5).hex());
@@ -379,7 +379,7 @@ export default {
       // Couleurs pour les lignes verticales (vlines)
       this.vlineColorParse = [];
       for (let i = 0; i < this.vlineParse.length; i++) {
-        if (this.tmpVlineColorParse[i] !== undefined) {
+        if (this.tmpVlineColorParse[i]) {
           this.vlineColorParse.push(this.tmpVlineColorParse[i]);
         } else {
           this.vlineColorParse.push(getNeutralColor());
@@ -389,7 +389,7 @@ export default {
       // Couleurs pour les lignes horizontales (hlines)
       this.hlineColorParse = [];
       for (let i = 0; i < this.hlineParse.length; i++) {
-        if (this.tmpHlineColorParse[i] !== undefined) {
+        if (this.tmpHlineColorParse[i]) {
           this.hlineColorParse.push(this.tmpHlineColorParse[i]);
         } else {
           this.hlineColorParse.push(getNeutralColor());
@@ -517,8 +517,6 @@ export default {
                       const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
                       if (index !== -1) {
                         label.push(this.yparse[i][index]);
-                      } else {
-                        label.push(undefined);
                       }
                     } else {
                       label.push(set.data[tooltipItems.dataIndex]);
@@ -574,7 +572,7 @@ export default {
 
                   bodyLines[0].forEach((line, i) => {
                     const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
-                    if (line !== undefined) {
+                    if (line) {
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
                           <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>

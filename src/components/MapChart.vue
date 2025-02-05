@@ -192,7 +192,7 @@ export default {
     },
     value: {
       type: [Number, String],
-      default: undefined,
+      default: '',
     },
     date: {
       type: String,
@@ -225,7 +225,7 @@ export default {
       isDep: true,
       isReg: false,
       isAcad: false,
-      zoomDep: undefined,
+      zoomDep: '',
       prefixClass: 'FR-',
       leftColProps: {
         localisation: '',
@@ -309,7 +309,7 @@ export default {
       self.FranceProps.displayDep = {};
 
       // Remplir la carte avec les départements/régions
-      if (this.zoomDep !== undefined) {
+      if (this.zoomDep) {
         if (this.level === 'dep') {
           const a = this.getDep(this.zoomDep).region_value;
           listDep = this.getDepsFromReg(a);
@@ -342,7 +342,7 @@ export default {
         const className = this.getClassMap(key, this.level);
         const elCol = parentWidget.getElementsByClassName(className);
 
-        if (self.zoomDep === undefined) {
+        if (!self.zoomDep) {
           // Appliquer les couleurs à chaque département/région
           const color = getColorsByIndex(key === '2A' || key === '2B' ? 20 : key, palette);
           
@@ -374,7 +374,7 @@ export default {
       }
 
       // Zoom logic remains the same, unchanged
-      if (this.zoomDep !== undefined) {
+      if (this.zoomDep) {
         // Logic for zoom level and dimensions adjustment
         if (this.level === 'dep') {
           this.leftColProps.localisation = this.getDep(this.zoomDep).label;
@@ -524,7 +524,7 @@ export default {
       this.createChart();
     },
     resetGeoFilters() {
-      this.zoomDep = undefined;
+      this.zoomDep = '';
       this.createChart();
     },
     choosePalette() {

@@ -93,28 +93,28 @@ export default {
       default: 'default',
     },
     value: {
-      type: Number,
-      default: undefined,
+      type: [Number, String],
+      default: '',
     },
     percent: {
-      type: Number,
-      default: undefined,
+      type: [Number, String],
+      default: '',
     },
     init: {
-      type: Number,
+      type: [Number, String],
       required: true,
     },
     target: {
-      type: Number,
+      type: [Number, String],
       required: true,
     },
     initDate: {
       type: String,
-      default: undefined,
+      default: '',
     },
     targetDate: {
       type: String,
-      default: undefined,
+      default: '',
     },
     height: {
       type: String,
@@ -126,7 +126,7 @@ export default {
     },
     date: {
       type: String,
-      default: undefined,
+      default: '',
     },
   },
   data() {
@@ -139,7 +139,7 @@ export default {
       styleLegendUnder: '',
       colorOver: '',
       colorUnder: '',
-      width: undefined,
+      width: '',
     };
   },
   created() {
@@ -152,7 +152,7 @@ export default {
   },
   methods: {
     createChart() {
-      if (this.percent === undefined) {
+      if (!this.percent) {
         this.percentage = Math.round((100 * (this.value - this.init)) / (this.target - this.init));
       } else {
         this.percentage = Math.round(this.percent);

@@ -163,39 +163,39 @@ export default {
       default: 'flex',
     },
     maxBarSize: {
-      type: Number,
+      type: [Number, String],
       default: 32,
     },
     vline: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vlinecolor: {
       type: String,
-      default: undefined,
+      default: '',
     },
     vlinename: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hline: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hlinecolor: {
       type: String,
-      default: undefined,
+      default: '',
     },
     hlinename: {
       type: String,
-      default: undefined,
+      default: '',
     },
     date: {
       type: String,
-      default: undefined,
+      default: '',
     },
     aspectRatio: {
-      type: Number,
+      type: [Number, String],
       default: 2,
     },
     selectedPalette: {
@@ -220,7 +220,7 @@ export default {
       display: '',
       datasets: [],
       xAxisType: 'category',
-      labels: undefined,
+      labels: [],
       xparse: [],
       ybarparse: [],
       ylineparse: [],
@@ -232,10 +232,10 @@ export default {
       hlineColorParse: [],
       tmpHlineColorParse: [],
       hlineNameParse: [],
-      colorParse: undefined,
-      colorBarParse: undefined,
-      colorHover: undefined,
-      colorBarHover: undefined,
+      colorParse: [],
+      colorBarParse: [],
+      colorHover: [],
+      colorBarHover: [],
     };
   },
   created() {
@@ -263,7 +263,7 @@ export default {
       this.display = '';
       this.datasets = [];
       this.xAxisType = 'category';
-      this.labels = undefined;
+      this.labels = [];
       this.xparse = [];
       this.ybarparse = [];
       this.ylineparse = [];
@@ -275,10 +275,10 @@ export default {
       this.hlineColorParse = [];
       this.tmpHlineColorParse = [];
       this.hlineNameParse = [];
-      this.colorParse = undefined;
-      this.colorBarParse = undefined;
-      this.colorHover = undefined;
-      this.colorBarHover = undefined;
+      this.colorParse = [];
+      this.colorBarParse = [];
+      this.colorHover = [];
+      this.colorBarHover = [];
     },
     getData() {
       // Parsing des données
@@ -292,18 +292,18 @@ export default {
       }
 
       // Récupération données Vline
-      if (this.vline !== undefined) {
+      if (this.vline) {
         this.vlineParse = JSON.parse(this.vline);
         let tmpVlineNameParse = [];
-        if (this.vlinename !== undefined) {
+        if (this.vlinename) {
           tmpVlineNameParse = JSON.parse(this.vlinename);
         }
-        if (this.vlinecolor !== undefined) {
+        if (this.vlinecolor) {
           this.tmpVlineColorParse = JSON.parse(this.vlinecolor);
         }
 
         for (let i = 0; i < this.vlineParse.length; i++) {
-          if (tmpVlineNameParse[i] !== undefined) {
+          if (tmpVlineNameParse[i]) {
             this.vlineNameParse.push(tmpVlineNameParse[i]);
           } else {
             this.vlineNameParse.push('V' + (i + 1));
@@ -312,18 +312,18 @@ export default {
       }
 
       // Récupération données Hline
-      if (this.hline !== undefined) {
+      if (this.hline) {
         this.hlineParse = JSON.parse(this.hline);
         let tmpHlineNameParse = [];
-        if (this.hlinename !== undefined) {
+        if (this.hlinename) {
           tmpHlineNameParse = JSON.parse(this.hlinename);
         }
-        if (this.hlinecolor !== undefined) {
+        if (this.hlinecolor) {
           this.tmpHlineColorParse = JSON.parse(this.hlinecolor);
         }
 
         for (let i = 0; i < this.hlineParse.length; i++) {
-          if (tmpHlineNameParse[i] !== undefined) {
+          if (tmpHlineNameParse[i]) {
             this.hlineNameParse.push(tmpHlineNameParse[i]);
           } else {
             this.hlineNameParse.push('H' + (i + 1));
@@ -586,7 +586,7 @@ export default {
 
                   // Iterate over bodyLines to set each line with the correct color and value
                   bodyLines[0].forEach((line, i) => {
-                    if (line !== undefined) {
+                    if (line) {
                       const color = colors[i] ? colors[i] : '#000';
 
                       // Détecter si c'est une barre ou une ligne en fonction de l'index

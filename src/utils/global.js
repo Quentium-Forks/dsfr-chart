@@ -1111,7 +1111,7 @@ const allToken = {
   },
 };
 
-export const getHexaFromName = function (colorName, options = undefined) {
+export const getHexaFromName = function (colorName, options) {
   return window.dsfr.colors.getColor('artwork', 'major', colorName, options);
 };
 
