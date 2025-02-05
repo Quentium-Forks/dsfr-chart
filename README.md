@@ -97,7 +97,7 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **x-min** : Permet de définir le minimum sur l'axe des abscisses
-- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **x-max** : Permet de définir le maximum sur l'axe des abscisses
 - **y-min** : Permet de définir le minimum sur l'axe des ordonnées
 - **y-max** : Permet de définir le maximum sur l'axe des ordonnées
 
@@ -213,7 +213,7 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 - **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barre horizontales. Mettre à `true` pour activer.
 - **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer.
 - **x-min** : Permet de définir le minimum sur l'axe des abscisses
-- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **x-max** : Permet de définir le maximum sur l'axe des abscisses
 - **y-min** : Permet de définir le minimum sur l'axe des ordonnées
 - **y-max** : Permet de définir le maximum sur l'axe des ordonnées
 
@@ -420,7 +420,7 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 - **unit-tooltip-bar** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) des barres.
 - **unit-tooltip-line** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) de la ligne.
 - **x-min** : Permet de définir le minimum sur l'axe des abscisses
-- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **x-max** : Permet de définir le maximum sur l'axe des abscisses
 - **y-bar-min** : Permet de définir le minimum sur l'axe des ordonnées pour les barres
 - **y-bar-max** : Permet de définir le maximum sur l'axe des ordonnées pour les barres
 - **y-line-min** : Permet de définir le minimum sur l'axe des ordonnées pour la ligne
@@ -746,7 +746,7 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
 
 - **show-line** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
 - **x-min** : Permet de définir le minimum sur l'axe des abscisses
-- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **x-max** : Permet de définir le maximum sur l'axe des abscisses
 - **y-min** : Permet de définir le minimum sur l'axe des ordonnées
 - **y-max** : Permet de définir le maximum sur l'axe des ordonnées
 
