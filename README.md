@@ -96,6 +96,10 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+- **x-min** : Permet de définir le minimum sur l'axe des abscisses
+- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **y-min** : Permet de définir le minimum sur l'axe des ordonnées
+- **y-max** : Permet de définir le maximum sur l'axe des ordonnées
 
 ---
 
@@ -208,6 +212,10 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barre horizontales. Mettre à `true` pour activer.
 - **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer.
+- **x-min** : Permet de définir le minimum sur l'axe des abscisses
+- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **y-min** : Permet de définir le minimum sur l'axe des ordonnées
+- **y-max** : Permet de définir le maximum sur l'axe des ordonnées
 
 ---
 
@@ -411,6 +419,12 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique principal (barres et lignes). Les valeurs possibles sont les mêmes que précédemment.
 - **unit-tooltip-bar** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) des barres.
 - **unit-tooltip-line** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) de la ligne.
+- **x-min** : Permet de définir le minimum sur l'axe des abscisses
+- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **y-bar-min** : Permet de définir le minimum sur l'axe des ordonnées pour les barres
+- **y-bar-max** : Permet de définir le maximum sur l'axe des ordonnées pour les barres
+- **y-line-min** : Permet de définir le minimum sur l'axe des ordonnées pour la ligne
+- **y-line-max** : Permet de définir le maximum sur l'axe des ordonnées pour la ligne
 
 ---
 
@@ -731,6 +745,10 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **show-line** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
+- **x-min** : Permet de définir le minimum sur l'axe des abscisses
+- **x-xax** : Permet de définir le maximum sur l'axe des abscisses
+- **y-min** : Permet de définir le minimum sur l'axe des ordonnées
+- **y-max** : Permet de définir le maximum sur l'axe des ordonnées
 
 ---
 
