@@ -44,7 +44,9 @@
               </div>
             </div>
           </div>
+
           <canvas :ref="chartId" />
+
           <div class="chart_legend fr-mb-0 fr-mt-4v">
             <div class="flex fr-mt-3v fr-mb-1v">
               <span
@@ -582,14 +584,10 @@ export default {
                   // Access color arrays for different datasets
                   const colors = [this.colorBarParse, this.colorParse]; // Adjust to match your color variables
 
-                  // If there is no .tooltip_dot element, set a fallback for nodeName
-                  const tooltipDotElement = tooltipEl.querySelector('.tooltip_dot');
-                  const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
-
                   // Iterate over bodyLines to set each line with the correct color and value
                   bodyLines[0].forEach((line, i) => {
                     if (line !== undefined) {
-                      const color = colors[i] ? colors[i] : '#000'; // Fallback to black if color is undefined
+                      const color = colors[i] ? colors[i] : '#000';
 
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
                       const displayValue =
@@ -598,9 +596,9 @@ export default {
                           : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
 
                       divValue.innerHTML += `
-                        <div class="tooltip_value-content" style="display: flex; align-items: center;">
-                          <span ${nodeName} class="tooltip_dot" style="background-color:${color};"></span>
-                          ${displayValue}
+                        <div class="tooltip_value-content">
+                          <span class="tooltip_dot" style="background-color:${color};"></span>
+                          <p class="tooltip_place fr-mb-0">${displayValue}</p>
                         </div>
                       `;
                     }

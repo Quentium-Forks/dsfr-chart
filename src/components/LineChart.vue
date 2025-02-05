@@ -32,7 +32,9 @@
               </div>
             </div>
           </div>
+
           <canvas :ref="chartId" />
+
           <div class="chart_legend fr-mb-0 fr-mt-4v">
             <div
               v-for="(item, index) in nameParse"
@@ -574,11 +576,11 @@ export default {
                     const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
                     if (line !== undefined) {
                       divValue.innerHTML += `
-                      <div class="tooltip_value-content">
-                        <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>
-                        <p class="tooltip_place fr-mb-0">${displayValue}</p>
-                      </div>
-                    `;
+                        <div class="tooltip_value-content">
+                          <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>
+                          <p class="tooltip_place fr-mb-0">${displayValue}</p>
+                        </div>
+                      `;
                     }
                   });
                 }

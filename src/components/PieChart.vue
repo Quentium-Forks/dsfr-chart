@@ -17,7 +17,9 @@
               </div>
             </div>
           </div>
+
           <canvas :ref="chartId" />
+
           <div class="chart_legend fr-mb-0 fr-mt-4v">
             <div
               v-for="(item, index) in nameParse"
@@ -282,16 +284,12 @@ export default {
                   const value = bodyLines[0][0];
                   const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
-                  // Retrieve the node name for tooltip dots
-                  const tooltipDotElement = tooltipEl.querySelector('.tooltip_dot');
-                  const nodeName = tooltipDotElement ? tooltipDotElement.attributes[0].nodeName : 'data-attribute';
-
-                  divValue.innerHTML = `
-                  <div class="tooltip_value-content">
-                    <span ${nodeName}="" class="tooltip_dot" style="background-color:${color};"></span>
-                    ${displayValue}
-                  </div>
-                `;
+                  divValue.innerHTML += `
+                    <div class="tooltip_value-content">
+                      <span class="tooltip_dot" style="background-color:${color};"></span>
+                      <p class="tooltip_place fr-mb-0">${displayValue}</p>
+                    </div>
+                  `;
                 }
 
                 // Position the tooltip

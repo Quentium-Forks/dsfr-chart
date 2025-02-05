@@ -337,17 +337,17 @@ export default {
 
                   // Ensure the color is correctly referenced
                   const colorArray = this.colorParse[datasetIndex];
-                  const color = colorArray ? colorArray[index] : '#000'; // Fallback to black if color is undefined
+                  const color = colorArray ? colorArray[index] : '#000';
 
                   const value = this.convertIntToHuman(this.datasets[datasetIndex].data[index]);
                   const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
                   divValue.innerHTML += `
-                  <div class="tooltip_value-content" style="display: flex; align-items: center;">
-                    <span class="tooltip_dot" style="background-color:${color};"></span>
-                    <p class="tooltip_place fr-mb-0">${displayValue}</p>
-                  </div>
-                `;
+                    <div class="tooltip_value-content">
+                      <span class="tooltip_dot" style="background-color:${color};"></span>
+                      <p class="tooltip_place fr-mb-0">${displayValue}</p>
+                    </div>
+                  `;
                 });
 
                 // Position the tooltip
