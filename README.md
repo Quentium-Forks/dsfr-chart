@@ -471,9 +471,9 @@ Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise :
 
 ```html
 <pie-chart
-  x='[["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]'
-  y="[[11.7, 74.8, 9.3, 1.6, 2.6]]"
-  name='["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
+  x='[["Emplois à durée indéterminée", "Non-salariés", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]'
+  y="[[74.8, 11.7, 9.3, 1.6, 2.6]]"
+  name='["Emplois à durée indéterminée", "Non-salariés", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
   unit-tooltip="%"
   selectedPalette="categorical"
 ></pie-chart>
@@ -899,7 +899,7 @@ Les paramètres obligatoires sont :
 ## Exemple :
 
 ```html
-<gauge-chart value="16" init="10" target="20" color="blue-france"></gauge-chart>
+<gauge-chart value="16" init="10" target="20"></gauge-chart>
 ```
 
 ---

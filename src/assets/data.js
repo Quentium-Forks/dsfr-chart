@@ -91,9 +91,9 @@ export const chartData = {
   },
   pieChart: {
     doughnut: {
-      x: '[["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]',
-      y: '[[11.7, 74.8, 9.3, 1.6, 2.6]]',
-      name: '["Non-salariés", "Emplois à durée indéterminée", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]',
+      x: '[["Emplois à durée indéterminée", "Non-salariés", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]]',
+      y: '[[74.8, 11.7, 9.3, 1.6, 2.6]]',
+      name: '["Emplois à durée indéterminée", "Non-salariés", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]',
       unitTooltip: '%',
     },
     fill: {
