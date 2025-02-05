@@ -200,11 +200,11 @@ export default {
       type: String,
       default: 'categorical',
     },
-    unitTooltip: {
+    unitTooltipBar: {
       type: String,
       default: '',
     },
-    unitTooltipBar: {
+    unitTooltipLine: {
       type: String,
       default: '',
     },
@@ -594,8 +594,8 @@ export default {
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
                       const displayValue =
                         i === 0
-                          ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}` // Barres
-                          : `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`; // Lignes
+                          ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}`
+                          : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content" style="display: flex; align-items: center;">
