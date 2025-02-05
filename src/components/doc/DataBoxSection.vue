@@ -4,7 +4,7 @@
       Databox
     </h2>
     <h3>Présentation</h3>
-    <p>Le composant <strong>DataBox</strong> est un composant permettant d'afficher dans un cadre normé des données sous différentes formes (graphiques, chiffres clés, tableaux, etc). Il est à utiliser pour composer un tableau de bord, ou toute page nécessitant de structurer la visualisation de données.</p>
+    <p>Le composant <strong>DataBox</strong> est un composant permettant d’afficher dans un cadre normé des données sous différentes formes (graphiques, chiffres clés, tableaux, etc). Il est à utiliser pour composer un tableau de bord, ou toute page nécessitant de structurer la visualisation de données.</p>
     <p>Polyvalente, la databox intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants permettant la mise à disposition d’actions supplémentaires.</p>
 
     <h3>Structure</h3>
@@ -18,7 +18,7 @@
       <li><strong>la donnée principale : chiffre, graphique ou tableau</strong> (obligatoire)</li>
       <li><strong>une source</strong> (obligatoire)</li>
       <li><strong>une date de mise à jour de la donnée</strong> (obligatoire)</li>
-      <li><strong>un contrôle segmenté pour afficher la donnée en vue tableau</strong> (obligatoire lorsque c’est un graphique qui est affiché)</li>
+      <li><strong>un contrôle segmenté pour afficher la donnée en vue tableau</strong> (obligatoire lorsqu'un graphique est affiché)</li>
     </ul>
 
     <div class="chart_container fr-my-6w">
