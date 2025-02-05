@@ -96,7 +96,7 @@ export const chartData = {
       name: '["Emplois à durée indéterminée", "Non-salariés", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]',
       unitTooltip: '%',
     },
-    fill: {
+    pie: {
       x: '[["Protection sociale", "Santé", "Affaires économiques", "Services publics généraux", "Autres", "Enseignement", "Défense"]]',
       y: '[[40.8, 15.6, 11.5, 10.6, 9.4, 9, 3.1]]',
       name: '["Protection sociale", "Santé", "Affaires économiques", "Services publics généraux", "Autres", "Enseignement", "Défense"]',
@@ -150,6 +150,8 @@ export const chartData = {
       level: 'reg',
       date: '21/12/2022',
     },
+  },
+  mapChartReg: {
     region: {
       data: `{"01": 10, "02": 83, "03": 67, "04": 6, "05": 47, "06": 96, "07": 77, "08": 75,
               "09": 57, "10": 58, "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41,
@@ -245,7 +247,7 @@ export const chartExamples = [
     desc: 'Un diagramme circulaire permet de représenter un petit nombre de valeurs par des angles proportionnels à la fréquence de ces valeurs. Chacune des « parts » représente une catégorie de données qui forment un ensemble, et la taille de chaque « part » est proportionnelle à son poids dans l’ensemble. Le diagramme circulaire peut être plein ou creux.',
     graphs: [
       { component: PieChart, heading: 'Diagramme circulaire creux (donut)', title: 'Statut des emplois en France', desc: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi. Insee, enquête Emploi, 04/11/2024', props: chartData.pieChart.doughnut },
-      { component: PieChart, heading: 'Diagramme circulaire plein', title: 'Structure des dépenses publiques en France en 2022', desc: 'France métropolitaine. Insee, 30/11/2023', props: chartData.pieChart.fill },
+      { component: PieChart, heading: 'Diagramme circulaire plein', title: 'Structure des dépenses publiques en France en 2022', desc: 'France métropolitaine. Insee, 30/11/2023', props: chartData.pieChart.pie },
     ],
   },
   //Cartes
@@ -255,7 +257,7 @@ export const chartExamples = [
     graphs: [
       { component: MapChart, noPalette: true, heading: 'Découpage départemental', props: chartData.mapChart.departments },
       { component: MapChart, noPalette: true, heading: 'Découpage régional', props: chartData.mapChart.regions },
-      { component: MapChartReg, noPalette: true, heading: 'Région', props: chartData.mapChart.region },
+      { component: MapChartReg, noPalette: true, heading: 'Région', props: chartData.mapChartReg.region },
     ],
   },
   //Nuage de points
