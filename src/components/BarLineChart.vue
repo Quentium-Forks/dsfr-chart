@@ -14,18 +14,30 @@
             <div class="tooltip_body">
               <div class="tooltip_value">
                 <div
-                  v-for="(item, index) in nameParse"
-                  :key="index"
                   class="flex fr-mt-3v fr-mb-1v"
                   :style="{ 'border-bottom': '1px solid #e0e0e0' }"
                 >
                   <div class="tooltip_value-content">
                     <span
                       class="tooltip_dot"
-                      :style="{ 'background-color': colorParse[index] }"
+                      :style="{ 'background-color': colorBarParse }"
                     />
                     <p class="tooltip_place">
-                      {{ capitalize(item) }}
+                      {{ capitalize(nameBar) }}
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="flex fr-mt-3v fr-mb-1v"
+                  :style="{ 'border-bottom': '1px solid #e0e0e0' }"
+                >
+                  <div class="tooltip_value-content">
+                    <span
+                      class="tooltip_dot"
+                      :style="{ 'background-color': colorParse }"
+                    />
+                    <p class="tooltip_place">
+                      {{ capitalize(nameLine) }}
                     </p>
                   </div>
                 </div>
@@ -49,7 +61,7 @@
                 :style="{ 'background-color': colorParse }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-                {{ capitalize(name) }}
+                {{ capitalize(nameLine) }}
               </p>
             </div>
             <div
@@ -136,11 +148,11 @@ export default {
       type: String,
       required: true,
     },
-    name: {
+    nameBar: {
       type: String,
       default: '',
     },
-    nameBar: {
+    nameLine: {
       type: String,
       default: '',
     },
@@ -212,7 +224,6 @@ export default {
       ylineparse: [],
       vlineParse: [],
       vlineColorParse: [],
-      nameParse: [],
       tmpVlineColorParse: [],
       vlineNameParse: [],
       hlineParse: [],
@@ -353,7 +364,7 @@ export default {
           pointRadius: 5,
           pointHoverRadius: 5,
           barThickness: this.barSize,
-          ...(this.maxBarSize ? {maxBarThickness: this.maxBarSize} : {}),
+          ...(this.maxBarSize ? { maxBarThickness: this.maxBarSize } : {}),
           barPercentage: 0.5,
         },
         {
@@ -601,7 +612,7 @@ export default {
 
                 const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
                 const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
-                
+
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 20;
                 if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
@@ -614,7 +625,7 @@ export default {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
                   tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
                 }
-                
+
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';

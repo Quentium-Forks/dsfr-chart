@@ -9,8 +9,8 @@ export const Default = {
     x: '[1980, 1990, 2000, 2010]',
     yBar: '[826.1, 793.1, 807.4, 832.8]',
     yLine: '[14.9, 13.4, 13.1, 12.9]',
-    name: 'Naissances',
     nameBar: 'Taux de natalité',
+    nameLine: 'Naissances',
     unitTooltip: '%',
     unitTooltipBar: 'milliers'
   }
