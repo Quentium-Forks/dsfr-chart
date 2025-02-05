@@ -228,18 +228,18 @@
 </template>
 
 <script setup>
-import { chartExamples } from "@/assets/data";
-import Intro from "./Intro.vue";
-import CodeBlock from "./CodeBlock.vue";
-import DisplayMode from "./DisplayMode.vue";
-import DataBoxSection from "./DataBoxSection.vue";
-import ColorsSection from "./ColorsSection.vue";
-import AccessibilitySection from "./AccessibilitySection.vue";
+import { chartExamples } from '@/assets/data';
+import Intro from './Intro.vue';
+import CodeBlock from './CodeBlock.vue';
+import DisplayMode from './DisplayMode.vue';
+import DataBoxSection from './DataBoxSection.vue';
+import ColorsSection from './ColorsSection.vue';
+import AccessibilitySection from './AccessibilitySection.vue';
 
 const PALETTE_LABELS = {
-  defaultColor: "Palette par défaut",
-  neutral: "Palette unicolore",
-  sequentialDescending: "Palette séquentielle",
-  divergentDescending: "Palette séquentielle divergente",
+  defaultColor: 'Palette par défaut',
+  neutral: 'Palette unicolore',
+  sequentialDescending: 'Palette séquentielle',
+  divergentDescending: 'Palette séquentielle divergente',
 };
 </script>
