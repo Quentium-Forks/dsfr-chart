@@ -309,14 +309,14 @@ export default {
       // Cas où x est numérique
       if (typeof this.xparse[0][0] === 'number') {
         const allX = [];
-        this.xparse.forEach((xj, j) => {
+        this.xparse.forEach((x, i) => {
           const dj = [];
-          const xsort = xj.map((a) => a).sort((a, b) => a - b);
+          const xsort = x.map((a) => a).sort((a, b) => a - b);
           xsort.forEach((k) => {
-            const index = xj.findIndex((element) => element === k);
+            const index = x.findIndex((element) => element === k);
             dj.push({
               x: k,
-              y: this.yparse[j][index],
+              y: this.yparse[i][index],
             });
             if (!allX.includes(k)) {
               allX.push(k);
@@ -382,8 +382,8 @@ export default {
                 ctx.stroke();
                 ctx.restore();
 
-                this.yparse.forEach((yj) => {
-                  let y = chart.scales.y.getPixelForValue(yj[index]);
+                this.yparse.forEach((i) => {
+                  let y = chart.scales.y.getPixelForValue(i[index]);
                   ctx.save();
                   ctx.beginPath();
                   ctx.moveTo(chart.scales.x.left, y);
