@@ -22,6 +22,12 @@ export const chartData = {
       y: '[[54.5, 58.2, 58.1, 59.6, 62.1, 64, 65.9, 67.1, 69, 69.2], [83.9, 83.2, 78.4, 75.9, 74.7, 75.3, 75.2, 75, 75.6, 74.8]]',
       name: '["Femmes", "Hommes"]',
       unitTooltip: '%',
+      vline: '[1999, 2017]',
+      vlinename: '["min", "max"]',
+      vlinecolor: '["#00ff00", "#0000ff"]',
+      hline: '[70]',
+      hlinename: '["seuil"]',
+      hlinecolor: '["#ff0000"]',
     },
   },
   barChart: {
