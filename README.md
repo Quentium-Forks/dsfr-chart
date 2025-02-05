@@ -95,7 +95,7 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
   - `'defaultColor'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
-- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+- **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 
 ---
 
@@ -154,14 +154,14 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 ## Notes supplémentaires
 
 - **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
-- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole un point du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
+- **unit-tooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole un point du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 
 ---
 
 ## Conseils d'utilisation
 
 - **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes, par exemple `x="[1, 2, 3]"`.
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, par exemple en utilisant `selected-palette` avec `unitTooltip`.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, par exemple en utilisant `selected-palette` avec `unit-tooltip`.
 - **Personnalisation des séries** : Chaque série de données sera représentée par une ligne distincte. Les couleurs des lignes seront attribuées en fonction de la palette sélectionnée.
 
 ---
@@ -204,8 +204,8 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
   - `'defaultColor'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
-- **highlightIndex** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'neutral'`).
-- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+- **highlight-index** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'neutral'`).
+- **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barre horizontales. Mettre à `true` pour activer.
 - **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer.
 
@@ -264,7 +264,7 @@ Pour tracer un **BarChart empilé**, il faut renseigner l’option **stacked="tr
 
 ### 4. Barres avec mise en avant de certaines catégories
 
-Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaison avec **selected-palette="neutral"**.
+Utilisez **highlight-index** pour mettre en avant certaines barres, en combinaison avec **selected-palette="neutral"**.
 
 **Exemple**:
 
@@ -273,7 +273,7 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
   x='[["Jan", "Feb", "Mar", "Apr", "May", "Jun"]]'
   y="[[5, 10, 15, 20, 25, 30]]"
   selected-palette="neutral"
-  highlightIndex="[2, 4]"
+  highlight-index="[2, 4]"
   unit-tooltip="k€"
 ></bar-chart>
 ```
@@ -298,8 +298,8 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
 ## Notes supplémentaires
 
 - **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
-- **highlightIndex** : Utilisé en combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des barres spécifiques du graphique. Les index commencent à **0**.
-- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une barre du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
+- **highlight-index** : Utilisé en combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des barres spécifiques du graphique. Les index commencent à **0**.
+- **unit-tooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une barre du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 - **horizontal** : Définit l'orientation du graphique. Par défaut, les barres sont verticales.
 - **stacked** : Permet d'empiler les séries de données, utile pour visualiser la contribution de chaque série au total.
 
@@ -309,7 +309,7 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
 
 - **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes de listes, par exemple `x='[["Label1", "Label2"]]'` et `y='[[10, 20], [30, 40]]'`.
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `horizontal="true"` avec `stacked="true"`.
-- **Indexation** : Les index utilisés dans `highlightIndex` correspondent aux positions des barres dans vos données `x`. Par exemple, `highlightIndex="[0, 2]"` mettra en avant la première et la troisième barre.
+- **Indexation** : Les index utilisés dans `highlight-index` correspondent aux positions des barres dans vos données `x`. Par exemple, `highlight-index="[0, 2]"` mettra en avant la première et la troisième barre.
 
 ---
 
@@ -323,7 +323,7 @@ Utilisez **highlightIndex** pour mettre en avant certaines barres, en combinaiso
   y="[[50, 70, 30, 90]]"
   name='["Ventes"]'
   selected-palette="neutral"
-  highlightIndex="[3]"
+  highlight-index="[3]"
   horizontal="true"
   unit-tooltip="k€"
 ></bar-chart>
@@ -344,7 +344,7 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 - **hlinename** : _(String)_ Les noms des lignes horizontales sous forme d’une liste entre crochets.
 - **hlinecolor** : _(String)_ Les couleurs des lignes horizontales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique principal (barres et lignes). Les valeurs possibles sont les mêmes que précédemment.
-- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique.
+- **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique.
 
 ---
 
@@ -373,7 +373,7 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 - **vlinename** et **hlinename** : Vous pouvez fournir des noms pour ces lignes qui seront affichés sur le graphique.
 - **vlinecolor** et **hlinecolor** : Spécifiez les couleurs des lignes de référence. Vous pouvez utiliser les noms de couleurs prédéfinies du thème ou des codes hexadécimaux (par exemple, `"#FF5733"`).
 - **selected-palette** : Comme précédemment, ce paramètre vous permet de personnaliser les couleurs du graphique principal.
-- **unitTooltip** : Spécifiez l'unité à afficher dans l'infobulle du graphique principal. Les infobulles des lignes de référence ne sont généralement pas affectées par ce paramètre.
+- **unit-tooltip** : Spécifiez l'unité à afficher dans l'infobulle du graphique principal. Les infobulles des lignes de référence ne sont généralement pas affectées par ce paramètre.
 
 ---
 
@@ -397,8 +397,8 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 ### Obligatoires :
 
 - **x** : _(String)_ Les valeurs sur l'axe des abscisses sous forme d'une liste entre crochets.
-- **y** : _(String)_ Les valeurs sur l'axe des ordonnées sous forme d'une liste entre crochets.
 - **y-bar** : _(String)_ Les valeurs pour les barres sous forme d'une liste entre crochets.
+- **y-line** : _(String)_ Les valeurs pour la ligne sous forme d'une liste entre crochets.
 
 ### Optionnels :
 
@@ -409,8 +409,8 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 - **vlinename** : _(String)_ Les noms des lignes verticales sous forme d’une liste entre crochets.
 - **vlinecolor** : _(String)_ Les couleurs des lignes verticales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique principal (barres et lignes). Les valeurs possibles sont les mêmes que précédemment.
-- **unitTooltipBar** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) des barres.
-- **unitTooltipLine** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) de la ligne.
+- **unit-tooltip-bar** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) des barres.
+- **unit-tooltip-line** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) de la ligne.
 
 ---
 
@@ -460,7 +460,7 @@ Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise :
   - `'defaultColor'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
-- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+- **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **fill** : _(Boolean)_ Permet de remplir l’intérieur du graphique. Mettre à `true` pour un diagramme circulaire plein.
 
 ---
@@ -502,7 +502,7 @@ L’option **fill="true"** permet de remplir l’intérieur du graphique pour ob
 ## Notes supplémentaires
 
 - **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
-- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une portion du diagramme. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
+- **unit-tooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une portion du diagramme. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 - **fill** : Par défaut, le PieChart est affiché sous forme de donut (creux au centre). En définissant **fill="true"**, vous obtiendrez un diagramme circulaire plein.
 
 ---
@@ -810,7 +810,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
     - `'defaultColor'` : Couleur par défaut.
     - _(laisser vide pour utiliser la palette par défaut)_
 
-- **unitTooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+- **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 
 ----------
 
@@ -835,7 +835,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 - **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
 
-- **unitTooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une valeur du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
+- **unit-tooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une valeur du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 
 ----------
 
@@ -845,7 +845,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
     - Pour `x` : `x='[["Label1", "Label2", "Label3"]]'`
     - Pour `y` : `y='[[10, 20, 30], [15, 25, 35]]'`
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `selected-palette` avec `unitTooltip`.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `selected-palette` avec `unit-tooltip`.
 
 - **Personnalisation des séries** : Le paramètre `name` est utilisé pour spécifier les noms des séries de données. Si vous avez plusieurs séries (plusieurs listes dans `y`), vous devez fournir une liste de noms correspondante dans `name`.
 
