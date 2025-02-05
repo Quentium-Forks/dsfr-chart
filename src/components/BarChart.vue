@@ -246,7 +246,6 @@ export default {
         },
         options: {
           indexAxis: this.horizontal ? 'y' : 'x',
-          responsive: true,
           aspectRatio: this.aspectRatio,
           scales: {
             x: {

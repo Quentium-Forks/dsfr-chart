@@ -219,7 +219,6 @@ export default {
       chartId: '',
       display: '',
       datasets: [],
-      xAxisType: 'category',
       labels: [],
       xparse: [],
       ybarparse: [],
@@ -262,7 +261,6 @@ export default {
       }
       this.display = '';
       this.datasets = [];
-      this.xAxisType = 'category';
       this.labels = [];
       this.xparse = [];
       this.ybarparse = [];
@@ -342,13 +340,11 @@ export default {
           dataLine.push(this.ylineparse[index]);
         });
         this.labels = xsort;
-        this.xAxisType = 'category';
       } else {
         // Cas où x est non numérique
         dataBar = this.ybarparse;
         dataLine = this.ylineparse;
         this.labels = this.xparse;
-        this.xAxisType = 'category';
       }
 
       // Chargement des couleurs
@@ -466,7 +462,6 @@ export default {
           scales: {
             x: {
               offset: true,
-              type: this.xAxisType,
               grid: {
                 drawTicks: false,
                 drawOnChartArea: false,

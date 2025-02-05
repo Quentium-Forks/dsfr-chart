@@ -210,7 +210,6 @@ export default {
           datasets: this.datasets,
         },
         options: {
-          responsive: true,
           aspectRatio: this.aspectRatio,
           layout: {
             padding: {
