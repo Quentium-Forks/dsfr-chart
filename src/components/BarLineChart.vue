@@ -223,7 +223,6 @@ export default {
       colorBarParse: undefined,
       colorHover: undefined,
       colorBarHover: undefined,
-      isSmall: false,
     };
   },
   created() {
@@ -241,9 +240,6 @@ export default {
       if (this.chartId !== '') {
         this.changeColors(e.detail.theme);
       }
-    });
-    addEventListener('resize', () => {
-      this.isSmall = document.documentElement.clientWidth < 767;
     });
   },
   methods: {

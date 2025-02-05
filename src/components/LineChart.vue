@@ -52,7 +52,6 @@
             v-for="(item, index) in hlineNameParse"
             :key="index"
             class="flex fr-mt-3v"
-            :style="{ 'margin-left': isSmall ? '0px' : style }"
           >
             <span
               class="legende_dash_line"
@@ -70,7 +69,6 @@
             v-for="(item, index) in vlineNameParse"
             :key="index"
             class="flex fr-mt-3v fr-mb-1v"
-            :style="{ 'margin-left': isSmall ? '0px' : style }"
           >
             <span
               class="legende_dash_line"
@@ -87,7 +85,6 @@
           <div
             v-if="date"
             class="flex fr-mt-1w"
-            :style="{ 'margin-left': isSmall ? '0px' : style }"
           >
             <p class="fr-text--xs">
               Mise à jour : {{ date }}
@@ -204,7 +201,6 @@ export default {
       tmpHlineColorParse: [],
       hlineNameParse: [],
       colorHover: [],
-      isSmall: false,
     };
   },
   created() {
@@ -222,9 +218,6 @@ export default {
       if (this.chartId !== '') {
         this.changeColors(e.detail.theme);
       }
-    });
-    addEventListener('resize', () => {
-      this.isSmall = document.documentElement.clientWidth < 767;
     });
   },
   methods: {
@@ -595,7 +588,7 @@ export default {
 
                 const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
                 const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
-                
+
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 20;
                 if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
@@ -608,7 +601,7 @@ export default {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
                   tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
                 }
-                
+
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';

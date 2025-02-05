@@ -118,7 +118,6 @@ export default {
       tmpColorParse: [],
       colorParse: [],
       colorHover: [],
-      isSmall: false,
     };
   },
   created() {
@@ -136,9 +135,6 @@ export default {
       if (this.chartId !== '') {
         this.changeColors(e.detail.theme);
       }
-    });
-    addEventListener('resize', () => {
-      this.isSmall = document.documentElement.clientWidth < 767;
     });
   },
   methods: {

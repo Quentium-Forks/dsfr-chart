@@ -36,7 +36,6 @@
           <div
             v-if="date"
             class="flex fr-mt-1w"
-            :style="{ 'margin-left': isSmall ? '0px' : style }"
           >
             <p class="fr-text--xs">
               Mise à jour : {{ date }}
@@ -116,7 +115,6 @@ export default {
       tmpColorParse: [],
       colorParse: [],
       colorHover: [],
-      isSmall: false,
     };
   },
   created() {
@@ -134,9 +132,6 @@ export default {
       if (this.chartId !== '') {
         this.changeColors(e.detail.theme);
       }
-    });
-    addEventListener('resize', () => {
-      this.isSmall = document.documentElement.clientWidth < 767;
     });
   },
   methods: {
