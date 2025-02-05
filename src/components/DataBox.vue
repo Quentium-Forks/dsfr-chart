@@ -100,7 +100,7 @@
                   :key="i"
                 >
                   <button
-                    :id="toKebabCase(action)"
+                    :id="slugify(action)"
                     class="fr-translate__language fr-nav__link"
                     :title="action"
                   >
@@ -375,7 +375,7 @@ const changeView = (view) => {
   selectedView.value = view;
 };
 
-const toKebabCase = (str) =>
+const slugify = (str) =>
   str
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
