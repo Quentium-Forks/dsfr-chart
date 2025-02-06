@@ -1,7 +1,7 @@
 .fr-grid-row {
   $var: 12;
 
-  [class^="fr-col"] {
+  [class^='fr-col'] {
     @for $i from 1 through $var {
       &:nth-child(#{$var - $i + 1}) {
         .databox {
@@ -44,7 +44,7 @@
 @media (max-width: 62em) {
   .more-actions-menu {
     .fr-nav__item {
-      &:has(>.fr-collapse--expanded) {
+      &:has(> .fr-collapse--expanded) {
         align-items: flex-end;
       }
 
@@ -71,7 +71,7 @@
           --active: var(--background-overlap-grey-active);
           background-color: var(--background-overlap-grey);
           padding: 0;
-          background-image: linear-gradient(0deg,var(--background-open-blue-france),var(--background-open-blue-france));
+          background-image: linear-gradient(0deg, var(--background-open-blue-france), var(--background-open-blue-france));
           background-position: 0 0;
           background-repeat: no-repeat;
           background-size: 100% 1px;
