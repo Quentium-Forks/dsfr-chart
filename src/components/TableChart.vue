@@ -21,7 +21,10 @@
                 </caption>
                 <thead>
                   <tr>
-                    <th scope="col">
+                    <th
+                      v-if="xparse.length"
+                      scope="col"
+                    >
                       {{ tableName }}
                     </th>
                     <th
@@ -168,6 +171,14 @@ export default {
       }
 
       for (let i = 0; i < this.yparse.length; i++) {
+        if (tmpNameParse[i]) {
+          this.nameParse.push(tmpNameParse[i]);
+        } else {
+          this.nameParse.push('Série ' + (i + 1));
+        }
+      }
+
+      for (let i = 0; i < (this.lineParse.length ? this.lineParse[0].length : 0); i++) {
         if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
