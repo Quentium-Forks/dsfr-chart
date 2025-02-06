@@ -128,23 +128,3 @@ export const Complete = {
     </table-chart>
   `
 };
-
-export const Number = {
-  args: chartData.dataBox.number,
-  render: (args) => html`
-    <data-box
-      id="${args.id}"
-      title="${args.title}"
-      tooltip-title="${args.tooltipTitle}"
-      tooltip-content="${args.tooltipContent}"
-      modal-title="${args.modalTitle}"
-      modal-content="${args.modalContent}"
-      value="${args.value}"
-      source="${args.source}"
-      date="${args.date}"
-      trend="${args.trend}"
-      segmented-control="${args.segmentedControl}"
-    >
-    </data-box>
-  `
-};

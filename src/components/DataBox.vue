@@ -187,13 +187,6 @@
 
     <!-- Content -->
     <div class="fr-p-2w databox__content">
-      <strong
-        v-if="value"
-        class="fr-display--xs fr-mb-0"
-      >
-        {{ value }}
-      </strong>
-      
       <div
         :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
         :aria-hidden="selectedView === 'chart'"
@@ -312,10 +305,6 @@ const props = defineProps({
     default: '',
   },
   modalContent: {
-    type: String,
-    default: '',
-  },
-  value: {
     type: String,
     default: '',
   },

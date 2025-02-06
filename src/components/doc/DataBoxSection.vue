@@ -110,20 +110,6 @@
       />
     </div>
 
-    <div class="chart_container fr-my-6w">
-      <h3 id="Databox-chiffre">
-        Databox chiffre
-      </h3>
-      <hr>
-      <data-box
-        v-bind="chartData.dataBox.number"
-      />
-      <CodeBlock
-        :component="[{name: 'data-box'}]"
-        :attributes="[chartData.dataBox.number]"
-      />
-    </div>
-    
     <h3>Occupation de l'espace</h3>
     <p>Le menu à points peut contenir toutes les actions dont vous avez besoin pour votre projet.</p>
     <p>La librairie DSFR Chart propose une fonctionnalité d’export CSC des données et de téléchargement de capture d'écran, mais elles ne doivent pas figurer obligatoirement si vous n’en avez pas le besoin.</p>
