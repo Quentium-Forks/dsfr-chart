@@ -56,9 +56,14 @@
         z-index: calc(var(--ground) + 1000);
       }
 
+      .fr-btn {
+        min-height: auto;
+      }
+
       .fr-menu {
         position: absolute;
-        
+        right: 0;
+
         .fr-menu__list {
           margin: 0;
           --idle: transparent;
