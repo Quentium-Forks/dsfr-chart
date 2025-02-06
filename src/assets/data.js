@@ -214,6 +214,17 @@ export const chartData = {
       fullscreen: true,
       actions: ['Source officielle', 'Pôle emploi'],
     },
+    number: {
+      id: 'number',
+      title: 'Nombre de naissances en France en 2021',
+      tooltipTitle: 'Nombre de naissances en France',
+      tooltipContent: 'Pour l’année 2021. France hors Mayotte.',
+      value: '742 052',
+      source: 'Insee, statistiques et estimations d’état civil',
+      date: '31/12/2021',
+      trend: '-7%',
+      segmentedControl: false,
+    },
   },
 };
 

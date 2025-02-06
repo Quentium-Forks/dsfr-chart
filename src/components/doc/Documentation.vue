@@ -135,6 +135,16 @@
                           Databox complète multi source
                         </a>
                       </li>
+                      <li class="fr-sidemenu__item">
+                        <a
+                          id="sidemenu-99.3"
+                          class="fr-sidemenu__link"
+                          href="#Databox-chiffre"
+                          target="_self"
+                        >
+                          Databox chiffre
+                        </a>
+                      </li>
                     </ul>
                   </div>
                 </li>
