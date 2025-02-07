@@ -188,7 +188,7 @@ export default {
     },
     getClass(value) {
       let classes = '';
-      if (value.replace(/<[^>]*>/g,'').length > 100) {
+      if (typeof value === 'string' && value.replace(/<[^>]*>/g,'').length > 100) {
         classes += 'text-overflow ';
       }
       if (typeof value === 'number') {
