@@ -187,7 +187,17 @@ export default {
       }
     },
     getClass(value) {
-      return typeof value === 'number' ? 'text-right' : 'text-left';
+      let classes = '';
+      if (value.replace(/<[^>]*>/g,'').length > 100) {
+        classes += 'text-overflow ';
+      }
+      if (typeof value === 'number') {
+        classes += 'text-right ';
+      } else {
+        classes += 'text-left ';
+      }
+
+      return classes;
     },
   },
 };
