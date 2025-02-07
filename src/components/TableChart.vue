@@ -21,7 +21,10 @@
                 </caption>
                 <thead>
                   <tr>
-                    <th scope="col">
+                    <th
+                      v-if="xparse.length"
+                      scope="col"
+                    >
                       {{ tableName }}
                     </th>
                     <th
@@ -174,9 +177,27 @@ export default {
           this.nameParse.push('Série ' + (i + 1));
         }
       }
+
+      for (let i = 0; i < (this.lineParse.length ? this.lineParse[0].length : 0); i++) {
+        if (tmpNameParse[i]) {
+          this.nameParse.push(tmpNameParse[i]);
+        } else {
+          this.nameParse.push('Série ' + (i + 1));
+        }
+      }
     },
     getClass(value) {
-      return typeof value === 'number' ? 'text-right' : 'text-left';
+      let classes = '';
+      if (value.replace(/<[^>]*>/g,'').length > 100) {
+        classes += 'text-overflow ';
+      }
+      if (typeof value === 'number') {
+        classes += 'text-right ';
+      } else {
+        classes += 'text-left ';
+      }
+
+      return classes;
     },
   },
 };

@@ -130,6 +130,22 @@ export default {
       type: String,
       required: true,
     },
+    xMin: {
+      type: [Number, String],
+      default: '',
+    },
+    xMax: {
+      type: [Number, String],
+      default: '',
+    },
+    yMin: {
+      type: [Number, String],
+      default: '',
+    },
+    yMax: {
+      type: [Number, String],
+      default: '',
+    },
     name: {
       type: String,
       default: '',
@@ -511,6 +527,8 @@ export default {
               ticks: {
                 padding: 10,
               },
+              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
+              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
             },
             y: {
               grid: {
@@ -533,6 +551,8 @@ export default {
                   return value;
                 },
               },
+              ...(this.yMin ? {suggestedMin: this.yMin} : {}),
+              ...(this.yMax ? {suggestedMax: this.yMax} : {}),
             },
           },
           plugins: {

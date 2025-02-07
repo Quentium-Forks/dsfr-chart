@@ -150,6 +150,30 @@ export default {
       type: String,
       required: true,
     },
+    xMin: {
+      type: [Number, String],
+      default: '',
+    },
+    xMax: {
+      type: [Number, String],
+      default: '',
+    },
+    yBarMin: {
+      type: [Number, String],
+      default: '',
+    },
+    yBarMax: {
+      type: [Number, String],
+      default: '',
+    },
+    yLineMin: {
+      type: [Number, String],
+      default: '',
+    },
+    yLineMax: {
+      type: [Number, String],
+      default: '',
+    },
     nameBar: {
       type: String,
       default: '',
@@ -466,6 +490,8 @@ export default {
                 drawTicks: false,
                 drawOnChartArea: false,
               },
+              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
+              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
             },
             y: {
               type: 'linear',
@@ -490,6 +516,8 @@ export default {
                   return value;
                 },
               },
+              ...(this.yBarMin ? {suggestedMin: this.yBarMin} : {}),
+              ...(this.yBarMax ? {suggestedMax: this.yBarMax} : {}),
             },
             yLine: {
               type: 'linear',
@@ -516,6 +544,8 @@ export default {
                   return value;
                 },
               },
+              ...(this.yLineMin ? {suggestedMin: this.yLineMin} : {}),
+              ...(this.yLineMax ? {suggestedMax: this.yLineMax} : {}),
             },
           },
           plugins: {

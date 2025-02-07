@@ -100,7 +100,7 @@
                   :key="i"
                 >
                   <button
-                    :id="toKebabCase(action)"
+                    :id="slugify(action)"
                     class="fr-translate__language fr-nav__link"
                     :title="action"
                   >
@@ -233,7 +233,7 @@
       </p>
 
       <fieldset
-        v-if="segmentedControl"
+        v-if="segmentedControl && chartSources.length > 0"
         :class="'fr-segmented fr-segmented--no-legend fr-segmented--sm screenshot-hide-' + id"
       >
         <legend class="fr-segmented__legend">
@@ -380,13 +380,13 @@ const screenshot = computed(() => [true, 'true', ''].includes(props.screenshot))
 const download = computed(() => [true, 'true', ''].includes(props.download));
 const actions = computed(() => typeof props.actions === 'string' ? JSON.parse(props.actions) : props.actions);
 
-const selectedView = ref('chart');
+const selectedView = ref(chartSources.value.length > 0 ? 'chart' : 'table');
 
 const changeView = (view) => {
   selectedView.value = view;
 };
 
-const toKebabCase = (str) =>
+const slugify = (str) =>
   str
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')

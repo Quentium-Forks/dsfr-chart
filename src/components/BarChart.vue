@@ -79,6 +79,22 @@ export default {
       type: String,
       required: true,
     },
+    xMin: {
+      type: [Number, String],
+      default: '',
+    },
+    xMax: {
+      type: [Number, String],
+      default: '',
+    },
+    yMin: {
+      type: [Number, String],
+      default: '',
+    },
+    yMax: {
+      type: [Number, String],
+      default: '',
+    },
     name: {
       type: String,
       default: '',
@@ -259,6 +275,8 @@ export default {
                 beginAtZero: true,
                 padding: this.horizontal ? 5 : 15,
               },
+              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
+              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
             },
             y: {
               stacked: this.stacked,
@@ -273,6 +291,8 @@ export default {
                 beginAtZero: true,
                 padding: 5,
               },
+              ...(this.yMin ? {suggestedMin: this.yMin} : {}),
+              ...(this.yMax ? {suggestedMax: this.yMax} : {}),
             },
           },
           plugins: {

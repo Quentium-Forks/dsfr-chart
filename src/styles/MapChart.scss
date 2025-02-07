@@ -108,15 +108,11 @@
     .map {
       height: 100%;
       margin-left: 3rem;
-      margin-top: 0
+      margin-top: 0;
     }
   }
 
   @media (max-width: 62em) {
-    .chart .flex {
-      margin-left: 0 !important
-    }
-
     .map {
       width: 100%;
     }
