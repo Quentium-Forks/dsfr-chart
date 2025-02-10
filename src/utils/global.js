@@ -1101,7 +1101,7 @@ export const configureChartDefaults = () => {
   Chart.defaults.font.size = 12;
   Chart.defaults.font.lineHeight = 1.66;
   Chart.defaults.color = '#6b6b6b';
-  Chart.defaults.borderColor = '#6b6b6b';
+  Chart.defaults.borderColor = '#cecece';
 };
 
 export const mixin = {
