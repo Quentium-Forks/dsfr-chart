@@ -297,13 +297,11 @@ export default {
     },
     changeTheme(theme) {
       if (theme === 'light') {
-        this.colLeft = '#eeeeee';
-        this.colRight = this.getHexaFromName(this.color);
+        this.textMention = '#6b6b6b';
         this.FranceProps.colorStroke = '#FFFFFF';
         this.colorStrokeDOM = '#FFFFFF';
       } else {
-        this.colLeft = this.getHexaFromName(this.color);
-        this.colRight = '#eeeeee';
+        this.textMention = '#929292';
         this.FranceProps.colorStroke = '#161616';
         this.colorStrokeDOM = '#161616';
       }
