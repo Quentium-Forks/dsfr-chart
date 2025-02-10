@@ -103,8 +103,6 @@ export default {
     },
   },
   data() {
-    this.chart = undefined;
-
     return {
       dataParse: {},
       widgetId: '',
@@ -147,8 +145,8 @@ export default {
     };
   },
   created() {
-    this.chartId = 'myChart' + Math.floor(Math.random() * 1000);
-    this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
+    this.chartId = 'dsfr-chart-' + Math.floor(Math.random() * 1000);
+    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
   },
   mounted() {
     this.createChart();
