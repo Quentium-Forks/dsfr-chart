@@ -126,8 +126,8 @@ export default {
     };
   },
   created() {
-    this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
-    this.tableId = 'table' + Math.floor(Math.random() * 1000);
+    this.tableId = 'dsfr-table-' + Math.floor(Math.random() * 1000);
+    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
   },
   mounted() {
     this.resetData();

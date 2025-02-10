@@ -143,7 +143,7 @@ export default {
     };
   },
   created() {
-    this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
+    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
   },
   mounted() {
     this.createChart();

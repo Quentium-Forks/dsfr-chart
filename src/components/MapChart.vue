@@ -212,8 +212,6 @@ export default {
     },
   },
   data() {
-    this.chart = undefined;
-
     return {
       dataParse: {},
       widgetId: '',
@@ -238,7 +236,6 @@ export default {
         valueNat: 0,
         date: '',
         textMention: '',
-        borderDefault: '',
       },
       FranceProps: {
         viewBox: '0 0 262 262',
@@ -263,8 +260,8 @@ export default {
     };
   },
   created() {
-    this.chartId = 'myChart' + Math.floor(Math.random() * 1000);
-    this.widgetId = 'widget' + Math.floor(Math.random() * 1000);
+    this.chartId = 'dsfr-chart-' + Math.floor(Math.random() * 1000);
+    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
     this.isDep = this.level === 'dep';
     this.isReg = this.level === 'reg';
     this.isAcad = this.level === 'acad';
@@ -345,7 +342,7 @@ export default {
         if (!self.zoomDep) {
           // Appliquer les couleurs à chaque département/région
           const color = getColorsByIndex(key === '2A' || key === '2B' ? 20 : key, palette);
-          
+
           elCol.length !== 0 && elCol[0].setAttribute('fill', color);
           self.FranceProps.displayDep[className] = '';
         } else {
@@ -469,22 +466,16 @@ export default {
         this.tooltip.place = this.getAcad(hoverdep).label;
       }
 
-      const elem = parentWidget.getElementsByClassName('map_tooltip')[0];
-      const tooltipRect = elem.getBoundingClientRect();
-      const tooltipWidth = tooltipRect.width;
-      const tooltipHeight = tooltipRect.height;
-
+      const tooltipDom = parentWidget.querySelector('.map_tooltip');
+      const parentRect = parentWidget.getBoundingClientRect();
+      const tooltipRect = tooltipDom.getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
-      let tooltipX = containerRect.left + (containerRect.width - tooltipWidth) / 2;
-      let tooltipY = containerRect.top - tooltipHeight;
 
-      const limitsRect = parentWidget.getBoundingClientRect();
-      if (tooltipY < limitsRect.top) {
-        tooltipY = containerRect.bottom;
-      }
-      if (tooltipX + tooltipWidth > limitsRect.right) {
-        tooltipX = containerRect.right - tooltipWidth - 10;
-        tooltipY = containerRect.top - tooltipHeight / 2;
+      let tooltipX = containerRect.x - parentRect.x * 2 + tooltipRect.width - 10;
+      let tooltipY = containerRect.y - parentRect.y - tooltipRect.height / 3;
+
+      if (tooltipX + tooltipRect.width > parentRect.x) {
+        tooltipX = containerRect.x - parentRect.x * 2 - tooltipRect.width + 80;
       }
 
       this.tooltip.top = tooltipY + 'px';
@@ -534,7 +525,6 @@ export default {
     changeTheme(theme) {
       this.textMention = this.getHexaFromToken('text-mention-grey', theme);
       this.leftColProps.textMention = this.textMention;
-      this.leftColProps.borderDefault = this.getHexaFromToken('border-default-grey', theme);
       if (theme === 'light') {
         this.colLeft = '#eeeeee';
         this.colRight = this.getHexaFromName(this.color);
