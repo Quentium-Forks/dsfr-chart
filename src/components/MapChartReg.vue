@@ -259,22 +259,16 @@ export default {
       this.tooltip.value = this.dataParse[hoverdep];
       this.tooltip.place = this.getDep(hoverdep).label;
 
-      const elem = parentWidget.getElementsByClassName('map_tooltip')[0];
-      const tooltipRect = elem.getBoundingClientRect();
-      const tooltipWidth = tooltipRect.width;
-      const tooltipHeight = tooltipRect.height;
-
+      const tooltipDom = parentWidget.querySelector('.map_tooltip');
+      const parentRect = parentWidget.getBoundingClientRect();
+      const tooltipRect = tooltipDom.getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
-      let tooltipX = containerRect.left + (containerRect.width - tooltipWidth) / 2;
-      let tooltipY = containerRect.top - tooltipHeight;
 
-      const limitsRect = parentWidget.getBoundingClientRect();
-      if (tooltipY < limitsRect.top) {
-        tooltipY = containerRect.bottom;
-      }
-      if (tooltipX + tooltipWidth > limitsRect.right) {
-        tooltipX = containerRect.right - tooltipWidth - 10;
-        tooltipY = containerRect.top - tooltipHeight / 2;
+      let tooltipX = containerRect.x - parentRect.x * 2 + tooltipRect.width - 10;
+      let tooltipY = containerRect.y - parentRect.y - tooltipRect.height / 3;
+
+      if (tooltipX + tooltipRect.width > parentRect.x) {
+        tooltipX = containerRect.x - parentRect.x * 2 - tooltipRect.width + 100;
       }
 
       this.tooltip.top = tooltipY + 'px';
