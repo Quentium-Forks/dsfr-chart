@@ -432,6 +432,9 @@ export default {
         dataset.pointHoverBackgroundColor = this.colorHover[i];
       });
 
+      this.chart.options.scales.x.ticks.color = theme === 'dark' ? '#cecece' : Chart.defaults.color;
+      this.chart.options.scales.y.ticks.color = theme === 'dark' ? '#cecece' : Chart.defaults.color;
+
       this.chart.update('none');
     },
     createChart() {

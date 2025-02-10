@@ -227,6 +227,8 @@ export default {
         dataset.pointHoverBackgroundColor = this.colorHover[i];
       });
 
+      this.chart.options.scales.r.pointLabels.color = theme === 'dark' ? '#cecece' : Chart.defaults.color;
+
       this.chart.update('none');
     },
     createChart() {
@@ -252,7 +254,6 @@ export default {
               },
               ticks: {
                 display: false,
-                backdropColor: 'transparent',
               },
               grid: {
                 color: '#6b6b6b',

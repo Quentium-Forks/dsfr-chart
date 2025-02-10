@@ -527,7 +527,7 @@ export default {
         this.FranceProps.colorStroke = '#FFFFFF';
         this.colorStrokeDOM = '#FFFFFF';
       } else {
-        this.textMention = '#929292';
+        this.textMention = '#cecece';
         this.FranceProps.colorStroke = '#161616';
         this.colorStrokeDOM = '#161616';
       }
