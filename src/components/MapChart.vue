@@ -475,7 +475,7 @@ export default {
       let tooltipY = containerRect.y - parentRect.y - tooltipRect.height / 3;
 
       if (tooltipX + tooltipRect.width > parentRect.x) {
-        tooltipX = containerRect.x - parentRect.x * 2 - tooltipRect.width + 100;
+        tooltipX = containerRect.x - parentRect.x * 2 - tooltipRect.width + 80;
       }
 
       this.tooltip.top = tooltipY + 'px';
