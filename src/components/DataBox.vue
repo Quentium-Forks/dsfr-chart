@@ -198,7 +198,7 @@
         :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
         :aria-hidden="selectedView === 'chart'"
       >
-        <!-- Bulk create all source divs for teleport -->
+        <!-- Bulk create all charts source divs for teleport -->
         <div
           v-for="(chartSource, i) in chartSources"
           :id="id + '-chart-' + chartSource"
@@ -210,7 +210,7 @@
         :class="selectedView === 'chart' ? 'fr-hidden' : 'w-full'"
         :aria-hidden="selectedView === 'table'"
       >
-        <!-- Bulk create all source divs for teleport -->
+        <!-- Bulk create all table source divs for teleport -->
         <div
           v-for="(tableSource, i) in tableSources.filter((s) => s !== 'global')"
           :id="id + '-table-' + tableSource"
