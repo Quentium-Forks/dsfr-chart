@@ -236,7 +236,6 @@ export default {
         valueNat: 0,
         date: '',
         textMention: '',
-        borderDefault: '',
       },
       FranceProps: {
         viewBox: '0 0 262 262',
@@ -532,7 +531,6 @@ export default {
     changeTheme(theme) {
       this.textMention = this.getHexaFromToken('text-mention-grey', theme);
       this.leftColProps.textMention = this.textMention;
-      this.leftColProps.borderDefault = this.getHexaFromToken('border-default-grey', theme);
       if (theme === 'light') {
         this.colLeft = '#eeeeee';
         this.colRight = this.getHexaFromName(this.color);
