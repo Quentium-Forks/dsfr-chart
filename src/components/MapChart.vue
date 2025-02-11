@@ -465,16 +465,15 @@ export default {
         this.tooltip.place = this.getAcad(hoverdep).label;
       }
 
-      const tooltipDom = parentWidget.querySelector('.map_tooltip');
-      const parentRect = parentWidget.getBoundingClientRect();
-      const tooltipRect = tooltipDom.getBoundingClientRect();
+      const mapRect = parentWidget.querySelector('.map').getBoundingClientRect();
+      const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
 
-      let tooltipX = containerRect.x - parentRect.x * 2 + tooltipRect.width - 10;
-      let tooltipY = containerRect.y - parentRect.y - tooltipRect.height / 3;
+      let tooltipX = containerRect.x - mapRect.x - window.innerWidth / 20;
+      let tooltipY = containerRect.y - mapRect.y;
 
-      if (tooltipX + tooltipRect.width > parentRect.x) {
-        tooltipX = containerRect.x - parentRect.x * 2 - tooltipRect.width + 80;
+      if (tooltipX + tooltipRect.width / 4 > mapRect.x) {
+        tooltipX = containerRect.x / 2 - mapRect.x - window.innerWidth / 20;
       }
 
       this.tooltip.top = tooltipY + 'px';
