@@ -416,7 +416,6 @@ export default {
       // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
     },
-    // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
       this.loadColors();
 
