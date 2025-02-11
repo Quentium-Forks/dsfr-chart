@@ -401,7 +401,6 @@ export default {
         },
       });
     },
-    // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
       this.loadColors();
 
@@ -412,6 +411,9 @@ export default {
         dataset.hoverBorderColor = this.colorHover[i];
         dataset.hoverBackgroundColor = this.colorHover[i];
       });
+
+      this.chart.options.scales.x.ticks.color = theme === 'dark' ? '#cecece' : Chart.defaults.color;
+      this.chart.options.scales.y.ticks.color = theme === 'dark' ? '#cecece' : Chart.defaults.color;
 
       this.chart.update('none');
     },

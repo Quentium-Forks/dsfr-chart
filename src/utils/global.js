@@ -1096,35 +1096,12 @@ export const getDepsFromReg = function (code) {
   return res;
 };
 
-const allToken = {
-  'background-contrats-grey': {
-    light: '#EEEEEE',
-    dark: '#242424',
-  },
-  'text-mention-grey': {
-    light: '#6b6b6b',
-    dark: '#929292',
-  },
-  'border-default-grey': {
-    light: '#DDDDDD',
-    dark: '#353535',
-  },
-};
-
-export const getHexaFromName = function (colorName, options) {
-  return window.dsfr.colors.getColor('artwork', 'major', colorName, options);
-};
-
-export const getHexaFromToken = function (token, theme) {
-  return allToken[token][theme];
-};
-
 export const configureChartDefaults = () => {
   Chart.defaults.font.family = 'Marianne';
   Chart.defaults.font.size = 12;
   Chart.defaults.font.lineHeight = 1.66;
-  Chart.defaults.color = '#666666';
-  Chart.defaults.borderColor = '#DDDDDD';
+  Chart.defaults.color = '#6b6b6b';
+  Chart.defaults.borderColor = '#cecece';
 };
 
 export const mixin = {
@@ -1138,8 +1115,6 @@ export const mixin = {
     getReg,
     getAcad,
     getDepsFromReg,
-    getHexaFromName,
-    getHexaFromToken,
     getAllPattern,
     getClassMap,
     getAllReg,

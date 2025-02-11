@@ -259,16 +259,15 @@ export default {
       this.tooltip.value = this.dataParse[hoverdep];
       this.tooltip.place = this.getDep(hoverdep).label;
 
-      const tooltipDom = parentWidget.querySelector('.map_tooltip');
-      const parentRect = parentWidget.getBoundingClientRect();
-      const tooltipRect = tooltipDom.getBoundingClientRect();
+      const mapRect = parentWidget.querySelector('.map').getBoundingClientRect();
+      const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
 
-      let tooltipX = containerRect.x - parentRect.x * 2 + tooltipRect.width - 10;
-      let tooltipY = containerRect.y - parentRect.y - tooltipRect.height / 3;
+      let tooltipX = containerRect.x - mapRect.x - window.innerWidth / 20;
+      let tooltipY = containerRect.y - mapRect.y;
 
-      if (tooltipX + tooltipRect.width > parentRect.x) {
-        tooltipX = containerRect.x - parentRect.x * 2 - tooltipRect.width + 100;
+      if (tooltipX + tooltipRect.width / 4 > mapRect.x) {
+        tooltipX = containerRect.x / 2 - mapRect.x - window.innerWidth / 20;
       }
 
       this.tooltip.top = tooltipY + 'px';
@@ -297,13 +296,11 @@ export default {
     },
     changeTheme(theme) {
       if (theme === 'light') {
-        this.colLeft = '#eeeeee';
-        this.colRight = this.getHexaFromName(this.color);
+        this.textMention = '#6b6b6b';
         this.FranceProps.colorStroke = '#FFFFFF';
         this.colorStrokeDOM = '#FFFFFF';
       } else {
-        this.colLeft = this.getHexaFromName(this.color);
-        this.colRight = '#eeeeee';
+        this.textMention = '#cecece';
         this.FranceProps.colorStroke = '#161616';
         this.colorStrokeDOM = '#161616';
       }
