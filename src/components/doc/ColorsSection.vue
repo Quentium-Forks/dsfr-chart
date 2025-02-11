@@ -95,7 +95,7 @@
     <h3 class="fr-mt-5w">
       Graphiques séquentiels
     </h3>
-    <h4>
+    <h4 class="fr-mt-5w">
       Palette séquentielle unicolore
     </h4>
     <p>Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle doit être utilisée. Il en existe deux versions à utiliser en fonction du besoin, En fonction du nombre de catégories, on appliquera autant de valeurs de couleurs qu’il en existe dans un dégradé allant de la première couleur de cette échelle</p>

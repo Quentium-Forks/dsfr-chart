@@ -26,9 +26,7 @@
         Databox simple
       </h3>
       <hr>
-      <data-box
-        v-bind="chartData.dataBox.simple"
-      />
+      <data-box v-bind="chartData.dataBox.simple" />
       <pie-chart
         databox-id="simple"
         databox-type="chart"
@@ -57,9 +55,7 @@
         Databox complète multi source
       </h3>
       <hr>
-      <data-box
-        v-bind="chartData.dataBox.complete"
-      />
+      <data-box v-bind="chartData.dataBox.complete" />
       <scatter-chart
         databox-id="complete"
         databox-type="chart"

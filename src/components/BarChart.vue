@@ -227,7 +227,7 @@ export default {
         hoverBackgroundColor: this.colorHover[index],
         hoverBorderColor: this.colorHover[index],
         barThickness: this.barSize,
-        ...(this.maxBarSize ? {maxBarThickness: this.maxBarSize} : {}),
+        ...(this.maxBarSize ? { maxBarThickness: this.maxBarSize } : {}),
       }));
     },
     choosePalette() {
@@ -275,8 +275,8 @@ export default {
                 beginAtZero: true,
                 padding: this.horizontal ? 5 : 15,
               },
-              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
-              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
+              ...(this.xMin ? { suggestedMin: this.xMin } : {}),
+              ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
               stacked: this.stacked,
@@ -292,8 +292,8 @@ export default {
                 beginAtZero: true,
                 padding: 5,
               },
-              ...(this.yMin ? {suggestedMin: this.yMin} : {}),
-              ...(this.yMax ? {suggestedMax: this.yMax} : {}),
+              ...(this.yMin ? { suggestedMin: this.yMin } : {}),
+              ...(this.yMax ? { suggestedMax: this.yMax } : {}),
             },
           },
           plugins: {
@@ -375,7 +375,7 @@ export default {
 
                 const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
                 const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
-                
+
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 20;
                 if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
@@ -388,7 +388,7 @@ export default {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
                   tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
                 }
-                
+
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';

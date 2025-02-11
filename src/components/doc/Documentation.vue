@@ -50,12 +50,7 @@
                         <template v-if="section.graphs.length === 1">
                           <a
                             class="fr-sidemenu__link"
-                            :href="
-                              '#' +
-                                encodeURIComponent(
-                                  section.title.replace(/ /g, '-')
-                                )
-                            "
+                            :href="'#' + encodeURIComponent(section.title.replace(/ /g, '-'))"
                             target="_self"
                           >
                             {{ section.title }}
@@ -83,12 +78,7 @@
                                   <a
                                     :id="`sidemenu-${i}.${j}`"
                                     class="fr-sidemenu__link"
-                                    :href="
-                                      '#' +
-                                        encodeURIComponent(
-                                          graph.heading.replace(/ /g, '-')
-                                        )
-                                    "
+                                    :href="'#' + encodeURIComponent(graph.heading.replace(/ /g, '-'))"
                                     target="_self"
                                   >
                                     {{ graph.heading }}
@@ -189,10 +179,7 @@
               v-if="!graph.noPalette"
               class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w"
             >
-              {{
-                PALETTE_LABELS?.[graph.props.selectedPalette] ??
-                  "Palette par défaut"
-              }}
+              {{ PALETTE_LABELS?.[graph.props.selectedPalette] ?? 'Palette par défaut' }}
             </p>
             <h3
               v-if="graph.title"

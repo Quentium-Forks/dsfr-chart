@@ -495,8 +495,8 @@ export default {
               ticks: {
                 padding: 10,
               },
-              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
-              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
+              ...(this.xMin ? { suggestedMin: this.xMin } : {}),
+              ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
               grid: {
@@ -519,8 +519,8 @@ export default {
                   return value;
                 },
               },
-              ...(this.yMin ? {suggestedMin: this.yMin} : {}),
-              ...(this.yMax ? {suggestedMax: this.yMax} : {}),
+              ...(this.yMin ? { suggestedMin: this.yMin } : {}),
+              ...(this.yMax ? { suggestedMax: this.yMax } : {}),
             },
           },
           plugins: {

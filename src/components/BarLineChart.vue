@@ -490,8 +490,8 @@ export default {
                 drawTicks: false,
                 drawOnChartArea: false,
               },
-              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
-              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
+              ...(this.xMin ? { suggestedMin: this.xMin } : {}),
+              ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
               type: 'linear',
@@ -516,8 +516,8 @@ export default {
                   return value;
                 },
               },
-              ...(this.yBarMin ? {suggestedMin: this.yBarMin} : {}),
-              ...(this.yBarMax ? {suggestedMax: this.yBarMax} : {}),
+              ...(this.yBarMin ? { suggestedMin: this.yBarMin } : {}),
+              ...(this.yBarMax ? { suggestedMax: this.yBarMax } : {}),
             },
             yLine: {
               type: 'linear',
@@ -544,8 +544,8 @@ export default {
                   return value;
                 },
               },
-              ...(this.yLineMin ? {suggestedMin: this.yLineMin} : {}),
-              ...(this.yLineMax ? {suggestedMax: this.yLineMax} : {}),
+              ...(this.yLineMin ? { suggestedMin: this.yLineMin } : {}),
+              ...(this.yLineMax ? { suggestedMax: this.yLineMax } : {}),
             },
           },
           plugins: {
@@ -615,10 +615,9 @@ export default {
                       const color = colors[i] ? colors[i] : '#000';
 
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
-                      const displayValue =
-                        i === 0
-                          ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}`
-                          : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
+                      const displayValue = i === 0 
+                        ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}` 
+                        : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
