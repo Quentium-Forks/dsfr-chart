@@ -4,9 +4,9 @@
     aria-controls="fr-theme-modal"
     data-fr-opened="false"
     data-fr-js-modal-button="true"
-    style="z-index: 999"
+    style="z-index: 999;"
   >
-    Paramètres d'affichage
+    Paramètres d’affichage
   </button>
 
   <dialog
