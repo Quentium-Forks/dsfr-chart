@@ -1,54 +1,54 @@
 <template>
   <div class="l_col fr-col-12 fr-col-lg-3">
-    <div v-if="props['valueNat'] || props['valueReg']">
+    <div v-if="data['valueNat'] || data['valueReg']">
       <p
         class="fr-text--xs fr-mb-1v"
-        :style="{ color: props['textMention'] }"
+        :style="{ color: data['textMention'] }"
       >
-        Mise à jour : {{ props['date'] }}
+        Mise à jour : {{ data['date'] }}
       </p>
       <p
         class="fr-text--xs fr-text--bold fr-mb-1v"
-        :style="{ color: props['textMention'] }"
+        :style="{ color: data['textMention'] }"
       >
-        {{ props['names'] }}, en France
+        {{ data['names'] }}, en France
       </p>
       <p
         class="fr-text--xs fr-text--bold fr-mb-2w"
-        :style="{ color: props['textMention'] }"
+        :style="{ color: data['textMention'] }"
       >
-        {{ convertFloatToHuman(props['value']) }}
+        {{ formatNumber(data['value']) }}
       </p>
       <div class="sep fr-mb-2w" />
     </div>
     <div>
       <p
         class="fr-text--xs fr-mb-1v"
-        :style="{ color: props['textMention'] }"
+        :style="{ color: data['textMention'] }"
       >
         Localisation
       </p>
       <p class="flex fr-text--sm fr-text--bold fr-mb-2w">
-        <span>{{ props['localisation'] }}</span>
+        <span>{{ data['localisation'] }}</span>
       </p>
       <p
         class="fr-text--xs fr-mb-1v"
-        :style="{ color: props['textMention'] }"
+        :style="{ color: data['textMention'] }"
       >
-        Mise à jour : {{ props['date'] }}
+        Mise à jour : {{ data['date'] }}
       </p>
       <p class="fr-text--sm fr-text--bold fr-mb-1v">
-        {{ props['names'] }}
+        {{ data['names'] }}
       </p>
       <p class="fr-text--md fr-text--bold fr-my-0">
-        {{ convertFloatToHuman(props['valueNat'] || props['valueReg'] || props['value']) }}
+        {{ formatNumber(data['valueNat'] || data['valueReg'] || data['value']) }}
       </p>
     </div>
     <div class="scale fr-mt-auto">
       <div class="sep fr-my-2w" />
       <p
         class="fr-text--xs fr-mb-1w"
-        :style="{ color: props['textMention'] }"
+        :style="{ color: data['textMention'] }"
       >
         Légende
       </p>
@@ -57,31 +57,27 @@
         :style="{ background: gradient }"
       />
       <div class="scale_values">
-        <span class="min fr-text--sm fr-text--bold fr-mb-0">{{ convertFloatToHuman(props['min']) }}</span>
-        <span class="max fr-text--sm fr-text--bold fr-mb-0">{{ convertFloatToHuman(props['max']) }}</span>
+        <span class="min fr-text--sm fr-text--bold fr-mb-0">{{ formatNumber(data['min']) }}</span>
+        <span class="max fr-text--sm fr-text--bold fr-mb-0">{{ formatNumber(data['max']) }}</span>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import { mixin } from '@/utils/global.js';
+<script setup>
+import { computed } from 'vue';
+import { formatNumber } from '@/utils/global.js';
 
-export default {
-  name: 'LeftCol',
-  mixins: [mixin],
-  props: {
-    props: {
-      type: Object,
-      required: true,
-    },
+const props = defineProps({
+  data: {
+    type: Object,
+    required: true,
   },
-  computed: {
-    gradient() {
-      return 'linear-gradient(90deg,' + this.props.colMin + ' 0%,' + this.props.colMax + ' 100%)';
-    },
-  },
-};
+});
+
+const gradient = computed(() => {
+  return 'linear-gradient(90deg,' + props.data['colorMin'] + ' 0%,' + props.data['colorMax'] + ' 100%)';
+});
 </script>
 
 <style scoped lang="scss">

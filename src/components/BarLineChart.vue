@@ -560,7 +560,7 @@ export default {
                 label: (tooltipItems) => {
                   const label = [];
                   this.datasets.forEach((set) => {
-                    label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
+                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
                   });
                   return label;
                 },

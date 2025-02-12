@@ -22,48 +22,22 @@ export const slugify = (string) =>
     .replace(/[^a-zA-Z0-9]/g, '-')
     .toLowerCase();
 
-export const convertStringToLocaleNumber = function (string) {
-  return parseInt(string).toLocaleString('fr-FR');
-};
-
-export const convertFloatToHuman = function (float) {
-  if (Number.isInteger(parseFloat(float))) {
-    return parseInt(float).toLocaleString('fr-FR');
-  } else {
-    return parseFloat(float).toFixed(2).toLocaleString('fr-FR');
+/**
+ * Converts a number to a human-readable french format
+ * @param {number|string} value The number to convert
+ * @returns {string} The formatted number
+ */
+export const formatNumber = (value) => {
+  // Return original value if not a valid number
+  if (isNaN(value)) {
+    return value;
   }
-};
 
-export const convertIntToHuman = function (int) {
-  let res = parseFloat(int);
-  if (Math.floor(res / 1000000000) >= 10) {
-    res = (res / 1000000000).toFixed(0).replace('.', ',') + ' milliards';
-  } else if (Math.floor(res / 1000000000) >= 2) {
-    res = (res / 1000000000).toFixed(1).replace('.', ',') + ' milliards';
-  } else if (Math.floor(res / 1000000000) >= 1) {
-    res = (res / 1000000000).toFixed(1).replace('.', ',') + ' milliard';
-  } else if (Math.floor(res / 1000000) >= 10) {
-    res = (res / 1000000).toFixed(0).replace('.', ',') + ' millions';
-  } else if (Math.floor(res / 1000000) >= 2) {
-    res = (res / 1000000).toFixed(1).replace('.', ',') + ' millions';
-  } else if (Math.floor(res / 1000000) >= 1) {
-    res = (res / 1000000).toFixed(1).replace('.', ',') + ' million';
-  } else if (Number.isInteger(parseFloat(res))) {
-    return parseInt(res).toLocaleString('fr-FR').replace('.', ',');
+  // Format as integer or decimal number
+  if (Number.isInteger(value)) {
+    return parseInt(value).toLocaleString('fr-FR');
   } else {
-    return parseFloat(res).toFixed(2).toLocaleString('fr-FR').replace('.', ',');
-  }
-  return res;
-};
-
-export const convertIntToHumanTable = function (int) {
-  const res = parseFloat(int);
-  if (isNaN(res)) {
-    return int;
-  } else if (Number.isInteger(parseFloat(res))) {
-    return parseInt(res).toLocaleString('fr-FR');
-  } else {
-    return parseFloat(res).toFixed(2).toLocaleString('fr-FR');
+    return parseFloat(value).toLocaleString('fr-FR', { maximumFractionDigits: 2 });
   }
 };
 
@@ -134,15 +108,25 @@ export const configureChartDefaults = () => {
 export const mixin = {
   methods: {
     capitalize,
-    slugify,
-    convertStringToLocaleNumber,
-    convertFloatToHuman,
-    convertIntToHuman,
-    convertIntToHumanTable,
+    formatNumber,
+  },
+};
+
+export const mapsMixins = {
+  methods: {
     getDep,
     getReg,
     getAllDep,
     getAllReg,
     getDepsFromReg,
+  },
+};
+
+export const svgMixins = {
+  props: {
+    onenter: Function,
+    onleave: Function,
+    onclick: Function,
+    ondblclick: Function,
   },
 };

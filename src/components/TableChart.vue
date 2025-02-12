@@ -49,7 +49,7 @@
                       :key="colIndex"
                       :class="getClass(colItem[rowIndex])"
                     >
-                      {{ convertIntToHumanTable(colItem[rowIndex]) }}
+                      {{ formatNumber(colItem[rowIndex]) }}
                     </td>
                   </tr>
                   <tr

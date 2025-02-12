@@ -7,7 +7,7 @@
       :ref="widgetId"
       class="widget_container fr-grid-row"
     >
-      <LeftCol :props="leftColProps" />
+      <LeftCol :data="leftColProps" />
       <div class="fr-col-12 fr-col-lg-9 align-stretch">
         <button
           v-if="zoomDep"
@@ -27,7 +27,7 @@
             <div class="tooltip_body">
               <div class="tooltip_value-content">
                 <div class="tooltip_value">
-                  {{ convertStringToLocaleNumber(tooltip.value) }}
+                  {{ tooltip.value }}
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
             :style="{ display: displayFrance }"
           >
             <france
-              :props="FranceProps"
+              :config="FranceProps"
               :onclick="changeGeoLevel"
               :ondblclick="resetGeoFilters"
               :onenter="displayTooltip"
@@ -54,7 +54,7 @@
 import * as d3 from 'd3-scale';
 import LeftCol from '@/components/LeftCol.vue';
 import maps from '@/components/maps';
-import { mixin, isMobile } from '@/utils/global.js';
+import { mapsMixins, isMobile } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
 
 export default {
@@ -63,7 +63,7 @@ export default {
     LeftCol,
     ...maps,
   },
-  mixins: [mixin],
+  mixins: [mapsMixins],
   props: {
     databoxId: {
       type: String,
@@ -109,16 +109,16 @@ export default {
       chartId: '',
       scaleMin: 0,
       scaleMax: 0,
-      colLeft: '',
-      colRight: '',
+      colorLeft: '',
+      colorRight: '',
       zoomDep: '',
       leftColProps: {
         localisation: '',
         names: [],
         min: 0,
         max: 0,
-        colMin: '',
-        colMax: '',
+        colorMin: '',
+        colorMax: '',
         value: 0,
         valueReg: 0,
         date: '',
@@ -174,10 +174,10 @@ export default {
       // Choisir les couleurs extrêmes basées sur la palette
       const palette = this.choosePalette();
 
-      this.colLeft = palette[0];
-      this.colRight = palette[palette.length - 1];
-      this.leftColProps.colMin = this.colLeft;
-      this.leftColProps.colMax = this.colRight;
+      this.colorLeft = palette[0];
+      this.colorRight = palette[palette.length - 1];
+      this.leftColProps.colorMin = this.colorLeft;
+      this.leftColProps.colorMax = this.colorRight;
       this.leftColProps.date = this.date;
       this.leftColProps.names = this.name;
 
@@ -197,7 +197,7 @@ export default {
       this.scaleMax = Math.max(...values);
 
       // Define color scale based on regional values
-      const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colLeft, this.colRight]);
+      const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colorLeft, this.colorRight]);
 
       let xmin = [],
         xmax = [],
@@ -237,7 +237,7 @@ export default {
             ymax.push(polygon.y + polygon.height);
           } else if (listDep.includes(key)) {
             const polygon = elCol[0].getBBox();
-            elCol.length !== 0 && elCol[0].setAttribute('fill', self.colLeft + 'B3');
+            elCol.length !== 0 && elCol[0].setAttribute('fill', self.colorLeft + 'B3');
             self.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);

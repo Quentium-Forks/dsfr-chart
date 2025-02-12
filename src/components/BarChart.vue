@@ -308,7 +308,7 @@ export default {
               callbacks: {
                 label: (tooltipItems) => {
                   const value = this.datasets[tooltipItems.datasetIndex].data[tooltipItems.dataIndex];
-                  return this.convertIntToHuman(value);
+                  return this.formatNumber(value);
                 },
                 title: (tooltipItems) => {
                   return tooltipItems[0].label;
@@ -359,7 +359,7 @@ export default {
                   const colorArray = this.colorParse[datasetIndex];
                   const color = colorArray ? colorArray[index] : '#000';
 
-                  const value = this.convertIntToHuman(this.datasets[datasetIndex].data[index]);
+                  const value = this.formatNumber(this.datasets[datasetIndex].data[index]);
                   const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
                   divValue.innerHTML += `

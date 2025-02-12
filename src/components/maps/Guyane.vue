@@ -1,8 +1,8 @@
 <script>
-import mixin from './base';
+import { svgMixins } from '@/utils/global';
 
 export default {
-  mixins: [mixin],
+  mixins: [svgMixins],
   props: {
     colorStroke: {
       type: String,

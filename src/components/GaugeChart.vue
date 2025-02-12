@@ -24,10 +24,10 @@
           </div>
           <div class="gauge-container">
             <p class="fr-text--xs fr-text-mention--grey fr-mt-1w fr-mb-0">
-              {{ convertIntToHuman(init) }}
+              {{ formatNumber(init) }}
             </p>
             <p class="fr-text--xs fr-text-mention--grey fr-mt-1w fr-mb-0 fr-ml-auto fr-mr-0">
-              {{ convertIntToHuman(target) }}
+              {{ formatNumber(target) }}
             </p>
           </div>
           <div
