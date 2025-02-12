@@ -2,11 +2,24 @@ import { CategoryScale, Chart, Filler, LinearScale, PointElement, Tooltip } from
 
 Chart.register(Tooltip, Filler, LinearScale, CategoryScale, PointElement);
 
-export const capitalize = function (string) {
-  if (string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-};
+/**
+ * Capitalize the first letter of a string
+ * @param {string} string The string to capitalize
+ * @returns {string} The capitalized string
+ */
+export const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
+/**
+ * Slugify a string
+ * @param {string} string The string to slugify
+ * @returns {string} The slugified string
+ */
+export const slugify = (string) =>
+  string
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9]/g, '-')
+    .toLowerCase();
 
 export const convertStringToLocaleNumber = function (string) {
   return parseInt(string).toLocaleString('fr-FR');
