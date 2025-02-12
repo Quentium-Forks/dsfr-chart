@@ -45,7 +45,7 @@
     <p>
       Lorsqu’il n’y a que quelques données à présenter, une simple liste peut suffire.
     </p>
-    <div class="chart_container">
+    <div>
       <component
         :is="BarChart"
         v-bind="chartData.barChart.unicolor"
@@ -69,7 +69,7 @@
     <p>
       Dans d’autres cas, l’information pourrait déjà être présente dans le corps de texte adjacent ou l’alternative peut être un simple texte structuré.
     </p>
-    <div class="chart_container">
+    <div>
       <component
         :is="GaugeChart"
         v-bind="chartData.gaugeChart.default"
@@ -102,7 +102,7 @@
       </p>
     </div>
 
-    <div class="chart_container">
+    <div>
       <component
         :is="TableChart"
         v-bind="chartData.tableChart.default"

@@ -167,7 +167,6 @@
           <div
             v-for="graph in section.graphs"
             :key="graph.title"
-            class="chart_container"
           >
             <h3
               v-if="graph.heading"
