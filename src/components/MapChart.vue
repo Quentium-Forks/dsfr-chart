@@ -58,7 +58,7 @@
               :onleave="hideTooltip"
             />
           </div>
-          <div
+          <!-- <div
             v-if="isAcad"
             class="france_container no_select"
             :style="{ display: displayFrance }"
@@ -70,17 +70,20 @@
               :onenter="displayTooltip"
               :onleave="hideTooltip"
             />
-          </div>
+          </div> -->
           <div class="om_container fr-grid-row no_select">
             <div
-              class="om fr-col-4 fr-col-sm"
+              class="om fr-col-sm"
               :style="{ display: displayGuadeloupe }"
             >
               <span
                 class="om_title fr-text--xs fr-my-1w"
                 :style="{ color: textMention }"
-              >Guadeloupe</span>
+              >
+                Guadeloupe
+              </span>
               <guadeloupe
+                height="50"
                 :props="colorStrokeDOM"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
@@ -89,14 +92,17 @@
               />
             </div>
             <div
-              class="om fr-col-4 fr-col-sm fr-ml-1v"
+              class="om fr-col-sm"
               :style="{ display: displayMartinique }"
             >
               <span
                 class="fr-text--xs fr-my-1w"
                 :style="{ color: textMention }"
-              >Martinique</span>
+              >
+                Martinique
+              </span>
               <martinique
+                height="50"
                 :props="colorStrokeDOM"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
@@ -105,14 +111,17 @@
               />
             </div>
             <div
-              class="om fr-col-4 fr-col-sm fr-ml-1v"
+              class="om fr-col-sm"
               :style="{ display: displayGuyane }"
             >
               <span
                 class="fr-text--xs fr-my-1w"
                 :style="{ color: textMention }"
-              >Guyane</span>
+              >
+                Guyane
+              </span>
               <guyane
+                height="50"
                 :props="colorStrokeDOM"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
@@ -121,14 +130,17 @@
               />
             </div>
             <div
-              class="om fr-col-4 fr-col-sm fr-ml-1v"
+              class="om fr-col-sm"
               :style="{ display: displayReunion }"
             >
               <span
                 class="fr-text--xs fr-my-1w"
                 :style="{ color: textMention }"
-              >La Réunion</span>
+              >
+                La Réunion
+              </span>
               <reunion
+                height="50"
                 :props="colorStrokeDOM"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
@@ -137,14 +149,17 @@
               />
             </div>
             <div
-              class="om fr-col-4 fr-col-sm fr-ml-1v"
+              class="om fr-col-sm"
               :style="{ display: displayMayotte }"
             >
               <span
                 class="fr-text--xs fr-my-1w"
                 :style="{ color: textMention }"
-              >Mayotte</span>
+              >
+                Mayotte
+              </span>
               <mayotte
+                height="50"
                 :props="colorStrokeDOM"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
@@ -160,11 +175,11 @@
 </template>
 
 <script>
-import chroma from 'chroma-js';
+import * as d3 from 'd3-scale';
 import LeftCol from '@/components/LeftCol.vue';
 import maps from '@/components/maps';
 import { mixin, isMobile } from '@/utils/global.js';
-import { choosePalette, getColorsByIndex } from '@/utils/colors.js';
+import { choosePalette } from '@/utils/colors.js';
 
 export default {
   name: 'MapChart',
@@ -237,7 +252,7 @@ export default {
         date: '',
       },
       FranceProps: {
-        viewBox: '0 0 262 262',
+        viewBox: '0 0 1010 1010',
         displayDep: {},
         colorStroke: '#FFFFFF',
       },
@@ -306,12 +321,12 @@ export default {
 
       // Remplir la carte avec les départements/régions
       if (this.zoomDep) {
-        if (this.level === 'dep') {
-          const a = this.getDep(this.zoomDep).region_value;
-          listDep = this.getDepsFromReg(a);
-        } else if (this.level === 'reg') {
+        if (this.isDep) {
+          const region = this.getDep(this.zoomDep).region_value;
+          listDep = this.getDepsFromReg(region);
+        } else if (this.isReg) {
           listDep = this.getAllReg();
-        } else {
+        } else if (this.isAcad) {
           listDep = [this.getAcad(this.zoomDep).value];
         }
 
@@ -328,52 +343,50 @@ export default {
       this.scaleMin = Math.min(...values);
       this.scaleMax = Math.max(...values);
 
+      // Define color scale based on regional values
+      const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colLeft, this.colRight]);
+
       let xmin = [],
         xmax = [],
         ymin = [],
         ymax = [];
 
-      // Iterate over each department in the region and set colors
+      // Iterate over each department in France and set colors
       for (const key in self.dataParse) {
-        const className = this.getClassMap(key, this.level);
+        const className = 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
 
         if (!self.zoomDep) {
-          // Appliquer les couleurs à chaque département/région
-          const color = getColorsByIndex(key === '2A' || key === '2B' ? 20 : key, palette);
-
-          elCol.length !== 0 && elCol[0].setAttribute('fill', color);
+          elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
           self.FranceProps.displayDep[className] = '';
         } else {
-          // Logique pour zoomer sur des départements spécifiques
           const polygon = document.querySelector('.' + className).getBBox();
           if (self.zoomDep === key) {
-            const color = getColorsByIndex(key, palette);
-            elCol.length !== 0 && elCol[0].setAttribute('fill', color);
+            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
             self.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
             ymax.push(polygon.y + polygon.height);
           } else if (listDep.includes(key)) {
-            elCol.length !== 0 && elCol[0].setAttribute('fill', chroma(self.colLeft).alpha(0.72).hex());
+            elCol.length !== 0 && elCol[0].setAttribute('fill', self.colLeft + 'B3');
             self.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
             ymax.push(polygon.y + polygon.height);
           } else {
+            // Hide other departments outside the selected region
             elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
             self.FranceProps.displayDep[className] = 'none';
           }
         }
       }
 
-      // Zoom logic remains the same, unchanged
       if (this.zoomDep) {
         // Logic for zoom level and dimensions adjustment
-        if (this.level === 'dep') {
-          this.leftColProps.localisation = this.getDep(this.zoomDep).label;
+        if (this.isDep) {
+          this.leftColProps.localisation = this.getDep(this.zoomDep).department;
           const xminValue = Math.min(...xmin);
           const yminValue = Math.min(...ymin);
           const xmaxValue = Math.max(...xmax);
@@ -382,15 +395,15 @@ export default {
           const height = ymaxValue - yminValue;
           const size = Math.max(width, height);
           this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
-        } else if (this.level === 'reg') {
-          this.leftColProps.localisation = this.getReg(this.zoomDep).label;
-        } else {
-          this.leftColProps.localisation = this.getAcad(this.zoomDep).label;
+        } else if (this.isReg) {
+          this.leftColProps.localisation = this.getReg(this.zoomDep).region;
+        } else if (this.isAcad) {
+          this.leftColProps.localisation = this.getAcad(this.zoomDep).academy;
         }
         this.leftColProps.value = this.value;
         this.leftColProps.valueNat = this.dataParse[this.zoomDep];
 
-        if (this.level === 'dep') {
+        if (this.isDep) {
           this.displayFrance = 'none';
           this.displayGuadeloupe = 'none';
           this.displayMartinique = 'none';
@@ -416,13 +429,7 @@ export default {
         this.leftColProps.localisation = 'France';
         this.leftColProps.value = this.value;
         this.leftColProps.valueNat = 0;
-        if (this.level === 'dep') {
-          this.FranceProps.viewBox = '0 0 262 262';
-        } else if (this.level === 'reg') {
-          this.FranceProps.viewBox = '0 0 800 800';
-        } else {
-          this.FranceProps.viewBox = '0 0 700 700';
-        }
+        this.FranceProps.viewBox = '0 0 1010 1010';
         this.displayFrance = '';
         this.displayGuadeloupe = '';
         this.displayMartinique = '';
@@ -431,7 +438,6 @@ export default {
         this.displayGuyane = '';
       }
 
-      // Remplir les colonnes de gauche
       this.leftColProps.names = this.name;
       this.leftColProps.min = this.scaleMin;
       this.leftColProps.max = this.scaleMax;
@@ -441,28 +447,17 @@ export default {
     displayTooltip(e) {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
-      let hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '');
+      let hoverdep = e.target.className.baseVal.replace('FR-', '');
 
-      let className;
-      if (hoverdep.includes('DOM')) {
-        hoverdep = hoverdep.replace(/DOM/g, '');
-        className = 'FR-DOM-' + hoverdep;
-        if (this.level === 'reg') {
-          hoverdep = this.getDep(hoverdep).region_value;
-        }
-      } else {
-        className = this.getClassMap(hoverdep, this.level);
-      }
-
-      const elCol = parentWidget.getElementsByClassName(className);
-      elCol[0].style.opacity = '0.72';
+      const elCol = parentWidget.getElementsByClassName('FR-' + hoverdep);
+      elCol[0].style.opacity = 0.8;
       this.tooltip.value = this.dataParse[hoverdep];
-      if (this.level === 'dep') {
-        this.tooltip.place = this.getDep(hoverdep).label;
-      } else if (this.level === 'reg') {
-        this.tooltip.place = this.getReg(hoverdep).label;
-      } else {
-        this.tooltip.place = this.getAcad(hoverdep).label;
+      if (this.isDep) {
+        this.tooltip.place = this.getDep(hoverdep).department;
+      } else if (this.isReg) {
+        this.tooltip.place = this.getReg(hoverdep).region;
+      } else if (this.isAcad) {
+        this.tooltip.place = this.getAcad(hoverdep).academy;
       }
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
@@ -484,31 +479,15 @@ export default {
       if (isMobile()) return;
       this.tooltip.visibility = 'hidden';
       const parentWidget = this.$refs[this.widgetId];
-      let hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '');
-      let className;
-      if (hoverdep.includes('DOM')) {
-        hoverdep = hoverdep.replace(/DOM/g, '');
-        className = 'FR-DOM-' + hoverdep;
-        if (this.level === 'reg') {
-          hoverdep = this.getDep(hoverdep).region_value;
-        }
-      } else {
-        className = this.getClassMap(hoverdep, this.level);
-      }
+      const hoverdep = e.target.className.baseVal.replace('FR-', '');
 
-      const elCol = parentWidget.getElementsByClassName(className);
+      const elCol = parentWidget.getElementsByClassName('FR-' + hoverdep);
       elCol[0].style.opacity = '1';
     },
     changeGeoLevel(e) {
       // Get clicked department
-      let clickdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '');
+      let clickdep = e.target.className.baseVal.replace('FR-', '');
 
-      if (clickdep.includes('DOM')) {
-        clickdep = clickdep.replace(/DOM/g, '');
-        if (this.level === 'reg') {
-          clickdep = this.getDep(clickdep).region_value;
-        }
-      }
       this.zoomDep = clickdep;
       this.createChart();
     },
