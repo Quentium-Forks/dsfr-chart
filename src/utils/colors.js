@@ -87,9 +87,9 @@ export function generateBarLineChartColors({
   const colorParse = getColorsByIndex(1, palette);
   const colorHover = chroma(colorParse).darken(0.8).hex();
 
-  const vlineColorParse = vlineParse.map((_, i) => (tmpVlineColorParse[i] ? tmpVlineColorParse[i] : getNeutralColor()));
+  const vlineColorParse = vlineParse.map((_, i) => (tmpVlineColorParse[i] || getNeutralColor()));
 
-  const hlineColorParse = hlineParse.map((_, i) => (tmpHlineColorParse[i] ? tmpHlineColorParse[i] : getNeutralColor()));
+  const hlineColorParse = hlineParse.map((_, i) => (tmpHlineColorParse[i] || getNeutralColor()));
 
   return {
     colorBarParse,
@@ -132,10 +132,10 @@ export function generateScatterChartColors({
   }
 
   // Génération des couleurs pour les lignes verticales
-  const vlineColorParse = vlineParse.map((_, i) => (tmpVlineColorParse[i] ? tmpVlineColorParse[i] : getNeutralColor()));
+  const vlineColorParse = vlineParse.map((_, i) => (tmpVlineColorParse[i] || getNeutralColor()));
 
   // Génération des couleurs pour les lignes horizontales
-  const hlineColorParse = hlineParse.map((_, i) => (tmpHlineColorParse[i] ? tmpHlineColorParse[i] : getNeutralColor()));
+  const hlineColorParse = hlineParse.map((_, i) => (tmpHlineColorParse[i] || getNeutralColor()));
 
   return {
     colorParse,
