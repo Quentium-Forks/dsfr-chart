@@ -206,6 +206,33 @@ export const chartData = {
       fullscreen: true,
       actions: ['Source officielle', 'Pôle emploi'],
     },
+    simpleGrid1: {
+      id: 'simple-grid-1',
+      title: 'Statut des emplois en France en 2018',
+      tooltipTitle: 'Statut des emplois en France',
+      tooltipContent: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi.',
+      source: 'Insee, enquête Emploi',
+      date: '12/01/2025',
+      trend: '-15%',
+    },
+    simpleGrid2: {
+      id: 'simple-grid-2',
+      title: 'Statut des emplois en France en 2018',
+      tooltipTitle: 'Statut des emplois en France',
+      tooltipContent: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi.',
+      source: 'Insee, enquête Emploi',
+      date: '12/01/2025',
+      trend: '-15%',
+    },
+    simpleGrid3: {
+      id: 'simple-grid-3',
+      title: 'Statut des emplois en France en 2018',
+      tooltipTitle: 'Statut des emplois en France',
+      tooltipContent: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi.',
+      source: 'Insee, enquête Emploi',
+      date: '12/01/2025',
+      trend: '-15%',
+    },
   },
 };
 
