@@ -4,7 +4,7 @@
       Databox
     </h2>
     <h3>Présentation</h3>
-    <p>Le composant <strong>DataBox</strong> est un composant permettant d'afficher dans un cadre normé des données sous différentes formes (graphiques, chiffres clés, tableaux, etc). Il est à utiliser pour composer un tableau de bord, ou toute page nécessitant de structurer la visualisation de données.</p>
+    <p>Le composant <strong>DataBox</strong> est un composant permettant d’afficher dans un cadre normé des données sous différentes formes (graphiques, chiffres clés, tableaux, etc). Il est à utiliser pour composer un tableau de bord, ou toute page nécessitant de structurer la visualisation de données.</p>
     <p>Polyvalente, la databox intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants permettant la mise à disposition d’actions supplémentaires.</p>
 
     <div class="chart_container fr-my-6w">
@@ -170,7 +170,7 @@
     <p>Par défaut, la librairie DSFR Chart propose dans le menu à points deux fonctionnalités : </p>
     <ul>
       <li>une fonctionnalité d’export CSV des données</li>
-      <li>une fonctionnalité de téléchargement de capture d'écran</li>
+      <li>une fonctionnalité de téléchargement de capture d’écran</li>
     </ul>
     <p>Toutefois, ces fonctionnalités sont optionnelles, et ne doivent pas apparaître obligatoirement si vous n’en avez pas le besoin. Par ailleurs, le menu à points peut contenir tous les liens ou actions utilisateurs dont vous avez besoin pour votre projet.</p>
   </div>

@@ -100,7 +100,7 @@
       l’objectif 2026, fixé à 2 millions d’utilisateurs."
     </p>
 
-    <h3>Affichage de l'alternative</h3>
+    <h3>Affichage de l’alternative</h3>
     <p>
       L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit
       être adjacente au graphique. La #databox présente ainsi systématiquement
@@ -138,9 +138,9 @@
 </template>
 
 <script setup>
-import { chartData } from "@/assets/data";
-import BarChart from "../BarChart.vue";
-import GaugeChart from "../GaugeChart.vue";
-import TableChart from "../TableChart.vue";
-import CodeBlock from "./CodeBlock.vue";
+import { chartData } from '@/assets/data';
+import BarChart from '../BarChart.vue';
+import GaugeChart from '../GaugeChart.vue';
+import TableChart from '../TableChart.vue';
+import CodeBlock from './CodeBlock.vue';
 </script>
