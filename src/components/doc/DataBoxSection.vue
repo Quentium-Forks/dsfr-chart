@@ -94,7 +94,16 @@
     </div>
 
     <h3>Un composant flexible pour construire vos tableaux de bord</h3>
-    <p>La databox s’appuie sur <a href="https://www.systeme-de-design.gouv.fr/fondamentaux/grille-et-points-de-rupture/" target="_blank">la grille proposée par le DSFR</a>, et peut s’afficher selon vos besoins, sur une ou plusieurs colonnes de la grille, grâce à la classe <strong>fr-col</strong>. Pensez toutefois à utiliser un <strong>fr-grid-row</strong> par ligne pour permettre le bon fonctionnement des infobulles du composant.</p>
+    <p>
+      La databox s’appuie sur 
+      <a
+        href="https://www.systeme-de-design.gouv.fr/fondamentaux/grille-et-points-de-rupture/"
+        target="_blank"
+      >
+        la grille proposée par le DSFR
+      </a>
+      , et peut s’afficher selon vos besoins, sur une ou plusieurs colonnes de la grille, grâce à la classe <strong>fr-col</strong>. Pensez toutefois à utiliser un <strong>fr-grid-row</strong> par ligne pour permettre le bon fonctionnement des infobulles du composant.
+    </p>
     <p>Vous pourrez ainsi construire des dashboard en donnant aux databox la taille nécessaire, en fonction de vos besoins métiers et de l’aspect souhaité pour vos graphiques :</p>
 
     <div class="fr-mb-6w">
@@ -167,7 +176,7 @@
     </ul>
 
     <h3>Personnalisation du menu à points</h3>
-    <p>Par défaut, la librairie DSFR Chart propose dans le menu à points deux fonctionnalités : </p>
+    <p>Par défaut, la librairie DSFR Chart propose dans le menu à points deux fonctionnalités :</p>
     <ul>
       <li>une fonctionnalité d’export CSV des données</li>
       <li>une fonctionnalité de téléchargement de capture d’écran</li>
