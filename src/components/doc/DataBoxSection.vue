@@ -11,7 +11,6 @@
       <h3 id="Databox-simple">
         Exemple de databox simple
       </h3>
-      <hr>
       <data-box v-bind="chartData.dataBox.simple" />
       <pie-chart
         databox-id="simple"
@@ -40,7 +39,6 @@
       <h3 id="Databox-complète-multi-source">
         Exemple de databox complète et multi-source
       </h3>
-      <hr>
       <data-box v-bind="chartData.dataBox.complete" />
       <scatter-chart
         databox-id="complete"
@@ -95,7 +93,7 @@
 
     <h3>Un composant flexible pour construire vos tableaux de bord</h3>
     <p>
-      La databox s’appuie sur 
+      La databox s’appuie sur
       <a
         href="https://www.systeme-de-design.gouv.fr/fondamentaux/grille-et-points-de-rupture/"
         target="_blank"
