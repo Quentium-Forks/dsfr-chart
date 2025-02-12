@@ -294,7 +294,6 @@ export default {
   methods: {
     createChart() {
       const parentWidget = this.$refs[this.widgetId];
-      const self = this;
 
       // Parsing des données
       try {
@@ -309,15 +308,15 @@ export default {
       // Choisir les couleurs extrêmes basées sur la palette
       this.colorLeft = palette[0];
       this.colorRight = palette[palette.length - 1];
-      this.leftColProps.colMin = this.colorLeft;
-      this.leftColProps.colMax = this.colorRight;
+      this.leftColProps.colorMin = this.colorLeft;
+      this.leftColProps.colorMax = this.colorRight;
       this.leftColProps.date = this.date;
       this.leftColProps.names = this.name;
 
       const values = [];
       let listDep = [];
 
-      self.FranceProps.displayDep = {};
+      this.FranceProps.displayDep = {};
 
       // Remplir la carte avec les départements/régions
       if (this.zoomDep) {
@@ -331,11 +330,11 @@ export default {
         }
 
         for (const key of listDep) {
-          values.push(self.dataParse[key]);
+          values.push(this.dataParse[key]);
         }
       } else {
-        for (const key in self.dataParse) {
-          values.push(self.dataParse[key]);
+        for (const key in this.dataParse) {
+          values.push(this.dataParse[key]);
         }
       }
 
@@ -352,25 +351,25 @@ export default {
         ymax = [];
 
       // Iterate over each department in France and set colors
-      for (const key in self.dataParse) {
+      for (const key in this.dataParse) {
         const className = 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
 
-        if (!self.zoomDep) {
-          elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
-          self.FranceProps.displayDep[className] = '';
+        if (!this.zoomDep) {
+          elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+          this.FranceProps.displayDep[className] = '';
         } else {
           const polygon = document.querySelector('.' + className).getBBox();
-          if (self.zoomDep === key) {
-            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
-            self.FranceProps.displayDep[className] = '';
+          if (this.zoomDep === key) {
+            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            this.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
             ymax.push(polygon.y + polygon.height);
           } else if (listDep.includes(key)) {
-            elCol.length !== 0 && elCol[0].setAttribute('fill', self.colorLeft + 'B3');
-            self.FranceProps.displayDep[className] = '';
+            elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
+            this.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
@@ -378,7 +377,7 @@ export default {
           } else {
             // Hide other departments outside the selected region
             elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
-            self.FranceProps.displayDep[className] = 'none';
+            this.FranceProps.displayDep[className] = 'none';
           }
         }
       }
@@ -411,15 +410,15 @@ export default {
           this.displayReunion = 'none';
           this.displayGuyane = 'none';
           // Setting visibility for DOM regions
-          if ((self.zoomDep === '971' && self.level === 'dep') || (self.zoomDep === '01' && self.level === 'reg')) {
+          if ((this.zoomDep === '971' && this.level === 'dep') || (this.zoomDep === '01' && this.level === 'reg')) {
             this.displayGuadeloupe = '';
-          } else if ((self.zoomDep === '972' && self.level === 'dep') || (self.zoomDep === '02' && self.level === 'reg')) {
+          } else if ((this.zoomDep === '972' && this.level === 'dep') || (this.zoomDep === '02' && this.level === 'reg')) {
             this.displayMartinique = '';
-          } else if ((self.zoomDep === '973' && self.level === 'dep') || (self.zoomDep === '03' && self.level === 'reg')) {
+          } else if ((this.zoomDep === '973' && this.level === 'dep') || (this.zoomDep === '03' && this.level === 'reg')) {
             this.displayGuyane = '';
-          } else if ((self.zoomDep === '974' && self.level === 'dep') || (self.zoomDep === '04' && self.level === 'reg')) {
+          } else if ((this.zoomDep === '974' && this.level === 'dep') || (this.zoomDep === '04' && this.level === 'reg')) {
             this.displayReunion = '';
-          } else if ((self.zoomDep === '976' && self.level === 'dep') || (self.zoomDep === '06' && self.level === 'reg')) {
+          } else if ((this.zoomDep === '976' && this.level === 'dep') || (this.zoomDep === '06' && this.level === 'reg')) {
             this.displayMayotte = '';
           } else {
             this.displayFrance = '';

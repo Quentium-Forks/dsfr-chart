@@ -161,7 +161,6 @@ export default {
   methods: {
     createChart() {
       const parentWidget = this.$refs[this.widgetId];
-      const self = this;
 
       // Parsing des données
       try {
@@ -184,12 +183,12 @@ export default {
       const values = [];
       let listDep = [];
 
-      self.FranceProps.displayDep = {};
+      this.FranceProps.displayDep = {};
 
       // Afficher uniquement les départements de la région sélectionnée
       listDep = this.getDepsFromReg(this.region);
       listDep.forEach((key) => {
-        values.push(self.dataParse[key]);
+        values.push(this.dataParse[key]);
       });
 
       // Calcul des min et max pour l'échelle
@@ -205,40 +204,40 @@ export default {
         ymax = [];
 
       // Iterate over each department in France and hide
-      for (const key in self.dataParse) {
+      for (const key in this.dataParse) {
         const className = 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
         elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
-        self.FranceProps.displayDep[className] = 'none';
+        this.FranceProps.displayDep[className] = 'none';
       }
       // Iterate over each department in the region and set colors
       listDep.forEach((key) => {
         const className = 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
 
-        if (!self.zoomDep) {
+        if (!this.zoomDep) {
           if (listDep.includes(key)) {
             const polygon = elCol[0].getBBox();
-            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
-            self.FranceProps.displayDep[className] = '';
+            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            this.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
             ymax.push(polygon.y + polygon.height);
           }
         } else {
-          if (self.zoomDep === key) {
+          if (this.zoomDep === key) {
             const polygon = elCol[0].getBBox();
-            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
-            self.FranceProps.displayDep[className] = '';
+            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            this.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
             ymax.push(polygon.y + polygon.height);
           } else if (listDep.includes(key)) {
             const polygon = elCol[0].getBBox();
-            elCol.length !== 0 && elCol[0].setAttribute('fill', self.colorLeft + 'B3');
-            self.FranceProps.displayDep[className] = '';
+            elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
+            this.FranceProps.displayDep[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
