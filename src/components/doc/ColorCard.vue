@@ -1,23 +1,39 @@
 <template>
-  <div class="box-sample" :style="{ '--color-box': color }">
-    <div class="color-box-sample"></div>
+  <div
+    class="box-sample"
+    :style="{ '--color-box': color }"
+  >
+    <div class="color-box-sample" />
     <p class="fr-my-2v">
-        <strong class="block">{{ title }}</strong>
-        <strong class="block" v-if="isLightTheme">(thème clair)</strong>
-        <strong class="block" v-else>(thème sombre)</strong>
+      <strong class="block">{{ title }}</strong>
+      <strong
+        v-if="isLightTheme"
+        class="block"
+      >
+      (thème clair)
+    </strong>
+      <strong
+        v-else
+        class="block"
+      >
+      (thème sombre)
+    </strong>
     </p>
     <p>
-        <span class="block">{{ color }}</span>
-        <span class="block">{{ hexToRgb(color) }}</span>
-        <span class="block">{{ rgbToHsl(color) }}</span>
+      <span class="block">{{ color }}</span>
+      <span class="block">{{ hexToRgb(color) }}</span>
+      <span class="block">{{ rgbToHsl(color) }}</span>
     </p>
     <div class="box-children-sample">
       <div>
-        <div class="color-box-sample--sm" :style="{ '--color-box': getHoverColor(color) }"></div>
+        <div
+          class="color-box-sample--sm"
+          :style="{ '--color-box': getHoverColor(color) }"
+        />
         <p class="fr-my-2v">
-            <strong class="block">hover</strong>
-            <span class="block">{{ getHoverColor(color) }}</span>
-            <span class="block">{{ hexToRgb(getHoverColor(color)) }}</span>
+          <strong class="block">hover</strong>
+          <span class="block">{{ getHoverColor(color) }}</span>
+          <span class="block">{{ hexToRgb(getHoverColor(color)) }}</span>
         </p>
       </div>
     </div>
@@ -26,8 +42,8 @@
 
 <script setup>
 import chroma from 'chroma-js';
-import { defineProps } from 'vue';
-const props = defineProps({
+
+defineProps({
   color: {
     type: String,
     required: true,
@@ -43,43 +59,47 @@ const props = defineProps({
 });
 
 function getHoverColor(color) {
-    return chroma(color).darken(0.8).hex()
+  return chroma(color).darken(0.8).hex();
 }
 
 function hexToRgb(hex, string = true) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (string) {
-        return result ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})` : null;
-    }
-    return result ? {
-        r: parseInt(result[1], 16), 
-        g: parseInt(result[2], 16), 
-        b: parseInt(result[3], 16)
-    } : null;
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (string) {
+    return result ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})` : null;
+  }
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
 }
 
 function rgbToHsl(hex) {
-    hexToRgb(hex, false);
-    let r = hexToRgb(hex, false).r;
-    let g = hexToRgb(hex, false).g;
-    let b = hexToRgb(hex, false).b;
+  hexToRgb(hex, false);
+  let r = hexToRgb(hex, false).r;
+  let g = hexToRgb(hex, false).g;
+  let b = hexToRgb(hex, false).b;
 
-    r /= 255; g /= 255; b /= 255;
+  r /= 255;
+  g /= 255;
+  b /= 255;
 
-    let max = Math.max(r, g, b);
-    let min = Math.min(r, g, b);
-    let d = max - min;
-    let h;
+  let max = Math.max(r, g, b);
+  let min = Math.min(r, g, b);
+  let d = max - min;
+  let h;
 
-    if (d === 0) h = 0;
-    else if (max === r) h = (g - b) / d % 6;
-    else if (max === g) h = (b - r) / d + 2;
-    else if (max === b) h = (r - g) / d + 4;
+  if (d === 0) h = 0;
+  else if (max === r) h = ((g - b) / d) % 6;
+  else if (max === g) h = (b - r) / d + 2;
+  else if (max === b) h = (r - g) / d + 4;
 
-    let l = (min + max) / 2;
-    let s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
-    
-    return `hsl(${parseInt(h * 60)}deg ${parseInt(s * 100)}% ${parseInt(l * 100)}%)`
+  let l = (min + max) / 2;
+  let s = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+
+  return `hsl(${parseInt(h * 60)}deg ${parseInt(s * 100)}% ${parseInt(l * 100)}%)`;
 }
 </script>
 
