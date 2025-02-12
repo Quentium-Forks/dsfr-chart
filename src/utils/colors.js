@@ -215,6 +215,10 @@ export function getNeutralColor() {
 
 export function choosePalette(selectedPalette) {
   switch (selectedPalette) {
+    case 'default':
+      return [getDefaultColor()];
+    case 'neutral':
+      return [getNeutralColor()];
     case 'categorical':
       return getCategoricalPalette();
     case 'sequentialAscending':
@@ -225,10 +229,6 @@ export function choosePalette(selectedPalette) {
       return getDivergentAscending();
     case 'divergentDescending':
       return getDivergentDescending();
-    case 'neutral':
-      return [getNeutralColor()];
-    case 'defaultColor':
-      return [getDefaultColor()];
     default:
       return getCategoricalPalette();
   }

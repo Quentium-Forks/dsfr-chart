@@ -92,7 +92,7 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
   - `'divergentAscending'` : Palette divergente ascendante.
   - `'divergentDescending'` : Palette divergente descendante.
   - `'neutral'` : Palette neutre.
-  - `'defaultColor'` : Couleur par défaut.
+  - `'default'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
@@ -205,7 +205,7 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
   - `'divergentAscending'` : Palette divergente ascendante.
   - `'divergentDescending'` : Palette divergente descendante.
   - `'neutral'` : Palette neutre.
-  - `'defaultColor'` : Couleur par défaut.
+  - `'default'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **highlight-index** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'neutral'`).
@@ -228,7 +228,7 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
   x='[["2025", "2030", "2035", "2040", "2050", "2060", "2070"]]'
   y="[[69.1, 70.3, 71.4, 72.5, 74, 75.2, 76.4]]"
   name='["Population en millions"]'
-  selected-palette="defaultColor"
+  selected-palette="default"
   unit-tooltip="millions"
 ></bar-chart>
 ```
@@ -471,7 +471,7 @@ Les diagrammes circulaires (ou PieChart) sont accessibles à travers la balise :
   - `'divergentAscending'` : Palette divergente ascendante.
   - `'divergentDescending'` : Palette divergente descendante.
   - `'neutral'` : Palette neutre.
-  - `'defaultColor'` : Couleur par défaut.
+  - `'default'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
@@ -741,7 +741,7 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
   - `'divergentAscending'` : Palette divergente ascendante.
   - `'divergentDescending'` : Palette divergente descendante.
   - `'neutral'` : Palette neutre.
-  - `'defaultColor'` : Couleur par défaut.
+  - `'default'` : Couleur par défaut.
   - _(laisser vide pour utiliser la palette par défaut)_
 
 - **show-line** : _(Boolean)_ Permet de relier les points du nuage. Mettre à `true` pour afficher les lignes entre les points.
@@ -825,7 +825,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
     - `'divergentAscending'` : Palette divergente ascendante.
     - `'divergentDescending'` : Palette divergente descendante.
     - `'neutral'` : Palette neutre.
-    - `'defaultColor'` : Couleur par défaut.
+    - `'default'` : Couleur par défaut.
     - _(laisser vide pour utiliser la palette par défaut)_
 
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.

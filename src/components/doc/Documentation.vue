@@ -224,7 +224,7 @@ import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
 
 const PALETTE_LABELS = {
-  defaultColor: 'Palette par défaut',
+  default: 'Palette par défaut',
   neutral: 'Palette unicolore',
   sequentialDescending: 'Palette séquentielle',
   divergentDescending: 'Palette séquentielle divergente',
