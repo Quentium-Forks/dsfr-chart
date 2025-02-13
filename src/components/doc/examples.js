@@ -7,6 +7,7 @@ import MapChartReg from '@/components/MapChartReg.vue';
 import PieChart from '@/components/PieChart.vue';
 import RadarChart from '@/components/RadarChart.vue';
 import ScatterChart from '@/components/ScatterChart.vue';
+import { chartData } from '@/assets/data.js';
 
 export const chartExamples = [
   // Graphique en ligne
