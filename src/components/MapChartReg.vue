@@ -106,7 +106,6 @@ export default {
     return {
       dataParse: {},
       widgetId: '',
-      chartId: '',
       scaleMin: 0,
       scaleMax: 0,
       colorLeft: '',
@@ -144,7 +143,6 @@ export default {
     };
   },
   created() {
-    this.chartId = 'dsfr-chart-' + Math.floor(Math.random() * 1000);
     this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
   },
   mounted() {
@@ -152,9 +150,7 @@ export default {
 
     const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      if (this.chartId !== '') {
-        this.changeTheme(e.detail.theme);
-      }
+      this.changeTheme(e.detail.theme);
     });
   },
   methods: {
@@ -206,6 +202,7 @@ export default {
       for (const key in this.dataParse) {
         const className = 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
+
         elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
         this.FranceProps.displayDep[className] = 'none';
       }
@@ -270,12 +267,12 @@ export default {
     displayTooltip(e) {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
-      const hoverdep = e.target.className.baseVal.replace('FR-', '');
+      const hoverElement = e.target.className.baseVal.replace('FR-', '');
 
-      const elCol = parentWidget.getElementsByClassName('FR-' + hoverdep);
+      const elCol = parentWidget.getElementsByClassName('FR-' + hoverElement);
       elCol[0].style.opacity = 0.8;
-      this.tooltip.value = this.dataParse[hoverdep];
-      this.tooltip.place = this.getDep(hoverdep).department;
+      this.tooltip.value = this.dataParse[hoverElement];
+      this.tooltip.place = this.getDep(hoverElement).department;
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
       const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
@@ -296,16 +293,14 @@ export default {
       if (isMobile()) return;
       this.tooltip.visibility = 'hidden';
       const parentWidget = this.$refs[this.widgetId];
-      const hoverdep = e.target.className.baseVal.replace('FR-', '');
+      const hoverElement = e.target.className.baseVal;
 
-      const elCol = parentWidget.getElementsByClassName('FR-' + hoverdep);
-      elCol[0].style.opacity = '1';
+      const elCol = parentWidget.getElementsByClassName(hoverElement);
+      elCol[0].style.opacity = 1;
     },
     changeGeoLevel(e) {
-      // Get clicked department
-      let clickdep = e.target.className.baseVal.replace('FR-', '');
-
-      this.zoomDep = clickdep;
+      // Get clicked department value
+      this.zoomDep = e.target.className.baseVal.replace('FR-', '');
       this.createChart();
     },
     resetGeoFilters() {

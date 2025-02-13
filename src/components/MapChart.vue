@@ -78,7 +78,7 @@
             >
               <span
                 class="om_title fr-text--xs fr-my-1w"
-                :style="{ color: textMention }"
+                :style="{ color: dromColor }"
               >
                 Guadeloupe
               </span>
@@ -97,7 +97,7 @@
             >
               <span
                 class="fr-text--xs fr-my-1w"
-                :style="{ color: textMention }"
+                :style="{ color: dromColor }"
               >
                 Martinique
               </span>
@@ -116,7 +116,7 @@
             >
               <span
                 class="fr-text--xs fr-my-1w"
-                :style="{ color: textMention }"
+                :style="{ color: dromColor }"
               >
                 Guyane
               </span>
@@ -135,7 +135,7 @@
             >
               <span
                 class="fr-text--xs fr-my-1w"
-                :style="{ color: textMention }"
+                :style="{ color: dromColor }"
               >
                 La Réunion
               </span>
@@ -154,7 +154,7 @@
             >
               <span
                 class="fr-text--xs fr-my-1w"
-                :style="{ color: textMention }"
+                :style="{ color: dromColor }"
               >
                 Mayotte
               </span>
@@ -230,7 +230,6 @@ export default {
     return {
       dataParse: {},
       widgetId: '',
-      chartId: '',
       scaleMin: 0,
       scaleMax: 0,
       colorLeft: '',
@@ -239,7 +238,6 @@ export default {
       isReg: false,
       isAcad: false,
       zoomDep: '',
-      prefixClass: 'FR-',
       InfoProps: {
         localisation: '',
         names: [],
@@ -272,25 +270,21 @@ export default {
       displayMayotte: '',
       displayReunion: '',
       displayGuyane: '',
-      textMention: '#6b6b6b',
+      dromColor: '#6b6b6b',
     };
   },
   created() {
-    this.chartId = 'dsfr-chart-' + Math.floor(Math.random() * 1000);
     this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
     this.isDep = this.level === 'dep';
     this.isReg = this.level === 'reg';
     this.isAcad = this.level === 'acad';
-    this.prefixClass = 'FR-' + this.level + '-';
   },
   mounted() {
     this.createChart();
 
     const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      if (this.chartId !== '') {
-        this.changeTheme(e.detail.theme);
-      }
+      this.changeTheme(e.detail.theme);
     });
   },
   methods: {
@@ -448,17 +442,17 @@ export default {
     displayTooltip(e) {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
-      let hoverdep = e.target.className.baseVal.replace('FR-', '');
+      let hoverElement = e.target.className.baseVal.replace('FR-', '');
 
-      const elCol = parentWidget.getElementsByClassName('FR-' + hoverdep);
+      const elCol = parentWidget.getElementsByClassName('FR-' + hoverElement);
       elCol[0].style.opacity = 0.8;
-      this.tooltip.value = this.dataParse[hoverdep];
+      this.tooltip.value = this.dataParse[hoverElement];
       if (this.isDep) {
-        this.tooltip.place = this.getDep(hoverdep).department;
+        this.tooltip.place = this.getDep(hoverElement).department;
       } else if (this.isReg) {
-        this.tooltip.place = this.getReg(hoverdep).region;
+        this.tooltip.place = this.getReg(hoverElement).region;
       } else if (this.isAcad) {
-        this.tooltip.place = this.getAcad(hoverdep).academy;
+        this.tooltip.place = this.getAcad(hoverElement).academy;
       }
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
@@ -480,16 +474,14 @@ export default {
       if (isMobile()) return;
       this.tooltip.visibility = 'hidden';
       const parentWidget = this.$refs[this.widgetId];
-      const hoverdep = e.target.className.baseVal.replace('FR-', '');
+      const hoverElement = e.target.className.baseVal;
 
-      const elCol = parentWidget.getElementsByClassName('FR-' + hoverdep);
-      elCol[0].style.opacity = '1';
+      const elCol = parentWidget.getElementsByClassName(hoverElement);
+      elCol[0].style.opacity = 1;
     },
     changeGeoLevel(e) {
-      // Get clicked department
-      let clickdep = e.target.className.baseVal.replace('FR-', '');
-
-      this.zoomDep = clickdep;
+      // Get clicked department value
+      this.zoomDep = e.target.className.baseVal.replace('FR-', '');
       this.createChart();
     },
     resetGeoFilters() {
@@ -502,11 +494,11 @@ export default {
     },
     changeTheme(theme) {
       if (theme === 'light') {
-        this.textMention = '#6b6b6b';
+        this.dromColor = '#6b6b6b';
         this.FranceProps.colorStroke = '#FFFFFF';
         this.DromProps.colorStroke = '#FFFFFF';
       } else {
-        this.textMention = '#cecece';
+        this.dromColor = '#cecece';
         this.FranceProps.colorStroke = '#161616';
         this.DromProps.colorStroke = '#161616';
       }
