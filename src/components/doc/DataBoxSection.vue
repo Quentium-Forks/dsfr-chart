@@ -13,9 +13,9 @@
       </h3>
       <data-box v-bind="chartData.dataBox.simple" />
       <pie-chart
+        v-bind="chartData.pieChart.doughnut"
         databox-id="simple"
         databox-type="chart"
-        v-bind="chartData.pieChart.doughnut"
       />
       <table-chart
         databox-id="simple"
@@ -41,24 +41,24 @@
       </h3>
       <data-box v-bind="chartData.dataBox.complete" />
       <scatter-chart
+        v-bind="chartData.scatterChart.linked"
         databox-id="complete"
         databox-type="chart"
         databox-source="insee"
-        v-bind="chartData.scatterChart.linked"
         :y="defaultScatterData"
       />
       <scatter-chart
+        v-bind="chartData.scatterChart.linked"
         databox-id="complete"
         databox-type="chart"
         databox-source="pole-emploi"
-        v-bind="chartData.scatterChart.linked"
         :y="sortedScatterData"
       />
       <scatter-chart
+        v-bind="chartData.scatterChart.linked"
         databox-id="complete"
         databox-type="chart"
         databox-source="autre"
-        v-bind="chartData.scatterChart.linked"
         :y="reversedScatterData"
       />
       <table-chart
@@ -107,14 +107,17 @@
     <div class="fr-mb-6w">
       <div class="fr-grid-row fr-grid-row--gutters">
         <div class="fr-col">
-          <data-box v-bind="chartData.dataBox.simpleGrid1" />
+          <data-box
+            v-bind="chartData.dataBox.simple"
+            id="grid-left"
+          />
           <pie-chart
-            :databox-id="chartData.dataBox.simpleGrid1.id"
-            databox-type="chart"
             v-bind="chartData.pieChart.doughnut"
+            databox-id="grid-left"
+            databox-type="chart"
           />
           <table-chart
-            :databox-id="chartData.dataBox.simpleGrid1.id"
+            databox-id="grid-left"
             databox-type="table"
             :x="tableParse(chartData.pieChart.doughnut.x)"
             :y="chartData.pieChart.doughnut.y"
@@ -123,14 +126,17 @@
           />
         </div>
         <div class="fr-col">
-          <data-box v-bind="chartData.dataBox.simpleGrid2" />
+          <data-box
+            v-bind="chartData.dataBox.simple"
+            id="grid-right"
+          />
           <pie-chart
-            :databox-id="chartData.dataBox.simpleGrid2.id"
-            databox-type="chart"
             v-bind="chartData.pieChart.doughnut"
+            databox-id="grid-right"
+            databox-type="chart"
           />
           <table-chart
-            :databox-id="chartData.dataBox.simpleGrid2.id"
+            databox-id="grid-right"
             databox-type="table"
             :x="tableParse(chartData.pieChart.doughnut.x)"
             :y="chartData.pieChart.doughnut.y"
@@ -141,14 +147,17 @@
       </div>
       <div class="fr-grid-row fr-grid-row--gutters">
         <div class="fr-col">
-          <data-box v-bind="chartData.dataBox.simpleGrid3" />
+          <data-box
+            v-bind="chartData.dataBox.simple"
+            id="grid-full"
+          />
           <pie-chart
-            :databox-id="chartData.dataBox.simpleGrid3.id"
-            databox-type="chart"
             v-bind="chartData.pieChart.doughnut"
+            databox-id="grid-full"
+            databox-type="chart"
           />
           <table-chart
-            :databox-id="chartData.dataBox.simpleGrid3.id"
+            databox-id="grid-full"
             databox-type="table"
             :x="tableParse(chartData.pieChart.doughnut.x)"
             :y="chartData.pieChart.doughnut.y"

@@ -206,38 +206,11 @@ export const chartData = {
       fullscreen: true,
       actions: ['Source officielle', 'Pôle emploi'],
     },
-    simpleGrid1: {
-      id: 'simple-grid-1',
-      title: 'Statut des emplois en France en 2018',
-      tooltipTitle: 'Statut des emplois en France',
-      tooltipContent: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi.',
-      source: 'Insee, enquête Emploi',
-      date: '12/01/2025',
-      trend: '-15%',
-    },
-    simpleGrid2: {
-      id: 'simple-grid-2',
-      title: 'Statut des emplois en France en 2018',
-      tooltipTitle: 'Statut des emplois en France',
-      tooltipContent: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi.',
-      source: 'Insee, enquête Emploi',
-      date: '12/01/2025',
-      trend: '-15%',
-    },
-    simpleGrid3: {
-      id: 'simple-grid-3',
-      title: 'Statut des emplois en France en 2018',
-      tooltipTitle: 'Statut des emplois en France',
-      tooltipContent: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi.',
-      source: 'Insee, enquête Emploi',
-      date: '12/01/2025',
-      trend: '-15%',
-    },
   },
 };
 
 export const chartExamples = [
-  //Graphique en ligne
+  // Graphique en ligne
   {
     title: 'Graphique en ligne',
     desc: 'Un graphique en ligne est un type de visualisation de données qui affiche les valeurs sous forme de points sur une ligne. Elle permet d’affiche une seule ligne ou en présenter plusieurs pour permettre la comparaison.',
@@ -246,7 +219,7 @@ export const chartExamples = [
       { component: LineChart, heading: 'Graphique en lignes multiples', title: 'Taux d’activité selon le sexe depuis 1975', desc: 'France hors Mayotte, personnes de 15 à 64 ans vivant en logement ordinaire. Insee, 04/11/2024', props: chartData.lineChart.multiple },
     ],
   },
-  //Diagramme en barres
+  // Diagramme en barres
   {
     title: 'Diagramme en barres',
     desc: 'Un diagramme en barres montre les dénombrements de valeurs pour les niveaux d’une variable catégorielle, séquentielle ou neutre. Les barres peuvent être présentées de manière horizontale, verticale ou être empilées.',
@@ -258,13 +231,13 @@ export const chartExamples = [
       { component: BarChart, heading: 'Barres empilées', title: 'Satisfaction des français à l’égard des services publics', desc: 'Étude IFOP pour TF1, janvier 2024 - Le regard des Français sur les services publics : satisfaction, jugement sur leur financement par les impôts et attentes. Ifop, enquête Emploi, 04/01/2024', props: chartData.barChart.stacked },
     ],
   },
-  //Graphique en ligne / Diagramme en barres
+  // Graphique en ligne / Diagramme en barres
   {
     title: 'Graphique en ligne / Diagramme en barres',
     desc: 'Il est également possible de combiner un graphique en ligne et un diagramme en barres, pour permettre la comparaison entre des données présentées différemment.',
     graphs: [{ component: BarLineChart, title: 'Évolution du nombre de naissances et du taux de natalité', desc: 'France hors Mayotte, naissances en milliers et taux de natalité pour mille femmes. Insee, 16/01/2024', props: chartData.barLineChart.default }],
   },
-  //Diagramme circulaire
+  // Diagramme circulaire
   {
     title: 'Diagramme circulaire',
     desc: 'Un diagramme circulaire permet de représenter un petit nombre de valeurs par des angles proportionnels à la fréquence de ces valeurs. Chacune des « parts » représente une catégorie de données qui forment un ensemble, et la taille de chaque « part » est proportionnelle à son poids dans l’ensemble. Le diagramme circulaire peut être plein ou creux.',
@@ -273,7 +246,7 @@ export const chartExamples = [
       { component: PieChart, heading: 'Diagramme circulaire plein', title: 'Structure des dépenses publiques en France en 2022', desc: 'France métropolitaine. Insee, 30/11/2023', props: chartData.pieChart.pie },
     ],
   },
-  //Cartes
+  // Cartes
   {
     title: 'Cartes',
     desc: 'Les cartes permettent d’afficher une série de données réparties par département ou région. Les cartes sont actuellement disponibles aux niveaux départemental et régional, et il est également possible d’isoler une région pour en afficher les départements.',
@@ -283,7 +256,7 @@ export const chartExamples = [
       { component: MapChartReg, noPalette: true, heading: 'Région', props: chartData.mapChartReg.region },
     ],
   },
-  //Nuage de points
+  // Nuage de points
   {
     title: 'Nuage de points',
     desc: 'Le nuage de points est largement utilisée pour présenter plusieurs séries de données. C’est une représentation graphique qui est particulièrement utile lorsque les valeurs des données sur l’axe Y dépendent des valeurs d’un autre axe X.',
@@ -292,13 +265,13 @@ export const chartExamples = [
       { component: ScatterChart, heading: 'Nuage de points reliés', title: 'Carrières complètes selon le sexe et la génération en 2016', desc: 'Retraités ayant perçu un droit direct au cours de l’année, résidant en France, vivants au 31 décembre 2016 ; tous régimes confondus. Insee, 09/09/2011', props: chartData.scatterChart.linked },
     ],
   },
-  //Diagramme en étoile
+  // Diagramme en étoile
   {
     title: 'Diagramme en étoile',
     desc: 'Le diagramme en étoile ou radar chart a été conçu pour représenter une ou plusieurs séries de valeurs sur plusieurs variables quantitatives.',
     graphs: [{ component: RadarChart, title: 'Statut des emplois par tranche d’âge', desc: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi. Insee, enquête Emploi, 04/11/2024', props: chartData.radarChart.default }],
   },
-  //Jauge
+  // Jauge
   {
     title: 'Jauge',
     desc: 'La jauge permet d’afficher des valeurs numériques ou des mesures dans une plage, pour visualiser l’avancement d’un objectif par exemple.',
