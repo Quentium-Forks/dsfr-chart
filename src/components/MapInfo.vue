@@ -1,5 +1,5 @@
 <template>
-  <div class="l_col fr-col-12 fr-col-lg-3">
+  <div class="map_info fr-col-12 fr-col-lg-3">
     <div v-if="data['valueNat'] || data['valueReg']">
       <p
         class="fr-text--xs fr-mb-1v"
@@ -13,13 +13,13 @@
       >
         {{ data['names'] }}, en France
       </p>
+      <div class="sep fr-mb-2w" />
       <p
         class="fr-text--xs fr-text--bold fr-mb-2w"
         :style="{ color: data['textMention'] }"
       >
         {{ formatNumber(data['value']) }}
       </p>
-      <div class="sep fr-mb-2w" />
     </div>
     <div>
       <p
@@ -81,5 +81,5 @@ const gradient = computed(() => {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/LeftCol.scss';
+@import '@/styles/MapInfo.scss';
 </style>

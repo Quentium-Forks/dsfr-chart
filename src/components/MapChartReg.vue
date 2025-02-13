@@ -7,7 +7,7 @@
       :ref="widgetId"
       class="widget_container fr-grid-row"
     >
-      <LeftCol :data="leftColProps" />
+      <MapInfo :data="InfoProps" />
       <div class="fr-col-12 fr-col-lg-9 align-stretch">
         <button
           v-if="zoomDep"
@@ -52,7 +52,7 @@
 
 <script>
 import * as d3 from 'd3-scale';
-import LeftCol from '@/components/LeftCol.vue';
+import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { mapsMixins, isMobile } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
@@ -60,7 +60,7 @@ import { choosePalette } from '@/utils/colors.js';
 export default {
   name: 'MapChartReg',
   components: {
-    LeftCol,
+    MapInfo,
     ...maps,
   },
   mixins: [mapsMixins],
@@ -112,7 +112,7 @@ export default {
       colorLeft: '',
       colorRight: '',
       zoomDep: '',
-      leftColProps: {
+      InfoProps: {
         localisation: '',
         names: [],
         min: 0,
@@ -175,10 +175,10 @@ export default {
 
       this.colorLeft = palette[0];
       this.colorRight = palette[palette.length - 1];
-      this.leftColProps.colorMin = this.colorLeft;
-      this.leftColProps.colorMax = this.colorRight;
-      this.leftColProps.date = this.date;
-      this.leftColProps.names = this.name;
+      this.InfoProps.colorMin = this.colorLeft;
+      this.InfoProps.colorMax = this.colorRight;
+      this.InfoProps.date = this.date;
+      this.InfoProps.names = this.name;
 
       const values = [];
       let listDep = [];
@@ -258,11 +258,11 @@ export default {
         this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
       }
 
-      this.leftColProps.localisation = this.getReg(this.region).department;
-      this.leftColProps.value = this.value;
-      this.leftColProps.valueReg = this.dataParse[this.zoomDep];
-      this.leftColProps.min = this.scaleMin;
-      this.leftColProps.max = this.scaleMax;
+      this.InfoProps.localisation = this.getReg(this.region).department;
+      this.InfoProps.value = this.value;
+      this.InfoProps.valueReg = this.dataParse[this.zoomDep];
+      this.InfoProps.min = this.scaleMin;
+      this.InfoProps.max = this.scaleMax;
     },
     choosePalette() {
       // Using the refactored choosePalette function from utils

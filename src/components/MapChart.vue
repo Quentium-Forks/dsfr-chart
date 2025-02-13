@@ -7,7 +7,7 @@
       :ref="widgetId"
       class="widget_container fr-grid-row"
     >
-      <LeftCol :data="leftColProps" />
+      <MapInfo :data="InfoProps" />
       <div class="fr-col-12 fr-col-lg-9 align-stretch">
         <button
           v-if="zoomDep"
@@ -176,7 +176,7 @@
 
 <script>
 import * as d3 from 'd3-scale';
-import LeftCol from '@/components/LeftCol.vue';
+import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { mapsMixins, isMobile } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
@@ -184,7 +184,7 @@ import { choosePalette } from '@/utils/colors.js';
 export default {
   name: 'MapChart',
   components: {
-    LeftCol,
+    MapInfo,
     ...maps,
   },
   mixins: [mapsMixins],
@@ -240,7 +240,7 @@ export default {
       isAcad: false,
       zoomDep: '',
       prefixClass: 'FR-',
-      leftColProps: {
+      InfoProps: {
         localisation: '',
         names: [],
         min: 0,
@@ -308,10 +308,10 @@ export default {
       // Choisir les couleurs extrêmes basées sur la palette
       this.colorLeft = palette[0];
       this.colorRight = palette[palette.length - 1];
-      this.leftColProps.colorMin = this.colorLeft;
-      this.leftColProps.colorMax = this.colorRight;
-      this.leftColProps.date = this.date;
-      this.leftColProps.names = this.name;
+      this.InfoProps.colorMin = this.colorLeft;
+      this.InfoProps.colorMax = this.colorRight;
+      this.InfoProps.date = this.date;
+      this.InfoProps.names = this.name;
 
       const values = [];
       let listDep = [];
@@ -385,7 +385,7 @@ export default {
       if (this.zoomDep) {
         // Logic for zoom level and dimensions adjustment
         if (this.isDep) {
-          this.leftColProps.localisation = this.getDep(this.zoomDep).department;
+          this.InfoProps.localisation = this.getDep(this.zoomDep).department;
           const xminValue = Math.min(...xmin);
           const yminValue = Math.min(...ymin);
           const xmaxValue = Math.max(...xmax);
@@ -395,12 +395,12 @@ export default {
           const size = Math.max(width, height);
           this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
         } else if (this.isReg) {
-          this.leftColProps.localisation = this.getReg(this.zoomDep).region;
+          this.InfoProps.localisation = this.getReg(this.zoomDep).region;
         } else if (this.isAcad) {
-          this.leftColProps.localisation = this.getAcad(this.zoomDep).academy;
+          this.InfoProps.localisation = this.getAcad(this.zoomDep).academy;
         }
-        this.leftColProps.value = this.value;
-        this.leftColProps.valueNat = this.dataParse[this.zoomDep];
+        this.InfoProps.value = this.value;
+        this.InfoProps.valueNat = this.dataParse[this.zoomDep];
 
         if (this.isDep) {
           this.displayFrance = 'none';
@@ -425,9 +425,9 @@ export default {
           }
         }
       } else {
-        this.leftColProps.localisation = 'France';
-        this.leftColProps.value = this.value;
-        this.leftColProps.valueNat = 0;
+        this.InfoProps.localisation = 'France';
+        this.InfoProps.value = this.value;
+        this.InfoProps.valueNat = 0;
         this.FranceProps.viewBox = '0 0 1010 1010';
         this.displayFrance = '';
         this.displayGuadeloupe = '';
@@ -437,11 +437,11 @@ export default {
         this.displayGuyane = '';
       }
 
-      this.leftColProps.names = this.name;
-      this.leftColProps.min = this.scaleMin;
-      this.leftColProps.max = this.scaleMax;
-      this.leftColProps.colorMin = this.colorLeft;
-      this.leftColProps.colorMax = this.colorRight;
+      this.InfoProps.names = this.name;
+      this.InfoProps.min = this.scaleMin;
+      this.InfoProps.max = this.scaleMax;
+      this.InfoProps.colorMin = this.colorLeft;
+      this.InfoProps.colorMax = this.colorRight;
     },
     displayTooltip(e) {
       if (isMobile()) return;
