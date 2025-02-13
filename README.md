@@ -22,11 +22,11 @@ Vous trouverez sur la page [Release de Github](https://github.com/GouvernementFR
 
 Une fois en place, il suffit d'installer le package **dsfr-chart** contenant l’ensemble des composants:
 
-```
+```bash
 npm install @gouvfr/dsfr-chart
 ```
 
-Une fois terminé dsfr-chart sera alors installé dans le dossier `node_modules/dsfr-chart/`
+Une fois terminé dsfr-chart sera alors installé dans le dossier `node_modules/@gouvfr/dsfr-chart/`
 
 ### Structure de DSFR-Chart
 
@@ -56,15 +56,15 @@ Il existe deux possibilités :
 - Charger tous les composants :
 
 ```html
-<script src="./DSFRChart.js"></script>
-<link rel="stylesheet" href="./DSFRChart.css">
+<script src="./Charts/dsfr-chart.common.js.js"></script>
+<link rel="stylesheet" href="./Charts/dsfr-chart.css">
 ```
 
 - Charger uniquement un ou plusieurs composants nécessaires (ex : ScatterChart) :
 
 ```html
-<script src="./ScatterChart.js"></script>
-<link rel="stylesheet" href="./ScatterChart.css">
+<script src="./ScatterChart/scatter-chart.common.js"></script>
+<link rel="stylesheet" href="./ScatterChart/scatter-chart.css">
 ```
 
 ### Les différentes représentations graphiques
@@ -86,14 +86,14 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
 
+  - `'default'` : Couleur par défaut.
+  - _(laisser vide pour utiliser la palette par défaut)_
+  - `'neutral'` : Palette neutre.
   - `'categorical'` : Palette catégorielle par défaut.
   - `'sequentialAscending'` : Palette séquentielle ascendante.
   - `'sequentialDescending'` : Palette séquentielle descendante.
   - `'divergentAscending'` : Palette divergente ascendante.
   - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
 
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **x-min** : Permet de définir le minimum sur l'axe des abscisses
@@ -199,14 +199,14 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 - **name** : _(String)_ Les noms des séries de données sous forme d'une liste entre crochets.
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
 
+  - `'default'` : Couleur par défaut.
+  - _(laisser vide pour utiliser la palette par défaut)_
+  - `'neutral'` : Palette neutre.
   - `'categorical'` : Palette catégorielle par défaut.
   - `'sequentialAscending'` : Palette séquentielle ascendante.
   - `'sequentialDescending'` : Palette séquentielle descendante.
   - `'divergentAscending'` : Palette divergente ascendante.
   - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
 
 - **highlight-index** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'neutral'`).
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
@@ -924,7 +924,9 @@ Les paramètres obligatoires sont :
 
 # DataBox
 
-Le composant `DataBox` est un composant polyvalent qui permet d'afficher des données sous différentes formes, notamment des indicateurs, des graphiques, des tableaux, etc. Il intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants pour des actions supplémentaires.
+Le composant `DataBox` est un composant permettant d’afficher dans un cadre normé des données sous différentes formes (graphiques, chiffres clés, tableaux, etc). Il est à utiliser pour composer un tableau de bord, ou toute page nécessitant de structurer la visualisation de données.
+
+Polyvalente, la databox intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants permettant la mise à disposition d’actions supplémentaires.
 
 ## Utilisation de base
 
@@ -971,7 +973,7 @@ Voici la liste des props disponibles pour le composant `DataBox` :
 - **download** `(Boolean)` (défaut : false) : télécharger les données du graphique au format CSV
 - **actions** `(Array)` (défaut : []) : liste des actions supplémentaires à afficher dans le menu (pour se greffer par la suite avec l'id)
 
-### Mise en place du graphique
+### Mise en place du graphique et de son alternative
 
 L'ensemble de ces informations permettront d'afficher une databox sans graphique.
 
@@ -1022,74 +1024,258 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
 </table-chart>
 ```
 
+### Un composant flexible pour construire vos tableaux de bord
+
+La databox s’appuie sur [la grille proposée par le DSFR](https://www.systeme-de-design.gouv.fr/fondamentaux/grille-et-points-de-rupture/), et peut s’afficher selon vos besoins, sur une ou plusieurs colonnes de la grille, grâce à la classe `fr-col`. Pensez toutefois à utiliser un `fr-grid-row` par ligne pour permettre le bon fonctionnement des infobulles du composant.
+
+Vous pourrez ainsi construire des dashboard en donnant aux databox la taille nécessaire, en fonction de vos besoins métiers et de l’aspect souhaité pour vos graphiques.
+
+### Structure
+
+La databox est composée des éléments suivants :
+
+* **un titre** (obligatoire)
+* une infobulle permettant de préciser la donnée affichée (optionnelle)
+* un bouton permettant l’affichage d’une modale en plein écran (optionnel)
+* un menu à points permettant l’affichage d’actions supplémentaires (optionnel et personnalisable voir plus bas)
+* un indicateur de tendance (optionnel)
+* **la donnée principale : chiffre, graphique ou tableau** (obligatoire)
+* **une source** (obligatoire)
+* **une date de mise à jour de la donnée** (obligatoire)
+* **un contrôle segmenté pour afficher la donnée en vue tableau** (obligatoire lorsque c’est un graphique qui est affiché)
+
+### Personnalisation du menu à points
+
+Par défaut, la librairie DSFR Chart propose dans le menu à points deux fonctionnalités :
+
+* une fonctionnalité d’export CSV des données
+* une fonctionnalité de téléchargement de capture d’écran
+
+Toutefois, ces fonctionnalités sont optionnelles, et ne doivent pas apparaître obligatoirement si vous n’en avez pas le besoin. Par ailleurs, le menu à points peut contenir tous les liens ou actions utilisateurs dont vous avez besoin pour votre projet.
+
 ---
 
-# Couleurs
+## Gestion des couleurs
+
+Un graphique étant par définition une représentation visuelle d’un ensemble de données, la couleur est un paramètre avec lequel il est possible de jouer pour en améliorer la compréhension et la perception. Une utilisation appropriée des couleurs est par conséquent essentielle pour réussir vos graphiques.
+
+Dans DSFR Chart, le paramètre `selectedPalette` vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée :
+
+* `'default'` : Couleur par défaut.
+* `'neutral'` : Palette neutre.
+* `'categorical'` : Palette catégorielle par défaut.
+* `'sequentialAscending'` : Palette séquentielle ascendante.
+* `'sequentialDescending'` : Palette séquentielle descendante.
+* `'divergentAscending'` : Palette divergente ascendante.
+* `'divergentDescending'` : Palette divergente descendante.
+
+### Graphiques unicolores
+
+`default Catégorie 1`
+
+Une représentation graphique n’a pas toujours besoin d’être colorée. Lorsqu’il n’est pas nécessaire de différencier les formes par des couleurs, on affichera les graphes avec la couleur par défaut pour les graphes unicolores, avec l’option `'default'`.
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #5C68E5     | #5C68E5      |
+| Etat de survol | #2846bc     | #2846bc      |
+
+`neutral Catégorie 1`
+
+Pour mettre en évidence une donnée d'un ensemble de données, utilisez la couleur par défaut pour colorer cette donnée, et colorez les autres données en utilisant l’option `'neutral'`.
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #B1B1B1     | #808080      |
+| Etat de survol | #8b8b8b     | #5c5c5c      |
+
+### Graphiques catégoriels
+
+Lorsque les formes du graphique doivent être différenciées par des couleurs mais que celles-ci ne sont pas porteuses de sens supplémentaire que la catégorisation, la palette catégorielle doit être utilisée : utilisez alors l’option `'categorical'`.
+
+La palette catégorielle ne comprend que 8 teintes de couleurs pour limiter le nombre de catégories affichées, car représenter plus de 8 catégories nuirait à la compréhension de l’utilisateur. Au-delà de ce nombre, il conviendra de rassembler les dernières catégories dans un ensemble “Autres”.
+
+`Catégorie 1`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #5C68E5     | #5C68E5      |
+| Etat de survol | #2846bc     | #2846bc      |
+
+`Catégorie 2`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #82B5F2     | #699BD6      |
+| Etat de survol | #598fc9     | #3f76ae      |
+
+`Catégorie 3`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #29598F     | #4878B1      |
+| Etat de survol | #00386a     | #18558b      |
+
+`Catégorie 4`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #31A7AE     | #00828A      |
+| Etat de survol | #008188     | #005e66      |
+
+`Catégorie 5`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #81EEF5     | #51C1C8      |
+| Etat de survol | #55c5cc     | #199aa1      |
+
+`Catégorie 6`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #B478F1     | #BC8AF2      |
+| Etat de survol | #8b53c8     | #9465c9      |
+
+`Catégorie 7`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #CFB1F5     | #CFB1F5      |
+| Etat de survol | #a78bcc     | #a78bcc      |
+
+`Catégorie 8`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #CECECE     | #A4A4A4      |
+| Etat de survol | #a7a7a7     | #7e7e7e      |
+
+### Graphiques séquentiels
+
+Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle doit être utilisée. Il en existe deux versions à utiliser en fonction du besoin :
+
+#### Palette séquentielle unicolore
+
+Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle doit être utilisée. Sélectionnez l’option `'sequentialAscending'` ou `'sequentialDescending'` en fonction du sens que vous souhaitez donner à cette gradation.
+
+En fonction du nombre de catégories, on appliquera autant de valeurs de couleurs qu’il en existe dans un dégradé allant de la couleur de départ à la couleur d’arrivée.
+
+`Catégorie 1`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #DBDAFF     | #B8B9FF      |
+| Etat de survol | #b3b2d6     | #9093d6      |
+
+`Catégorie 2`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #00005F     | #3647CA      |
+| Etat de survol | #00003d     | #0027a2      |
+
+### Palette séquentielle divergente
+
+Cette palette convient pour matérialiser des échelles numériques mais qui intègrent des valeurs négatives, ou des plages comportant **deux extrêmes avec une ligne de base au milieu**.
+
+Sélectionnez l’option `'divergentAscending'` ou `'divergentDescending'` en fonction du sens que vous souhaitez donner à cette gradation. Dans la mesure du possible, le nombre de catégories doit refléter cette divergence, à travers un nombre impair de catégories distinctes (3, 5, 7, etc.) qui permettra de **marquer la médiane**.
+
+Dans le cas où le nombre de catégories devrait être supérieur à 5, on appliquera autant de valeurs de couleurs qu’il en existe dans un dégradé allant du vert vers le rouge en passant par le jaune.
+
+`Catégorie 1`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #298641     | #298641      |
+| Etat de survol | #00611f     | #00611f      |
+
+`Catégorie 2`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #EFB900     | #AF8800      |
+| Etat de survol | #c39300     | #856400      |
+
+`Catégorie 3`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| Etat initial   | #E91719     | #E16834      |
+| Etat de survol | #b90000     | #b4420f      |
 
 ---
 
-# Accessibilité
+## Accessibilité
 
-### Tableaux
+> Utilisés seuls, les graphiques du DSFR Charts sont inaccessibles aux personnes aveugles, déficientes visuelles et aux personnes handicapées motrices. Il conviendra donc d’apporter une alternative textuelle pertinente à chaque fois qu’un graphique est affiché.
 
-Les résultats peuvent également être présenté sous la forme d'un tableau. Ceci permet dans certaines situations d'offrir une alternative à la visualisation des données et ainsi s'adapter au public concerné.
+### Non-conformités
 
-Les paramètres obligatoires sont :
+Les principales problématiques posées par les graphiques sont les suivantes :
 
-- **x** : les noms de chaque groupe sous la forme d’une liste entre crochets
+* Accès aux données des graphiques et aux cartes impossibles (critères 1.1, 1.6, 4.8, 4.9 du RGAA)
+* Accès et contrôle au clavier impossible (critères 4.12, 10.13, 10.14 du RGAA)
+* Information donnée uniquement par la couleur (critère 3.1 du RGAA)
+* Contrastes de couleurs non textuels (critère 3.3 du RGAA)
 
-- **y** : les valeurs de chaque groupe sous la forme d’une liste entre crochets
+### Alternatives accessibles
 
----
+La solution la plus simple et la plus efficace pour rendre les composants complexes tels que les graphiques ou les cartes est de proposer les mêmes contenus ou informations dans une alternative accessible plutôt que de chercher à travailler sur ces composants dynamiques directement.
 
-# Options
+Dans certains cas comme la carte où il faudrait naviguer sur tous les départements par exemple, cela serait même contre-productif et moins utilisable de chercher à la rendre accessible au clavier.
 
-### Barre verticale
+**On systématisera donc plutôt une approche par alternative**, en privilégiant celle qui apportera le plus de confort de lecture.
 
-Il est possible d’ajouter une ou plusieurs barres verticales par l’intermédiaire du paramètre :
+#### Alternative 1 : utiliser un tableau
 
-- **vline** : La ou les valeur(s) sur l’axe des abscisses sous la forme d’une liste entre crochets
+Présenter les résultats sous forme de tableau est sans doute l’option la plus simple, surtout s’il y a beaucoup de données à présenter. On privilégiera dans le cas des contenus les plus complexes la création de plusieurs tableaux simples et non de tableaux avec des cellules fusionnées pour faciliter la lecture.
 
-Par défaut la couleur de la ligne sera #161616 et son nom V1, V2, … Cela peut être modifié en renseignant les paramètres :
+> Le composant databox embarque par défaut une alternative sous forme de tableau.
 
-- **vlinecolor** : La ou les couleur(s) sous forme d’une liste entre crochets
+#### Alternative 2 : utiliser un liste simple ou liste titrée
 
-- **vlinename** : Le ou les nom(s) sous la forme d’une liste entre crochets
+Lorsqu’il n’y a que quelques données à présenter, une simple liste peut suffire. Par exemple :
 
-**Exemple :**
+Pourcentage de français ayant réalisé un achat sur Internet au cours des 12 derniers mois :
+
+* 15 à 29 ans : 75,4%
+* 30 à 44 ans : 80,5%
+* 45 à 59 ans : 66,8%
+* 60 à 74 ans : 43,5%
+* 75 ans ou plus : 12,1%
+
+#### Alternative 3 : utiliser du texte structuré
+
+Dans d’autres cas, l’information pourrait déjà être présente dans le corps de texte adjacent ou l’alternative peut être un simple texte structuré.
+
+Ainsi, sur la jauge ci-dessus, l’alternative pourrait être : "En 2022, nous avons atteint les 100 000 utilisateurs. Cela correspond à 14 % de l’objectif 2026, fixé à 2 millions d’utilisateurs."
+
+### Affichage de l’alternative
+
+L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La #databox présente ainsi systématiquement l’alternative textuelle dans le contrôle segmenté en bas à droite du composant.
+
+Lorsqu’un graphique est utilisé seul, sans la databox, l’alternative textuelle peut être affichée dans un [accordéon](https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/accordeon/)  présenté sous le graphique.
+
+> **Important**
+>
+> Il conviendra de documenter cette approche dans la déclaration d’accessibilité pour que les personnes handicapées concernées sachent qu’une alternative accessible est systématiquement fournie.
+> 
+
 
 ```html
-<line-chart
-  x="[1, 2, 3]"
-  y="[10, 20, 30]"
-  vline="[1.5, 2.5]"
-  vlinename='["min", "max"]'
-  vlinecolor='["green-archipel", "blue-ecume"]'
-></line-chart>
+<table-chart
+  databox-id="abc"
+  databox-type="table"
+  databox-source="pole-emploi"
+  x="[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]"
+  y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
+  name='["Femmes", "Hommes", "Ensemble"]'
+  table-name="Années">
+</table-chart>
 ```
-### Barre horizontale
 
-Il est possible d’ajouter une ou plusieurs barres verticales par l’intermédiaire du paramètre :
-
-- **hline** : La ou les valeur(s) sur l’axe des ordonnées sous la forme d’une liste entre crochets
-
-Par défaut la couleur de la ligne sera #009081 et son nom H1, H2, … Cela peut être modifié en renseignant les paramètres :
-
-- **hlinecolor** : La ou les couleur(s) sous forme d’une liste entre crochets
-
-- **hlinename** : Le ou les nom(s) sous la forme d’une liste entre crochets
-
-**Exemple :**
-
-```html
-<line-chart
-  x="[1, 2, 3]"
-  y="[10, 20, 30]"
-  hline="[15, 25]"
-  hlinename='["min", "max"]'
-  hlinecolor='["green-archipel", "blue-ecume"]'
-></line-chart>
-```
+---
 
 ## Contribution
 
