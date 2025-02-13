@@ -58,13 +58,13 @@ Il existe deux possibilités :
 ```html
 <!-- Avec le build ESM -->
 <script type="module" src="./DSFRChart.js"></script>
-<link rel="stylesheet" href="./DSFRChart.css">
+<link rel="stylesheet" href="./DSFRChart.css" />
 ```
 
 ```html
 <!-- Avec le build CJS -->
 <script src="./DSFRChart.umd.cjs"></script>
-<link rel="stylesheet" href="./DSFRChart.css">
+<link rel="stylesheet" href="./DSFRChart.css" />
 ```
 
 - Charger uniquement un ou plusieurs composants nécessaires (ex : ScatterChart) :
@@ -72,13 +72,13 @@ Il existe deux possibilités :
 ```html
 <!-- Avec le build ESM -->
 <script type="module" src="./ScatterChart.js"></script>
-<link rel="stylesheet" href="./ScatterChart.css">
+<link rel="stylesheet" href="./ScatterChart.css" />
 ```
 
 ```html
 <!-- Avec le build CJS -->
 <script src="./ScatterChart.umd.cjs"></script>
-<link rel="stylesheet" href="./ScatterChart.css">
+<link rel="stylesheet" href="./ScatterChart.css" />
 ```
 
 #### Importation des web-components avec un bundler
@@ -86,8 +86,8 @@ Il existe deux possibilités :
 Pour importer la librairie dans un projet utilisant un bundler comme Vite, il est nécessaire d'importer les fichiers JavaScript et CSS dans votre fichier principal.
 
 ```javascript
-import '@gouvfr/dsfr-chart/Charts/DSFRChart.js'
-import '@gouvfr/dsfr-chart/Charts/DSFRChart.css'
+import '@gouvfr/dsfr-chart/Charts/DSFRChart.js';
+import '@gouvfr/dsfr-chart/Charts/DSFRChart.css';
 ```
 
 ### Les différentes représentations graphiques
@@ -255,6 +255,7 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
   unit-tooltip="millions"
 ></bar-chart>
 ```
+
 ---
 
 ### 2. Barres horizontales
@@ -597,7 +598,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
     - `'neutral'`
     - _(laisser vide pour utiliser la palette par défaut)_
 
-----------
+---
 
 ## Exemples
 
@@ -626,7 +627,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 ></map-chart>
 ```
 
-----------
+---
 
 ### 2. Carte avec découpage par régions
 
@@ -645,7 +646,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 ></map-chart>
 ```
 
-----------
+---
 
 ### 3. Carte régionale détaillée (MapChartReg)
 
@@ -687,7 +688,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 ></map-chart-reg>
 ```
 
-----------
+---
 
 ## Notes supplémentaires
 
@@ -695,7 +696,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 - **level** : Par défaut, la carte affiche le découpage par départements (`'dep'`). En spécifiant `level="reg"`, vous pouvez afficher la carte avec le découpage par régions.
 
-----------
+---
 
 ## Conseils d'utilisation
 
@@ -703,7 +704,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser votre carte.
 
-----------
+---
 
 ## Exemple combinant plusieurs options
 
@@ -719,26 +720,26 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 ></map-chart>
 ```
 
-----------
+---
 
 ## Résumé des paramètres de MapChart
 
-| **paramètre**   | **type**                | **obligatoire** | **description**                                                               |
-|-----------------|-------------------------|-----------------|-------------------------------------------------------------------------------|
-| data            | String                  | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| value           | String ou Number        | oui             | Valeur de l'indicateur à l'échelle nationale                                  |
-| name            | String                  | oui             | nom de l'indicateur                                                           |
-| level           | String ('dep' ou 'reg') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions)      |
+| **paramètre**    | **type**                | **obligatoire** | **description**                                                               |
+|------------------|-------------------------|-----------------|-------------------------------------------------------------------------------|
+| data             | String                  | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
+| value            | String ou Number        | oui             | Valeur de l'indicateur à l'échelle nationale                                  |
+| name             | String                  | oui             | nom de l'indicateur                                                           |
+| level            | String ('dep' ou 'reg') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions)      |
 | selected-palette | String                  | non             | palette de couleurs utilisée pour la carte                                    |
 
 ## Résumé des paramètres de MapChartReg
 
-| **paramètre**   | **type**         | **obligatoire** | **description**                                                               |
-|-----------------|------------------|-----------------|-------------------------------------------------------------------------------|
-| data            | String           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| value           | String ou Number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
-| name            | String           | oui             | nom de l'indicateur                                                           |
-| region          | String           | oui             | code de la région à afficher                                                  |
+| **paramètre**    | **type**         | **obligatoire** | **description**                                                               |
+|------------------|------------------|-----------------|-------------------------------------------------------------------------------|
+| data             | String           | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
+| value            | String ou Number | oui             | valeur de l'indicateur à l'échelle régionale                                  |
+| name             | String           | oui             | nom de l'indicateur                                                           |
+| region           | String           | oui             | code de la région à afficher                                                  |
 | selected-palette | String           | non             | palette de couleurs utilisée pour la carte                                    |
 
 ---
@@ -853,7 +854,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 
-----------
+---
 
 ## Exemple :
 
@@ -870,7 +871,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 </radar-chart>
 ```
 
-----------
+---
 
 ## Notes supplémentaires
 
@@ -878,7 +879,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 - **unit-tooltip** : Ce paramètre vous permet de spécifier l'unité qui sera affichée dans l'infobulle (tooltip) lorsque l'utilisateur survole une valeur du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l'unité de mesure.
 
-----------
+---
 
 ## Conseils d'utilisation
 
@@ -886,11 +887,12 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
     - Pour `x` : `x='[["Label1", "Label2", "Label3"]]'`
     - Pour `y` : `y='[[10, 20, 30], [15, 25, 35]]'`
+
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `selected-palette` avec `unit-tooltip`.
 
 - **Personnalisation des séries** : Le paramètre `name` est utilisé pour spécifier les noms des séries de données. Si vous avez plusieurs séries (plusieurs listes dans `y`), vous devez fournir une liste de noms correspondante dans `name`.
 
-----------
+---
 
 ## Autres exemples
 
@@ -909,7 +911,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 </radar-chart>
 ```
 
-----------
+---
 
 ### 2. Diagramme en étoile avec unité personnalisée
 
@@ -978,12 +980,14 @@ Polyvalente, la databox intègre également des fonctionnalités interactives te
 Voici la liste des props disponibles pour le composant `DataBox` :
 
 ### Obligatoires
+
 - **id** `(String)` : identifiant unique de la DataBox
-- **title** `(String)` : titre de la DataBox 
+- **title** `(String)` : titre de la DataBox
 - **source** `(String)` : source des données affichées
 - **date** `(String)` : date des données affichées
 
 ### Optionnelles
+
 - **tooltip-title** `(String)` (défaut : '') : titre de la tooltip
 - **tooltip-content** `(String)` (défaut : '') : contenu de la tooltip
 - **modal-title** `(String)` (défaut : '') : titre de la modale
@@ -1057,22 +1061,22 @@ Vous pourrez ainsi construire des dashboard en donnant aux databox la taille né
 
 La databox est composée des éléments suivants :
 
-* **un titre** (obligatoire)
-* une infobulle permettant de préciser la donnée affichée (optionnelle)
-* un bouton permettant l’affichage d’une modale en plein écran (optionnel)
-* un menu à points permettant l’affichage d’actions supplémentaires (optionnel et personnalisable voir plus bas)
-* un indicateur de tendance (optionnel)
-* **la donnée principale : chiffre, graphique ou tableau** (obligatoire)
-* **une source** (obligatoire)
-* **une date de mise à jour de la donnée** (obligatoire)
-* **un contrôle segmenté pour afficher la donnée en vue tableau** (obligatoire lorsque c’est un graphique qui est affiché)
+- **un titre** (obligatoire)
+- une infobulle permettant de préciser la donnée affichée (optionnelle)
+- un bouton permettant l’affichage d’une modale en plein écran (optionnel)
+- un menu à points permettant l’affichage d’actions supplémentaires (optionnel et personnalisable voir plus bas)
+- un indicateur de tendance (optionnel)
+- **la donnée principale : chiffre, graphique ou tableau** (obligatoire)
+- **une source** (obligatoire)
+- **une date de mise à jour de la donnée** (obligatoire)
+- **un contrôle segmenté pour afficher la donnée en vue tableau** (obligatoire lorsque c’est un graphique qui est affiché)
 
 ### Personnalisation du menu à points
 
 Par défaut, la librairie DSFR Chart propose dans le menu à points deux fonctionnalités :
 
-* une fonctionnalité d’export CSV des données
-* une fonctionnalité de téléchargement de capture d’écran
+- une fonctionnalité d’export CSV des données
+- une fonctionnalité de téléchargement de capture d’écran
 
 Toutefois, ces fonctionnalités sont optionnelles, et ne doivent pas apparaître obligatoirement si vous n’en avez pas le besoin. Par ailleurs, le menu à points peut contenir tous les liens ou actions utilisateurs dont vous avez besoin pour votre projet.
 
@@ -1084,13 +1088,13 @@ Un graphique étant par définition une représentation visuelle d’un ensemble
 
 Dans DSFR Chart, le paramètre `selectedPalette` vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée :
 
-* `'default'` : Couleur par défaut.
-* `'neutral'` : Palette neutre.
-* `'categorical'` : Palette catégorielle par défaut.
-* `'sequentialAscending'` : Palette séquentielle ascendante.
-* `'sequentialDescending'` : Palette séquentielle descendante.
-* `'divergentAscending'` : Palette divergente ascendante.
-* `'divergentDescending'` : Palette divergente descendante.
+- `'default'` : Couleur par défaut.
+- `'neutral'` : Palette neutre.
+- `'categorical'` : Palette catégorielle par défaut.
+- `'sequentialAscending'` : Palette séquentielle ascendante.
+- `'sequentialDescending'` : Palette séquentielle descendante.
+- `'divergentAscending'` : Palette divergente ascendante.
+- `'divergentDescending'` : Palette divergente descendante.
 
 ### Graphiques unicolores
 
@@ -1237,10 +1241,10 @@ Dans le cas où le nombre de catégories devrait être supérieur à 5, on appli
 
 Les principales problématiques posées par les graphiques sont les suivantes :
 
-* Accès aux données des graphiques et aux cartes impossibles (critères 1.1, 1.6, 4.8, 4.9 du RGAA)
-* Accès et contrôle au clavier impossible (critères 4.12, 10.13, 10.14 du RGAA)
-* Information donnée uniquement par la couleur (critère 3.1 du RGAA)
-* Contrastes de couleurs non textuels (critère 3.3 du RGAA)
+- Accès aux données des graphiques et aux cartes impossibles (critères 1.1, 1.6, 4.8, 4.9 du RGAA)
+- Accès et contrôle au clavier impossible (critères 4.12, 10.13, 10.14 du RGAA)
+- Information donnée uniquement par la couleur (critère 3.1 du RGAA)
+- Contrastes de couleurs non textuels (critère 3.3 du RGAA)
 
 ### Alternatives accessibles
 
@@ -1262,11 +1266,11 @@ Lorsqu’il n’y a que quelques données à présenter, une simple liste peut s
 
 Pourcentage de français ayant réalisé un achat sur Internet au cours des 12 derniers mois :
 
-* 15 à 29 ans : 75,4%
-* 30 à 44 ans : 80,5%
-* 45 à 59 ans : 66,8%
-* 60 à 74 ans : 43,5%
-* 75 ans ou plus : 12,1%
+- 15 à 29 ans : 75,4%
+- 30 à 44 ans : 80,5%
+- 45 à 59 ans : 66,8%
+- 60 à 74 ans : 43,5%
+- 75 ans ou plus : 12,1%
 
 #### Alternative 3 : utiliser du texte structuré
 
@@ -1278,13 +1282,11 @@ Ainsi, sur la jauge ci-dessus, l’alternative pourrait être : "En 2022, nous a
 
 L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La #databox présente ainsi systématiquement l’alternative textuelle dans le contrôle segmenté en bas à droite du composant.
 
-Lorsqu’un graphique est utilisé seul, sans la databox, l’alternative textuelle peut être affichée dans un [accordéon](https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/accordeon/)  présenté sous le graphique.
+Lorsqu’un graphique est utilisé seul, sans la databox, l’alternative textuelle peut être affichée dans un [accordéon](https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/accordeon/) présenté sous le graphique.
 
 > **Important**
 >
 > Il conviendra de documenter cette approche dans la déclaration d’accessibilité pour que les personnes handicapées concernées sachent qu’une alternative accessible est systématiquement fournie.
-> 
-
 
 ```html
 <table-chart
