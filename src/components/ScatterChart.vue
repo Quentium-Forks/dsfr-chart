@@ -195,7 +195,6 @@ export default {
       datasets: [],
       xAxisType: 'category',
       labels: [],
-      opacity: [],
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -237,7 +236,6 @@ export default {
       this.datasets = [];
       this.xAxisType = 'category';
       this.labels = [];
-      this.opacity = [];
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
