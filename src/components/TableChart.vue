@@ -1,6 +1,6 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType && databoxSource === 'global'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || !databoxId && !databoxType && databoxSource === 'global'"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
