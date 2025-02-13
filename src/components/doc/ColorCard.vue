@@ -10,14 +10,14 @@
         v-if="isLightTheme"
         class="block"
       >
-      (thème clair)
-    </strong>
+        (thème clair)
+      </strong>
       <strong
         v-else
         class="block"
       >
-      (thème sombre)
-    </strong>
+        (thème sombre)
+      </strong>
     </p>
     <p>
       <span class="block">{{ color }}</span>
