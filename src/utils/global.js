@@ -121,12 +121,3 @@ export const mapMixins = {
     getDepsFromReg,
   },
 };
-
-export const svgMixins = {
-  props: {
-    onenter: Function,
-    onleave: Function,
-    onclick: Function,
-    ondblclick: Function,
-  },
-};

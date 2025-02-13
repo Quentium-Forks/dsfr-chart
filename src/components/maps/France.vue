@@ -1,15 +1,14 @@
-<script>
-import { svgMixins } from '@/utils/global.js';
-
-export default {
-  mixins: [svgMixins],
-  props: {
-    config: {
-      type: Object,
-      required: true,
-    },
+<script setup>
+const props = defineProps({
+  config: {
+    type: Object,
+    required: true,
   },
-};
+  onenter: Function,
+  onleave: Function,
+  onclick: Function,
+  ondblclick: Function,
+});
 </script>
 
 <template>
