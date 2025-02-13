@@ -141,7 +141,6 @@ export default {
       displayMayotte: '',
       displayReunion: '',
       displayGuyanne: '',
-      colorStrokeDOM: '#FFFFFF',
     };
   },
   created() {
@@ -315,13 +314,9 @@ export default {
     },
     changeTheme(theme) {
       if (theme === 'light') {
-        this.textMention = '#6b6b6b';
         this.FranceProps.colorStroke = '#FFFFFF';
-        this.colorStrokeDOM = '#FFFFFF';
       } else {
-        this.textMention = '#cecece';
         this.FranceProps.colorStroke = '#161616';
-        this.colorStrokeDOM = '#161616';
       }
       this.createChart();
     },

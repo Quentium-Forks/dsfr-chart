@@ -4,9 +4,9 @@ import { svgMixins } from '@/utils/global';
 export default {
   mixins: [svgMixins],
   props: {
-    colorStroke: {
-      type: String,
-      default: '',
+    config: {
+      type: Object,
+      required: true,
     },
   },
 };
@@ -19,7 +19,7 @@ export default {
   >
     <g
       fill="#5C68E5"
-      :stroke="colorStroke"
+      :stroke="config.colorStroke"
       stroke-width="0.2%"
     >
       <path

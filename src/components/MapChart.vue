@@ -84,7 +84,7 @@
               </span>
               <guadeloupe
                 height="50"
-                :config="colorStrokeDOM"
+                :config="DromProps"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
                 :onenter="displayTooltip"
@@ -103,7 +103,7 @@
               </span>
               <martinique
                 height="50"
-                :config="colorStrokeDOM"
+                :config="DromProps"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
                 :onenter="displayTooltip"
@@ -122,7 +122,7 @@
               </span>
               <guyane
                 height="50"
-                :config="colorStrokeDOM"
+                :config="DromProps"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
                 :onenter="displayTooltip"
@@ -141,7 +141,7 @@
               </span>
               <reunion
                 height="50"
-                :config="colorStrokeDOM"
+                :config="DromProps"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
                 :onenter="displayTooltip"
@@ -160,7 +160,7 @@
               </span>
               <mayotte
                 height="50"
-                :config="colorStrokeDOM"
+                :config="DromProps"
                 :onclick="changeGeoLevel"
                 :ondblclick="resetGeoFilters"
                 :onenter="displayTooltip"
@@ -256,6 +256,9 @@ export default {
         displayDep: {},
         colorStroke: '#FFFFFF',
       },
+      DromProps: {
+        colorStroke: '#FFFFFF',
+      },
       tooltip: {
         top: '0px',
         left: '0px',
@@ -269,8 +272,7 @@ export default {
       displayMayotte: '',
       displayReunion: '',
       displayGuyane: '',
-      colorStrokeDOM: '#FFFFFF',
-      textMention: '',
+      textMention: '#6b6b6b',
     };
   },
   created() {
@@ -502,11 +504,11 @@ export default {
       if (theme === 'light') {
         this.textMention = '#6b6b6b';
         this.FranceProps.colorStroke = '#FFFFFF';
-        this.colorStrokeDOM = '#FFFFFF';
+        this.DromProps.colorStroke = '#FFFFFF';
       } else {
         this.textMention = '#cecece';
         this.FranceProps.colorStroke = '#161616';
-        this.colorStrokeDOM = '#161616';
+        this.DromProps.colorStroke = '#161616';
       }
       this.createChart();
     },
