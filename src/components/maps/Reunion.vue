@@ -1,5 +1,5 @@
 <script>
-import { svgMixins } from '@/utils/global';
+import { svgMixins } from '@/utils/global.js';
 
 export default {
   mixins: [svgMixins],
