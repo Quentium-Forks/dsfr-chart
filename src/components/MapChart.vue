@@ -178,7 +178,7 @@
 import * as d3 from 'd3-scale';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
-import { mapsMixins, isMobile } from '@/utils/global.js';
+import { mapMixins, isMobile } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
 
 export default {
@@ -187,7 +187,7 @@ export default {
     MapInfo,
     ...maps,
   },
-  mixins: [mapsMixins],
+  mixins: [mapMixins],
   props: {
     databoxId: {
       type: String,

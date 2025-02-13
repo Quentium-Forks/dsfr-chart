@@ -105,14 +105,14 @@ export const configureChartDefaults = () => {
   Chart.defaults.borderColor = '#cecece';
 };
 
-export const mixin = {
+export const chartMixins = {
   methods: {
     capitalize,
     formatNumber,
   },
 };
 
-export const mapsMixins = {
+export const mapMixins = {
   methods: {
     getDep,
     getReg,

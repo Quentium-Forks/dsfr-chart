@@ -101,14 +101,14 @@
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
 import chroma from 'chroma-js';
-import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, getColorsByIndex, getNeutralColor } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
 export default {
   name: 'LineChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,

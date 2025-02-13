@@ -74,11 +74,11 @@
 </template>
 
 <script>
-import { mixin } from '@/utils/global.js';
+import { chartMixins } from '@/utils/global.js';
 
 export default {
   name: 'GaugeChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,

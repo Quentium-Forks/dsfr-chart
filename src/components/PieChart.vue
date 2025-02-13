@@ -51,14 +51,14 @@
 
 <script>
 import { ArcElement, Chart, DoughnutController, PieController } from 'chart.js';
-import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateColors } from '@/utils/colors.js';
 
 Chart.register(DoughnutController, PieController, ArcElement);
 
 export default {
   name: 'PieChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,

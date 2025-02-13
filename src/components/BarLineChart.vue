@@ -117,14 +117,14 @@
 
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
-import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateBarLineChartColors } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
 export default {
   name: 'BarLineChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,
