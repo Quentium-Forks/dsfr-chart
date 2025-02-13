@@ -278,11 +278,13 @@ export default {
       const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
 
-      let tooltipX = containerRect.x - franceRect.x + tooltipRect.width / 3 - window.innerWidth / 20;
-      let tooltipY = containerRect.y - franceRect.y + tooltipRect.height;
+      const adjust = window.innerWidth > 1000 ? window.innerWidth / 30 : window.innerWidth / 15;
 
-      if (tooltipX + tooltipRect.width / 2 > franceRect.x) {
-        tooltipX = containerRect.x / 2 - franceRect.x - window.innerWidth / 20;
+      let tooltipX = containerRect.x - franceRect.x + tooltipRect.width - adjust;
+      let tooltipY = containerRect.y - franceRect.y;
+
+      if (tooltipX + tooltipRect.width + adjust > franceRect.x) {
+        tooltipX = containerRect.x / 2 - franceRect.x + tooltipRect.width + adjust / 2;
       }
 
       this.tooltip.top = tooltipY + 'px';
