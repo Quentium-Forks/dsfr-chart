@@ -442,17 +442,18 @@ export default {
     displayTooltip(e) {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
-      let hoverElement = e.target.className.baseVal.replace('FR-', '');
+      const hoverElement = e.target.className.baseVal;
+      const hoverValue = hoverElement.replace('FR-', '');
 
-      const elCol = parentWidget.getElementsByClassName('FR-' + hoverElement);
+      const elCol = parentWidget.getElementsByClassName(hoverElement);
       elCol[0].style.opacity = 0.8;
-      this.tooltip.value = this.dataParse[hoverElement];
+      this.tooltip.value = this.dataParse[hoverValue];
       if (this.isDep) {
-        this.tooltip.place = this.getDep(hoverElement).department;
+        this.tooltip.place = this.getDep(hoverValue).department;
       } else if (this.isReg) {
-        this.tooltip.place = this.getReg(hoverElement).region;
+        this.tooltip.place = this.getReg(hoverValue).region;
       } else if (this.isAcad) {
-        this.tooltip.place = this.getAcad(hoverElement).academy;
+        this.tooltip.place = this.getAcad(hoverValue).academy;
       }
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
@@ -483,7 +484,8 @@ export default {
     },
     changeGeoLevel(e) {
       // Get clicked department value
-      this.zoomDep = e.target.className.baseVal.replace('FR-', '');
+      const hoverValue = e.target.className.baseVal.replace('FR-', '');
+      this.zoomDep = hoverValue;
       this.createChart();
     },
     resetGeoFilters() {
