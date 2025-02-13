@@ -214,7 +214,7 @@
 </template>
 
 <script setup>
-import { chartExamples } from '@/assets/data';
+import { chartExamples } from './examples.js';
 import Intro from './Intro.vue';
 import CodeBlock from './CodeBlock.vue';
 import DisplayMode from './DisplayMode.vue';
