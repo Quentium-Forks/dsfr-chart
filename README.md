@@ -47,7 +47,7 @@ La structure mise à disposition, sur le zip ou npm est la suivante :
 
 Il est également nécessaire de charger [l'API Javascript](https://www.systeme-de-design.gouv.fr/comment-utiliser-le-dsfr/developpeurs/api-javascript/) : dsfr.module.min.js
 
-#### Importation des web-components
+#### Importation des web-components dans un fichier HTML
 
 Pour pouvoir utiliser une représentation graphique dans votre projet, il est nécessaire de charger le fichier javascript correspondant ainsi que sa feuille css associée.
 
@@ -56,15 +56,38 @@ Il existe deux possibilités :
 - Charger tous les composants :
 
 ```html
-<script src="./Charts/dsfr-chart.common.js.js"></script>
-<link rel="stylesheet" href="./Charts/dsfr-chart.css">
+<!-- Avec le build ESM -->
+<script type="module" src="./DSFRChart.js"></script>
+<link rel="stylesheet" href="./DSFRChart.css">
+```
+
+```html
+<!-- Avec le build CJS -->
+<script src="./DSFRChart.umd.cjs"></script>
+<link rel="stylesheet" href="./DSFRChart.css">
 ```
 
 - Charger uniquement un ou plusieurs composants nécessaires (ex : ScatterChart) :
 
 ```html
-<script src="./ScatterChart/scatter-chart.common.js"></script>
-<link rel="stylesheet" href="./ScatterChart/scatter-chart.css">
+<!-- Avec le build ESM -->
+<script type="module" src="./ScatterChart.js"></script>
+<link rel="stylesheet" href="./ScatterChart.css">
+```
+
+```html
+<!-- Avec le build CJS -->
+<script src="./ScatterChart.umd.cjs"></script>
+<link rel="stylesheet" href="./ScatterChart.css">
+```
+
+#### Importation des web-components avec un bundler
+
+Pour importer la librairie dans un projet utilisant un bundler comme Vite, il est nécessaire d'importer les fichiers JavaScript et CSS dans votre fichier principal.
+
+```javascript
+import '@gouvfr/dsfr-chart/Charts/DSFRChart.js'
+import '@gouvfr/dsfr-chart/Charts/DSFRChart.css'
 ```
 
 ### Les différentes représentations graphiques
