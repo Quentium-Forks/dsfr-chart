@@ -368,7 +368,7 @@ const segmentedControl = computed(() => [true, 'true', ''].includes(props.segmen
 const fullscreen = computed(() => [true, 'true', ''].includes(props.fullscreen));
 const screenshot = computed(() => [true, 'true', ''].includes(props.screenshot));
 const download = computed(() => [true, 'true', ''].includes(props.download));
-const actions = computed(() => (typeof props.actions === 'string') ? JSON.parse(props.actions) : props.actions);
+const actions = computed(() => (typeof props.actions === 'string' ? JSON.parse(props.actions) : props.actions));
 
 const selectedView = ref(chartSources.value.length > 0 ? 'chart' : 'table');
 

@@ -1,6 +1,6 @@
 <template>
   <Teleport
-    :disabled="!$el?.ownerDocument.getElementById(databoxId) || !databoxId && !databoxType && databoxSource === 'default'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || (!databoxId && !databoxType && databoxSource === 'default')"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
@@ -615,9 +615,7 @@ export default {
                       const color = colors[i] ? colors[i] : '#000';
 
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
-                      const displayValue = i === 0 
-                        ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}` 
-                        : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
+                      const displayValue = i === 0 ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}` : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
