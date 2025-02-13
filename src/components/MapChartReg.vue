@@ -1,13 +1,13 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType && databoxSource === 'default'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || (!databoxId && !databoxType && databoxSource === 'default')"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
       :ref="widgetId"
       class="widget_container fr-grid-row"
     >
-      <LeftCol :props="leftColProps" />
+      <MapInfo :data="InfoProps" />
       <div class="fr-col-12 fr-col-lg-9 align-stretch">
         <button
           v-if="zoomDep"
@@ -27,7 +27,7 @@
             <div class="tooltip_body">
               <div class="tooltip_value-content">
                 <div class="tooltip_value">
-                  {{ convertStringToLocaleNumber(tooltip.value) }}
+                  {{ tooltip.value }}
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
             :style="{ display: displayFrance }"
           >
             <france
-              :props="FranceProps"
+              :config="FranceProps"
               :onclick="changeGeoLevel"
               :ondblclick="resetGeoFilters"
               :onenter="displayTooltip"
@@ -52,18 +52,18 @@
 
 <script>
 import * as d3 from 'd3-scale';
-import LeftCol from '@/components/LeftCol.vue';
+import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
-import { mixin, isMobile } from '@/utils/global.js';
+import { mapMixins, isMobile } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
 
 export default {
   name: 'MapChartReg',
   components: {
-    LeftCol,
+    MapInfo,
     ...maps,
   },
-  mixins: [mixin],
+  mixins: [mapMixins],
   props: {
     databoxId: {
       type: String,
@@ -106,25 +106,24 @@ export default {
     return {
       dataParse: {},
       widgetId: '',
-      chartId: '',
       scaleMin: 0,
       scaleMax: 0,
-      colLeft: '',
-      colRight: '',
+      colorLeft: '',
+      colorRight: '',
       zoomDep: '',
-      leftColProps: {
+      InfoProps: {
         localisation: '',
         names: [],
         min: 0,
         max: 0,
-        colMin: '',
-        colMax: '',
+        colorMin: '',
+        colorMax: '',
         value: 0,
         valueReg: 0,
         date: '',
       },
       FranceProps: {
-        viewBox: '0 0 262 262',
+        viewBox: '0 0 1010 1010',
         displayDep: {},
         colorStroke: '#FFFFFF',
       },
@@ -141,11 +140,9 @@ export default {
       displayMayotte: '',
       displayReunion: '',
       displayGuyanne: '',
-      colorStrokeDOM: '#FFFFFF',
     };
   },
   created() {
-    this.chartId = 'dsfr-chart-' + Math.floor(Math.random() * 1000);
     this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
   },
   mounted() {
@@ -153,15 +150,12 @@ export default {
 
     const element = document.documentElement;
     element.addEventListener('dsfr.theme', (e) => {
-      if (this.chartId !== '') {
-        this.changeTheme(e.detail.theme);
-      }
+      this.changeTheme(e.detail.theme);
     });
   },
   methods: {
     createChart() {
       const parentWidget = this.$refs[this.widgetId];
-      const self = this;
 
       // Parsing des données
       try {
@@ -174,22 +168,22 @@ export default {
       // Choisir les couleurs extrêmes basées sur la palette
       const palette = this.choosePalette();
 
-      this.colLeft = palette[0];
-      this.colRight = palette[palette.length - 1];
-      this.leftColProps.colMin = this.colLeft;
-      this.leftColProps.colMax = this.colRight;
-      this.leftColProps.date = this.date;
-      this.leftColProps.names = this.name;
+      this.colorLeft = palette[0];
+      this.colorRight = palette[palette.length - 1];
+      this.InfoProps.colorMin = this.colorLeft;
+      this.InfoProps.colorMax = this.colorRight;
+      this.InfoProps.date = this.date;
+      this.InfoProps.names = this.name;
 
       const values = [];
       let listDep = [];
 
-      self.FranceProps.displayDep = {};
+      this.FranceProps.displayDep = {};
 
       // Afficher uniquement les départements de la région sélectionnée
       listDep = this.getDepsFromReg(this.region);
       listDep.forEach((key) => {
-        values.push(self.dataParse[key]);
+        values.push(this.dataParse[key]);
       });
 
       // Calcul des min et max pour l'échelle
@@ -197,33 +191,56 @@ export default {
       this.scaleMax = Math.max(...values);
 
       // Define color scale based on regional values
-      const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colLeft, this.colRight]);
+      const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colorLeft, this.colorRight]);
 
       let xmin = [],
         xmax = [],
         ymin = [],
         ymax = [];
 
-      // Iterate over each department in the region and set colors
-      for (const key in self.dataParse) {
-        const className = this.getClassMap(key, 'dep');
+      // Iterate over each department in France and hide
+      for (const key in this.dataParse) {
+        const className = 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
 
-        if (listDep.includes(key)) {
-          // If the department is in the selected region
-          elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(self.dataParse[key]));
-          self.FranceProps.displayDep[className] = '';
-          const polygon = elCol[0].getBBox();
-          xmin.push(polygon.x);
-          ymin.push(polygon.y);
-          xmax.push(polygon.x + polygon.width);
-          ymax.push(polygon.y + polygon.height);
-        } else {
-          // Hide other departments outside the selected region
-          elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
-          self.FranceProps.displayDep[className] = 'none';
-        }
+        elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
+        this.FranceProps.displayDep[className] = 'none';
       }
+      // Iterate over each department in the region and set colors
+      listDep.forEach((key) => {
+        const className = 'FR-' + key;
+        const elCol = parentWidget.getElementsByClassName(className);
+
+        if (!this.zoomDep) {
+          if (listDep.includes(key)) {
+            const polygon = elCol[0].getBBox();
+            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            this.FranceProps.displayDep[className] = '';
+            xmin.push(polygon.x);
+            ymin.push(polygon.y);
+            xmax.push(polygon.x + polygon.width);
+            ymax.push(polygon.y + polygon.height);
+          }
+        } else {
+          if (this.zoomDep === key) {
+            const polygon = elCol[0].getBBox();
+            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            this.FranceProps.displayDep[className] = '';
+            xmin.push(polygon.x);
+            ymin.push(polygon.y);
+            xmax.push(polygon.x + polygon.width);
+            ymax.push(polygon.y + polygon.height);
+          } else if (listDep.includes(key)) {
+            const polygon = elCol[0].getBBox();
+            elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
+            this.FranceProps.displayDep[className] = '';
+            xmin.push(polygon.x);
+            ymin.push(polygon.y);
+            xmax.push(polygon.x + polygon.width);
+            ymax.push(polygon.y + polygon.height);
+          }
+        }
+      });
 
       // Calculate viewBox to focus on the selected region
       if (xmin.length && ymin.length && xmax.length && ymax.length) {
@@ -237,12 +254,11 @@ export default {
         this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
       }
 
-      // Remplir les colonnes de gauche
-      this.leftColProps.localisation = this.getReg(this.region).label;
-      this.leftColProps.value = this.value;
-      this.leftColProps.valueReg = this.dataParse[this.zoomDep];
-      this.leftColProps.min = this.scaleMin;
-      this.leftColProps.max = this.scaleMax;
+      this.InfoProps.localisation = this.getReg(this.region).department;
+      this.InfoProps.value = this.value;
+      this.InfoProps.valueReg = this.dataParse[this.zoomDep];
+      this.InfoProps.min = this.scaleMin;
+      this.InfoProps.max = this.scaleMax;
     },
     choosePalette() {
       // Using the refactored choosePalette function from utils
@@ -251,23 +267,25 @@ export default {
     displayTooltip(e) {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
-      const hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '');
+      const hoverElement = e.target.className.baseVal;
+      const hoverValue = hoverElement.replace('FR-', '');
 
-      const className = this.getClassMap(hoverdep, 'dep');
-      const elCol = parentWidget.getElementsByClassName(className);
-      elCol[0].style.opacity = '0.72';
-      this.tooltip.value = this.dataParse[hoverdep];
-      this.tooltip.place = this.getDep(hoverdep).label;
+      const elCol = parentWidget.getElementsByClassName(hoverElement);
+      elCol[0].style.opacity = 0.8;
+      this.tooltip.value = this.dataParse[hoverValue];
+      this.tooltip.place = this.getDep(hoverValue).department;
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
       const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
 
-      let tooltipX = containerRect.x - franceRect.x + tooltipRect.width / 3 - window.innerWidth / 20;
-      let tooltipY = containerRect.y - franceRect.y + tooltipRect.height;
+      const adjust = window.innerWidth > 1000 ? window.innerWidth / 30 : window.innerWidth / 15;
 
-      if (tooltipX + tooltipRect.width / 2 > franceRect.x) {
-        tooltipX = containerRect.x / 2 - franceRect.x - window.innerWidth / 20;
+      let tooltipX = containerRect.x - franceRect.x + tooltipRect.width - adjust;
+      let tooltipY = containerRect.y - franceRect.y;
+
+      if (tooltipX + tooltipRect.width + adjust > franceRect.x) {
+        tooltipX = containerRect.x / 2 - franceRect.x + tooltipRect.width + adjust / 2;
       }
 
       this.tooltip.top = tooltipY + 'px';
@@ -278,16 +296,15 @@ export default {
       if (isMobile()) return;
       this.tooltip.visibility = 'hidden';
       const parentWidget = this.$refs[this.widgetId];
-      const hoverdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '');
-      const className = this.getClassMap(hoverdep, 'dep');
-      const elCol = parentWidget.getElementsByClassName(className);
-      elCol[0].style.opacity = '1';
+      const hoverElement = e.target.className.baseVal;
+
+      const elCol = parentWidget.getElementsByClassName(hoverElement);
+      elCol[0].style.opacity = 1;
     },
     changeGeoLevel(e) {
-      // Get clicked department
-      let clickdep = e.target.className.baseVal.replace(/FR|-|dep|reg|acad/g, '');
-
-      this.zoomDep = clickdep;
+      // Get clicked department value
+      const hoverValue = e.target.className.baseVal.replace('FR-', '');
+      this.zoomDep = hoverValue;
       this.createChart();
     },
     resetGeoFilters() {
@@ -296,13 +313,9 @@ export default {
     },
     changeTheme(theme) {
       if (theme === 'light') {
-        this.textMention = '#6b6b6b';
         this.FranceProps.colorStroke = '#FFFFFF';
-        this.colorStrokeDOM = '#FFFFFF';
       } else {
-        this.textMention = '#cecece';
         this.FranceProps.colorStroke = '#161616';
-        this.colorStrokeDOM = '#161616';
       }
       this.createChart();
     },

@@ -288,6 +288,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { toPng } from 'html-to-image';
+import { slugify } from '@/utils/global.js';
 import DialogModal from '@/components/DialogModal.vue';
 
 const props = defineProps({
@@ -378,20 +379,13 @@ const segmentedControl = computed(() => [true, 'true', ''].includes(props.segmen
 const fullscreen = computed(() => [true, 'true', ''].includes(props.fullscreen));
 const screenshot = computed(() => [true, 'true', ''].includes(props.screenshot));
 const download = computed(() => [true, 'true', ''].includes(props.download));
-const actions = computed(() => typeof props.actions === 'string' ? JSON.parse(props.actions) : props.actions);
+const actions = computed(() => (typeof props.actions === 'string' ? JSON.parse(props.actions) : props.actions));
 
 const selectedView = ref(chartSources.value.length > 0 ? 'chart' : 'table');
 
 const changeView = (view) => {
   selectedView.value = view;
 };
-
-const slugify = (str) =>
-  str
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-zA-Z0-9]/g, '-')
-    .toLowerCase();
 
 const downloadCSV = (mode) => {
   const dom = document.querySelector(`[databox-id="${props.id}"][databox-type="${mode}"][databox-source="${currentSource.value}"]`);

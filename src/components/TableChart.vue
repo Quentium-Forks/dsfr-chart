@@ -1,6 +1,6 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType && databoxSource === 'global'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || (!databoxId && !databoxType && databoxSource === 'global')"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
@@ -49,7 +49,7 @@
                       :key="colIndex"
                       :class="getClass(colItem[rowIndex])"
                     >
-                      {{ convertIntToHumanTable(colItem[rowIndex]) }}
+                      {{ formatNumber(colItem[rowIndex]) }}
                     </td>
                   </tr>
                   <tr
@@ -76,11 +76,11 @@
 </template>
 
 <script>
-import { mixin } from '@/utils/global.js';
+import { chartMixins } from '@/utils/global.js';
 
 export default {
   name: 'TableChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,
@@ -188,7 +188,7 @@ export default {
     },
     getClass(value) {
       let classes = '';
-      if (typeof value === 'string' && value.replace(/<[^>]*>/g,'').length > 132) {
+      if (typeof value === 'string' && value.replace(/<[^>]*>/g, '').length > 132) {
         classes += 'text-overflow ';
       }
       if (typeof value === 'number') {

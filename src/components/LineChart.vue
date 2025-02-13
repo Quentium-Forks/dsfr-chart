@@ -1,6 +1,6 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType && databoxSource === 'default'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || (!databoxId && !databoxType && databoxSource === 'default')"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
@@ -101,14 +101,14 @@
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
 import chroma from 'chroma-js';
-import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, getColorsByIndex, getNeutralColor } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
 export default {
   name: 'LineChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,
@@ -529,8 +529,8 @@ export default {
               ticks: {
                 padding: 10,
               },
-              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
-              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
+              ...(this.xMin ? { suggestedMin: this.xMin } : {}),
+              ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
               grid: {
@@ -553,8 +553,8 @@ export default {
                   return value;
                 },
               },
-              ...(this.yMin ? {suggestedMin: this.yMin} : {}),
-              ...(this.yMax ? {suggestedMax: this.yMax} : {}),
+              ...(this.yMin ? { suggestedMin: this.yMin } : {}),
+              ...(this.yMax ? { suggestedMax: this.yMax } : {}),
             },
           },
           plugins: {
@@ -589,7 +589,7 @@ export default {
               },
               external: (context) => {
                 // Tooltip Element
-                const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) : this.$el.nextElementSibling;
+                const dom = document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) || this.$el.nextElementSibling;
 
                 const tooltipEl = dom.querySelector('.tooltip');
 

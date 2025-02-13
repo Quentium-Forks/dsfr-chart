@@ -1,6 +1,6 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType && databoxSource === 'default'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || (!databoxId && !databoxType && databoxSource === 'default')"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
@@ -50,14 +50,14 @@
 
 <script>
 import { BarController, BarElement, Chart } from 'chart.js';
-import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateColors } from '@/utils/colors.js';
 
 Chart.register(BarController, BarElement);
 
 export default {
   name: 'BarChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,
@@ -227,7 +227,7 @@ export default {
         hoverBackgroundColor: this.colorHover[index],
         hoverBorderColor: this.colorHover[index],
         barThickness: this.barSize,
-        ...(this.maxBarSize ? {maxBarThickness: this.maxBarSize} : {}),
+        ...(this.maxBarSize ? { maxBarThickness: this.maxBarSize } : {}),
       }));
     },
     choosePalette() {
@@ -275,8 +275,8 @@ export default {
                 beginAtZero: true,
                 padding: this.horizontal ? 5 : 15,
               },
-              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
-              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
+              ...(this.xMin ? { suggestedMin: this.xMin } : {}),
+              ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
               stacked: this.stacked,
@@ -292,8 +292,8 @@ export default {
                 beginAtZero: true,
                 padding: 5,
               },
-              ...(this.yMin ? {suggestedMin: this.yMin} : {}),
-              ...(this.yMax ? {suggestedMax: this.yMax} : {}),
+              ...(this.yMin ? { suggestedMin: this.yMin } : {}),
+              ...(this.yMax ? { suggestedMax: this.yMax } : {}),
             },
           },
           plugins: {
@@ -308,7 +308,7 @@ export default {
               callbacks: {
                 label: (tooltipItems) => {
                   const value = this.datasets[tooltipItems.datasetIndex].data[tooltipItems.dataIndex];
-                  return this.convertIntToHuman(value);
+                  return this.formatNumber(value);
                 },
                 title: (tooltipItems) => {
                   return tooltipItems[0].label;
@@ -319,7 +319,7 @@ export default {
               },
               external: (context) => {
                 // Tooltip Element
-                const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) : this.$el.nextElementSibling;
+                const dom = document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) || this.$el.nextElementSibling;
 
                 const tooltipEl = dom.querySelector('.tooltip');
 
@@ -359,7 +359,7 @@ export default {
                   const colorArray = this.colorParse[datasetIndex];
                   const color = colorArray ? colorArray[index] : '#000';
 
-                  const value = this.convertIntToHuman(this.datasets[datasetIndex].data[index]);
+                  const value = this.formatNumber(this.datasets[datasetIndex].data[index]);
                   const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
                   divValue.innerHTML += `
@@ -375,7 +375,7 @@ export default {
 
                 const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
                 const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
-                
+
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 20;
                 if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
@@ -388,7 +388,7 @@ export default {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
                   tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
                 }
-                
+
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';

@@ -50,12 +50,7 @@
                         <template v-if="section.graphs.length === 1">
                           <a
                             class="fr-sidemenu__link"
-                            :href="
-                              '#' +
-                                encodeURIComponent(
-                                  section.title.replace(/ /g, '-')
-                                )
-                            "
+                            :href="'#' + encodeURIComponent(section.title.replace(/ /g, '-'))"
                             target="_self"
                           >
                             {{ section.title }}
@@ -83,12 +78,7 @@
                                   <a
                                     :id="`sidemenu-${i}.${j}`"
                                     class="fr-sidemenu__link"
-                                    :href="
-                                      '#' +
-                                        encodeURIComponent(
-                                          graph.heading.replace(/ /g, '-')
-                                        )
-                                    "
+                                    :href="'#' + encodeURIComponent(graph.heading.replace(/ /g, '-'))"
                                     target="_self"
                                   >
                                     {{ graph.heading }}
@@ -187,7 +177,6 @@
           <div
             v-for="graph in section.graphs"
             :key="graph.title"
-            class="chart_container"
           >
             <h3
               v-if="graph.heading"
@@ -199,10 +188,7 @@
               v-if="!graph.noPalette"
               class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w"
             >
-              {{
-                PALETTE_LABELS?.[graph.props.selectedPalette] ??
-                  "Palette par défaut"
-              }}
+              {{ PALETTE_LABELS?.[graph.props.selectedPalette] ?? 'Palette par défaut' }}
             </p>
             <h3
               v-if="graph.title"
@@ -238,7 +224,7 @@
 </template>
 
 <script setup>
-import { chartExamples } from '@/assets/data';
+import { chartExamples } from './examples.js';
 import Intro from './Intro.vue';
 import CodeBlock from './CodeBlock.vue';
 import DisplayMode from './DisplayMode.vue';
@@ -247,7 +233,7 @@ import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
 
 const PALETTE_LABELS = {
-  defaultColor: 'Palette par défaut',
+  default: 'Palette par défaut',
   neutral: 'Palette unicolore',
   sequentialDescending: 'Palette séquentielle',
   divergentDescending: 'Palette séquentielle divergente',

@@ -1,6 +1,6 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType && databoxSource === 'default'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || (!databoxId && !databoxType && databoxSource === 'default')"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
@@ -87,14 +87,14 @@
 
 <script>
 import { Chart, ScatterController } from 'chart.js';
-import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateScatterChartColors } from '@/utils/colors.js';
 
 Chart.register(ScatterController);
 
 export default {
   name: 'ScatterChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,
@@ -195,7 +195,6 @@ export default {
       datasets: [],
       xAxisType: 'category',
       labels: [],
-      opacity: [],
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -237,7 +236,6 @@ export default {
       this.datasets = [];
       this.xAxisType = 'category';
       this.labels = [];
-      this.opacity = [];
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
@@ -426,8 +424,8 @@ export default {
               ticks: {
                 padding: 10,
               },
-              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
-              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
+              ...(this.xMin ? { suggestedMin: this.xMin } : {}),
+              ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
               grid: {
@@ -450,8 +448,8 @@ export default {
                   return value;
                 },
               },
-              ...(this.yMin ? {suggestedMin: this.yMin} : {}),
-              ...(this.yMax ? {suggestedMax: this.yMax} : {}),
+              ...(this.yMin ? { suggestedMin: this.yMin } : {}),
+              ...(this.yMax ? { suggestedMax: this.yMax } : {}),
             },
           },
           plugins: {
@@ -469,10 +467,10 @@ export default {
                     if (this.xAxisType === 'linear') {
                       const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
                       if (index !== -1) {
-                        label.push(this.convertIntToHuman(this.yparse[i][index]));
+                        label.push(this.formatNumber(this.yparse[i][index]));
                       }
                     } else {
-                      label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
+                      label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
                     }
                   });
                   return label;
@@ -486,7 +484,7 @@ export default {
               },
               external: (context) => {
                 // Tooltip Element
-                const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) : this.$el.nextElementSibling;
+                const dom = document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) || this.$el.nextElementSibling;
 
                 const tooltipEl = dom.querySelector('.tooltip');
 
@@ -539,7 +537,7 @@ export default {
 
                 const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
                 const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
-                
+
                 let tooltipX = positionX + tooltipModel.caretX + 10;
                 let tooltipY = positionY + tooltipModel.caretY - 20;
                 if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
@@ -552,7 +550,7 @@ export default {
                   tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
                   tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
                 }
-                
+
                 tooltipEl.style.position = 'absolute';
                 tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
                 tooltipEl.style.pointerEvents = 'none';

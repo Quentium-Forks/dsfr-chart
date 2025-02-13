@@ -1,6 +1,6 @@
 <template>
   <Teleport
-    :disabled="!databoxId && !databoxType && databoxSource === 'default'"
+    :disabled="!$el?.ownerDocument.getElementById(databoxId) || (!databoxId && !databoxType && databoxSource === 'default')"
     :to="'#' + databoxId + '-' + databoxType + '-' + databoxSource"
   >
     <div
@@ -117,14 +117,14 @@
 
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
-import { mixin, configureChartDefaults } from '@/utils/global.js';
+import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { choosePalette, generateBarLineChartColors } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
 export default {
   name: 'BarLineChart',
-  mixins: [mixin],
+  mixins: [chartMixins],
   props: {
     databoxId: {
       type: String,
@@ -490,8 +490,8 @@ export default {
                 drawTicks: false,
                 drawOnChartArea: false,
               },
-              ...(this.xMin ? {suggestedMin: this.xMin} : {}),
-              ...(this.xMax ? {suggestedMax: this.xMax} : {}),
+              ...(this.xMin ? { suggestedMin: this.xMin } : {}),
+              ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
               type: 'linear',
@@ -516,8 +516,8 @@ export default {
                   return value;
                 },
               },
-              ...(this.yBarMin ? {suggestedMin: this.yBarMin} : {}),
-              ...(this.yBarMax ? {suggestedMax: this.yBarMax} : {}),
+              ...(this.yBarMin ? { suggestedMin: this.yBarMin } : {}),
+              ...(this.yBarMax ? { suggestedMax: this.yBarMax } : {}),
             },
             yLine: {
               type: 'linear',
@@ -544,8 +544,8 @@ export default {
                   return value;
                 },
               },
-              ...(this.yLineMin ? {suggestedMin: this.yLineMin} : {}),
-              ...(this.yLineMax ? {suggestedMax: this.yLineMax} : {}),
+              ...(this.yLineMin ? { suggestedMin: this.yLineMin } : {}),
+              ...(this.yLineMax ? { suggestedMax: this.yLineMax } : {}),
             },
           },
           plugins: {
@@ -560,7 +560,7 @@ export default {
                 label: (tooltipItems) => {
                   const label = [];
                   this.datasets.forEach((set) => {
-                    label.push(this.convertIntToHuman(set.data[tooltipItems.dataIndex]));
+                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
                   });
                   return label;
                 },
@@ -570,7 +570,7 @@ export default {
               },
               external: (context) => {
                 // Tooltip Element
-                const dom = this.databoxId ? document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) : this.$el.nextElementSibling;
+                const dom = document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) || this.$el.nextElementSibling;
 
                 const tooltipEl = dom.querySelector('.tooltip');
 
@@ -615,10 +615,7 @@ export default {
                       const color = colors[i] ? colors[i] : '#000';
 
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
-                      const displayValue =
-                        i === 0
-                          ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}`
-                          : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
+                      const displayValue = i === 0 ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}` : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
