@@ -35,7 +35,7 @@
                     aria-controls="sidemenu-representations-graphiques"
                     aria-expanded="true"
                   >
-                    Représentations graphiques disponibles
+                    Graphiques disponibles
                   </button>
                   <div
                     id="sidemenu-representations-graphiques"
@@ -163,6 +163,12 @@
       </div>
 
       <div class="fr-col-12 fr-col-md-7">
+        <h2>Graphiques disponibles</h2>
+
+        <p>
+          Ce catalogue présente l'ensemble des graphiques disponibles dans le module complémentaire au Système de design de l'État (DSFR) pour la visualisation de données. Les options de chacun des graphiques sont également présentés dans ce document.
+        </p>
+
         <div
           v-for="section in chartExamples"
           :key="section.title"
