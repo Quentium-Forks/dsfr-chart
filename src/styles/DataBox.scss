@@ -29,6 +29,10 @@
   flex-direction: column;
   justify-content: center;
   margin: auto 0;
+
+  &-value {
+    text-align: center;
+  }
 }
 
 .flex {

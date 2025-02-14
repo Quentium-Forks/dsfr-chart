@@ -189,7 +189,7 @@
     <div class="fr-p-2w databox__content">
       <strong
         v-if="value"
-        class="fr-display--xs fr-mb-0"
+        class="fr-display--xs fr-mb-0 databox__content_value"
       >
         {{ value }}
       </strong>
