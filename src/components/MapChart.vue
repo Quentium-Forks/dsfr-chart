@@ -58,19 +58,19 @@
               :on-leave="hideTooltip"
             />
           </div>
-          <!-- <div
-            v-if="isAcad"
+          <div
+            v-if="isAca"
             class="france_container no_select"
             :style="{ display: displayFrance }"
           >
-            <france-acad
+            <france-aca
               :config="FranceProps"
-              :onclick="changeGeoLevel"
-              :ondblclick="resetGeoFilters"
-              :onenter="displayTooltip"
-              :onleave="hideTooltip"
+              :on-click="changeGeoLevel"
+              :on-dbl-click="resetGeoFilters"
+              :on-enter="displayTooltip"
+              :on-leave="hideTooltip"
             />
-          </div> -->
+          </div>
           <div class="om_container fr-grid-row no_select">
             <div
               class="om fr-col-sm"
@@ -236,7 +236,7 @@ export default {
       colorRight: '',
       isDep: true,
       isReg: false,
-      isAcad: false,
+      isAca: false,
       zoomDep: '',
       InfoProps: {
         localisation: '',
@@ -277,7 +277,7 @@ export default {
     this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
     this.isDep = this.level === 'dep';
     this.isReg = this.level === 'reg';
-    this.isAcad = this.level === 'acad';
+    this.isAca = this.level === 'aca';
   },
   mounted() {
     this.createChart();
@@ -323,8 +323,9 @@ export default {
           listDep = this.getDepsFromReg(region);
         } else if (this.isReg) {
           listDep = this.getAllReg();
-        } else if (this.isAcad) {
-          listDep = [this.getAcad(this.zoomDep).value];
+        } else if (this.isAca) {
+          // listDep = [this.getAca(this.zoomDep).value];
+          listDep = this.getAllAca();
         }
 
         for (const key of listDep) {
@@ -394,8 +395,8 @@ export default {
           this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
         } else if (this.isReg) {
           this.InfoProps.localisation = this.getReg(this.zoomDep).region;
-        } else if (this.isAcad) {
-          this.InfoProps.localisation = this.getAcad(this.zoomDep).academy;
+        } else if (this.isAca) {
+          this.InfoProps.localisation = this.getAca(this.zoomDep).academy;
         }
         this.InfoProps.value = this.value;
         this.InfoProps.valueNat = this.dataParse[this.zoomDep];
@@ -454,8 +455,8 @@ export default {
         this.tooltip.place = this.getDep(hoverValue).department;
       } else if (this.isReg) {
         this.tooltip.place = this.getReg(hoverValue).region;
-      } else if (this.isAcad) {
-        this.tooltip.place = this.getAcad(hoverValue).academy;
+      } else if (this.isAca) {
+        this.tooltip.place = this.getAca(hoverValue).academy;
       }
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();

@@ -73,6 +73,13 @@ export const getDep = (code) => FRANCE.find((item) => item.department_value === 
 export const getReg = (code) => FRANCE.find((item) => item.region_value === code);
 
 /**
+ * Retrieve the academy object from its code
+ * @param {string} code The academy code
+ * @returns {object} The academy object
+ */
+export const getAca = (code) => FRANCE.find((item) => item.academy_value === code);
+
+/**
  * Retrieve all department codes
  * @returns {string[]} The department codes
  */
@@ -85,12 +92,28 @@ export const getAllDep = () => FRANCE.map((item) => item.department_value);
 export const getAllReg = () => FRANCE.map((item) => item.region_value);
 
 /**
+ * Retrieve all academy codes
+ * @returns {string[]} The academy codes
+ */
+export const getAllAca = () => FRANCE.map((item) => item.academy_value);
+
+/**
  * Retrieve the department codes from a region code
  * @param {string} code The region code
  * @returns {string[]} The department codes
  */
 export const getDepsFromReg = (code) => {
   const items = FRANCE.filter((item) => item.region_value === code);
+  return items.map((item) => item.department_value);
+};
+
+/**
+ * Retrieve the department codes from an academy code
+ * @param {string} code The academy code
+ * @returns {string[]} The department codes
+ */
+export const getDepsFromAca = (code) => {
+  const items = FRANCE.filter((item) => item.academy_value === code);
   return items.map((item) => item.department_value);
 };
 
@@ -116,8 +139,11 @@ export const mapMixins = {
   methods: {
     getDep,
     getReg,
+    getAca,
     getAllDep,
     getAllReg,
+    getAllAca,
     getDepsFromReg,
+    getDepsFromAca,
   },
 };
