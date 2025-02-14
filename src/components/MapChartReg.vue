@@ -38,10 +38,10 @@
           >
             <france
               :config="FranceProps"
-              :onclick="changeGeoLevel"
-              :ondblclick="resetGeoFilters"
-              :onenter="displayTooltip"
-              :onleave="hideTooltip"
+              :on-click="changeGeoLevel"
+              :on-dbl-click="resetGeoFilters"
+              :on-enter="displayTooltip"
+              :on-leave="hideTooltip"
             />
           </div>
         </div>

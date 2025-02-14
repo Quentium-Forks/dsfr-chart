@@ -39,10 +39,10 @@
           >
             <france
               :config="FranceProps"
-              :onclick="changeGeoLevel"
-              :ondblclick="resetGeoFilters"
-              :onenter="displayTooltip"
-              :onleave="hideTooltip"
+              :on-click="changeGeoLevel"
+              :on-dbl-click="resetGeoFilters"
+              :on-enter="displayTooltip"
+              :on-leave="hideTooltip"
             />
           </div>
           <div
@@ -52,10 +52,10 @@
           >
             <france-reg
               :config="FranceProps"
-              :onclick="changeGeoLevel"
-              :ondblclick="resetGeoFilters"
-              :onenter="displayTooltip"
-              :onleave="hideTooltip"
+              :on-click="changeGeoLevel"
+              :on-dbl-click="resetGeoFilters"
+              :on-enter="displayTooltip"
+              :on-leave="hideTooltip"
             />
           </div>
           <!-- <div
@@ -85,10 +85,10 @@
               <guadeloupe
                 height="50"
                 :config="DromProps"
-                :onclick="changeGeoLevel"
-                :ondblclick="resetGeoFilters"
-                :onenter="displayTooltip"
-                :onleave="hideTooltip"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
               />
             </div>
             <div
@@ -104,10 +104,10 @@
               <martinique
                 height="50"
                 :config="DromProps"
-                :onclick="changeGeoLevel"
-                :ondblclick="resetGeoFilters"
-                :onenter="displayTooltip"
-                :onleave="hideTooltip"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
               />
             </div>
             <div
@@ -123,10 +123,10 @@
               <guyane
                 height="50"
                 :config="DromProps"
-                :onclick="changeGeoLevel"
-                :ondblclick="resetGeoFilters"
-                :onenter="displayTooltip"
-                :onleave="hideTooltip"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
               />
             </div>
             <div
@@ -142,10 +142,10 @@
               <reunion
                 height="50"
                 :config="DromProps"
-                :onclick="changeGeoLevel"
-                :ondblclick="resetGeoFilters"
-                :onenter="displayTooltip"
-                :onleave="hideTooltip"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
               />
             </div>
             <div
@@ -161,10 +161,10 @@
               <mayotte
                 height="50"
                 :config="DromProps"
-                :onclick="changeGeoLevel"
-                :ondblclick="resetGeoFilters"
-                :onenter="displayTooltip"
-                :onleave="hideTooltip"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
               />
             </div>
           </div>
