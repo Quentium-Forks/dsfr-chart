@@ -4,7 +4,7 @@
     class="fr-card fr-card--shadow databox"
   >
     <!-- Header -->
-    <div class="fr-p-2w databox__header">
+    <div class="fr-p-2w databox_header">
       <h3 class="fr-h6 fr-mb-0">
         {{ title }}
       </h3>
@@ -114,11 +114,11 @@
       </div>
     </div>
 
-    <div class="fr-px-2w databox__data">
+    <div class="fr-px-2w databox_data">
       <!-- Source -->
       <div
         v-if="chartSources.length > 1"
-        class="databox__source"
+        class="databox_source"
       >
         <div class="fr-select-group">
           <label
@@ -148,7 +148,7 @@
       <!-- Tendency -->
       <div
         v-if="trend"
-        class="databox__tendency"
+        class="databox_tendency"
       >
         <p
           v-if="trend.includes('-')"
@@ -186,14 +186,14 @@
     </div>
 
     <!-- Content -->
-    <div class="fr-p-2w databox__content">
+    <div class="fr-p-2w databox_content">
       <strong
         v-if="value"
-        class="fr-display--xs fr-mb-0 databox__content_value"
+        class="fr-display--xs fr-mb-0 databox_value"
       >
         {{ value }}
       </strong>
-      
+
       <div
         :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
         :aria-hidden="selectedView === 'chart'"
@@ -227,7 +227,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="fr-p-2w databox__footer">
+    <div class="fr-p-2w databox_footer">
       <p class="fr-text--xs fr-mb-0">
         {{ source }}, {{ date }}
       </p>
@@ -419,9 +419,9 @@ const screenshotChart = () => {
   const dom = databox.querySelectorAll('.screenshot-hide-' + props.id);
   dom.forEach((item) => (item.style.display = 'none'));
 
-  const data = databox.querySelector('.databox__data');
+  const data = databox.querySelector('.databox_data');
   const select = databox.querySelector(`#select-${props.id}`);
-  const tendency = databox.querySelector('.databox__tendency');
+  const tendency = databox.querySelector('.databox_tendency');
 
   // Do not remove above lines. Needed for image custom CSS
   data.style.display = 'block';
