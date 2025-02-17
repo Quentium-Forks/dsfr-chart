@@ -46,7 +46,7 @@
                     <ul class="fr-sidemenu__list">
                       <li
                         v-for="(section, i) in chartExamples"
-                        :key="section.title"
+                        :key="i"
                         class="fr-sidemenu__item"
                       >
                         <a
@@ -162,6 +162,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import { chartExamples } from './examples.js';
 import Intro from './Intro.vue';
 import CodeBlock from './CodeBlock.vue';
@@ -169,7 +170,6 @@ import DisplayMode from './DisplayMode.vue';
 import DataBoxSection from './DataBoxSection.vue';
 import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
-import { computed } from 'vue';
 
 const PALETTE_LABELS = {
   default: 'Palette par défaut',
@@ -178,7 +178,8 @@ const PALETTE_LABELS = {
   divergentDescending: 'Palette séquentielle divergente',
 };
 
-const currentPage = computed(() => {
-  return encodeURIComponent(window.location.hash.replace('#', ''));
-});
+const currentPage = ref(window.location.hash.slice(1));
+window.addEventListener('hashchange', () => {
+  currentPage.value = window.location.hash.slice(1);
+})
 </script>
