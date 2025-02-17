@@ -369,12 +369,6 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 
 ### Optionnels :
 
-- **vline** : _(String)_ Les positions des lignes verticales sur l’axe des abscisses sous forme d’une liste entre crochets.
-- **vlinename** : _(String)_ Les noms des lignes verticales sous forme d’une liste entre crochets.
-- **vlinecolor** : _(String)_ Les couleurs des lignes verticales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
-- **hline** : _(String)_ Les positions des lignes horizontales sur l’axe des ordonnées sous forme d’une liste entre crochets.
-- **hlinename** : _(String)_ Les noms des lignes horizontales sous forme d’une liste entre crochets.
-- **hlinecolor** : _(String)_ Les couleurs des lignes horizontales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique principal (barres et lignes). Les valeurs possibles sont les mêmes que précédemment.
 - **unit-tooltip** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) du graphique.
 
@@ -386,12 +380,6 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 <line-chart
   x="[1, 2, 3]"
   y="[10, 20, 30]"
-  hline="[15, 25]"
-  hlinename='["hmin", "hmax"]'
-  vline="[1.6, 2.3]"
-  vlinename='["vmin","vmax"]'
-  vlinecolor='["green-archipel", "orange-terre-battue"]'
-  hlinecolor='["blue-ecume", "red-marianne"]'
   selected-palette="categorical"
   unit-tooltip="units"
 ></line-chart>
@@ -401,19 +389,12 @@ Sur tous les graphiques présentés ci-dessus, il est possible d'ajouter des lig
 
 ## Notes supplémentaires
 
-- **vline** et **hline** : Ces paramètres permettent d'ajouter des lignes de référence verticales et horizontales sur le graphique. Les valeurs doivent être des nombres correspondant aux positions sur les axes.
-- **vlinename** et **hlinename** : Vous pouvez fournir des noms pour ces lignes qui seront affichés sur le graphique.
-- **vlinecolor** et **hlinecolor** : Spécifiez les couleurs des lignes de référence. Vous pouvez utiliser les noms de couleurs prédéfinies du thème ou des codes hexadécimaux (par exemple, `"#FF5733"`).
 - **selected-palette** : Comme précédemment, ce paramètre vous permet de personnaliser les couleurs du graphique principal.
 - **unit-tooltip** : Spécifiez l'unité à afficher dans l'infobulle du graphique principal. Les infobulles des lignes de référence ne sont généralement pas affectées par ce paramètre.
 
 ---
 
 ## Conseils d'utilisation
-
-- **Correspondance des listes** : Assurez-vous que les listes pour les positions, les noms et les couleurs des lignes ont le même nombre d'éléments.
-
-  - Par exemple, si vous avez deux valeurs dans `hline`, vous devez avoir deux valeurs dans `hlinename` et `hlinecolor`.
 
 - **Personnalisation des couleurs** : Si vous n'indiquez pas de couleurs spécifiques pour les lignes, des couleurs par défaut seront utilisées.
 - **Visualisation des seuils** : L'ajout de lignes de référence est utile pour visualiser des seuils, des moyennes ou d'autres valeurs importantes sur le graphique.
@@ -434,12 +415,6 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 
 ### Optionnels :
 
-- **hline** : _(String)_ Les positions des lignes horizontales sur l’axe des ordonnées sous forme d’une liste entre crochets.
-- **hlinename** : _(String)_ Les noms des lignes horizontales sous forme d’une liste entre crochets.
-- **hlinecolor** : _(String)_ Les couleurs des lignes horizontales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
-- **vline** : _(String)_ Les positions des lignes verticales sur l’axe des abscisses sous forme d’une liste entre crochets.
-- **vlinename** : _(String)_ Les noms des lignes verticales sous forme d’une liste entre crochets.
-- **vlinecolor** : _(String)_ Les couleurs des lignes verticales sous forme d’une liste entre crochets. Vous pouvez utiliser les noms de couleurs prédéfinies ou des codes hexadécimaux.
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique principal (barres et lignes). Les valeurs possibles sont les mêmes que précédemment.
 - **unit-tooltip-bar** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) des barres.
 - **unit-tooltip-line** : _(String)_ Permet de spécifier l'unité à afficher dans l'infobulle (tooltip) de la ligne.
@@ -459,12 +434,6 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
   x="[1, 2, 3, 4, 5]"
   y="[20, 25, 30, 35, 40]"
   y-bar="[15, 18, 22, 28, 33]"
-  hline="[25]"
-  hlinename='["Moyenne"]'
-  hlinecolor='["#FF0000"]'
-  vline="[3]"
-  vlinename='["Point Milieu"]'
-  vlinecolor='["#0000FF"]'
   selected-palette="sequentialAscending"
   unit-tooltip="kW"
   unit-tooltip-bar="kWh"
