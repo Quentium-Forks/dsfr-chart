@@ -57,10 +57,11 @@
         v-bind="chartData.gaugeChart.default"
       />
     </div>
-    <p>Ainsi, sur la jauge ci-dessus, l’alternative pourrait être : "En 2022, nous avons atteint les 100 000 utilisateurs. Cela correspond à 14 % de l’objectif 2026, fixé à 2 millions d’utilisateurs."</p>
+    <p>Ainsi, sur la jauge ci-dessus, l’alternative pourrait être :</p>
+    <p>En 2022, nous avons atteint les 100 000 utilisateurs. Cela correspond à 14 % de l’objectif 2026, fixé à 2 millions d’utilisateurs.</p>
 
     <h3>Affichage de l’alternative</h3>
-    <p>L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La #databox présente ainsi systématiquement l’alternative textuelle dans le contrôle segmenté en bas à droite du composant.</p>
+    <p>L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La databox présente ainsi systématiquement l’alternative textuelle dans le contrôle segmenté en bas à droite du composant.</p>
     <p>
       Lorsqu’un graphique est utilisé seul, sans la databox, l’alternative textuelle peut être affichée dans un
       <a

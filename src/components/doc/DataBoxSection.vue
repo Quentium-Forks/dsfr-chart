@@ -104,7 +104,7 @@
     </p>
     <p>Vous pourrez ainsi construire des dashboard en donnant aux databox la taille nécessaire, en fonction de vos besoins métiers et de l’aspect souhaité pour vos graphiques :</p>
 
-    <div class="fr-mb-6w">
+    <div class="fr-my-6w">
       <div class="fr-grid-row fr-grid-row--gutters">
         <div class="fr-col-6">
           <data-box
