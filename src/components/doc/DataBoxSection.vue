@@ -104,7 +104,7 @@
     </p>
     <p>Vous pourrez ainsi construire des dashboard en donnant aux databox la taille nécessaire, en fonction de vos besoins métiers et de l’aspect souhaité pour vos graphiques :</p>
 
-    <div class="fr-mb-6w">
+    <div class="fr-my-6w">
       <div class="fr-grid-row fr-grid-row--gutters">
         <div class="fr-col-6">
           <data-box
@@ -127,19 +127,19 @@
         </div>
         <div class="fr-col-6">
           <data-box
-            v-bind="chartData.dataBox.simple"
+            v-bind="chartData.dataBox.modal"
             id="grid-right"
           />
           <pie-chart
-            v-bind="chartData.pieChart.doughnut"
+            v-bind="chartData.pieChart.pie"
             databox-id="grid-right"
             databox-type="chart"
           />
           <table-chart
             databox-id="grid-right"
             databox-type="table"
-            :x="tableParse(chartData.pieChart.doughnut.x)"
-            :y="chartData.pieChart.doughnut.y"
+            :x="tableParse(chartData.pieChart.pie.x)"
+            :y="chartData.pieChart.pie.y"
             name="[&quot;Pourcentage&quot;]"
             table-name="Catégories"
           />
