@@ -148,21 +148,23 @@
       <div class="fr-grid-row fr-grid-row--gutters">
         <div class="fr-col-12">
           <data-box
-            v-bind="chartData.dataBox.simple"
+            v-bind="chartData.dataBox.complete"
             id="grid-full"
+            source="INSEE"
+            actions="[]"
           />
-          <pie-chart
-            v-bind="chartData.pieChart.doughnut"
+          <scatter-chart
+            v-bind="chartData.scatterChart.linked"
             databox-id="grid-full"
             databox-type="chart"
           />
           <table-chart
             databox-id="grid-full"
             databox-type="table"
-            :x="tableParse(chartData.pieChart.doughnut.x)"
-            :y="chartData.pieChart.doughnut.y"
-            name="[&quot;Pourcentage&quot;]"
-            table-name="Catégories"
+            :x="tableParse(chartData.scatterChart.linked.x)"
+            :y="chartData.scatterChart.linked.y"
+            :name="chartData.scatterChart.linked.name"
+            table-name="Années"
           />
         </div>
       </div>
