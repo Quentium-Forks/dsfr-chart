@@ -579,14 +579,14 @@ export default {
 
                 // Set Text
                 if (tooltipModel.body) {
-                  const titleLines = tooltipModel.dataPoints || [];
+                  const titleLines = tooltipModel.title || [];
                   const bodyLines = tooltipModel.body.map((bodyItem) => {
                     return bodyItem.lines;
                   });
 
                   // Set the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                  divDate.innerHTML = titleLines[0].raw.x;
+                  divDate.innerHTML = titleLines[0];
 
                   // Clear the existing tooltip content
                   const divValue = tooltipEl.querySelector('.tooltip_value');
