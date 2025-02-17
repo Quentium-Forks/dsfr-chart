@@ -127,19 +127,19 @@
         </div>
         <div class="fr-col-6">
           <data-box
-            v-bind="chartData.dataBox.simple"
+            v-bind="chartData.dataBox.modal"
             id="grid-right"
           />
           <pie-chart
-            v-bind="chartData.pieChart.doughnut"
+            v-bind="chartData.pieChart.pie"
             databox-id="grid-right"
             databox-type="chart"
           />
           <table-chart
             databox-id="grid-right"
             databox-type="table"
-            :x="tableParse(chartData.pieChart.doughnut.x)"
-            :y="chartData.pieChart.doughnut.y"
+            :x="tableParse(chartData.pieChart.pie.x)"
+            :y="chartData.pieChart.pie.y"
             name="[&quot;Pourcentage&quot;]"
             table-name="Catégories"
           />
