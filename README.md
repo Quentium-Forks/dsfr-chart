@@ -90,7 +90,7 @@ import '@gouvfr/dsfr-chart/Charts/DSFRChart.js';
 import '@gouvfr/dsfr-chart/Charts/DSFRChart.css';
 ```
 
-# Les différents graphiques disponibles
+# Graphiques disponibles
 
 Ce catalogue présente l'ensemble des graphiques disponibles dans le module complémentaire au Système de design de l'État (DSFR) pour la visualisation de données. Les différents types de graphiques sont disponibles en thème clair et thème sombre. Par ailleurs, les options de chacun des graphiques sont également présentés dans ce document.
 
