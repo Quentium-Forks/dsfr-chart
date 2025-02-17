@@ -1104,8 +1104,8 @@ Une représentation graphique n’a pas toujours besoin d’être colorée. Lors
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #5C68E5     | #5C68E5      |
-| Etat de survol | #2846bc     | #2846bc      |
+| État initial   | #5C68E5     | #5C68E5      |
+| État de survol | #2846bc     | #2846bc      |
 
 `neutral Catégorie 1`
 
@@ -1113,8 +1113,8 @@ Pour mettre en évidence une donnée d'un ensemble de données, utilisez la coul
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #B1B1B1     | #808080      |
-| Etat de survol | #8b8b8b     | #5c5c5c      |
+| État initial   | #B1B1B1     | #808080      |
+| État de survol | #8b8b8b     | #5c5c5c      |
 
 ### Graphiques catégoriels
 
@@ -1126,57 +1126,57 @@ La palette catégorielle ne comprend que 8 teintes de couleurs pour limiter le n
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #5C68E5     | #5C68E5      |
-| Etat de survol | #2846bc     | #2846bc      |
+| État initial   | #5C68E5     | #5C68E5      |
+| État de survol | #2846bc     | #2846bc      |
 
 `Catégorie 2`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #82B5F2     | #699BD6      |
-| Etat de survol | #598fc9     | #3f76ae      |
+| État initial   | #82B5F2     | #699BD6      |
+| État de survol | #598fc9     | #3f76ae      |
 
 `Catégorie 3`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #29598F     | #4878B1      |
-| Etat de survol | #00386a     | #18558b      |
+| État initial   | #29598F     | #4878B1      |
+| État de survol | #00386a     | #18558b      |
 
 `Catégorie 4`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #31A7AE     | #00828A      |
-| Etat de survol | #008188     | #005e66      |
+| État initial   | #31A7AE     | #00828A      |
+| État de survol | #008188     | #005e66      |
 
 `Catégorie 5`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #81EEF5     | #51C1C8      |
-| Etat de survol | #55c5cc     | #199aa1      |
+| État initial   | #81EEF5     | #51C1C8      |
+| État de survol | #55c5cc     | #199aa1      |
 
 `Catégorie 6`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #B478F1     | #BC8AF2      |
-| Etat de survol | #8b53c8     | #9465c9      |
+| État initial   | #B478F1     | #BC8AF2      |
+| État de survol | #8b53c8     | #9465c9      |
 
 `Catégorie 7`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #CFB1F5     | #CFB1F5      |
-| Etat de survol | #a78bcc     | #a78bcc      |
+| État initial   | #CFB1F5     | #CFB1F5      |
+| État de survol | #a78bcc     | #a78bcc      |
 
 `Catégorie 8`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #CECECE     | #A4A4A4      |
-| Etat de survol | #a7a7a7     | #7e7e7e      |
+| État initial   | #CECECE     | #A4A4A4      |
+| État de survol | #a7a7a7     | #7e7e7e      |
 
 ### Graphiques séquentiels
 
@@ -1192,15 +1192,15 @@ En fonction du nombre de catégories, on appliquera autant de valeurs de couleur
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #DBDAFF     | #B8B9FF      |
-| Etat de survol | #b3b2d6     | #9093d6      |
+| État initial   | #DBDAFF     | #B8B9FF      |
+| État de survol | #b3b2d6     | #9093d6      |
 
 `Catégorie 2`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #00005F     | #3647CA      |
-| Etat de survol | #00003d     | #0027a2      |
+| État initial   | #00005F     | #3647CA      |
+| État de survol | #00003d     | #0027a2      |
 
 ### Palette séquentielle divergente
 
@@ -1214,22 +1214,22 @@ Dans le cas où le nombre de catégories devrait être supérieur à 5, on appli
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #298641     | #298641      |
-| Etat de survol | #00611f     | #00611f      |
+| État initial   | #298641     | #298641      |
+| État de survol | #00611f     | #00611f      |
 
 `Catégorie 2`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #EFB900     | #AF8800      |
-| Etat de survol | #c39300     | #856400      |
+| État initial   | #EFB900     | #AF8800      |
+| État de survol | #c39300     | #856400      |
 
 `Catégorie 3`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
-| Etat initial   | #E91719     | #E16834      |
-| Etat de survol | #b90000     | #b4420f      |
+| État initial   | #E91719     | #E16834      |
+| État de survol | #b90000     | #b4420f      |
 
 ---
 
