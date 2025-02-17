@@ -35,7 +35,7 @@
                     class="fr-sidemenu__btn"
                     aria-controls="sidemenu-representations-graphiques"
                     aria-expanded="true"
-                    aria-current="true"
+                    :aria-current="!['Databox', 'Couleurs', 'Accessibilité'].map(encodeURIComponent).includes(currentPage)"
                   >
                     Graphiques disponibles
                   </button>
@@ -64,8 +64,8 @@
                 <li class="fr-sidemenu__item">
                   <a
                     class="fr-sidemenu__link"
-                    aria-expanded="false"
                     href="#Databox"
+                    :aria-current="currentPage === encodeURIComponent('Databox')"
                   >
                     Databox
                   </a>
@@ -74,7 +74,7 @@
                   <a
                     class="fr-sidemenu__link"
                     href="#Couleurs"
-                    target="_self"
+                    :aria-current="currentPage === encodeURIComponent('Couleurs')"
                   >
                     Les couleurs
                   </a>
@@ -83,7 +83,7 @@
                   <a
                     class="fr-sidemenu__link"
                     href="#Accessibilité"
-                    target="_self"
+                    :aria-current="currentPage === encodeURIComponent('Accessibilité')"
                   >
                     Accessibilité
                   </a>
