@@ -127,13 +127,21 @@
             tooltip-content="Test content"
             source="Test source"
             date="2021-01-01"
+            trend="5%"
           />
 
           <bar-sub-series-chart
             databox-id="bar-sub-series"
             databox-type="chart"
+            databox-source="données"
             v-bind="chartData.barSubSeriesChart.horizontal"
             aspect-ratio="1"
+          />
+
+          <span
+            databox-id="bar-sub-series"
+            databox-type="chart"
+            databox-source="fake"
           />
 
           <table-chart

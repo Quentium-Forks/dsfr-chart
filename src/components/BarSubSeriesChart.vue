@@ -17,16 +17,22 @@
             </div>
           </div>
 
-          <button
-            v-if="isSubLevel"
-            class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary"
-            @click="resetSub"
-          >
-            Réinitialiser
-          </button>
-          <p v-if="subTitle">
-            {{ subTitle }}
-          </p>
+          <div :class="isSubLevel ? '' : 'fr-mt-6v'">
+            <button
+              v-if="isSubLevel"
+              class="fr-btn fr-btn--sm fr-icon-arrow-go-back-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-ml-4w"
+              style="position: absolute; left: 0"
+              @click="resetSub"
+            >
+              Retour
+            </button>
+            <p
+              v-if="subTitle"
+              class="fr-mb-0"
+            >
+              {{ subTitle }}
+            </p>
+          </div>
 
           <canvas :ref="chartId" />
 
