@@ -103,8 +103,8 @@
 
         <div>
           <data-box
-            id="bar-sub-series"
-            title="POC Graphe thématiques"
+            id="bar-sub-series-2"
+            title="Drilldown"
             tooltip-title="Test title"
             tooltip-content="Test content"
             source="Test source"
@@ -112,31 +112,24 @@
             trend="5%"
           />
 
-          <bar-sub-series-chart
-            databox-id="bar-sub-series"
+          <bar-chart
+            databox-id="bar-sub-series-2"
             databox-type="chart"
             databox-source="données"
-            v-bind="chartData.barSubSeriesChart.horizontal"
+            v-bind="chartData.barChart.subSeries"
             aspect-ratio="1"
           />
 
-          <span
-            databox-id="bar-sub-series"
-            databox-type="chart"
-            databox-source="fake"
-          />
-
           <table-chart
-            databox-id="bar-sub-series"
+            databox-id="bar-sub-series-2"
             databox-type="table"
-            :x="selectedIndex === -1 ? JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.x)[0]) : JSON.stringify(JSON.parse(chartData.barSubSeriesChart.horizontal.subX)[selectedIndex])"
-            :y="selectedIndex === -1 ? chartData.barSubSeriesChart.horizontal.y : JSON.stringify([JSON.parse(chartData.barSubSeriesChart.horizontal.subY)[selectedIndex]])"
+            :x="selectedIndex === -1 ? JSON.stringify(JSON.parse(chartData.barChart.subSeries.x)[0]) : JSON.stringify(JSON.parse(chartData.barChart.subSeries.subX)[selectedIndex])"
+            :y="selectedIndex === -1 ? chartData.barChart.subSeries.y : JSON.stringify([JSON.parse(chartData.barChart.subSeries.subY)[selectedIndex]])"
             name="[&quot;Pourcentage&quot;]"
             table-name="Thématiques les plus visibles"
           />
         </div>
 
-        <br><br><br><br><br><br><br><br>
         <div
           v-for="section in chartExamples"
           :key="section.title"

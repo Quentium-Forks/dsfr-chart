@@ -52,6 +52,15 @@ export const chartData = {
       selectedPalette: 'divergentDescending',
       unitTooltip: '%',
     },
+    subSeries: {
+      x: '[["Chômage et retour à l’emploi", "Croissance", "Droit au travail", "Consommation", "Industrie", "Retraites", "Fiscalité", "Attractivité", "Souveraineté", "Égalité professionnelle", "Entrepreneuriat", "Formation"]]',
+      y: '[[51, 47.1, 36.1, 33.1, 32.8, 31.1, 27.9, 27.2, 19.1, 15.1, 9.1, 3.6]]',
+      subX: '[["Droit au travail", "Solidarité", "Droit du travail", "Jeunesse", "Industrie", "Retraites", "Fiscalité", "Égalité professionnelle", "Seniors", "Corps intermédiaire", "Entrepreneuriat", "Formation"], ["Croissance 1", "Croissance 2"], ["Droit au travail 1", "Droit au travail 2"], ["Consommation 1", "Consommation 2"], ["Industrie 1", "Industrie 2"], ["Retraites 1", "Retraites 2"], ["Fiscalité 1", "Fiscalité 2"], ["Attractivité 1", "Attractivité 2"], ["Souveraineté 1", "Souveraineté 2"], ["Égalité professionnelle 1", "Égalité professionnelle 2"], ["Entrepreneuriat 1", "Entrepreneuriat 2"], ["Formation 1", "Formation 2"]]',
+      subY: '[[37, 36, 34, 34, 25, 24, 22, 21, 14, 11, 9, 5], [15, 20], [5, 20], [12, 22], [23, 40], [44, 100], [6, 10], [16, 88], [21, 35], [29, 34], [100, 145], [88, 99]]',
+      name: '["Thématiques les plus visibles"]',
+      horizontal: true,
+      unitTooltip: '%',
+    }
   },
   barLineChart: {
     default: {
