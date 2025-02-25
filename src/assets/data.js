@@ -119,6 +119,14 @@ export const chartData = {
       fill: true,
       unitTooltip: '%',
     },
+    subSeries: {
+      x: '[["Part 1", "Part 2", "Part 3", "Part 4", "Part 5"]]',
+      y: '[[11.7, 74.8, 9.3, 1.6, 2.6]]',
+      subX: '[["Part 1.1", "Part 1.2","Part 1.3", "Part 1.4", "Part 1.5"], ["Part 2.1","Part 2.2", "Part 2.3", "Part 2.4", "Part 2.5"], ["Part 3.1","Part 3.2", "Part 3.3", "Part 3.4", "Part 3.5"], ["Part 4.1","Part 4.2", "Part 4.3", "Part 4.4", "Part 4.5"], ["Part 5.1","Part 5.2", "Part 5.3", "Part 5.4", "Part 5.5"]]',
+      subY: '[[25.3, 11, 42.6, 5.4, 15.7], [23.1, 37.4, 6.8, 29.7, 3], [6.5, 3.5, 2.6, 1.2, 86.2], [18.6, 9.5, 22,7, 29.5, 19.7], [12.4, 24.3, 17.5, 30.3, 15.5]]',
+      name: '["Part 1", "Part 2", "Part 3", "Part 4", "Part 5"]',
+      unitTooltip: '%',
+    }
   },
   radarChart: {
     default: {
