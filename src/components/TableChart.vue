@@ -106,6 +106,14 @@ export default {
       type: String,
       default: '',
     },
+    subX: {
+      type: String,
+      default: null,
+    },
+    subY: {
+      type: String,
+      default: null,
+    },
     name: {
       type: String,
       default: '',
@@ -121,8 +129,11 @@ export default {
       tableId: '',
       xparse: [],
       yparse: [],
+      subXParse: [],
+      subYParse: [],
       lineParse: [],
       nameParse: [],
+      selectedIndex: -1,
     };
   },
   watch: {
@@ -146,6 +157,7 @@ export default {
   mounted() {
     this.resetData();
     this.getData();
+    this.observeRelatedChart()
   },
   methods: {
     resetData() {
@@ -160,6 +172,8 @@ export default {
         try {
           this.xparse = JSON.parse(this.x ?? '[]');
           this.yparse = JSON.parse(this.y ?? '[]');
+          this.subXParse = JSON.parse(this.subX);
+          this.subYParse = JSON.parse(this.subY);
         } catch (error) {
           console.error('Erreur lors du parsing des données x ou y:', error);
           return;
@@ -212,6 +226,33 @@ export default {
       }
 
       return classes;
+    },
+    observeRelatedChart() {
+      let target = document.querySelector(`#${this.databoxId}-chart-default .widget_container`);
+      let options = {
+        attributes: true, // Listens for attribute changes.
+        subtree: false, // Prevents observing descendants of the target element.
+        childList: false, // Ignores additions or removals of child elements.
+      };
+      if (target) {
+        const observer = new MutationObserver((mutationList) => {
+          for (const mutation of mutationList) {
+            if (mutation.attributeName === 'data-index') {
+              this.selectedIndex = parseInt(mutation.target.getAttribute('data-index'));
+
+              if (this.selectedIndex === -1) {
+                this.xparse = JSON.parse(this.x)[0];
+                this.yparse = JSON.parse(this.y);
+              } else {
+                this.xparse = JSON.parse(this.subX)[this.selectedIndex];
+                this.yparse = [JSON.parse(this.subY)[this.selectedIndex]];
+              }
+            }
+          }
+        });
+
+        observer.observe(target, options);
+      }
     },
   },
 };

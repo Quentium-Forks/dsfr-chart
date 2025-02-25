@@ -123,12 +123,40 @@
           <table-chart
             databox-id="bar-sub-series-2"
             databox-type="table"
-            :x="selectedIndex === -1 ? JSON.stringify(JSON.parse(chartData.barChart.subSeries.x)[0]) : JSON.stringify(JSON.parse(chartData.barChart.subSeries.subX)[selectedIndex])"
-            :y="selectedIndex === -1 ? chartData.barChart.subSeries.y : JSON.stringify([JSON.parse(chartData.barChart.subSeries.subY)[selectedIndex]])"
+            v-bind="chartData.barChart.subSeries"
             name="[&quot;Pourcentage&quot;]"
             table-name="Thématiques les plus visibles"
           />
         </div>
+
+        <br><br><br><br><br><br><br><br>
+
+        <div>
+          <data-box
+            id="bar-sub-series-3"
+            title="Drilldown PieChart"
+            tooltip-title="Test title"
+            tooltip-content="Test content"
+            source="Test source"
+            date="2021-01-01"
+          />
+
+          <pie-chart
+            databox-id="bar-sub-series-3"
+            databox-type="chart"
+            v-bind="chartData.pieChart.subSeries"
+          />
+
+          <table-chart
+            databox-id="bar-sub-series-3"
+            databox-type="table"
+            v-bind="chartData.pieChart.subSeries"
+            name="[&quot;Pourcentage&quot;]"
+            table-name="Thématiques les plus visibles"
+          />
+        </div>
+
+        <br><br><br><br><br><br><br><br>
 
         <div
           v-for="section in chartExamples"
@@ -200,31 +228,39 @@ import DataBoxSection from './DataBoxSection.vue';
 import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
 import { chartData } from '@/assets/data';
-import { ref, onMounted, onUnmounted } from 'vue';
-
-let observer = null;
+import { ref, onMounted } from 'vue';
 
 onMounted(() => {
-  let target = document.querySelector('.widget_container');
+  let targetBar = document.querySelector('#bar-sub-series-2-chart-default .widget_container');
+  let targetPie = document.querySelector('#bar-sub-series-3-chart-default .widget_container');
   let options = {
     attributes: true, // Listens for attribute changes.
     subtree: false, // Prevents observing descendants of the target element.
     childList: false, // Ignores additions or removals of child elements.
   };
-  if (target) {
-    observer = new MutationObserver((mutationList) => {
+  if (targetBar) {
+    const observer = new MutationObserver((mutationList) => {
       for (const mutation of mutationList) {
         if (mutation.attributeName === 'data-index') {
-          selectedIndex.value = parseInt(mutation.target.getAttribute('data-index'));
+          selectedIndexBar.value = parseInt(mutation.target.getAttribute('data-index'));
         }
       }
     });
 
-    observer.observe(target, options);
+    observer.observe(targetBar, options);
+  }
+  if (targetPie) {
+    const observer = new MutationObserver((mutationList) => {
+      for (const mutation of mutationList) {
+        if (mutation.attributeName === 'data-index') {
+          selectedIndexPie.value = parseInt(mutation.target.getAttribute('data-index'));
+        }
+      }
+    });
+
+    observer.observe(targetPie, options);
   }
 });
-
-onUnmounted(() => observer && observer.disconnect());
 
 const PALETTE_LABELS = {
   default: 'Palette par défaut',
@@ -239,4 +275,6 @@ window.addEventListener('hashchange', () => {
 })
 
 const selectedIndex = ref(-1);
+const selectedIndexBar = ref(-1);
+const selectedIndexPie = ref(-1);
 </script>

@@ -6,6 +6,8 @@
     <div
       :ref="widgetId"
       class="widget_container fr-grid-row"
+      :data-index="selectedIndex"
+      :data-sub-chart="isSubChart"
     >
       <div class="fr-col-12">
         <div class="chart">
@@ -17,6 +19,17 @@
               </div>
             </div>
           </div>
+
+          <button
+            v-if="isSubLevel"
+            class="fr-btn fr-btn--sm fr-icon-error-line fr-btn--icon-left fr-btn--secondary"
+            @click="resetSub"
+          >
+            Réinitialiser
+          </button>
+          <p v-if="subTitle">
+            {{ subTitle }}
+          </p>
 
           <canvas :ref="chartId" />
 
@@ -80,6 +93,14 @@ export default {
       type: String,
       required: true,
     },
+    subX: {
+      type: String,
+      default: null,
+    },
+    subY: {
+      type: String,
+      default: null,
+    },
     name: {
       type: String,
       default: '',
@@ -111,15 +132,21 @@ export default {
     return {
       widgetId: '',
       chartId: '',
+      selectedIndex: -1,
       display: '',
       datasets: [],
       labels: [],
       xparse: [],
       yparse: [],
+      subXParse: [],
+      subYParse: [],
       nameParse: [],
       tmpColorParse: [],
       colorParse: [],
       colorHover: [],
+      isSubChart: false,
+      isSubLevel: false,
+      subTitle: null,
     };
   },
   created() {
@@ -149,6 +176,8 @@ export default {
       this.labels = [];
       this.xparse = [];
       this.yparse = [];
+      this.subXParse = [];
+      this.subYParse = [];
       this.nameParse = [];
       this.tmpColorParse = [];
       this.colorParse = [];
@@ -159,9 +188,15 @@ export default {
       try {
         this.xparse = JSON.parse(this.x);
         this.yparse = JSON.parse(this.y);
+        this.subXParse = JSON.parse(this.subX);
+        this.subYParse = JSON.parse(this.subY);
       } catch (error) {
         console.error('Erreur lors du parsing des données x ou y:', error);
         return;
+      }
+
+      if (this.subXParse && this.subYParse) {
+        this.isSubChart = true;
       }
 
       let tmpNameParse = [];
@@ -319,6 +354,28 @@ export default {
               },
             },
           },
+          onClick: (e) => {
+            if (!this.subYParse) return;
+
+            const activePoints = this.chart.getElementsAtEventForMode(e, 'nearest', { intersect: true }, true);
+
+            if (activePoints.length > 0) {
+              const index = activePoints[0].index;
+              const clickedLabel = this.chart.data.labels[index];
+
+              if (!this.subTitle) {
+                // Update title for 2nd level
+                this.subTitle = clickedLabel;
+              }
+
+              // Check if the category is the main category
+              if (this.subYParse[index] && !this.isSubLevel) {
+                this.updateChart(index);
+                this.isSubLevel = true;
+                this.selectedIndex = index;
+              }
+            }
+          },
         },
       });
     },
@@ -354,6 +411,27 @@ export default {
       });
 
       this.chart.update('none');
+    },
+    updateChart(categorie) {
+      const children = this.subYParse[categorie];
+
+      // If the catgory doesn't have any children, let's do nothing
+      if (!children || children.length === 0) {
+        return;
+      }
+
+      this.chart.data.labels = this.subXParse[categorie];
+      this.chart.data.datasets[0].data = this.subYParse[categorie];
+      this.chart.update();
+    },
+    resetSub() {
+      this.isSubLevel = false;
+      this.subTitle = null;
+      this.chart.data.labels = this.xparse[0];
+      this.chart.data.datasets[0].data = this.yparse[0];
+      this.chart.update();
+
+      this.selectedIndex = -1;
     },
   },
 };
