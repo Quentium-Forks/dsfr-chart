@@ -157,7 +157,7 @@ export default {
   mounted() {
     this.resetData();
     this.getData();
-    this.observeRelatedChart()
+    this.observeRelatedChart();
   },
   methods: {
     resetData() {
@@ -241,11 +241,11 @@ export default {
               this.selectedIndex = parseInt(mutation.target.getAttribute('data-index'));
 
               if (this.selectedIndex === -1) {
-                this.xparse = JSON.parse(this.x)[0];
+                this.xparse = JSON.parse(this.x);
                 this.yparse = JSON.parse(this.y);
               } else {
-                this.xparse = JSON.parse(this.subX)[this.selectedIndex];
-                this.yparse = [JSON.parse(this.subY)[this.selectedIndex]];
+                this.xparse = this.subXParse[this.selectedIndex];
+                this.yparse = [this.subYParse[this.selectedIndex]];
               }
             }
           }

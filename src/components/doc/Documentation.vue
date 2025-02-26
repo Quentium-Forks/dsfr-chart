@@ -103,8 +103,8 @@
 
         <div>
           <data-box
-            id="bar-sub-series-2"
-            title="Drilldown"
+            id="bar-sub-series"
+            title="Drilldown BarChart"
             tooltip-title="Test title"
             tooltip-content="Test content"
             source="Test source"
@@ -113,7 +113,7 @@
           />
 
           <bar-chart
-            databox-id="bar-sub-series-2"
+            databox-id="bar-sub-series"
             databox-type="chart"
             databox-source="données"
             v-bind="chartData.barChart.subSeries"
@@ -121,9 +121,10 @@
           />
 
           <table-chart
-            databox-id="bar-sub-series-2"
+            databox-id="bar-sub-series"
             databox-type="table"
             v-bind="chartData.barChart.subSeries"
+            :x="JSON.stringify(JSON.parse(chartData.barChart.subSeries.x)[0])"
             name="[&quot;Pourcentage&quot;]"
             table-name="Thématiques les plus visibles"
           />
@@ -133,7 +134,7 @@
 
         <div>
           <data-box
-            id="bar-sub-series-3"
+            id="pie-sub-series"
             title="Drilldown PieChart"
             tooltip-title="Test title"
             tooltip-content="Test content"
@@ -142,15 +143,16 @@
           />
 
           <pie-chart
-            databox-id="bar-sub-series-3"
+            databox-id="pie-sub-series"
             databox-type="chart"
             v-bind="chartData.pieChart.subSeries"
           />
 
           <table-chart
-            databox-id="bar-sub-series-3"
+            databox-id="pie-sub-series"
             databox-type="table"
             v-bind="chartData.pieChart.subSeries"
+            :x="JSON.stringify(JSON.parse(chartData.pieChart.subSeries.x)[0])"
             name="[&quot;Pourcentage&quot;]"
             table-name="Thématiques les plus visibles"
           />
@@ -228,39 +230,6 @@ import DataBoxSection from './DataBoxSection.vue';
 import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
 import { chartData } from '@/assets/data';
-import { ref, onMounted } from 'vue';
-
-onMounted(() => {
-  let targetBar = document.querySelector('#bar-sub-series-2-chart-default .widget_container');
-  let targetPie = document.querySelector('#bar-sub-series-3-chart-default .widget_container');
-  let options = {
-    attributes: true, // Listens for attribute changes.
-    subtree: false, // Prevents observing descendants of the target element.
-    childList: false, // Ignores additions or removals of child elements.
-  };
-  if (targetBar) {
-    const observer = new MutationObserver((mutationList) => {
-      for (const mutation of mutationList) {
-        if (mutation.attributeName === 'data-index') {
-          selectedIndexBar.value = parseInt(mutation.target.getAttribute('data-index'));
-        }
-      }
-    });
-
-    observer.observe(targetBar, options);
-  }
-  if (targetPie) {
-    const observer = new MutationObserver((mutationList) => {
-      for (const mutation of mutationList) {
-        if (mutation.attributeName === 'data-index') {
-          selectedIndexPie.value = parseInt(mutation.target.getAttribute('data-index'));
-        }
-      }
-    });
-
-    observer.observe(targetPie, options);
-  }
-});
 
 const PALETTE_LABELS = {
   default: 'Palette par défaut',
@@ -272,9 +241,5 @@ const PALETTE_LABELS = {
 const currentPage = ref(window.location.hash.slice(1));
 window.addEventListener('hashchange', () => {
   currentPage.value = window.location.hash.slice(1);
-})
-
-const selectedIndex = ref(-1);
-const selectedIndexBar = ref(-1);
-const selectedIndexPie = ref(-1);
+});
 </script>
