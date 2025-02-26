@@ -154,7 +154,10 @@ export default {
   mounted() {
     this.resetData();
     this.getData();
-    this.observeRelatedChart();
+    // Wait for next tick to get chart element
+    this.$nextTick(() => {
+      this.observeRelatedChart();
+    });
   },
   methods: {
     resetData() {
