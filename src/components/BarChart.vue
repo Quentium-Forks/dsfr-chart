@@ -7,6 +7,7 @@
       :ref="widgetId"
       class="widget_container fr-grid-row"
       :data-index="selectedIndex"
+      :data-sub-chart="isSubChart"
     >
       <div class="fr-col-12">
         <div class="chart">
@@ -183,6 +184,7 @@ export default {
       colorParse: [],
       colorHover: [],
       legendColors: [],
+      isSubChart: false,
       isSubLevel: false,
       subTitle: null,
     };
@@ -230,6 +232,10 @@ export default {
       } catch (error) {
         console.error('Erreur lors du parsing des données x ou y:', error);
         return;
+      }
+
+      if (this.subXParse && this.subYParse) {
+        this.isSubChart = true;
       }
 
       let tmpNameParse = [];
