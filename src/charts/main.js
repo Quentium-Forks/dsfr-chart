@@ -6,7 +6,6 @@ import DataBox from '@/components/DataBox.vue';
 
 import BarChart from '@/components/BarChart.vue';
 import BarLineChart from '@/components/BarLineChart.vue';
-import BarSubSeriesChart from '@/components/BarSubSeriesChart.vue';
 import GaugeChart from '@/components/GaugeChart.vue';
 import LineChart from '@/components/LineChart.vue';
 import MapChart from '@/components/MapChart.vue';
@@ -20,7 +19,6 @@ customElements.define('data-box', defineCustomElement(DataBox, { shadowRoot: fal
 
 customElements.define('bar-chart', defineCustomElement(BarChart, { shadowRoot: false }));
 customElements.define('bar-line-chart', defineCustomElement(BarLineChart, { shadowRoot: false }));
-customElements.define('bar-sub-series-chart', defineCustomElement(BarSubSeriesChart, { shadowRoot: false }));
 customElements.define('gauge-chart', defineCustomElement(GaugeChart, { shadowRoot: false }));
 customElements.define('line-chart', defineCustomElement(LineChart, { shadowRoot: false }));
 customElements.define('map-chart', defineCustomElement(MapChart, { shadowRoot: false }));
