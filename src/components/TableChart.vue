@@ -228,7 +228,8 @@ export default {
       return classes;
     },
     observeRelatedChart() {
-      let target = document.querySelector(`#${this.databoxId}-chart-${this.databoxSource} .widget_container`);
+      const databoxSource = this.databoxSource === 'global' ? 'default' : `${this.databoxSource}`;
+      let target = document.querySelector(`#${this.databoxId}-chart-${databoxSource} .widget_container`);
       let options = {
         attributes: true, // Listens for attribute changes.
         subtree: false, // Prevents observing descendants of the target element.
