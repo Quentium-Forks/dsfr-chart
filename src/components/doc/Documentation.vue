@@ -141,6 +141,7 @@
           <table-chart
             databox-id="bar-sub-series"
             databox-type="table"
+            databox-source="données"
             v-bind="chartData.barChart.subSeries"
             :x="JSON.stringify(JSON.parse(chartData.barChart.subSeries.x)[0])"
             name="[&quot;Pourcentage&quot;]"
