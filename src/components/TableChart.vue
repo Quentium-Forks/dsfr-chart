@@ -189,12 +189,12 @@ export default {
     getClass(value) {
       let classes = '';
       if (typeof value === 'string' && value.replace(/<[^>]*>/g, '').length > 132) {
-        classes += 'text-overflow ';
+        classes += 'cell-overflow ';
       }
       if (typeof value === 'number') {
-        classes += 'text-right ';
+        classes += 'cell-number ';
       } else {
-        classes += 'text-left ';
+        classes += 'cell-text ';
       }
 
       return classes;
@@ -204,5 +204,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '@/styles/TableChart.scss';
+
 </style>
