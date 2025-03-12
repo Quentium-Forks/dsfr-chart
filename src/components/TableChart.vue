@@ -16,9 +16,6 @@
           <div class="fr-table__container">
             <div class="fr-table__content">
               <table>
-                <caption>
-                  {{ tableName }}
-                </caption>
                 <thead>
                   <tr>
                     <th
@@ -204,5 +201,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+* {
+  --table-offset: 0px;
+}
 </style>
