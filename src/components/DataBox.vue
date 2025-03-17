@@ -333,7 +333,7 @@ const props = defineProps({
     default: null,
   },
   trend: {
-    type: String,
+    type: [Number, String],
     default: null,
   },
   segmentedControl: {
@@ -374,7 +374,8 @@ const generateOptions = (source) => {
   }));
 };
 
-// Cast props to boolean
+// Cast props to correct type
+const trend = computed(() => (typeof props.trend === 'number' ? toString(props.trend) : props.trend));
 const segmentedControl = computed(() => [true, 'true', ''].includes(props.segmentedControl));
 const fullscreen = computed(() => [true, 'true', ''].includes(props.fullscreen));
 const screenshot = computed(() => [true, 'true', ''].includes(props.screenshot));
