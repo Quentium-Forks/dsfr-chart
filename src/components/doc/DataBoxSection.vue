@@ -90,6 +90,20 @@
         ]"
       />
     </div>
+    
+    <div class="chart_container fr-my-6w">
+      <h3 id="Databox-chiffre">
+        Databox chiffre
+      </h3>
+      <hr>
+      <data-box
+        v-bind="chartData.dataBox.number"
+      />
+      <CodeBlock
+        :component="[{name: 'data-box'}]"
+        :attributes="[chartData.dataBox.number]"
+      />
+    </div>
 
     <h3>Un composant flexible pour construire vos tableaux de bord</h3>
     <p>
