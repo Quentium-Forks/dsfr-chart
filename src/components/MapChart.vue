@@ -351,7 +351,7 @@ export default {
 
       // Iterate over each department in France and set colors
       for (const key in this.dataParse) {
-        const className = 'FR-' + key;
+        const className = this.isAca ? key : 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
 
         if (!this.zoomDep) {
@@ -446,17 +446,22 @@ export default {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
       const hoverElement = e.target.className.baseVal;
-      const hoverValue = hoverElement.replace('FR-', '');
+      const hoverValues = hoverElement.replace('FR-', '').split(' ');
 
       const elCol = parentWidget.getElementsByClassName(hoverElement);
       elCol[0].style.opacity = 0.8;
-      this.tooltip.value = this.dataParse[hoverValue];
-      if (this.isDep) {
-        this.tooltip.place = this.getDep(hoverValue).department;
-      } else if (this.isReg) {
-        this.tooltip.place = this.getReg(hoverValue).region;
-      } else if (this.isAca) {
-        this.tooltip.place = this.getAca(hoverValue).academy;
+      this.tooltip.value = undefined;
+      for (const hoverValue of hoverValues) {
+        if (this.dataParse[hoverValue]) {
+          this.tooltip.value = this.dataParse[hoverValue];
+        }
+        if (this.isDep && this.getDep(hoverValue)) {
+          this.tooltip.place = this.getDep(hoverValue).department;
+        } else if (this.isReg && this.getReg(hoverValue)) {
+          this.tooltip.place = this.getReg(hoverValue).region;
+        } else if (this.isAca && this.getAca(hoverValue)) {
+          this.tooltip.place = this.getAca(hoverValue).academy;
+        }
       }
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
@@ -487,8 +492,7 @@ export default {
     },
     changeGeoLevel(e) {
       // Get clicked department value
-      const hoverValue = e.target.className.baseVal.replace('FR-', '');
-      this.zoomDep = hoverValue;
+      this.zoomDep = e.target.className.baseVal.replace('FR-', '');
       this.createChart();
     },
     resetGeoFilters() {
