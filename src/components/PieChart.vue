@@ -421,16 +421,16 @@ export default {
 
       this.chart.update('none');
     },
-    updateChart(categorie) {
-      const children = this.subYParse[categorie];
+    updateChart(category) {
+      const children = this.subYParse[category];
 
-      // If the catgory doesn't have any children, let's do nothing
+      // If the category doesn't have any children, let's do nothing
       if (!children || children.length === 0) {
         return;
       }
 
-      this.chart.data.labels = this.subXParse[categorie];
-      this.chart.data.datasets[0].data = this.subYParse[categorie];
+      this.chart.data.labels = this.subXParse[category];
+      this.chart.data.datasets[0].data = this.subYParse[category];
       this.chart.update();
     },
     resetSub() {
