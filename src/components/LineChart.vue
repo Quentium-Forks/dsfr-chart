@@ -540,6 +540,7 @@ export default {
                 dash: [3],
               },
               ticks: {
+                autoSkip: false,
                 padding: 5,
                 maxTicksLimit: 5,
                 callback: (value) => {

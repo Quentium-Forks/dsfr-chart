@@ -334,6 +334,7 @@ export default {
               },
               ticks: {
                 beginAtZero: true,
+                autoSkip: false,
                 padding: 5,
               },
               ...(this.yMin ? { suggestedMin: this.yMin } : {}),
