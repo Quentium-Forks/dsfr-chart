@@ -316,7 +316,6 @@ export default {
                 drawOnChartArea: this.horizontal,
               },
               ticks: {
-                beginAtZero: true,
                 padding: this.horizontal ? 5 : 15,
               },
               ...(this.xMin ? { suggestedMin: this.xMin } : {}),
@@ -333,7 +332,6 @@ export default {
                 dash: [3],
               },
               ticks: {
-                beginAtZero: true,
                 autoSkip: false,
                 padding: 5,
               },
