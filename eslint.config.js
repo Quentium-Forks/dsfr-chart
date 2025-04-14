@@ -10,8 +10,10 @@ export default [
   },
   {
     languageOptions: {
-      globals: globals.browser,
-    }
+      globals: {
+        ...globals.browser,
+      },
+    },
   },
   pluginJs.configs.recommended,
   ...pluginVue.configs['flat/recommended'],
