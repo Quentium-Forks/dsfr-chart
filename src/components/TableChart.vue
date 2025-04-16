@@ -99,10 +99,6 @@ export default {
       type: String,
       default: '',
     },
-    line: {
-      type: String,
-      default: '',
-    },
     subX: {
       type: String,
       default: null,
@@ -110,6 +106,10 @@ export default {
     subY: {
       type: String,
       default: null,
+    },
+    line: {
+      type: String,
+      default: '',
     },
     name: {
       type: String,
@@ -139,6 +139,18 @@ export default {
       this.getData();
     },
     y() {
+      this.resetData();
+      this.getData();
+    },
+    subX() {
+      this.resetData();
+      this.getData();
+    },
+    subY() {
+      this.resetData();
+      this.getData();
+    },
+    line() {
       this.resetData();
       this.getData();
     },
