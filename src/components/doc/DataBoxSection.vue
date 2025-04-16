@@ -85,8 +85,8 @@
           {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'insee', ...chartData.scatterChart.linked, y: defaultScatterData },
           {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'pole-emploi', ...chartData.scatterChart.linked, y: sortedScatterData },
           {dataBoxId: 'complete', dataBoxType: 'chart', dataBoxSource: 'autre', ...chartData.scatterChart.linked, y: reversedScatterData },
-          {dataBoxId: 'complete', dataBoxType: 'table', x: tableParse(chartData.scatterChart.linked.x), y: defaultScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années INSEE'},
-          {dataBoxId: 'complete', dataBoxType: 'table', x: tableParse(chartData.scatterChart.linked.x), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'},
+          {dataBoxId: 'complete', dataBoxType: 'table', dataBoxSource: 'insee', x: tableParse(chartData.scatterChart.linked.x), y: defaultScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années INSEE'},
+          {dataBoxId: 'complete', dataBoxType: 'table', dataBoxSource: 'global', x: tableParse(chartData.scatterChart.linked.x), y: reversedScatterData, name: chartData.scatterChart.linked.name, tableName: 'Années'},
         ]"
       />
     </div>
