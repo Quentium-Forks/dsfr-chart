@@ -135,11 +135,6 @@ export default {
         place: '',
       },
       displayFrance: '',
-      displayGuadeloupe: '',
-      displayMartinique: '',
-      displayMayotte: '',
-      displayReunion: '',
-      displayGuyanne: '',
     };
   },
   watch: {
@@ -179,7 +174,6 @@ export default {
         return;
       }
 
-      // Choisir les couleurs extrêmes basées sur la palette
       const palette = this.choosePalette();
 
       this.colorLeft = palette[0];
@@ -274,10 +268,6 @@ export default {
       this.InfoProps.min = this.scaleMin;
       this.InfoProps.max = this.scaleMax;
     },
-    choosePalette() {
-      // Using the refactored choosePalette function from utils
-      return choosePalette(this.selectedPalette);
-    },
     displayTooltip(e) {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
@@ -319,14 +309,15 @@ export default {
       elCol[0].style.opacity = 1;
     },
     changeGeoLevel(e) {
-      // Get clicked department value
-      const hoverValue = e.target.className.baseVal.replace('FR-', '');
-      this.zoomDep = hoverValue;
+      this.zoomDep = e.target.className.baseVal.replace('FR-', '');
       this.createChart();
     },
     resetGeoFilters() {
       this.zoomDep = '';
       this.createChart();
+    },
+    choosePalette() {
+      return choosePalette(this.selectedPalette);
     },
     changeTheme(theme) {
       if (theme === 'light') {
