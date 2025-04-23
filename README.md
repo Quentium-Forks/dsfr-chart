@@ -578,21 +578,24 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 ```html
 <map-chart
   data='{
-    "01": 72, "02": 83, "03": 67, "04": 36, "05": 47, "06": 96, "07": 77, "08": 75, "09": 57, "10": 58,
-    "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41, "17": 79, "18": 38, "19": 42, "21": 25,
-    "22": 26, "23": 37, "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 12, "30": 6, "31": 5,
-    "32": 22, "33": 40, "34": 19, "35": 13, "36": 32, "37": 0, "38": 82, "39": 13, "40": 78, "41": 92,
-    "42": 10, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72, "48": 61, "49": 27, "50": 47, "51": 41,
-    "52": 44, "53": 29, "54": 22, "55": 4, "56": 57, "57": 94, "58": 46, "59": 33, "60": 0, "61": 15,
-    "62": 60, "63": 71, "64": 0, "65": 91, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 96,
-    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72, "80": 52, "81": 48,
-    "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64, "88": 78, "89": 100, "90": 85, "91": 87,
-    "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
-    "2B": 16
+    "01": 10, "02": 83, "03": 67, "04": 6, "05": 47, "06": 96, "07": 77, "08": 75,
+    "09": 57, "10": 58, "11": 28, "12": 33, "13": 89, "14": 24, "15": 5, "16": 41,
+    "17": 79, "18": 8, "19": 42, "2A": 63, "2B": 16, "21": 25, "22": 26, "23": 37,
+    "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 99, "30": 71, "31": 5,
+    "32": 0, "33": 86, "34": 19, "35": 13, "36": 32, "37": 59, "38": 82, "39": 13,
+    "40": 78, "41": 92, "42": 9, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72,
+    "48": 61, "49": 27, "50": 47, "51": 41, "52": 44, "53": 29, "54": 22, "55": 4,
+    "56": 57, "57": 96, "58": 46, "59": 33, "60": 0, "61": 15, "62": 60, "63": 100,
+    "64": 98, "65": 77, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 93,
+    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72,
+    "80": 52, "81": 48, "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64,
+    "88": 78, "89": 72, "90": 85, "91": 87, "92": 46, "93": 89, "94": 18, "95": 56,
+    "971": 48, "972": 64, "973": 6, "974": 70, "976": 38
   }'
   value="10"
   name="Nom de l'indicateur"
-  selected-palette="sequentialAscending"
+  level="dep"
+  date="11/02/2025"
 ></map-chart>
 ```
 
@@ -605,19 +608,43 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 ```html
 <map-chart
   data='{
-    "84": 1, "32": 10, "93": 20, "44": 30, "76": 40, "28": 50, "75": 60, "24": 70, "53": 80, "94": 90,
-    "52": 100, "01": 95, "02": 85, "03": 75, "04": 65, "06": 55, "27": 100, "11": 35
+    "ARA": 32, "BFC": 8, "BRE": 38, "CVL": 12, "GES": 67, "HDF": 89, "IDF": 0,
+    "NOR": 23, "NAQ": 56, "OCC": 78, "PDL": 95, "PAC": 100, "20R": 14,
+    "971": 21, "972": 32, "973": 45, "974": 78, "976": 98
   }'
   value="10"
   name="Nom de l'indicateur"
   level="reg"
-  selected-palette="divergentDescending"
+  date="11/02/2025"
 ></map-chart>
 ```
 
 ---
 
-### 3. Carte régionale détaillée (MapChartReg)
+### 3. Carte avec découpage par académies
+
+## Exemple :
+
+```html
+<map-chart
+  data='{
+    "AIX-MARSEILLE": 5, "AMIENS": 88, "BESANCON": 54, "BORDEAUX": 0, "CLERMONT-FERRAND": 9,
+    "CORSE": 34, "CRETEIL": 84, "DIJON": 46, "GRENOBLE": 58, "LILLE": 38,
+    "LIMOGES": 75, "LYON": 14, "MONTPELLIER": 27, "NANCY-METZ": 20, "NANTES": 76,
+    "NICE": 92, "NORMANDIE": 5, "ORLEANS-TOURS": 65, "PARIS": 100, "POITIERS": 85,
+    "REIMS": 41, "RENNES": 57, "STRASBOURG": 67, "TOULOUSE": 50, "VERSAILLES": 61,
+    "GUADELOUPE": 89, "MARTINIQUE": 45, "GUYANE": 31, "REUNION": 19, "MAYOTTE": 64
+  }'
+  value="10"
+  name="Nom de l'indicateur"
+  level="aca"
+  date="11/02/2025"
+></map-chart>
+```
+
+---
+
+### 4. Carte régionale détaillée (MapChartReg)
 
 Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`.
 
@@ -638,22 +665,24 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 ```html
 <map-chart-reg
   data='{
-    "01": 72, "02": 83, "03": 67, "04": 36, "05": 47, "06": 96, "07": 77, "08": 75, "09": 57, "10": 58,
-    "11": 38, "12": 33, "13": 89, "14": 24, "15": 52, "16": 41, "17": 79, "18": 38, "19": 42, "21": 25,
-    "22": 26, "23": 37, "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 12, "30": 6, "31": 5,
-    "32": 22, "33": 40, "34": 19, "35": 13, "36": 32, "37": 0, "38": 82, "39": 13, "40": 78, "41": 92,
-    "42": 10, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72, "48": 61, "49": 27, "50": 47, "51": 41,
-    "52": 44, "53": 29, "54": 22, "55": 4, "56": 57, "57": 94, "58": 46, "59": 33, "60": 0, "61": 15,
-    "62": 60, "63": 71, "64": 0, "65": 91, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 96,
-    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72, "80": 52, "81": 48,
-    "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64, "88": 78, "89": 100, "90": 85, "91": 87,
-    "92": 46, "93": 89, "94": 18, "95": 72, "971": 48, "972": 28, "973": 35, "974": 70, "976": 38, "2A": 63,
-    "2B": 16
+    "01": 10, "02": 83, "03": 67, "04": 6, "05": 47, "06": 96, "07": 77, "08": 75,
+    "09": 57, "10": 58, "11": 28, "12": 33, "13": 89, "14": 24, "15": 5, "16": 41,
+    "17": 79, "18": 8, "19": 42, "2A": 63, "2B": 16, "21": 25, "22": 26, "23": 37,
+    "24": 65, "25": 88, "26": 48, "27": 61, "28": 80, "29": 99, "30": 71, "31": 5,
+    "32": 0, "33": 86, "34": 19, "35": 13, "36": 32, "37": 59, "38": 82, "39": 13,
+    "40": 78, "41": 92, "42": 9, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72,
+    "48": 61, "49": 27, "50": 47, "51": 41, "52": 44, "53": 29, "54": 22, "55": 4,
+    "56": 57, "57": 96, "58": 46, "59": 33, "60": 0, "61": 15, "62": 60, "63": 100,
+    "64": 98, "65": 77, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 93,
+    "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72,
+    "80": 52, "81": 48, "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64,
+    "88": 78, "89": 72, "90": 85, "91": 87, "92": 46, "93": 89, "94": 18, "95": 56,
+    "971": 48, "972": 64, "973": 6, "974": 70, "976": 38
   }'
   value="10"
   name="Nom de l'indicateur"
-  region="93"
-  selected-palette="categorical"
+  region="GES"
+  date="11/02/2025"
 ></map-chart-reg>
 ```
 
@@ -663,43 +692,31 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 - **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
 
-- **level** : Par défaut, la carte affiche le découpage par départements (`'dep'`). En spécifiant `level="reg"`, vous pouvez afficher la carte avec le découpage par régions.
+- **level** : Par défaut, la carte affiche le découpage par départements (`"dep"`). En spécifiant `"reg"`, vous pouvez afficher la carte avec le découpage par régions. Vous pouvez également utiliser `"aca"` pour afficher la carte avec le découpage par académies.
 
 ---
 
 ## Conseils d'utilisation
 
-- **Format des données** : Les clés du dictionnaire `data` doivent correspondre aux codes des départements ou régions (par exemple, `"75"` pour Paris, `"84"` pour la région Auvergne-Rhône-Alpes).
+- **Format des données** :
+  - Départements : Les clés du dictionnaire `data` doivent correspondre aux codes des départements au format ISO 3166-2 (par exemple, `"75"` pour Paris, `"67"` pour le Bas-Rhin).
+  - Régions : Les clés du dictionnaire `data` doivent correspondre aux codes des régions au format ISO 3166-2 (par exemple, `"IDF"` pour l'Île-de-France, `"GES"` pour le Grand Est).
+  - Académies : Les clés du dictionnaire `data` doivent correspondre aux codes des académies (par exemple, `"PARIS"` pour l'académie de Paris, `"STRASBOURG"` pour l'académie de Strasbourg).
 
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser votre carte.
 
 ---
 
-## Exemple combinant plusieurs options
-
-## Exemple :
-
-```html
-<map-chart
-  data='{"01": 72, "02": 83, "03": 67, "04": 36, "05": 47}'
-  value="65"
-  name="Taux de réussite"
-  selected-palette="neutral"
-  level="dep"
-></map-chart>
-```
-
----
-
 ## Résumé des paramètres de MapChart
 
-| **paramètre**    | **type**                | **obligatoire** | **description**                                                               |
-|------------------|-------------------------|-----------------|-------------------------------------------------------------------------------|
-| data             | String                  | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur |
-| value            | String ou Number        | oui             | Valeur de l'indicateur à l'échelle nationale                                  |
-| name             | String                  | oui             | nom de l'indicateur                                                           |
-| level            | String ('dep' ou 'reg') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions)      |
-| selected-palette | String                  | non             | palette de couleurs utilisée pour la carte                                    |
+| **paramètre**    | **type**                       | **obligatoire** | **description**                                                                                  |
+|------------------|--------------------------------|-----------------|--------------------------------------------------------------------------------------------------|
+| data             | String                         | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur                    |
+| value            | String ou Number               | oui             | Valeur de l'indicateur à l'échelle nationale                                                     |
+| name             | String                         | oui             | Nom de l'indicateur                                                                              |
+| level            | String ('dep', 'reg' ou 'aca') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions et 'aca' pour académies) |
+| date             | String                         | non             | Date de référence de l'indicateur                                                                |
+| selected-palette | String                         | non             | Palette de couleurs utilisée pour la carte                                                       |
 
 ## Résumé des paramètres de MapChartReg
 
