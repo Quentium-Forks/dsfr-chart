@@ -211,7 +211,7 @@ export default {
     },
     date: {
       type: String,
-      required: true,
+      default: '',
     },
     level: {
       type: String,
@@ -219,7 +219,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'Data',
+      default: 'Données',
     },
     selectedPalette: {
       type: String,

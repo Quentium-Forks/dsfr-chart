@@ -87,7 +87,7 @@ export default {
     },
     date: {
       type: String,
-      required: true,
+      default: '',
     },
     region: {
       type: String,
@@ -95,7 +95,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'Data',
+      default: 'Données',
     },
     selectedPalette: {
       type: String,

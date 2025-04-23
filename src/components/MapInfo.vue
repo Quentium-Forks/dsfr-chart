@@ -2,6 +2,7 @@
   <div class="map_info fr-col-12 fr-col-lg-3">
     <div v-if="data['valueNat'] || data['valueReg']">
       <p
+        v-if="data['date']"
         class="fr-text--xs fr-mb-1v"
         :style="{ color: data['textMention'] }"
       >
