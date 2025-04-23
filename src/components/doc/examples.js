@@ -53,6 +53,7 @@ export const chartExamples = [
     graphs: [
       { component: MapChart, noPalette: true, heading: 'Découpage départemental', props: chartData.mapChart.departments },
       { component: MapChart, noPalette: true, heading: 'Découpage régional', props: chartData.mapChart.regions },
+      { component: MapChart, noPalette: true, heading: 'Découpage académique', props: chartData.mapChart.academies },
       { component: MapChartReg, noPalette: true, heading: 'Région', props: chartData.mapChartReg.region },
     ],
   },

@@ -103,14 +103,6 @@
           Ce catalogue présente l'ensemble des graphiques disponibles dans le module complémentaire au Système de design de l'État (DSFR) pour la visualisation de données. Les options de chacun des graphiques sont également présentés dans ce document.
         </p>
 
-        <map-chart
-          data='{"STRASBOURG": 3, "GUADELOUPE": 8, "MARTINIQUE": 8, "GUYANE": 8, "REUNION": 8, "MAYOTTE": 8}'
-          value="10"
-          name="Nom de l'indicateur"
-          level="aca"
-          date="21/12/2022"
-        />
-
         <div>
           <data-box
             id="bar-sub-series"

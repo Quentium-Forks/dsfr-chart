@@ -328,16 +328,25 @@ export default {
 
       this.FranceProps.displayDep = {};
 
-      // Remplir la carte avec les départements/régions
+      // Remplir la carte avec les départements/régions/académies
       if (this.zoomDep) {
-        if (this.isDep) {
-          const region = this.getDep(this.zoomDep).region_value;
-          listDep = this.getDepsFromReg(region);
-        } else if (this.isReg) {
-          listDep = this.getAllReg();
-        } else if (this.isAca) {
-          // listDep = [this.getAca(this.zoomDep).value];
-          listDep = this.getAllAca();
+        const zoomDepValues = this.zoomDep.split(' ');
+
+        for (const zoomDep of zoomDepValues) {
+          if (this.dataParse[zoomDep] === undefined) {
+            continue;
+          }
+
+          if (this.isDep) {
+            const region = this.getDep(zoomDep).region_value;
+            listDep = this.getDepsFromReg(region);
+          } else if (this.isReg) {
+            // listDep = [this.getReg(zoomDep).value];
+            listDep = this.getAllReg();
+          } else if (this.isAca) {
+            // listDep = [this.getAca(zoomDep).value];
+            listDep = this.getAllAca();
+          }
         }
 
         for (const key of listDep) {
@@ -371,68 +380,84 @@ export default {
           this.FranceProps.displayDep[className] = '';
         } else {
           const polygon = document.querySelector('.' + className).getBBox();
-          if (this.zoomDep === key) {
-            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
-            this.FranceProps.displayDep[className] = '';
-            xmin.push(polygon.x);
-            ymin.push(polygon.y);
-            xmax.push(polygon.x + polygon.width);
-            ymax.push(polygon.y + polygon.height);
-          } else if (listDep.includes(key)) {
-            elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
-            this.FranceProps.displayDep[className] = '';
-            xmin.push(polygon.x);
-            ymin.push(polygon.y);
-            xmax.push(polygon.x + polygon.width);
-            ymax.push(polygon.y + polygon.height);
-          } else {
-            // Hide other departments outside the selected region
-            elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
-            this.FranceProps.displayDep[className] = 'none';
+          const zoomDepValues = this.zoomDep.split(' ');
+
+          for (const zoomDep of zoomDepValues) {
+            if (this.dataParse[zoomDep] === undefined) {
+              continue;
+            }
+
+            if (zoomDep === key) {
+              elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[zoomDep]));
+              this.FranceProps.displayDep[className] = '';
+              xmin.push(polygon.x);
+              ymin.push(polygon.y);
+              xmax.push(polygon.x + polygon.width);
+              ymax.push(polygon.y + polygon.height);
+            } else if (listDep.includes(key)) {
+              elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
+              this.FranceProps.displayDep[className] = '';
+              xmin.push(polygon.x);
+              ymin.push(polygon.y);
+              xmax.push(polygon.x + polygon.width);
+              ymax.push(polygon.y + polygon.height);
+            } else {
+              // Hide other departments outside the selected region
+              elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
+              this.FranceProps.displayDep[className] = 'none';
+            }
           }
         }
       }
 
       if (this.zoomDep) {
-        // Logic for zoom level and dimensions adjustment
-        if (this.isDep) {
-          this.InfoProps.localisation = this.getDep(this.zoomDep).department;
-          const xminValue = Math.min(...xmin);
-          const yminValue = Math.min(...ymin);
-          const xmaxValue = Math.max(...xmax);
-          const ymaxValue = Math.max(...ymax);
-          const width = xmaxValue - xminValue;
-          const height = ymaxValue - yminValue;
-          const size = Math.max(width, height);
-          this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
-        } else if (this.isReg) {
-          this.InfoProps.localisation = this.getReg(this.zoomDep).region;
-        } else if (this.isAca) {
-          this.InfoProps.localisation = this.getAca(this.zoomDep).academy;
-        }
-        this.InfoProps.value = this.value;
-        this.InfoProps.valueNat = this.dataParse[this.zoomDep];
+        const zoomDepValues = this.zoomDep.split(' ');
 
-        if (this.isDep) {
-          this.displayFrance = 'none';
-          this.displayGuadeloupe = 'none';
-          this.displayMartinique = 'none';
-          this.displayMayotte = 'none';
-          this.displayReunion = 'none';
-          this.displayGuyane = 'none';
-          // Setting visibility for DOM regions
-          if ((this.zoomDep === '971' && this.level === 'dep') || (this.zoomDep === '01' && this.level === 'reg')) {
-            this.displayGuadeloupe = '';
-          } else if ((this.zoomDep === '972' && this.level === 'dep') || (this.zoomDep === '02' && this.level === 'reg')) {
-            this.displayMartinique = '';
-          } else if ((this.zoomDep === '973' && this.level === 'dep') || (this.zoomDep === '03' && this.level === 'reg')) {
-            this.displayGuyane = '';
-          } else if ((this.zoomDep === '974' && this.level === 'dep') || (this.zoomDep === '04' && this.level === 'reg')) {
-            this.displayReunion = '';
-          } else if ((this.zoomDep === '976' && this.level === 'dep') || (this.zoomDep === '06' && this.level === 'reg')) {
-            this.displayMayotte = '';
-          } else {
-            this.displayFrance = '';
+        for (const zoomDep of zoomDepValues) {
+          if (this.dataParse[zoomDep] === undefined) {
+            continue;
+          }
+
+          if (this.isDep) {
+            this.InfoProps.localisation = this.getDep(zoomDep).department;
+            // Logic for zoom level and dimensions adjustment
+            const xminValue = Math.min(...xmin);
+            const yminValue = Math.min(...ymin);
+            const xmaxValue = Math.max(...xmax);
+            const ymaxValue = Math.max(...ymax);
+            const width = xmaxValue - xminValue;
+            const height = ymaxValue - yminValue;
+            const size = Math.max(width, height);
+            this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
+          } else if (this.isReg) {
+            this.InfoProps.localisation = this.getReg(zoomDep).region;
+          } else if (this.isAca) {
+            this.InfoProps.localisation = this.getAca(zoomDep).academy;
+          }
+          this.InfoProps.value = this.value;
+          this.InfoProps.valueNat = this.dataParse[zoomDep];
+
+          if (this.isDep) {
+            this.displayFrance = 'none';
+            this.displayGuadeloupe = 'none';
+            this.displayMartinique = 'none';
+            this.displayMayotte = 'none';
+            this.displayReunion = 'none';
+            this.displayGuyane = 'none';
+            // Setting visibility for DROM regions
+            if ((zoomDep === '971' && this.level === 'dep') || (zoomDep === '01' && this.level === 'reg')) {
+              this.displayGuadeloupe = '';
+            } else if ((zoomDep === '972' && this.level === 'dep') || (zoomDep === '02' && this.level === 'reg')) {
+              this.displayMartinique = '';
+            } else if ((zoomDep === '973' && this.level === 'dep') || (zoomDep === '03' && this.level === 'reg')) {
+              this.displayGuyane = '';
+            } else if ((zoomDep === '974' && this.level === 'dep') || (zoomDep === '04' && this.level === 'reg')) {
+              this.displayReunion = '';
+            } else if ((zoomDep === '976' && this.level === 'dep') || (zoomDep === '06' && this.level === 'reg')) {
+              this.displayMayotte = '';
+            } else {
+              this.displayFrance = '';
+            }
           }
         }
       } else {
@@ -503,7 +528,6 @@ export default {
       elCol[0].style.opacity = 1;
     },
     changeGeoLevel(e) {
-      // Get clicked department value
       this.zoomDep = e.target.className.baseVal.replace('FR-', '');
       this.createChart();
     },
@@ -512,7 +536,6 @@ export default {
       this.createChart();
     },
     choosePalette() {
-      // Using the refactored choosePalette function from utils
       return choosePalette(this.selectedPalette);
     },
     changeTheme(theme) {

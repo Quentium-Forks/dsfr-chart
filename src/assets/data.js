@@ -66,7 +66,7 @@ export const chartData = {
       name: '["Thématiques les plus visibles"]',
       horizontal: true,
       unitTooltip: '%',
-    }
+    },
   },
   barLineChart: {
     default: {
@@ -115,7 +115,7 @@ export const chartData = {
       subY: '[[25.3, 11, 42.6, 5.4, 15.7], [23.1, 37.4, 6.8, 29.7, 3], [6.5, 3.5, 2.6, 1.2, 86.2], [18.6, 9.5, 22,7, 29.5, 19.7], [12.4, 24.3, 17.5, 30.3, 15.5]]',
       name: '["Part 1", "Part 2", "Part 3", "Part 4", "Part 5"]',
       unitTooltip: '%',
-    }
+    },
   },
   radarChart: {
     default: {
@@ -161,6 +161,18 @@ export const chartData = {
       value: '10',
       name: 'Nom de l’indicateur',
       level: 'reg',
+      date: '11/02/2025',
+    },
+    academies: {
+      data: `{"AIX-MARSEILLE": 5, "AMIENS": 88, "BESANCON": 54, "BORDEAUX": 0, "CLERMONT-FERRAND": 9,
+              "CORSE": 34, "CRETEIL": 84, "DIJON": 46, "GRENOBLE": 58, "LILLE": 38,
+              "LIMOGES": 75, "LYON": 14, "MONTPELLIER": 27, "NANCY-METZ": 20, "NANTES": 76,
+              "NICE": 92, "NORMANDIE": 5, "ORLEANS-TOURS": 65, "PARIS": 100, "POITIERS": 85,
+              "REIMS": 41, "RENNES": 57, "STRASBOURG": 67, "TOULOUSE": 50, "VERSAILLES": 61,
+              "GUADELOUPE": 89, "MARTINIQUE": 45, "GUYANE": 31, "REUNION": 19, "MAYOTTE": 64}`,
+      value: '10',
+      name: 'Nom de l’indicateur',
+      level: 'aca',
       date: '11/02/2025',
     },
   },
