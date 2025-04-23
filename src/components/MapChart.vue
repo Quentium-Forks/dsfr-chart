@@ -261,7 +261,7 @@ export default {
         top: '0px',
         left: '0px',
         visibility: 'hidden',
-        value: 0,
+        value: undefined,
         place: '',
       },
       displayFrance: '',
@@ -464,7 +464,7 @@ export default {
       elCol[0].style.opacity = 0.8;
       this.tooltip.value = undefined;
       for (const hoverValue of hoverValues) {
-        if (this.dataParse[hoverValue]) {
+        if (this.dataParse[hoverValue] !== undefined) {
           this.tooltip.value = this.dataParse[hoverValue];
         }
         if (this.isDep && this.getDep(hoverValue)) {

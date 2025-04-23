@@ -131,7 +131,7 @@ export default {
         top: '0px',
         left: '0px',
         visibility: 'hidden',
-        value: 0,
+        value: undefined,
         place: '',
       },
       displayFrance: '',
@@ -286,7 +286,10 @@ export default {
 
       const elCol = parentWidget.getElementsByClassName(hoverElement);
       elCol[0].style.opacity = 0.8;
-      this.tooltip.value = this.dataParse[hoverValue];
+      this.tooltip.value = undefined;
+      if (this.dataParse[hoverValue] !== undefined) {
+        this.tooltip.value = this.dataParse[hoverValue];
+      }
       this.tooltip.place = this.getDep(hoverValue).department;
 
       const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
