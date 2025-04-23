@@ -34,7 +34,7 @@
           </div>
           <div
             v-if="isDep"
-            class="france_container no_select"
+            class="map_container no_select"
             :style="{ display: displayFrance }"
           >
             <france
@@ -47,7 +47,7 @@
           </div>
           <div
             v-if="isReg"
-            class="france_container no_select"
+            class="map_container no_select"
             :style="{ display: displayFrance }"
           >
             <france-reg
@@ -60,7 +60,7 @@
           </div>
           <div
             v-if="isAca"
-            class="france_container no_select"
+            class="map_container no_select"
             :style="{ display: displayFrance }"
           >
             <france-aca
@@ -71,13 +71,13 @@
               :on-leave="hideTooltip"
             />
           </div>
-          <div class="om_container fr-grid-row no_select">
+          <div class="attach_container fr-grid-row no_select">
             <div
-              class="om fr-col-sm"
+              class="drom fr-col-sm"
               :style="{ display: displayGuadeloupe }"
             >
               <span
-                class="om_title fr-text--xs fr-my-1w"
+                class="drom_title fr-text--xs fr-my-1w"
                 :style="{ color: dromColor }"
               >
                 Guadeloupe
@@ -92,7 +92,7 @@
               />
             </div>
             <div
-              class="om fr-col-sm"
+              class="drom fr-col-sm"
               :style="{ display: displayMartinique }"
             >
               <span
@@ -111,7 +111,7 @@
               />
             </div>
             <div
-              class="om fr-col-sm"
+              class="drom fr-col-sm"
               :style="{ display: displayGuyane }"
             >
               <span
@@ -130,7 +130,7 @@
               />
             </div>
             <div
-              class="om fr-col-sm"
+              class="drom fr-col-sm"
               :style="{ display: displayReunion }"
             >
               <span
@@ -149,7 +149,7 @@
               />
             </div>
             <div
-              class="om fr-col-sm"
+              class="drom fr-col-sm"
               :style="{ display: displayMayotte }"
             >
               <span
@@ -501,7 +501,7 @@ export default {
         }
       }
 
-      const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
+      const franceRect = parentWidget.querySelector('.map_container').getBoundingClientRect();
       const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
 

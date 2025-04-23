@@ -79,7 +79,7 @@
       }
     }
 
-    .france_container {
+    .map_container {
       height: 100%;
 
       svg {
@@ -88,16 +88,16 @@
       }
     }
 
-    .om_container {
+    .attach_container {
       width: 100%;
 
-      .om {
+      .drom {
         display: flex;
         flex-direction: column;
         align-items: center;
         color: var(--grey-200-850);
 
-        .om_title {
+        .drom_title {
           display: block;
           white-space: nowrap;
         }

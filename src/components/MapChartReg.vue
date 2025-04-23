@@ -33,7 +33,7 @@
             </div>
           </div>
           <div
-            class="france_container no_select"
+            class="map_container no_select"
             :style="{ display: displayFrance }"
           >
             <france
@@ -282,7 +282,7 @@ export default {
       }
       this.tooltip.place = this.getDep(hoverValue).department;
 
-      const franceRect = parentWidget.querySelector('.france_container').getBoundingClientRect();
+      const franceRect = parentWidget.querySelector('.map_container').getBoundingClientRect();
       const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
 
