@@ -6,6 +6,7 @@ import Martinique from './Martinique.vue';
 import Guyane from './Guyane.vue';
 import Reunion from './Reunion.vue';
 import Mayotte from './Mayotte.vue';
+import World from './World.vue';
 
 export default {
   France,
@@ -16,4 +17,5 @@ export default {
   Guyane,
   Reunion,
   Mayotte,
+  World,
 };

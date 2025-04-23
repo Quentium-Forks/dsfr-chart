@@ -808,3 +808,710 @@ export const FRANCE = [
     academy_value: 'MAYOTTE',
   },
 ];
+
+export const WORLD = [
+  {
+    country: 'United Arab Emirates',
+    country_value: 'AE',
+  },
+  {
+    country: 'Afghanistan',
+    country_value: 'AF',
+  },
+  {
+    country: 'Albania',
+    country_value: 'AL',
+  },
+  {
+    country: 'Armenia',
+    country_value: 'AM',
+  },
+  {
+    country: 'Angola',
+    country_value: 'AO',
+  },
+  {
+    country: 'Argentina',
+    country_value: 'AR',
+  },
+  {
+    country: 'Austria',
+    country_value: 'AT',
+  },
+  {
+    country: 'Australia',
+    country_value: 'AU',
+  },
+  {
+    country: 'Azerbaijan',
+    country_value: 'AZ',
+  },
+  {
+    country: 'Bosnia and Herzegovina',
+    country_value: 'BA',
+  },
+  {
+    country: 'Bangladesh',
+    country_value: 'BD',
+  },
+  {
+    country: 'Belgium',
+    country_value: 'BE',
+  },
+  {
+    country: 'Burkina Faso',
+    country_value: 'BF',
+  },
+  {
+    country: 'Bulgaria',
+    country_value: 'BG',
+  },
+  {
+    country: 'Burundi',
+    country_value: 'BI',
+  },
+  {
+    country: 'Benin',
+    country_value: 'BJ',
+  },
+  {
+    country: 'Brunei Darussalam',
+    country_value: 'BN',
+  },
+  {
+    country: 'Bolivia',
+    country_value: 'BO',
+  },
+  {
+    country: 'Brazil',
+    country_value: 'BR',
+  },
+  {
+    country: 'Bahamas',
+    country_value: 'BS',
+  },
+  {
+    country: 'Bhutan',
+    country_value: 'BT',
+  },
+  {
+    country: 'Botswana',
+    country_value: 'BW',
+  },
+  {
+    country: 'Belarus',
+    country_value: 'BY',
+  },
+  {
+    country: 'Belize',
+    country_value: 'BZ',
+  },
+  {
+    country: 'Canada',
+    country_value: 'CA',
+  },
+  {
+    country: 'Democratic Republic of Congo',
+    country_value: 'CD',
+  },
+  {
+    country: 'Central African Republic',
+    country_value: 'CF',
+  },
+  {
+    country: 'Republic of Congo',
+    country_value: 'CG',
+  },
+  {
+    country: 'Switzerland',
+    country_value: 'CH',
+  },
+  {
+    country: 'Côte d’Ivoire',
+    country_value: 'CI',
+  },
+  {
+    country: 'Chile',
+    country_value: 'CL',
+  },
+  {
+    country: 'Cameroon',
+    country_value: 'CM',
+  },
+  {
+    country: 'China',
+    country_value: 'CN',
+  },
+  {
+    country: 'Colombia',
+    country_value: 'CO',
+  },
+  {
+    country: 'Costa Rica',
+    country_value: 'CR',
+  },
+  {
+    country: 'Cuba',
+    country_value: 'CU',
+  },
+  {
+    country: 'Cyprus',
+    country_value: 'CY',
+  },
+  {
+    country: 'Czech Republic',
+    country_value: 'CZ',
+  },
+  {
+    country: 'Germany',
+    country_value: 'DE',
+  },
+  {
+    country: 'Djibouti',
+    country_value: 'DJ',
+  },
+  {
+    country: 'Denmark',
+    country_value: 'DK',
+  },
+  {
+    country: 'Dominican Republic',
+    country_value: 'DO',
+  },
+  {
+    country: 'Algeria',
+    country_value: 'DZ',
+  },
+  {
+    country: 'Ecuador',
+    country_value: 'EC',
+  },
+  {
+    country: 'Estonia',
+    country_value: 'EE',
+  },
+  {
+    country: 'Egypt',
+    country_value: 'EG',
+  },
+  {
+    country: 'Western Sahara',
+    country_value: 'EH',
+  },
+  {
+    country: 'Eritrea',
+    country_value: 'ER',
+  },
+  {
+    country: 'Spain',
+    country_value: 'ES',
+  },
+  {
+    country: 'Ethiopia',
+    country_value: 'ET',
+  },
+  {
+    country: 'Finland',
+    country_value: 'FI',
+  },
+  {
+    country: 'Fiji',
+    country_value: 'FJ',
+  },
+  {
+    country: 'Falkland Islands',
+    country_value: 'FK',
+  },
+  {
+    country: 'France',
+    country_value: 'FR',
+  },
+  {
+    country: 'Gabon',
+    country_value: 'GA',
+  },
+  {
+    country: 'United Kingdom of Great Britain and Northern Ireland',
+    country_value: 'GB',
+  },
+  {
+    country: 'Greenland',
+    country_value: 'GD',
+  },
+  {
+    country: 'Georgia',
+    country_value: 'GE',
+  },
+  {
+    country: 'French Guiana',
+    country_value: 'GF',
+  },
+  {
+    country: 'Ghana',
+    country_value: 'GH',
+  },
+  {
+    country: 'Gambia',
+    country_value: 'GM',
+  },
+  {
+    country: 'Guinea',
+    country_value: 'GN',
+  },
+  {
+    country: 'Equatorial Guinea',
+    country_value: 'GQ',
+  },
+  {
+    country: 'Greece',
+    country_value: 'GR',
+  },
+  {
+    country: 'Guatemala',
+    country_value: 'GT',
+  },
+  {
+    country: 'Guinea-Bissau',
+    country_value: 'GW',
+  },
+  {
+    country: 'Guyana',
+    country_value: 'GY',
+  },
+  {
+    country: 'Honduras',
+    country_value: 'HN',
+  },
+  {
+    country: 'Croatia',
+    country_value: 'HR',
+  },
+  {
+    country: 'Haiti',
+    country_value: 'HT',
+  },
+  {
+    country: 'Hungary',
+    country_value: 'HU',
+  },
+  {
+    country: 'Indonesia',
+    country_value: 'ID',
+  },
+  {
+    country: 'Ireland',
+    country_value: 'IE',
+  },
+  {
+    country: 'Israel',
+    country_value: 'IL',
+  },
+  {
+    country: 'India',
+    country_value: 'IN',
+  },
+  {
+    country: 'Iraq',
+    country_value: 'IQ',
+  },
+  {
+    country: 'Iran',
+    country_value: 'IR',
+  },
+  {
+    country: 'Iceland',
+    country_value: 'IS',
+  },
+  {
+    country: 'Italy',
+    country_value: 'IT',
+  },
+  {
+    country: 'Jamaica',
+    country_value: 'JM',
+  },
+  {
+    country: 'Jordan',
+    country_value: 'JO',
+  },
+  {
+    country: 'Japan',
+    country_value: 'JP',
+  },
+  {
+    country: 'Kenya',
+    country_value: 'KE',
+  },
+  {
+    country: 'Kyrgyzstan',
+    country_value: 'KG',
+  },
+  {
+    country: 'Cambodia',
+    country_value: 'KH',
+  },
+  {
+    country: 'North Korea',
+    country_value: 'KP',
+  },
+  {
+    country: 'South Korea',
+    country_value: 'KR',
+  },
+  {
+    country: 'Kuwait',
+    country_value: 'KW',
+  },
+  {
+    country: 'Kazakhstan',
+    country_value: 'KZ',
+  },
+  {
+    country: 'Lao People’s Democratic Republic',
+    country_value: 'LA',
+  },
+  {
+    country: 'Lebanon',
+    country_value: 'LB',
+  },
+  {
+    country: 'Sri Lanka',
+    country_value: 'LK',
+  },
+  {
+    country: 'Liberia',
+    country_value: 'LR',
+  },
+  {
+    country: 'Lesotho',
+    country_value: 'LS',
+  },
+  {
+    country: 'Lithuania',
+    country_value: 'LT',
+  },
+  {
+    country: 'Luxembourg',
+    country_value: 'LU',
+  },
+  {
+    country: 'Latvia',
+    country_value: 'LV',
+  },
+  {
+    country: 'Libya',
+    country_value: 'LY',
+  },
+  {
+    country: 'Morocco',
+    country_value: 'MA',
+  },
+  {
+    country: 'Moldova',
+    country_value: 'MD',
+  },
+  {
+    country: 'Montenegro',
+    country_value: 'ME',
+  },
+  {
+    country: 'Madagascar',
+    country_value: 'MG',
+  },
+  {
+    country: 'Macedonia',
+    country_value: 'MK',
+  },
+  {
+    country: 'Mali',
+    country_value: 'ML',
+  },
+  {
+    country: 'Myanmar',
+    country_value: 'MM',
+  },
+  {
+    country: 'Mongolia',
+    country_value: 'MN',
+  },
+  {
+    country: 'Mauritania',
+    country_value: 'MR',
+  },
+  {
+    country: 'Malawi',
+    country_value: 'MW',
+  },
+  {
+    country: 'Mexico',
+    country_value: 'MX',
+  },
+  {
+    country: 'Malaysia',
+    country_value: 'MY',
+  },
+  {
+    country: 'Mozambique',
+    country_value: 'MZ',
+  },
+  {
+    country: 'Namibia',
+    country_value: 'NA',
+  },
+  {
+    country: 'New Caledonia',
+    country_value: 'NC',
+  },
+  {
+    country: 'Niger',
+    country_value: 'NE',
+  },
+  {
+    country: 'Nigeria',
+    country_value: 'NG',
+  },
+  {
+    country: 'Nicaragua',
+    country_value: 'NI',
+  },
+  {
+    country: 'Netherlands',
+    country_value: 'NL',
+  },
+  {
+    country: 'Norway',
+    country_value: 'NO',
+  },
+  {
+    country: 'Nepal',
+    country_value: 'NP',
+  },
+  {
+    country: 'New Zealand',
+    country_value: 'NZ',
+  },
+  {
+    country: 'Oman',
+    country_value: 'OM',
+  },
+  {
+    country: 'Panama',
+    country_value: 'PA',
+  },
+  {
+    country: 'Peru',
+    country_value: 'PE',
+  },
+  {
+    country: 'Papua New Guinea',
+    country_value: 'PG',
+  },
+  {
+    country: 'Philippines',
+    country_value: 'PH',
+  },
+  {
+    country: 'Pakistan',
+    country_value: 'PK',
+  },
+  {
+    country: 'Poland',
+    country_value: 'PL',
+  },
+  {
+    country: 'Puerto Rico',
+    country_value: 'PR',
+  },
+  {
+    country: 'Palestine',
+    country_value: 'PS',
+  },
+  {
+    country: 'Portugal',
+    country_value: 'PT',
+  },
+  {
+    country: 'Paraguay',
+    country_value: 'PY',
+  },
+  {
+    country: 'Qatar',
+    country_value: 'QA',
+  },
+  {
+    country: 'Romania',
+    country_value: 'RO',
+  },
+  {
+    country: 'Serbia',
+    country_value: 'RS',
+  },
+  {
+    country: 'Russia',
+    country_value: 'RU',
+  },
+  {
+    country: 'Rwanda',
+    country_value: 'RW',
+  },
+  {
+    country: 'Saudi Arabia',
+    country_value: 'SA',
+  },
+  {
+    country: 'Solomon Islands',
+    country_value: 'SB',
+  },
+  {
+    country: 'Sudan',
+    country_value: 'SD',
+  },
+  {
+    country: 'Sweden',
+    country_value: 'SE',
+  },
+  {
+    country: 'Slovenia',
+    country_value: 'SI',
+  },
+  {
+    country: 'Svalbard and Jan Mayen',
+    country_value: 'SJ',
+  },
+  {
+    country: 'Slovakia',
+    country_value: 'SK',
+  },
+  {
+    country: 'Sierra Leone',
+    country_value: 'SL',
+  },
+  {
+    country: 'Senegal',
+    country_value: 'SN',
+  },
+  {
+    country: 'Somalia',
+    country_value: 'SO',
+  },
+  {
+    country: 'Suriname',
+    country_value: 'SR',
+  },
+  {
+    country: 'South Sudan',
+    country_value: 'SS',
+  },
+  {
+    country: 'El Salvador',
+    country_value: 'SV',
+  },
+  {
+    country: 'Syria',
+    country_value: 'SY',
+  },
+  {
+    country: 'Eswatini',
+    country_value: 'SZ',
+  },
+  {
+    country: 'Chad',
+    country_value: 'TD',
+  },
+  {
+    country: 'French Southern Territories',
+    country_value: 'TF',
+  },
+  {
+    country: 'Togo',
+    country_value: 'TG',
+  },
+  {
+    country: 'Thailand',
+    country_value: 'TH',
+  },
+  {
+    country: 'Tajikistan',
+    country_value: 'TJ',
+  },
+  {
+    country: 'Timor-Leste',
+    country_value: 'TL',
+  },
+  {
+    country: 'Turkmenistan',
+    country_value: 'TM',
+  },
+  {
+    country: 'Tunisia',
+    country_value: 'TN',
+  },
+  {
+    country: 'Turkey',
+    country_value: 'TR',
+  },
+  {
+    country: 'Trinidad and Tobago',
+    country_value: 'TT',
+  },
+  {
+    country: 'Taiwan',
+    country_value: 'TW',
+  },
+  {
+    country: 'Tanzania',
+    country_value: 'TZ',
+  },
+  {
+    country: 'Ukraine',
+    country_value: 'UA',
+  },
+  {
+    country: 'Uganda',
+    country_value: 'UG',
+  },
+  {
+    country: 'United States of America',
+    country_value: 'US',
+  },
+  {
+    country: 'Uruguay',
+    country_value: 'UY',
+  },
+  {
+    country: 'Uzbekistan',
+    country_value: 'UZ',
+  },
+  {
+    country: 'Venezuela',
+    country_value: 'VE',
+  },
+  {
+    country: 'Vietnam',
+    country_value: 'VN',
+  },
+  {
+    country: 'Vanuatu',
+    country_value: 'VU',
+  },
+  {
+    country: 'Kosovo',
+    country_value: 'XK',
+  },
+  {
+    country: 'Yemen',
+    country_value: 'YE',
+  },
+  {
+    country: 'South Africa',
+    country_value: 'ZA',
+  },
+  {
+    country: 'Zambia',
+    country_value: 'ZM',
+  },
+  {
+    country: 'Zimbabwe',
+    country_value: 'ZW',
+  },
+];

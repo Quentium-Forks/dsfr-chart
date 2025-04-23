@@ -49,12 +49,13 @@ export const chartExamples = [
   // Cartes
   {
     title: 'Cartes',
-    desc: 'Les cartes permettent d’afficher une série de données réparties par département ou région. Les cartes sont actuellement disponibles aux niveaux départemental et régional, et il est également possible d’isoler une région pour en afficher les départements.',
+    desc: 'Les cartes permettent d’afficher une série de données réparties géographiquement. Les cartes sont actuellement disponibles aux niveaux départemental, régional, académique et mondial. Il est également possible d’isoler une région pour en afficher les départements.',
     graphs: [
-      { component: MapChart, noPalette: true, heading: 'Découpage départemental', props: chartData.mapChart.departments },
-      { component: MapChart, noPalette: true, heading: 'Découpage régional', props: chartData.mapChart.regions },
-      { component: MapChart, noPalette: true, heading: 'Découpage académique', props: chartData.mapChart.academies },
-      { component: MapChartReg, noPalette: true, heading: 'Région', props: chartData.mapChartReg.region },
+      { component: MapChart, noPalette: true, heading: 'Niveau départemental', props: chartData.mapChart.departments },
+      { component: MapChart, noPalette: true, heading: 'Niveau régional', props: chartData.mapChart.regions },
+      { component: MapChart, noPalette: true, heading: 'Niveau académique', props: chartData.mapChart.academies },
+      { component: MapChartReg, noPalette: true, heading: 'Niveau départemental isolé par la région', props: chartData.mapChartReg.region },
+      { component: MapChart, noPalette: true, heading: 'Niveau mondial', props: chartData.mapChart.world },
     ],
   },
   // Nuage de points

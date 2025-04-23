@@ -1,5 +1,5 @@
 import { CategoryScale, Chart, Filler, LinearScale, PointElement, Tooltip } from 'chart.js';
-import { FRANCE } from '@/utils/constants.js';
+import { FRANCE, WORLD } from '@/utils/constants.js';
 
 Chart.register(Tooltip, Filler, LinearScale, CategoryScale, PointElement);
 
@@ -79,6 +79,14 @@ export const getReg = (code) => FRANCE.find((item) => item.region_value === code
  */
 export const getAca = (code) => FRANCE.find((item) => item.academy_value === code);
 
+
+/**
+ * Retrieve the country object from its code
+ * @param {string} code The country code
+ * @returns {object} The country object
+ */
+export const getCountry = (code) => WORLD.find((item) => item.country_value === code);
+
 /**
  * Retrieve all department codes
  * @returns {string[]} The department codes
@@ -96,6 +104,12 @@ export const getAllReg = () => FRANCE.map((item) => item.region_value);
  * @returns {string[]} The academy codes
  */
 export const getAllAca = () => FRANCE.map((item) => item.academy_value);
+
+/**
+ * Retrieve all country codes
+ * @returns {string[]} The country codes
+ */
+export const getAllCountries = () => WORLD.map((item) => item.country_value);
 
 /**
  * Retrieve the department codes from a region code
@@ -140,9 +154,11 @@ export const mapMixins = {
     getDep,
     getReg,
     getAca,
+    getCountry,
     getAllDep,
     getAllReg,
     getAllAca,
+    getAllCountries,
     getDepsFromReg,
     getDepsFromAca,
   },

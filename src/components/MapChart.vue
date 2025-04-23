@@ -71,7 +71,23 @@
               :on-leave="hideTooltip"
             />
           </div>
-          <div class="attach_container fr-grid-row no_select">
+          <div
+            v-if="isWorld"
+            class="map_container no_select"
+            :style="{ display: displayWorld }"
+          >
+            <world
+              :config="WorldProps"
+              :on-click="changeGeoLevel"
+              :on-dbl-click="resetGeoFilters"
+              :on-enter="displayTooltip"
+              :on-leave="hideTooltip"
+            />
+          </div>
+          <div 
+            v-if="!isWorld"
+            class="attach_container fr-grid-row no_select"
+          >
             <div
               class="drom fr-col-sm"
               :style="{ display: displayGuadeloupe }"
@@ -237,6 +253,7 @@ export default {
       isDep: true,
       isReg: false,
       isAca: false,
+      isWorld: false,
       zoomDep: '',
       InfoProps: {
         localisation: '',
@@ -257,6 +274,11 @@ export default {
       DromProps: {
         colorStroke: '#FFFFFF',
       },
+      WorldProps: {
+        viewBox: '0 0 1010 710',
+        displayPath: {},
+        colorStroke: '#FFFFFF',
+      },
       tooltip: {
         top: '0px',
         left: '0px',
@@ -271,6 +293,7 @@ export default {
       displayReunion: '',
       displayGuyane: '',
       dromColor: '#6b6b6b',
+      displayWorld: '',
     };
   },
   watch: {
@@ -290,6 +313,7 @@ export default {
     this.isDep = this.level === 'dep';
     this.isReg = this.level === 'reg';
     this.isAca = this.level === 'aca';
+    this.isWorld = this.level === 'world';
   },
   mounted() {
     this.createChart();
@@ -328,7 +352,7 @@ export default {
 
       this.FranceProps.displayDep = {};
 
-      // Remplir la carte avec les départements/régions/académies
+      // Remplir la carte avec les départements/régions/académies/pays
       if (this.zoomDep) {
         const zoomDepValues = this.zoomDep.split(' ');
 
@@ -346,6 +370,9 @@ export default {
           } else if (this.isAca) {
             // listDep = [this.getAca(zoomDep).value];
             listDep = this.getAllAca();
+          } else if (this.isWorld) {
+            // listDep = [this.getCountry(zoomDep).value];
+            listDep = this.getAllCountries();
           }
         }
 
@@ -372,7 +399,7 @@ export default {
 
       // Iterate over each department in France and set colors
       for (const key in this.dataParse) {
-        const className = this.isAca ? key : 'FR-' + key;
+        const className = this.isAca || this.isWorld ? key : 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
 
         if (!this.zoomDep) {
@@ -433,6 +460,8 @@ export default {
             this.InfoProps.localisation = this.getReg(zoomDep).region;
           } else if (this.isAca) {
             this.InfoProps.localisation = this.getAca(zoomDep).academy;
+          } else if (this.isWorld) {
+            this.InfoProps.localisation = this.getCountry(zoomDep).country;
           }
           this.InfoProps.value = this.value;
           this.InfoProps.valueNat = this.dataParse[zoomDep];
@@ -498,6 +527,8 @@ export default {
           this.tooltip.place = this.getReg(hoverValue).region;
         } else if (this.isAca && this.getAca(hoverValue)) {
           this.tooltip.place = this.getAca(hoverValue).academy;
+        } else if (this.isWorld && this.getCountry(hoverValue)) {
+          this.tooltip.place = this.getCountry(hoverValue).country;
         }
       }
 
