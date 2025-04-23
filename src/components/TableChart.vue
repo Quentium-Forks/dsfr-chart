@@ -134,29 +134,15 @@ export default {
     };
   },
   watch: {
-    x() {
-      this.resetData();
-      this.getData();
-    },
-    y() {
-      this.resetData();
-      this.getData();
-    },
-    subX() {
-      this.resetData();
-      this.getData();
-    },
-    subY() {
-      this.resetData();
-      this.getData();
-    },
-    line() {
-      this.resetData();
-      this.getData();
-    },
-    name() {
-      this.resetData();
-      this.getData();
+    $props: {
+      handler() {
+        if (this.tableId) {
+          this.resetData();
+          this.getData();
+        }
+      },
+      deep: true,
+      immediate: true,
     },
   },
   created() {
