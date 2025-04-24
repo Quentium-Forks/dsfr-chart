@@ -257,6 +257,7 @@ export default {
       zoomDep: '',
       InfoProps: {
         localisation: '',
+        level: '',
         names: [],
         min: 0,
         max: 0,
@@ -462,6 +463,7 @@ export default {
 
           if (this.isDep) {
             this.InfoProps.localisation = this.getDep(zoomDep).department;
+            this.InfoProps.level = 'en france';
             // Logic for zoom level and dimensions adjustment
             const xminValue = Math.min(...xmin);
             const yminValue = Math.min(...ymin);
@@ -473,10 +475,13 @@ export default {
             this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
           } else if (this.isReg) {
             this.InfoProps.localisation = this.getReg(zoomDep).region;
+            this.InfoProps.level = 'en france';
           } else if (this.isAca) {
             this.InfoProps.localisation = this.getAca(zoomDep).academy;
+            this.InfoProps.level = 'en france';
           } else if (this.isWorld) {
             this.InfoProps.localisation = this.getCountry(zoomDep).country;
+            this.InfoProps.level = 'dans le monde';
           }
           this.InfoProps.value = this.value;
           this.InfoProps.valueNat = this.dataParse[zoomDep];
@@ -505,7 +510,13 @@ export default {
           }
         }
       } else {
-        this.InfoProps.localisation = 'France';
+        if (this.isWorld) {
+          this.InfoProps.localisation = 'Monde';
+          this.InfoProps.level = 'dans le monde';
+        } else {
+          this.InfoProps.localisation = 'France';
+          this.InfoProps.level = 'en france';
+        }
         this.InfoProps.value = this.value;
         this.InfoProps.valueNat = 0;
         this.FranceProps.viewBox = '0 0 1010 1010';

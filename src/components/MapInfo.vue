@@ -5,7 +5,7 @@
         class="fr-text--xs fr-text--bold fr-mb-1v"
         :style="{ color: data['textMention'] }"
       >
-        {{ data['names'] }}, en France
+        {{ data['names'] }}, {{ data['level'] }}
       </p>
       <p
         class="fr-text--xs fr-text--bold fr-mb-2w"
