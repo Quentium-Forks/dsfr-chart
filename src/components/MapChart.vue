@@ -347,7 +347,7 @@ export default {
       this.InfoProps.date = this.date;
       this.InfoProps.names = this.name;
 
-      const values = [];
+      let values = [];
       let listDep = [];
 
       this.FranceProps.displayDep = {};
@@ -386,6 +386,8 @@ export default {
       }
 
       // Calcul des min et max pour l'échelle
+      values = values.filter((value) => value !== undefined && value !== null);
+
       this.scaleMin = Math.min(...values);
       this.scaleMax = Math.max(...values);
 
