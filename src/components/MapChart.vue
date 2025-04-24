@@ -397,16 +397,27 @@ export default {
         ymin = [],
         ymax = [];
 
-      // Iterate over each department in France and set colors
+      // Iterate over each element in input data and set colors
       for (const key in this.dataParse) {
         const className = this.isAca || this.isWorld ? key : 'FR-' + key;
         const elCol = parentWidget.getElementsByClassName(className);
 
+        if (elCol.length === 0) {
+          console.warn(`Element not found for class ${className}, please remove it from your data.`);
+          continue;
+        }
+
         if (!this.zoomDep) {
-          elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+          elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
           this.FranceProps.displayDep[className] = '';
         } else {
-          const polygon = document.querySelector('.' + className).getBBox();
+          const path = document.querySelector('.' + className);
+          // Ignore paths that are not found in the map component
+          if (!path) {
+            continue;
+          }
+          const polygon = path.getBBox();
+
           const zoomDepValues = this.zoomDep.split(' ');
 
           for (const zoomDep of zoomDepValues) {
@@ -415,22 +426,24 @@ export default {
             }
 
             if (zoomDep === key) {
-              elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[zoomDep]));
+              // Highlight the selected path
+              elCol[0].setAttribute('fill', colorScale(this.dataParse[zoomDep]));
               this.FranceProps.displayDep[className] = '';
               xmin.push(polygon.x);
               ymin.push(polygon.y);
               xmax.push(polygon.x + polygon.width);
               ymax.push(polygon.y + polygon.height);
             } else if (listDep.includes(key)) {
-              elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
+              // Fill with the lighter color for other paths
+              elCol[0].setAttribute('fill', this.colorLeft + 'B3');
               this.FranceProps.displayDep[className] = '';
               xmin.push(polygon.x);
               ymin.push(polygon.y);
               xmax.push(polygon.x + polygon.width);
               ymax.push(polygon.y + polygon.height);
             } else {
-              // Hide other departments outside the selected region
-              elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
+              // Hide other paths outside the selected area
+              elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
               this.FranceProps.displayDep[className] = 'none';
             }
           }
