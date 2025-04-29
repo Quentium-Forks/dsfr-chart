@@ -196,7 +196,7 @@
 
       <div
         :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
-        :aria-hidden="selectedView === 'chart'"
+        :aria-hidden="selectedView === 'table'"
       >
         <!-- Bulk create all charts source divs for teleport -->
         <div
@@ -208,7 +208,7 @@
       </div>
       <div
         :class="selectedView === 'chart' ? 'fr-hidden' : 'w-full'"
-        :aria-hidden="selectedView === 'table'"
+        :aria-hidden="selectedView === 'chart'"
       >
         <!-- Bulk create all table source divs for teleport -->
         <div
