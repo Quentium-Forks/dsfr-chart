@@ -37,7 +37,7 @@
             :style="{ display: displayFrance }"
           >
             <france
-              :config="FranceProps"
+              :config="MapProps"
               :on-click="changeGeoLevel"
               :on-dbl-click="resetGeoFilters"
               :on-enter="displayTooltip"
@@ -122,9 +122,9 @@ export default {
         valueReg: 0,
         date: '',
       },
-      FranceProps: {
+      MapProps: {
         viewBox: '0 0 1010 1010',
-        displayDep: {},
+        displayPath: {},
         colorStroke: '#FFFFFF',
       },
       tooltip: {
@@ -186,7 +186,7 @@ export default {
       const values = [];
       let listDep = [];
 
-      this.FranceProps.displayDep = {};
+      this.MapProps.displayPath = {};
 
       // Afficher uniquement les départements de la région sélectionnée
       listDep = this.getDepsFromReg(this.region);
@@ -212,7 +212,7 @@ export default {
         const elCol = parentWidget.getElementsByClassName(className);
 
         elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
-        this.FranceProps.displayDep[className] = 'none';
+        this.MapProps.displayPath[className] = 'none';
       }
       // Iterate over each department in the region and set colors
       listDep.forEach((key) => {
@@ -223,7 +223,7 @@ export default {
           if (listDep.includes(key)) {
             const polygon = elCol[0].getBBox();
             elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
-            this.FranceProps.displayDep[className] = '';
+            this.MapProps.displayPath[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
@@ -233,7 +233,7 @@ export default {
           if (this.zoomDep === key) {
             const polygon = elCol[0].getBBox();
             elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
-            this.FranceProps.displayDep[className] = '';
+            this.MapProps.displayPath[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
@@ -241,7 +241,7 @@ export default {
           } else if (listDep.includes(key)) {
             const polygon = elCol[0].getBBox();
             elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
-            this.FranceProps.displayDep[className] = '';
+            this.MapProps.displayPath[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
             xmax.push(polygon.x + polygon.width);
@@ -259,7 +259,7 @@ export default {
         const width = xmaxValue - xminValue;
         const height = ymaxValue - yminValue;
         const size = Math.max(width, height);
-        this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
+        this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
       }
 
       this.InfoProps.localisation = this.getReg(this.region).department;
@@ -321,9 +321,9 @@ export default {
     },
     changeTheme(theme) {
       if (theme === 'light') {
-        this.FranceProps.colorStroke = '#FFFFFF';
+        this.MapProps.colorStroke = '#FFFFFF';
       } else {
-        this.FranceProps.colorStroke = '#161616';
+        this.MapProps.colorStroke = '#161616';
       }
       this.createChart();
     },

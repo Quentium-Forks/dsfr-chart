@@ -38,7 +38,7 @@
             :style="{ display: displayFrance }"
           >
             <france
-              :config="FranceProps"
+              :config="MapProps"
               :on-click="changeGeoLevel"
               :on-dbl-click="resetGeoFilters"
               :on-enter="displayTooltip"
@@ -51,7 +51,7 @@
             :style="{ display: displayFrance }"
           >
             <france-reg
-              :config="FranceProps"
+              :config="MapProps"
               :on-click="changeGeoLevel"
               :on-dbl-click="resetGeoFilters"
               :on-enter="displayTooltip"
@@ -64,7 +64,7 @@
             :style="{ display: displayFrance }"
           >
             <france-aca
-              :config="FranceProps"
+              :config="MapProps"
               :on-click="changeGeoLevel"
               :on-dbl-click="resetGeoFilters"
               :on-enter="displayTooltip"
@@ -77,14 +77,14 @@
             :style="{ display: displayWorld }"
           >
             <world
-              :config="WorldProps"
+              :config="MapProps"
               :on-click="changeGeoLevel"
               :on-dbl-click="resetGeoFilters"
               :on-enter="displayTooltip"
               :on-leave="hideTooltip"
             />
           </div>
-          <div 
+          <div
             v-if="!isWorld"
             class="attach_container fr-grid-row no_select"
           >
@@ -100,7 +100,7 @@
               </span>
               <guadeloupe
                 height="50"
-                :config="DromProps"
+                :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
                 :on-enter="displayTooltip"
@@ -119,7 +119,7 @@
               </span>
               <martinique
                 height="50"
-                :config="DromProps"
+                :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
                 :on-enter="displayTooltip"
@@ -138,7 +138,7 @@
               </span>
               <guyane
                 height="50"
-                :config="DromProps"
+                :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
                 :on-enter="displayTooltip"
@@ -157,7 +157,7 @@
               </span>
               <reunion
                 height="50"
-                :config="DromProps"
+                :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
                 :on-enter="displayTooltip"
@@ -176,7 +176,7 @@
               </span>
               <mayotte
                 height="50"
-                :config="DromProps"
+                :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
                 :on-enter="displayTooltip"
@@ -267,16 +267,9 @@ export default {
         valueNat: 0,
         date: '',
       },
-      FranceProps: {
+      MapProps: {
         viewBox: '0 0 1010 1010',
-        displayDep: {},
-        colorStroke: '#FFFFFF',
-      },
-      DromProps: {
-        colorStroke: '#FFFFFF',
-      },
-      WorldProps: {
-        viewBox: '0 0 1010 710',
+        displayPath: {},
         displayPath: {},
         colorStroke: '#FFFFFF',
       },
@@ -351,7 +344,7 @@ export default {
       let values = [];
       let listDep = [];
 
-      this.FranceProps.displayDep = {};
+      this.MapProps.displayPath = {};
 
       // Remplir la carte avec les départements/régions/académies/pays
       if (this.zoomDep) {
@@ -412,7 +405,7 @@ export default {
 
         if (!this.zoomDep) {
           elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
-          this.FranceProps.displayDep[className] = '';
+          this.MapProps.displayPath[className] = '';
         } else {
           const path = document.querySelector('.' + className);
           // Ignore paths that are not found in the map component
@@ -431,7 +424,7 @@ export default {
             if (zoomDep === key) {
               // Highlight the selected path
               elCol[0].setAttribute('fill', colorScale(this.dataParse[zoomDep]));
-              this.FranceProps.displayDep[className] = '';
+              this.MapProps.displayPath[className] = '';
               xmin.push(polygon.x);
               ymin.push(polygon.y);
               xmax.push(polygon.x + polygon.width);
@@ -439,7 +432,7 @@ export default {
             } else if (listDep.includes(key)) {
               // Fill with the lighter color for other paths
               elCol[0].setAttribute('fill', this.colorLeft + 'B3');
-              this.FranceProps.displayDep[className] = '';
+              this.MapProps.displayPath[className] = '';
               xmin.push(polygon.x);
               ymin.push(polygon.y);
               xmax.push(polygon.x + polygon.width);
@@ -447,7 +440,7 @@ export default {
             } else {
               // Hide other paths outside the selected area
               elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
-              this.FranceProps.displayDep[className] = 'none';
+              this.MapProps.displayPath[className] = 'none';
             }
           }
         }
@@ -472,7 +465,7 @@ export default {
             const width = xmaxValue - xminValue;
             const height = ymaxValue - yminValue;
             const size = Math.max(width, height);
-            this.FranceProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
+            this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
           } else if (this.isReg) {
             this.InfoProps.localisation = this.getReg(zoomDep).region;
             this.InfoProps.level = 'en france';
@@ -513,13 +506,14 @@ export default {
         if (this.isWorld) {
           this.InfoProps.localisation = 'Monde';
           this.InfoProps.level = 'dans le monde';
+          this.MapProps.viewBox = '0 0 1010 710';
         } else {
           this.InfoProps.localisation = 'France';
           this.InfoProps.level = 'en france';
+          this.MapProps.viewBox = '0 0 1010 1010';
         }
         this.InfoProps.value = this.value;
         this.InfoProps.valueNat = 0;
-        this.FranceProps.viewBox = '0 0 1010 1010';
         this.displayFrance = '';
         this.displayGuadeloupe = '';
         this.displayMartinique = '';
@@ -598,12 +592,10 @@ export default {
     changeTheme(theme) {
       if (theme === 'light') {
         this.dromColor = '#6b6b6b';
-        this.FranceProps.colorStroke = '#FFFFFF';
-        this.DromProps.colorStroke = '#FFFFFF';
+        this.MapProps.colorStroke = '#FFFFFF';
       } else {
         this.dromColor = '#cecece';
-        this.FranceProps.colorStroke = '#161616';
-        this.DromProps.colorStroke = '#161616';
+        this.MapProps.colorStroke = '#161616';
       }
       this.createChart();
     },
