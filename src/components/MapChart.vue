@@ -358,6 +358,7 @@ export default {
           if (this.isDep) {
             const region = this.getDep(zoomDep).region_value;
             listDep = this.getDepsFromReg(region);
+            // listDep = this.getAllDep();
           } else if (this.isReg) {
             // listDep = [this.getReg(zoomDep).value];
             listDep = this.getAllReg();
@@ -365,8 +366,9 @@ export default {
             // listDep = [this.getAca(zoomDep).value];
             listDep = this.getAllAca();
           } else if (this.isWorld) {
-            // listDep = [this.getCountry(zoomDep).value];
-            listDep = this.getAllCountries();
+            const continent = this.getCountry(zoomDep).continent_value;
+            listDep = this.getCountriesFromContinent(continent);
+            // listDep = this.getAllCountries();
           }
         }
 
@@ -454,18 +456,19 @@ export default {
             continue;
           }
 
+          // Logic for zoom level and dimensions adjustment
+          const xminValue = Math.min(...xmin);
+          const yminValue = Math.min(...ymin);
+          const xmaxValue = Math.max(...xmax);
+          const ymaxValue = Math.max(...ymax);
+          const width = xmaxValue - xminValue;
+          const height = ymaxValue - yminValue;
+          const size = Math.max(width, height);
+          this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
+
           if (this.isDep) {
             this.InfoProps.localisation = this.getDep(zoomDep).department;
             this.InfoProps.level = 'en france';
-            // Logic for zoom level and dimensions adjustment
-            const xminValue = Math.min(...xmin);
-            const yminValue = Math.min(...ymin);
-            const xmaxValue = Math.max(...xmax);
-            const ymaxValue = Math.max(...ymax);
-            const width = xmaxValue - xminValue;
-            const height = ymaxValue - yminValue;
-            const size = Math.max(width, height);
-            this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
           } else if (this.isReg) {
             this.InfoProps.localisation = this.getReg(zoomDep).region;
             this.InfoProps.level = 'en france';

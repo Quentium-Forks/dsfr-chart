@@ -132,6 +132,16 @@ export const getDepsFromAca = (code) => {
 };
 
 /**
+ * Retrieve the country codes from a continent code
+ * @param {string} code The continent code
+ * @returns {string[]} The country codes
+ */
+export const getCountriesFromContinent = (code) => {
+  const items = WORLD.filter((item) => item.continent_value === code);
+  return items.map((item) => item.country_value);
+}
+
+/**
  * Configure the default values for chart.js
  */
 export const configureChartDefaults = () => {
@@ -161,5 +171,6 @@ export const mapMixins = {
     getAllCountries,
     getDepsFromReg,
     getDepsFromAca,
+    getCountriesFromContinent,
   },
 };
