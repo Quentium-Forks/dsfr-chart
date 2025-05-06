@@ -86,7 +86,7 @@
           </div>
           <div
             v-if="!isWorld"
-            class="attach_container fr-grid-row no_select"
+            class="map_sub_container fr-grid-row no_select"
           >
             <div
               class="drom fr-col-sm"

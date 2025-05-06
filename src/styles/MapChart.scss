@@ -13,6 +13,7 @@
     position: relative;
     margin-left: 0;
     margin-top: 1.5rem;
+    min-height: 400px;
 
     &_tooltip {
       width: auto;
@@ -79,7 +80,7 @@
       }
     }
 
-    .map_container {
+    &_container {
       height: 100%;
 
       svg {
@@ -89,7 +90,7 @@
       }
     }
 
-    .attach_container {
+    &_sub_container {
       width: 100%;
 
       .drom {
