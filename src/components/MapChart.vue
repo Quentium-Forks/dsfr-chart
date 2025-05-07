@@ -270,7 +270,6 @@ export default {
       MapProps: {
         viewBox: '0 0 1010 1010',
         displayPath: {},
-        displayPath: {},
         colorStroke: '#FFFFFF',
       },
       tooltip: {
