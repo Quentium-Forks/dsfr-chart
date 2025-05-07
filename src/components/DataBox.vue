@@ -441,7 +441,7 @@ const screenshotChart = () => {
       a.click();
     })
     .catch((error) => {
-      console.error('Error while taking screenshot', error);
+      console.error("Erreur lors de la capture d'écran", error);
     })
     .finally(() => {
       dom.forEach((item) => item.style.removeProperty('display'));

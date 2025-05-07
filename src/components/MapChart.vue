@@ -401,7 +401,7 @@ export default {
         const elCol = parentWidget.getElementsByClassName(className);
 
         if (elCol.length === 0) {
-          console.warn(`Element not found for class ${className}, please remove it from your data.`);
+          console.warn(`L'élément de la carte n'existe pas pour la valeur ${className}, veuillez le supprimer de vos données.`);
           continue;
         }
 
