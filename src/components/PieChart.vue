@@ -22,12 +22,12 @@
 
           <div
             :class="isSubLevel ? '' : 'fr-mt-6v'"
-            style="text-align: center"
+            :style="{ textAlign: 'center' }"
           >
             <button
               v-if="isSubLevel"
               class="fr-btn fr-btn--sm fr-icon-arrow-go-back-fill fr-btn--icon-left fr-btn--tertiary-no-outline fr-ml-4w"
-              style="position: absolute; left: 0"
+              :style="{ position: 'absolute', left: 0 }"
               @click="resetSub"
             >
               Retour

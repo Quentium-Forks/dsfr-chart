@@ -4,7 +4,7 @@
     aria-controls="fr-theme-modal"
     data-fr-opened="false"
     data-fr-js-modal-button="true"
-    style="z-index: 999;"
+    :style="{ zIndex: 999 }"
   >
     Paramètres d’affichage
   </button>
