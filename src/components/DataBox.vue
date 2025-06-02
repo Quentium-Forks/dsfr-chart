@@ -430,7 +430,9 @@ const screenshotChart = () => {
     select.style.boxShadow = 'none';
     select.style.appearance = 'none';
   }
-  tendency.style.marginTop = '20px';
+  if (tendency) {
+    tendency.style.marginTop = '20px';
+  }
 
   // Transform databox to canvas to screenshot it
   toPng(databox)
@@ -452,7 +454,9 @@ const screenshotChart = () => {
         select.style.removeProperty('box-shadow');
         select.style.removeProperty('appearance');
       }
-      tendency.style.removeProperty('margin-top');
+      if (tendency) {
+        tendency.style.removeProperty('margin-top');
+      }
     });
 };
 </script>
