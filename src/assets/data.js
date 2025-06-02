@@ -233,7 +233,7 @@ export const chartData = {
   dataBox: {
     simple: {
       id: 'simple',
-      title: 'Statut des emplois en France en 2018',
+      label: 'Statut des emplois en France en 2018',
       tooltipTitle: 'Statut des emplois en France',
       tooltipContent: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi.',
       source: 'Insee, enquête Emploi',
@@ -242,7 +242,7 @@ export const chartData = {
     },
     modal: {
       id: 'modal',
-      title: 'Structure des dépenses publiques en France en 2022',
+      label: 'Structure des dépenses publiques en France en 2022',
       tooltipTitle: 'Structure des dépenses publiques en France',
       tooltipContent: 'Pour l’année 2022. France métropolitaine.',
       modalTitle: 'Structure des dépenses publiques en France',
@@ -253,7 +253,7 @@ export const chartData = {
     },
     complete: {
       id: 'complete',
-      title: 'Emplois en France de 1926 à 1950',
+      label: 'Emplois en France de 1926 à 1950',
       tooltipTitle: 'Emplois en France',
       tooltipContent: 'Nombre d’emplois en France de 1926 à 1950, par genre. Se base sur les données de l’INSEE et de Pôle Emploi et d’une autre source.',
       modalTitle: 'Titre de la modale',
@@ -270,7 +270,7 @@ export const chartData = {
     },
     number: {
       id: 'number',
-      title: 'Nombre de naissances en France en 2021',
+      label: 'Nombre de naissances en France en 2021',
       tooltipTitle: 'Nombre de naissances en France',
       tooltipContent: 'Pour l’année 2021. France hors Mayotte.',
       value: '742 052',

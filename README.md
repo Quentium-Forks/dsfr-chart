@@ -955,7 +955,7 @@ Polyvalente, la databox intègre également des fonctionnalités interactives te
 ```html
 <data-box
     id="abc"
-    title="Emplois en France de 1926 à 1950"
+    label="Emplois en France de 1926 à 1950"
     tooltip-title="Emplois en France"
     tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
     modal-title="Titre de la modale"
@@ -1010,7 +1010,7 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
 ```html
 <data-box
   id="abc"
-  title="Emplois en France de 1926 à 1950"
+  label="Emplois en France de 1926 à 1950"
   tooltip-title="Emplois en France"
   tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
   modal-title="Titre de la modale"

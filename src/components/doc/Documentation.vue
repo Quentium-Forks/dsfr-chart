@@ -106,7 +106,7 @@
         <div>
           <data-box
             id="bar-sub-series"
-            title="Drilldown BarChart"
+            label="Drilldown BarChart"
             tooltip-title="Test title"
             tooltip-content="Test content"
             source="Test source"
@@ -138,7 +138,7 @@
         <div>
           <data-box
             id="pie-sub-series"
-            title="Drilldown PieChart"
+            label="Drilldown PieChart"
             tooltip-title="Test title"
             tooltip-content="Test content"
             source="Test source"
