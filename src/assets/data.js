@@ -266,7 +266,7 @@ export const chartData = {
       screenshot: true,
       download: true,
       fullscreen: true,
-      actions: ['Source officielle', 'Pôle emploi'],
+      actions: '["Voir la source officielle", "Lien Pôle emploi"]',
     },
     number: {
       id: 'number',
