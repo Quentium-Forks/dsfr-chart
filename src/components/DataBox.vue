@@ -61,7 +61,7 @@
 
         <!-- More actions -->
         <nav
-          v-if="screenshot || download || actions.length"
+          v-if="screenshot || download || actions.length > 0"
           role="navigation"
           class="fr-translate fr-nav more-actions-menu"
         >
@@ -100,7 +100,9 @@
                   :key="i"
                 >
                   <button
-                    :id="slugify(action)"
+                    :id="id + '_' + slugify(action)"
+                    :data-action="slugify(action)"
+                    :data-id="id"
                     class="fr-translate__language fr-nav__link"
                     :title="action"
                   >
