@@ -276,7 +276,7 @@ export const chartData = {
       value: '742 052',
       source: 'Insee, statistiques et estimations d’état civil',
       date: '31/12/2021',
-      trend: '-7%',
+      trend: 7.8,
       segmentedControl: false,
     },
   },
