@@ -399,7 +399,7 @@ const downloadCSV = (mode) => {
 
   let csv = [];
 
-  csv.push(tableName + ',' + name.join(',') + '\n');
+  csv.push(`${tableName},${name.join(',')}\n`);
 
   const rows = mode === 'chart' ? x[0] : x;
 
@@ -419,7 +419,7 @@ const downloadCSV = (mode) => {
 const screenshotChart = () => {
   const databox = document.getElementById(`container-${props.id}`);
 
-  const dom = databox.querySelectorAll('.screenshot-hide-' + props.id);
+  const dom = databox.querySelectorAll(`.screenshot-hide-${props.id}`);
   dom.forEach((item) => (item.style.display = 'none'));
 
   const data = databox.querySelector('.databox_data');
