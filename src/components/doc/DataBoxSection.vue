@@ -105,6 +105,27 @@
       />
     </div>
 
+    <div class="chart_container fr-my-6w">
+      <h3 id="Databox-tableau">
+        Databox tableau
+      </h3>
+      <hr>
+      <data-box v-bind="chartData.dataBox.table" />
+      <table-chart
+        databox-id="table"
+        databox-type="table"
+        :name="chartData.tableChart.databox.name"
+        :line="chartData.tableChart.databox.line"
+      />
+      <CodeBlock
+        :component="[{name: 'data-box'}, {name: 'table-chart'}]"
+        :attributes="[
+          chartData.dataBox.table,
+          {dataBoxId: 'table', dataBoxType: 'table', name: chartData.tableChart.databox.name, line: chartData.tableChart.databox.line}
+        ]"
+      />
+    </div>
+
     <h3>Un composant flexible pour construire vos tableaux de bord</h3>
     <p>
       La databox s’appuie sur

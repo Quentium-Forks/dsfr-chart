@@ -84,13 +84,13 @@
     <div>
       <component
         :is="TableChart"
-        v-bind="chartData.tableChart.default"
+        v-bind="chartData.tableChart.chart"
       />
     </div>
 
     <CodeBlock
       :component="TableChart"
-      :attributes="chartData.tableChart.default"
+      :attributes="chartData.tableChart.chart"
     />
     
     <p>

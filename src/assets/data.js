@@ -224,7 +224,11 @@ export const chartData = {
     },
   },
   tableChart: {
-    default: {
+    databox: {
+      name: '["Année", "Nombre de décès"]',
+      line: '[[2014, 559293], [2015, 593680], [2016, 593865], [2017, 606274], [2018, 609648], [2019, 613243], [2020, 668922], [2021, 661585], [2022, 675122], [2023, 639269], [2024, 646000]]',
+    },
+    chart: {
       x: '["A","B","C","D","E","F","G","H","I","J"]',
       y: '[[40, 50, 40, 39, 49, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49], [30, 150, 340, 379, 439, 40, 50, 40, 39, 49]]',
       tableName: 'Indicateur',
@@ -282,6 +286,17 @@ export const chartData = {
       date: '31/12/2021',
       trend: 7.8,
       segmentedControl: false,
+    },
+    table: {
+      id: 'table',
+      label: 'Tableau des décès en France de 2014 à 2024',
+      tooltipTitle: 'Décès en France',
+      tooltipContent: 'Pour les années 2014 à 2024.',
+      source: 'Insee, statistiques et estimations d’état civil',
+      date: '31/12/2024',
+      trend: 1.01,
+      segmentedControl: false,
+      download: true,
     },
   },
 };
