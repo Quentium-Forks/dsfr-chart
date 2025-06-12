@@ -9,7 +9,7 @@
 
     <div class="fr-my-6w">
       <h3 id="Databox-simple">
-        Exemple de databox simple
+        Databox simple
       </h3>
       <data-box v-bind="chartData.dataBox.simple" />
       <pie-chart
@@ -37,7 +37,7 @@
 
     <div class="fr-my-6w">
       <h3 id="Databox-complète-multi-source">
-        Exemple de databox complète et multi-source
+        Databox complète et multi-source
       </h3>
       <data-box v-bind="chartData.dataBox.complete" />
       <scatter-chart
@@ -90,10 +90,10 @@
         ]"
       />
     </div>
-    
+
     <div class="chart_container fr-my-6w">
-      <h3 id="Databox-chiffre">
-        Databox chiffre
+      <h3 id="Databox-chiffre-clé">
+        Databox chiffre clé
       </h3>
       <hr>
       <data-box
@@ -111,9 +111,7 @@
       <a
         href="https://www.systeme-de-design.gouv.fr/fondamentaux/grille-et-points-de-rupture/"
         target="_blank"
-      >
-        la grille proposée par le DSFR
-      </a>
+      >la grille proposée par le DSFR</a>
       , et peut s’afficher selon vos besoins, sur une ou plusieurs colonnes de la grille, grâce à la classe <code>fr-col-*</code>. Pensez toutefois à utiliser un <code>fr-grid-row</code> par ligne pour permettre le bon fonctionnement des infobulles du composant.
     </p>
     <p>Vous pourrez ainsi construire des dashboard en donnant aux databox la taille nécessaire, en fonction de vos besoins métiers et de l’aspect souhaité pour vos graphiques :</p>
