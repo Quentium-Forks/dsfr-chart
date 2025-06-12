@@ -223,7 +223,7 @@
         <div
           v-if="tableSources.includes('global')"
           :id="id + '-table-global'"
-          :class="tableSources.includes(currentSource) ? 'fr-hidden' : ''"
+          :class="tableSources.includes(currentSource) && tableSources.length > 1 ? 'fr-hidden' : ''"
         />
       </div>
     </div>
@@ -367,7 +367,7 @@ chartSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][d
 
 tableSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][databox-type="table"]`)].map((el) => el.getAttribute('databox-source') || 'global');
 
-const currentSource = ref(chartSources.value.includes(props.defaultSource) ? props.defaultSource : chartSources.value[0]);
+const currentSource = ref(chartSources.value.includes(props.defaultSource) ? props.defaultSource : chartSources.value[0] || tableSources.value[0]);
 
 const generateOptions = (source) => {
   return source.map((option) => ({
@@ -391,27 +391,60 @@ const changeView = (view) => {
 };
 
 const downloadCSV = (mode) => {
-  const dom = document.querySelector(`[databox-id="${props.id}"][databox-type="${mode}"][databox-source="${currentSource.value}"]`);
-  const x = JSON.parse(dom.getAttribute('x'));
-  const y = JSON.parse(dom.getAttribute('y'));
-  const name = JSON.parse(dom.getAttribute('name'));
-  const tableName = dom.getAttribute('table-name') ?? '';
-
+  let dom;
   let csv = [];
 
-  csv.push(`${tableName},${name.join(',')}\n`);
+  let type;
+  // By default, always download the table version of the data
+  if (document.querySelector(`[databox-id="${props.id}"][databox-type="table"]`)) {
+    type = 'table';
+    // Check if source exists to have exact data selected, this is fine if databox source is correctly set or 'default'
+    dom = document.querySelector(`[databox-id="${props.id}"][databox-type="table"][databox-source="${currentSource.value}"]`);
+    if (!dom) {
+      // If not found, try to find the first one
+      dom = document.querySelector(`[databox-id="${props.id}"][databox-type="table"]`);
+    }
+  } else {
+    type = 'chart';
+    // Check if source exists to have exact data selected, this is fine if databox source is correctly set or 'default'
+    dom = document.querySelector(`[databox-id="${props.id}"][databox-type="chart"][databox-source="${currentSource.value}"]`);
+    if (!dom) {
+      // If not found, try to find the first one
+      dom = document.querySelector(`[databox-id="${props.id}"][databox-type="chart"]`);
+    }
+  }
+  if (type === 'chart' && chartSources.value.length > 0) {
+    const x = JSON.parse(dom.getAttribute('x'));
+    const y = JSON.parse(dom.getAttribute('y'));
+    const name = JSON.parse(dom.getAttribute('name'));
+    const tableName = dom.getAttribute('table-name') ?? '';
 
-  const rows = mode === 'chart' ? x[0] : x;
+    csv.push(`${tableName},${name.join(',')}\n`);
 
-  rows.forEach((x, i) => {
-    csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
-  });
+    const rows = mode === 'chart' ? x[0] : x;
+
+    rows.forEach((x, i) => {
+      csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
+    });
+  } else if (type === 'table' && tableSources.value.length > 0) {
+    const name = JSON.parse(dom.getAttribute('name'));
+    const line = JSON.parse(dom.getAttribute('line'));
+
+    csv.push(`${name.join(',')}\n`);
+    line.forEach((row) => {
+      csv.push(`${row.join(',')}\n`);
+    });
+  } else {
+    console.warn('No data available to download.');
+    return;
+  }
 
   const blob = new Blob(csv, { type: 'text/csv' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = 'data.csv';
+  a.download = `data-${props.id}-${currentSource.value}.csv`;
+  a.style.display = 'none';
   a.click();
   window.URL.revokeObjectURL(url);
 };
