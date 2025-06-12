@@ -7,3 +7,7 @@ export default {
 export const Default = {
   args: chartData.tableChart.default,
 };
+
+export const Line = {
+  args: chartData.tableChart.line,
+};
