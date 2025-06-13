@@ -90,7 +90,7 @@
                   <button
                     class="fr-translate__language fr-nav__link"
                     title="Télécharger les données en CSV"
-                    @click="downloadCSV(selectedView)"
+                    @click="downloadCSV()"
                   >
                     Télécharger en CSV
                   </button>
@@ -390,7 +390,7 @@ const changeView = (view) => {
   selectedView.value = view;
 };
 
-const downloadCSV = (mode) => {
+const downloadCSV = () => {
   let dom;
   let csv = [];
 
@@ -417,23 +417,35 @@ const downloadCSV = (mode) => {
     const x = JSON.parse(dom.getAttribute('x'));
     const y = JSON.parse(dom.getAttribute('y'));
     const name = JSON.parse(dom.getAttribute('name'));
-    const tableName = dom.getAttribute('table-name') ?? '';
 
-    csv.push(`${tableName},${name.join(',')}\n`);
+    csv.push(`Indicateur,${name.join(',')}\n`);
 
-    const rows = mode === 'chart' ? x[0] : x;
-
-    rows.forEach((x, i) => {
+    x[0].forEach((x, i) => {
       csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
     });
   } else if (type === 'table' && tableSources.value.length > 0) {
-    const name = JSON.parse(dom.getAttribute('name'));
-    const line = JSON.parse(dom.getAttribute('line'));
+    // Try x and y attributes for tables first, else fallback to name and line attribute
+    try {
+      const x = JSON.parse(dom.getAttribute('x'));
+      const y = JSON.parse(dom.getAttribute('y'));
+      const name = JSON.parse(dom.getAttribute('name'));
+      const tableName = dom.getAttribute('table-name') ?? '';
 
-    csv.push(`${name.join(',')}\n`);
-    line.forEach((row) => {
-      csv.push(`${row.join(',')}\n`);
-    });
+      csv.push(`${tableName},${name.join(',')}\n`);
+
+      x.forEach((x, i) => {
+        csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
+      });
+    } catch (e) {
+      const name = JSON.parse(dom.getAttribute('name'));
+      const line = JSON.parse(dom.getAttribute('line'));
+
+      csv.push(`${name.join(',')}\n`);
+
+      line.forEach((row) => {
+        csv.push(`${row.join(',')}\n`);
+      });
+    }
   } else {
     console.warn('No data available to download.');
     return;
