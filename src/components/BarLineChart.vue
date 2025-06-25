@@ -12,36 +12,7 @@
           <div class="tooltip">
             <div class="tooltip_header fr-text--sm fr-mb-0" />
             <div class="tooltip_body">
-              <div class="tooltip_value">
-                <div
-                  class="flex fr-mt-3v fr-mb-1v"
-                  :style="{ 'border-bottom': '1px solid #e0e0e0' }"
-                >
-                  <div class="tooltip_value-content">
-                    <span
-                      class="tooltip_dot"
-                      :style="{ 'background-color': colorBarParse }"
-                    />
-                    <p class="tooltip_place">
-                      {{ capitalize(nameBar) }}
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="flex fr-mt-3v fr-mb-1v"
-                  :style="{ 'border-bottom': '1px solid #e0e0e0' }"
-                >
-                  <div class="tooltip_value-content">
-                    <span
-                      class="tooltip_dot"
-                      :style="{ 'background-color': colorParse }"
-                    />
-                    <p class="tooltip_place">
-                      {{ capitalize(nameLine) }}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <div class="tooltip_value" />
             </div>
           </div>
 
