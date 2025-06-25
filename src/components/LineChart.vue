@@ -570,10 +570,10 @@ export default {
                     if (this.xAxisType === 'linear') {
                       const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
                       if (index !== -1) {
-                        label.push(this.yparse[i][index]);
+                        label.push(this.formatNumber(this.yparse[i][index]));
                       }
                     } else {
-                      label.push(set.data[tooltipItems.dataIndex]);
+                      label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
                     }
                   });
                   return label;
