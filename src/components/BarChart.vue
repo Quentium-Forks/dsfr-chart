@@ -420,11 +420,11 @@ export default {
                     const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
                     divValue.innerHTML += `
-                    <div class="tooltip_value-content">
-                      <span class="tooltip_dot" style="background-color:${color};"></span>
-                      <p class="tooltip_place fr-mb-0">${displayValue}</p>
-                    </div>
-                  `;
+                      <div class="tooltip_value-content">
+                        <span class="tooltip_dot" style="background-color:${color};"></span>
+                        <p class="tooltip_place fr-mb-0">${displayValue}</p>
+                      </div>
+                    `;
                   });
                 }
 
