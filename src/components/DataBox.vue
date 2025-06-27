@@ -116,6 +116,12 @@
       </div>
     </div>
 
+    <component
+      :is="/<\w+>/.test(description) ? 'span' : 'p'"
+      class="fr-px-2w fr-text--xs fr-mb-0"
+      v-html="description"
+    />
+
     <div class="fr-px-2w databox_data">
       <!-- Source -->
       <div
@@ -301,6 +307,10 @@ const props = defineProps({
   label: {
     type: String,
     required: true,
+  },
+  description: {
+    type: String,
+    default: '',
   },
   tooltipTitle: {
     type: String,
