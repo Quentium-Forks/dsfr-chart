@@ -24,7 +24,7 @@ export const Simple = {
   render: (args) => html`
     <data-box
       id="${args.id}"
-      label="${args.label}"
+      name="${args.name}"
       tooltip-title="${args.tooltipTitle}"
       tooltip-content="${args.tooltipContent}"
       modal-title="${args.modalTitle}"
@@ -60,7 +60,7 @@ export const Complete = {
   render: (args) => html`
     <data-box
       id="${args.id}"
-      label="${args.label}"
+      name="${args.name}"
       tooltip-title="${args.tooltipTitle}"
       tooltip-content="${args.tooltipContent}"
       modal-title="${args.modalTitle}"
@@ -134,7 +134,7 @@ export const Number = {
   render: (args) => html`
     <data-box
       id="${args.id}"
-      label="${args.label}"
+      name="${args.name}"
       tooltip-title="${args.tooltipTitle}"
       tooltip-content="${args.tooltipContent}"
       modal-title="${args.modalTitle}"

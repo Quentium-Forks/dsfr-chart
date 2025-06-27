@@ -955,7 +955,7 @@ Polyvalente, la databox intègre également des fonctionnalités interactives te
 ```html
 <data-box
     id="abc"
-    label="Emplois en France de 1926 à 1950"
+    name="Emplois en France de 1926 à 1950"
     tooltip-title="Emplois en France"
     tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
     modal-title="Titre de la modale"
@@ -979,7 +979,7 @@ Voici la liste des props disponibles pour le composant `DataBox` :
 ### Obligatoires
 
 - **id** `(String)` : identifiant unique de la DataBox
-- **title** `(String)` : titre de la DataBox
+- **name** `(String)` : titre de la DataBox
 - **source** `(String)` : source des données affichées
 - **date** `(String)` : date des données affichées
 
@@ -1010,7 +1010,7 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
 ```html
 <data-box
   id="abc"
-  label="Emplois en France de 1926 à 1950"
+  name="Emplois en France de 1926 à 1950"
   tooltip-title="Emplois en France"
   tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
   modal-title="Titre de la modale"
