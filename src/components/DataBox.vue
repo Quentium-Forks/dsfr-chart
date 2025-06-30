@@ -118,7 +118,8 @@
 
     <component
       :is="/<\w+>/.test(description) ? 'span' : 'p'"
-      class="fr-px-2w fr-text--xs fr-mb-0"
+      :class="/<\w+>/.test(description) ? '' : 'fr-text--xs fr-mb-0'"
+      class="fr-px-2w"
       v-html="description"
     />
 
