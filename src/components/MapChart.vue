@@ -27,7 +27,7 @@
             <div class="tooltip_body">
               <div class="tooltip_value-content">
                 <div class="tooltip_value">
-                  {{ tooltip.value }}
+                  {{ this.formatNumber(tooltip.value) }}
                 </div>
               </div>
             </div>
@@ -194,7 +194,7 @@
 import * as d3 from 'd3-scale';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
-import { mapMixins, isMobile } from '@/utils/global.js';
+import { formatNumber, mapMixins, isMobile } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
 
 export default {
@@ -203,7 +203,12 @@ export default {
     MapInfo,
     ...maps,
   },
-  mixins: [mapMixins],
+  mixins: [{
+    methods: {
+      ...mapMixins.methods,
+      formatNumber,
+    },
+  }],
   props: {
     databoxId: {
       type: String,
