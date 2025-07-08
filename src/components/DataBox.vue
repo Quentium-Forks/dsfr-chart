@@ -330,7 +330,7 @@ const props = defineProps({
     default: '',
   },
   value: {
-    type: String,
+    type: [Number, String],
     default: '',
   },
   source: {
@@ -388,6 +388,7 @@ const generateOptions = (source) => {
 };
 
 // Cast props to correct type
+const value = computed(() => (typeof props.value === 'number' ? props.value.toString() : props.value));
 const trend = computed(() => (typeof props.trend === 'number' ? props.trend.toString() : props.trend));
 const segmentedControl = computed(() => [true, 'true', ''].includes(props.segmentedControl));
 const fullscreen = computed(() => [true, 'true', ''].includes(props.fullscreen));
