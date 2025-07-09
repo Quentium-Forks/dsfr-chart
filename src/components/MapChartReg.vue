@@ -118,6 +118,7 @@ export default {
       zoomDep: '',
       InfoProps: {
         localisation: '',
+        level: '',
         names: [],
         min: 0,
         max: 0,
@@ -268,6 +269,7 @@ export default {
       }
 
       this.InfoProps.localisation = this.getReg(this.region).department;
+      this.InfoProps.level = 'en france';
       this.InfoProps.value = this.value;
       this.InfoProps.valueReg = this.dataParse[this.zoomDep];
       this.InfoProps.min = this.scaleMin;
