@@ -268,8 +268,12 @@ export default {
         this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
       }
 
-      this.InfoProps.localisation = this.getReg(this.region).department;
-      this.InfoProps.level = 'en france';
+      if (this.zoomDep) {
+        this.InfoProps.localisation = this.getDep(this.zoomDep).department;
+      } else {
+        this.InfoProps.localisation = this.getReg(this.region).region;
+      }
+      this.InfoProps.level = 'dans la région ' + this.getReg(this.region).region;
       this.InfoProps.value = this.value;
       this.InfoProps.valueReg = this.dataParse[this.zoomDep];
       this.InfoProps.min = this.scaleMin;

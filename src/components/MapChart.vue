@@ -472,13 +472,13 @@ export default {
 
           if (this.isDep) {
             this.InfoProps.localisation = this.getDep(zoomDep).department;
-            this.InfoProps.level = 'en france';
+            this.InfoProps.level = 'en France';
           } else if (this.isReg) {
             this.InfoProps.localisation = this.getReg(zoomDep).region;
-            this.InfoProps.level = 'en france';
+            this.InfoProps.level = 'en France';
           } else if (this.isAca) {
             this.InfoProps.localisation = this.getAca(zoomDep).academy;
-            this.InfoProps.level = 'en france';
+            this.InfoProps.level = 'en France';
           } else if (this.isWorld) {
             this.InfoProps.localisation = this.getCountry(zoomDep).country;
             this.InfoProps.level = 'dans le monde';
@@ -516,7 +516,7 @@ export default {
           this.MapProps.viewBox = '0 0 1010 710';
         } else {
           this.InfoProps.localisation = 'France';
-          this.InfoProps.level = 'en france';
+          this.InfoProps.level = 'en France';
           this.MapProps.viewBox = '0 0 1010 1010';
         }
         this.InfoProps.value = this.value;
