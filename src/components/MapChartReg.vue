@@ -27,7 +27,7 @@
             <div class="tooltip_body">
               <div class="tooltip_value-content">
                 <div class="tooltip_value">
-                  {{ this.formatNumber(tooltip.value) }}
+                  {{ formatNumber(tooltip.value) }}
                 </div>
               </div>
             </div>

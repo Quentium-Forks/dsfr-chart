@@ -116,12 +116,14 @@
       </div>
     </div>
 
+    <!-- eslint-disable vue/no-v-html vue/no-v-text-v-html-on-component -->
     <component
       :is="/<\w+>/.test(description) ? 'span' : 'p'"
       :class="/<\w+>/.test(description) ? '' : 'fr-text--xs fr-mb-0'"
       class="fr-px-2w"
       v-html="description"
     />
+    <!-- eslint-enable vue/no-v-html vue/no-v-text-v-html-on-component -->
 
     <div class="fr-px-2w databox_data">
       <!-- Source -->
