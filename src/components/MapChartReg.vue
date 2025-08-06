@@ -125,7 +125,7 @@ export default {
         colorMin: '',
         colorMax: '',
         value: 0,
-        valueReg: 0,
+        valueReg: undefined,
         date: '',
       },
       MapProps: {
@@ -275,7 +275,7 @@ export default {
       }
       this.InfoProps.level = 'dans la région ' + this.getReg(this.region).region;
       this.InfoProps.value = this.value;
-      this.InfoProps.valueReg = this.dataParse[this.zoomDep];
+      this.InfoProps.valueReg = typeof this.dataParse[this.zoomDep] === 'number' ? this.dataParse[this.zoomDep].toString() : this.dataParse[this.zoomDep];
       this.InfoProps.min = this.scaleMin;
       this.InfoProps.max = this.scaleMax;
     },

@@ -269,7 +269,7 @@ export default {
         colorMin: '',
         colorMax: '',
         value: 0,
-        valueNat: 0,
+        valueNat: undefined,
         date: '',
       },
       MapProps: {
@@ -484,7 +484,7 @@ export default {
             this.InfoProps.level = 'dans le monde';
           }
           this.InfoProps.value = this.value;
-          this.InfoProps.valueNat = this.dataParse[zoomDep];
+          this.InfoProps.valueNat = typeof this.dataParse[zoomDep] === 'number' ? this.dataParse[zoomDep].toString() : this.dataParse[zoomDep];
 
           if (this.isDep) {
             this.displayFrance = 'none';
@@ -520,7 +520,7 @@ export default {
           this.MapProps.viewBox = '0 0 1010 1010';
         }
         this.InfoProps.value = this.value;
-        this.InfoProps.valueNat = 0;
+        this.InfoProps.valueNat = undefined;
         this.displayFrance = '';
         this.displayGuadeloupe = '';
         this.displayMartinique = '';
