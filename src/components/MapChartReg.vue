@@ -44,6 +44,73 @@
               :on-leave="hideTooltip"
             />
           </div>
+          <div class="map_sub_container fr-grid-row no_select">
+            <div
+              class="drom fr-col-sm"
+              :style="{ display: displayGuadeloupe }"
+            >
+              <guadeloupe
+                height="400"
+                :config="MapProps"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
+              />
+            </div>
+            <div
+              class="drom fr-col-sm"
+              :style="{ display: displayMartinique }"
+            >
+              <martinique
+                height="400"
+                :config="MapProps"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
+              />
+            </div>
+            <div
+              class="drom fr-col-sm"
+              :style="{ display: displayGuyane }"
+            >
+              <guyane
+                height="400"
+                :config="MapProps"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
+              />
+            </div>
+            <div
+              class="drom fr-col-sm"
+              :style="{ display: displayReunion }"
+            >
+              <reunion
+                height="400"
+                :config="MapProps"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
+              />
+            </div>
+            <div
+              class="drom fr-col-sm"
+              :style="{ display: displayMayotte }"
+            >
+              <mayotte
+                height="400"
+                :config="MapProps"
+                :on-click="changeGeoLevel"
+                :on-dbl-click="resetGeoFilters"
+                :on-enter="displayTooltip"
+                :on-leave="hideTooltip"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -63,12 +130,14 @@ export default {
     MapInfo,
     ...maps,
   },
-  mixins: [{
-    methods: {
-      ...mapMixins.methods,
-      formatNumber,
+  mixins: [
+    {
+      methods: {
+        ...mapMixins.methods,
+        formatNumber,
+      },
     },
-  }],
+  ],
   props: {
     databoxId: {
       type: String,
@@ -141,6 +210,12 @@ export default {
         place: '',
       },
       displayFrance: '',
+      displayGuadeloupe: '',
+      displayMartinique: '',
+      displayMayotte: '',
+      displayReunion: '',
+      displayGuyane: '',
+      dromColor: '#6b6b6b',
     };
   },
   watch: {
@@ -268,14 +343,36 @@ export default {
         this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
       }
 
+      this.InfoProps.level = 'dans la région ' + this.getReg(this.region).region;
       if (this.zoomDep) {
         this.InfoProps.localisation = this.getDep(this.zoomDep).department;
       } else {
         this.InfoProps.localisation = this.getReg(this.region).region;
       }
-      this.InfoProps.level = 'dans la région ' + this.getReg(this.region).region;
       this.InfoProps.value = this.value;
       this.InfoProps.valueReg = typeof this.dataParse[this.zoomDep] === 'number' ? this.dataParse[this.zoomDep].toString() : this.dataParse[this.zoomDep];
+
+      this.displayFrance = 'none';
+      this.displayGuadeloupe = 'none';
+      this.displayMartinique = 'none';
+      this.displayMayotte = 'none';
+      this.displayReunion = 'none';
+      this.displayGuyane = 'none';
+      // Setting visibility for DROM regions
+      if (this.region === '971') {
+        this.displayGuadeloupe = '';
+      } else if (this.region === '972') {
+        this.displayMartinique = '';
+      } else if (this.region === '973') {
+        this.displayGuyane = '';
+      } else if (this.region === '974') {
+        this.displayReunion = '';
+      } else if (this.region === '976') {
+        this.displayMayotte = '';
+      } else {
+        this.displayFrance = '';
+      }
+
       this.InfoProps.min = this.scaleMin;
       this.InfoProps.max = this.scaleMax;
     },
@@ -283,15 +380,19 @@ export default {
       if (isMobile()) return;
       const parentWidget = this.$refs[this.widgetId];
       const hoverElement = e.target.className.baseVal;
-      const hoverValue = hoverElement.replace('FR-', '');
+      const hoverValues = hoverElement.replace('FR-', '').split(' ');
 
       const elCol = parentWidget.getElementsByClassName(hoverElement);
       elCol[0].style.opacity = 0.8;
       this.tooltip.value = undefined;
-      if (this.dataParse[hoverValue] !== undefined) {
-        this.tooltip.value = this.dataParse[hoverValue];
+      for (const hoverValue of hoverValues) {
+        if (this.dataParse[hoverValue] !== undefined) {
+          this.tooltip.value = this.dataParse[hoverValue];
+        }
+        if (this.getDep(hoverValue)) {
+          this.tooltip.place = this.getDep(hoverValue).department;
+        }
       }
-      this.tooltip.place = this.getDep(hoverValue).department;
 
       const franceRect = parentWidget.querySelector('.map_container').getBoundingClientRect();
       const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
@@ -332,8 +433,10 @@ export default {
     },
     changeTheme(theme) {
       if (theme === 'light') {
+        this.dromColor = '#6b6b6b';
         this.MapProps.colorStroke = '#FFFFFF';
       } else {
+        this.dromColor = '#cecece';
         this.MapProps.colorStroke = '#161616';
       }
       this.createChart();
