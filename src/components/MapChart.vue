@@ -74,7 +74,6 @@
           <div
             v-if="isWorld"
             class="map_container no_select"
-            :style="{ display: displayWorld }"
           >
             <world
               :config="MapProps"
@@ -93,7 +92,7 @@
               :style="{ display: displayGuadeloupe }"
             >
               <span
-                class="drom_title fr-text--xs fr-my-1w"
+                class="fr-text--xs fr-my-1w"
                 :style="{ color: dromColor }"
               >
                 Guadeloupe
@@ -203,12 +202,14 @@ export default {
     MapInfo,
     ...maps,
   },
-  mixins: [{
-    methods: {
-      ...mapMixins.methods,
-      formatNumber,
+  mixins: [
+    {
+      methods: {
+        ...mapMixins.methods,
+        formatNumber,
+      },
     },
-  }],
+  ],
   props: {
     databoxId: {
       type: String,
@@ -291,7 +292,6 @@ export default {
       displayReunion: '',
       displayGuyane: '',
       dromColor: '#6b6b6b',
-      displayWorld: '',
     };
   },
   watch: {
@@ -470,18 +470,16 @@ export default {
           const size = Math.max(width, height);
           this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
 
+          this.InfoProps.level = 'en France';
           if (this.isDep) {
             this.InfoProps.localisation = this.getDep(zoomDep).department;
-            this.InfoProps.level = 'en France';
           } else if (this.isReg) {
             this.InfoProps.localisation = this.getReg(zoomDep).region;
-            this.InfoProps.level = 'en France';
           } else if (this.isAca) {
             this.InfoProps.localisation = this.getAca(zoomDep).academy;
-            this.InfoProps.level = 'en France';
           } else if (this.isWorld) {
-            this.InfoProps.localisation = this.getCountry(zoomDep).country;
             this.InfoProps.level = 'dans le monde';
+            this.InfoProps.localisation = this.getCountry(zoomDep).country;
           }
           this.InfoProps.value = this.value;
           this.InfoProps.valueNat = typeof this.dataParse[zoomDep] === 'number' ? this.dataParse[zoomDep].toString() : this.dataParse[zoomDep];
@@ -494,15 +492,15 @@ export default {
             this.displayReunion = 'none';
             this.displayGuyane = 'none';
             // Setting visibility for DROM regions
-            if ((zoomDep === '971' && this.level === 'dep') || (zoomDep === '01' && this.level === 'reg')) {
+            if (zoomDep === '971') {
               this.displayGuadeloupe = '';
-            } else if ((zoomDep === '972' && this.level === 'dep') || (zoomDep === '02' && this.level === 'reg')) {
+            } else if (zoomDep === '972') {
               this.displayMartinique = '';
-            } else if ((zoomDep === '973' && this.level === 'dep') || (zoomDep === '03' && this.level === 'reg')) {
+            } else if (zoomDep === '973') {
               this.displayGuyane = '';
-            } else if ((zoomDep === '974' && this.level === 'dep') || (zoomDep === '04' && this.level === 'reg')) {
+            } else if (zoomDep === '974') {
               this.displayReunion = '';
-            } else if ((zoomDep === '976' && this.level === 'dep') || (zoomDep === '06' && this.level === 'reg')) {
+            } else if (zoomDep === '976') {
               this.displayMayotte = '';
             } else {
               this.displayFrance = '';
