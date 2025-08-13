@@ -178,6 +178,22 @@
           </span>
         </p>
         <p
+          v-else-if="trend === '0'"
+          class="fr-text--xs fr-m-0"
+        >
+          Stable
+          <span
+            class="fr-badge fr-badge--info fr-badge--no-icon fr-badge--sm fr-ml-1v"
+            aria-label="Valeur stable"
+          >
+            <span
+              :class="'fr-pr-1v screenshot-hide-' + id"
+              aria-hidden="true"
+            >↔ </span>
+            {{ trend.trim() }}
+          </span>
+        </p>
+        <p
           v-else
           class="fr-text--xs fr-m-0"
         >
