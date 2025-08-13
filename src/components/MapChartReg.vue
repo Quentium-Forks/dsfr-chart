@@ -50,7 +50,6 @@
               :style="{ display: displayGuadeloupe }"
             >
               <guadeloupe
-                height="400"
                 :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
@@ -63,7 +62,6 @@
               :style="{ display: displayMartinique }"
             >
               <martinique
-                height="400"
                 :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
@@ -76,7 +74,6 @@
               :style="{ display: displayGuyane }"
             >
               <guyane
-                height="400"
                 :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
@@ -89,7 +86,6 @@
               :style="{ display: displayReunion }"
             >
               <reunion
-                height="400"
                 :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
@@ -102,7 +98,6 @@
               :style="{ display: displayMayotte }"
             >
               <mayotte
-                height="400"
                 :config="MapProps"
                 :on-click="changeGeoLevel"
                 :on-dbl-click="resetGeoFilters"
