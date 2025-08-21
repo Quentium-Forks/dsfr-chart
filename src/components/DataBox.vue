@@ -42,25 +42,27 @@
         </div>
 
         <!-- Modal -->
-        <button
-          v-if="fullscreen"
-          type="button"
-          class="fr-btn fr-btn--sm fr-icon-fullscreen-line fr-btn--tertiary-no-outline fr-ratio-1x1"
-          data-fr-opened="false"
-          :aria-controls="'modal-' + id"
-          title="Afficher la modale"
-        />
-
-        <Teleport
-          v-if="modalTitle"
-          to="body"
+        <div
+          v-if="fullscreen && modalTitle"
         >
-          <DialogModal
-            :id="id"
-            :modal-title="modalTitle"
-            :modal-content="modalContent"
+          <button
+            type="button"
+            class="fr-btn fr-btn--sm fr-icon-fullscreen-line fr-btn--tertiary-no-outline fr-ratio-1x1"
+            data-fr-opened="false"
+            :aria-controls="'modal-' + id"
+            title="Afficher la modale"
           />
-        </Teleport>
+
+          <Teleport
+            to="body"
+          >
+            <DialogModal
+              :id="id"
+              :modal-title="modalTitle"
+              :modal-content="modalContent"
+            />
+          </Teleport>
+        </div>
 
         <!-- More actions -->
         <nav
