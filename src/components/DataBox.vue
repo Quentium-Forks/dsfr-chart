@@ -51,8 +51,11 @@
           title="Afficher la modale"
         />
 
-        <Teleport to="body">
-          <dialog-modal
+        <Teleport
+          v-if="modalTitle"
+          to="body"
+        >
+          <DialogModal
             :id="id"
             :modal-title="modalTitle"
             :modal-content="modalContent"
