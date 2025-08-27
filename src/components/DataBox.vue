@@ -319,7 +319,7 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import { toPng } from 'html-to-image';
+import { toPng } from '@jpinsonneau/html-to-image';
 import { slugify } from '@/utils/global.js';
 import DialogModal from '@/components/DialogModal.vue';
 
