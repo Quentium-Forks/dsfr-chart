@@ -165,10 +165,6 @@ export default {
       type: [Number, String],
       default: 2,
     },
-    formatDate: {
-      type: [Boolean, String],
-      default: false,
-    },
     selectedPalette: {
       type: String,
       default: '',

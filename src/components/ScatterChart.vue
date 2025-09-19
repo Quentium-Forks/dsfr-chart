@@ -172,10 +172,6 @@ export default {
       type: [Number, String],
       default: 2,
     },
-    formatDate: {
-      type: [Boolean, String],
-      default: false,
-    },
     selectedPalette: {
       type: String,
       default: '',
@@ -374,7 +370,7 @@ export default {
         pointHoverRadius: 5,
         pointHoverBackgroundColor: this.colorHover[index],
         pointHoverBorderColor: this.colorHover[index],
-        showLine: this.showLine,
+        showLine: [true, 'true', ''].includes(this.showLine),
         borderWidth: 2,
         tension: 0.4,
       }));

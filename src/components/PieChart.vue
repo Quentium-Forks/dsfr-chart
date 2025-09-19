@@ -262,7 +262,7 @@ export default {
       const ctx = this.$refs[this.chartId].getContext('2d');
 
       this.chart = new Chart(ctx, {
-        type: this.fill ? 'pie' : 'doughnut',
+        type: [true, 'true', ''].includes(this.fill) ? 'pie' : 'doughnut',
         data: {
           labels: this.labels,
           datasets: this.datasets,

@@ -319,28 +319,28 @@ export default {
           datasets: this.datasets,
         },
         options: {
-          indexAxis: this.horizontal ? 'y' : 'x',
+          indexAxis: [true, 'true', ''].includes(this.horizontal) ? 'y' : 'x',
           aspectRatio: this.aspectRatio,
           scales: {
             x: {
-              offset: !this.horizontal,
-              stacked: this.stacked,
+              offset: ![true, 'true', ''].includes(this.horizontal),
+              stacked: [true, 'true', ''].includes(this.stacked),
               grid: {
                 drawTicks: false,
-                drawOnChartArea: this.horizontal,
+                drawOnChartArea: [true, 'true', ''].includes(this.horizontal),
               },
               ticks: {
-                padding: this.horizontal ? 5 : 15,
+                padding: [true, 'true', ''].includes(this.horizontal) ? 5 : 15,
               },
               ...(this.xMin ? { suggestedMin: this.xMin } : {}),
               ...(this.xMax ? { suggestedMax: this.xMax } : {}),
             },
             y: {
-              stacked: this.stacked,
-              offset: this.horizontal,
+              stacked: [true, 'true', ''].includes(this.stacked),
+              offset: [true, 'true', ''].includes(this.horizontal),
               grid: {
                 drawTicks: false,
-                drawOnChartArea: !this.horizontal,
+                drawOnChartArea: ![true, 'true', ''].includes(this.horizontal),
               },
               border: {
                 dash: [3],
