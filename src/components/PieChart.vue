@@ -231,6 +231,7 @@ export default {
         }
       }
 
+      this.nameParse = [];
       for (let i = 0; i < this.yparse[0].length; i++) {
         if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
