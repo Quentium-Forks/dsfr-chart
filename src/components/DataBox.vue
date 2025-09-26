@@ -123,6 +123,7 @@
 
     <!-- eslint-disable vue/no-v-html vue/no-v-text-v-html-on-component -->
     <component
+      v-if="description"
       :is="/<\w+>/.test(description) ? 'span' : 'p'"
       :class="/<\w+>/.test(description) ? '' : 'fr-text--xs fr-mb-0'"
       class="fr-px-2w"
