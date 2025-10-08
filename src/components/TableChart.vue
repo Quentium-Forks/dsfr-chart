@@ -15,7 +15,7 @@
         <div class="fr-table__wrapper">
           <div class="fr-table__container">
             <div class="fr-table__content">
-              <table>
+              <table :aria-labelledby="'title-' + databoxId">
                 <thead>
                   <tr>
                     <th
