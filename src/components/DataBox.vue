@@ -12,10 +12,11 @@
       <div :class="'flex screenshot-hide-' + id">
         <!-- Tooltip -->
         <button
+          v-if="tooltipTitle || tooltipContent"
           class="fr-btn--tooltip fr-btn"
           type="button"
           :aria-describedby="'tooltip-' + id"
-          title="Informations complémentaires sur le graphique"
+          :title="'Informations complémentaires sur le graphique ' + tooltipTitle"
         >
           Informations complémentaires sur le graphique
         </button>
@@ -50,7 +51,7 @@
             class="fr-btn fr-btn--sm fr-icon-fullscreen-line fr-btn--tertiary-no-outline fr-ratio-1x1"
             data-fr-opened="false"
             :aria-controls="'modal-' + id"
-            title="Afficher la modale"
+            :title="'Afficher la modale ' + modalTitle"
           />
 
           <Teleport
