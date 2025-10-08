@@ -92,11 +92,11 @@
       :component="TableChart"
       :attributes="chartData.tableChart.chart"
     />
-    
+
     <p>
       Il est également possible de présenter l’alternative avec une en-tête et des lignes. Les arguments sont donc seulement au nombre de deux.
     </p>
-    
+
     <div>
       <component
         :is="TableChart"
