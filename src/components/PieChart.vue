@@ -21,6 +21,7 @@
           </div>
 
           <div
+            v-if="isSubChart"
             :class="isSubLevel ? '' : 'fr-mt-6v'"
             :style="{ textAlign: 'center' }"
           >
