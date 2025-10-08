@@ -553,6 +553,9 @@ export default {
                 title: (tooltipItems) => {
                   return tooltipItems[0].label;
                 },
+                labelTextColor: () => {
+                  return this.colorParse;
+                },
               },
               external: (context) => {
                 // Tooltip Element
@@ -578,7 +581,7 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                // Set Text
+                // Set tooltip content
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
                   const bodyLines = tooltipModel.body.map((bodyItem) => {
@@ -589,23 +592,19 @@ export default {
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines[0];
 
+                  // Clear the existing tooltip content
                   const divValue = tooltipEl.querySelector('.tooltip_value');
                   divValue.innerHTML = '';
-
-                  // Access color arrays for different datasets
-                  const colors = [this.colorBarParse, this.colorParse]; // Adjust to match your color variables
 
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
                     if (line) {
-                      const color = colors[i] ? colors[i] : '#000';
-
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
                       const displayValue = i === 0 ? `${line}${this.unitTooltipBar ? ' ' + this.unitTooltipBar : ''}` : `${line}${this.unitTooltipLine ? ' ' + this.unitTooltipLine : ''}`;
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
-                          <span class="tooltip_dot" style="background-color:${color};"></span>
+                          <span class="tooltip_dot" style="background-color:${[this.colorBarParse, this.colorParse][i]};"></span>
                           <p class="tooltip_place fr-mb-0">${displayValue}</p>
                         </div>
                       `;

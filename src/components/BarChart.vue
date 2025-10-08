@@ -372,8 +372,8 @@ export default {
                 title: (tooltipItems) => {
                   return tooltipItems[0].label;
                 },
-                labelTextColor: (tooltipItems) => {
-                  return this.colorParse[tooltipItems.datasetIndex][tooltipItems.dataIndex];
+                labelTextColor: () => {
+                  return this.colorParse;
                 },
               },
               external: (context) => {
@@ -400,33 +400,40 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                // Set Text
+                // Set tooltip content
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
+                  const bodyLines = tooltipModel.body.map((bodyItem) => {
+                    return bodyItem.lines;
+                  });
 
+                  // Set the title in the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines[0];
 
+                  // Clear the existing tooltip content
                   const divValue = tooltipEl.querySelector('.tooltip_value');
                   divValue.innerHTML = '';
 
-                  // Iterate over each data point to set the color and value in the tooltip
-                  tooltipModel.dataPoints.forEach((dataPoint) => {
-                    const datasetIndex = dataPoint.datasetIndex;
-                    const index = dataPoint.dataIndex;
+                  // Iterate over bodyLines to set the color and value in the tooltip
+                  bodyLines.forEach((line, i) => {
+                    if (line && tooltipModel.dataPoints[i]) {
+                      const dataPoint = tooltipModel.dataPoints[i];
+                      const datasetIndex = dataPoint.datasetIndex;
+                      const dataIndex = dataPoint.dataIndex;
 
-                    // Ensure the color is correctly referenced
-                    const color = this.colorParse[datasetIndex] ? this.colorParse[datasetIndex][index] : '#000';
+                      // Ensure the color is correctly referenced
+                      const color = this.colorParse[datasetIndex] ? this.colorParse[datasetIndex][dataIndex] : '#000';
 
-                    const value = this.formatNumber(this.datasets[datasetIndex].data[index]);
-                    const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+                      const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
-                    divValue.innerHTML += `
-                      <div class="tooltip_value-content">
-                        <span class="tooltip_dot" style="background-color:${color};"></span>
-                        <p class="tooltip_place fr-mb-0">${displayValue}</p>
-                      </div>
-                    `;
+                      divValue.innerHTML += `
+                        <div class="tooltip_value-content">
+                          <span class="tooltip_dot" style="background-color:${color};"></span>
+                          <p class="tooltip_place fr-mb-0">${displayValue}</p>
+                        </div>
+                      `;
+                    }
                   });
                 }
 

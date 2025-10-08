@@ -12,9 +12,7 @@
           <div class="tooltip">
             <div class="tooltip_header fr-text--sm fr-mb-0" />
             <div class="tooltip_body">
-              <div class="tooltip_value">
-                <span class="tooltip_dot" />
-              </div>
+              <div class="tooltip_value" />
             </div>
           </div>
 
@@ -287,7 +285,7 @@ export default {
                 label: (tooltipItems) => {
                   const label = [];
                   this.datasets.forEach((set) => {
-                    label.push(set.data[tooltipItems.dataIndex]);
+                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
                   });
                   return label;
                 },
@@ -322,7 +320,7 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                // Set Text
+                // Set tooltip content
                 if (tooltipModel.body) {
                   const titleLines = [this.xparse[0][tooltipModel.dataPoints[0].dataIndex]];
                   const bodyLines = tooltipModel.body.map((bodyItem) => {
@@ -333,24 +331,18 @@ export default {
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines[0];
 
+                  // Clear the existing tooltip content
                   const divValue = tooltipEl.querySelector('.tooltip_value');
                   divValue.innerHTML = '';
 
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
-                    if (line && tooltipModel.dataPoints[i]) {
-                      const dataPoint = tooltipModel.dataPoints[i];
-                      const datasetIndex = dataPoint.datasetIndex;
-
-                      // Ensure that colorParse and datasetIndex are valid
-                      const color = this.colorParse[datasetIndex] ? this.colorParse[datasetIndex] : '#000';
-
-                      // Include unitTooltip if provided
+                    if (line) {
                       const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
-                          <span class="tooltip_dot" style="background-color:${color};"></span>
+                          <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>
                           <p class="tooltip_place fr-mb-0">${displayValue}</p>
                         </div>
                       `;

@@ -563,15 +563,8 @@ export default {
               callbacks: {
                 label: (tooltipItems) => {
                   const label = [];
-                  this.datasets.forEach((set, i) => {
-                    if (this.xAxisType === 'linear') {
-                      const index = this.xparse[i].indexOf(tooltipItems.parsed.x);
-                      if (index !== -1) {
-                        label.push(this.formatNumber(this.yparse[i][index]));
-                      }
-                    } else {
-                      label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
-                    }
+                  this.datasets.forEach((set) => {
+                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex].y));
                   });
                   return label;
                 },
@@ -606,14 +599,14 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                // Set Text
+                // Set tooltip content
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
                   const bodyLines = tooltipModel.body.map((bodyItem) => {
                     return bodyItem.lines;
                   });
 
-                  // Set the tooltip header
+                  // Set the title in the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
                   divDate.innerHTML = titleLines[0];
 
@@ -623,8 +616,9 @@ export default {
 
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
-                    const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
                     if (line) {
+                      const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
                           <span class="tooltip_dot" style="background-color:${this.colorParse[i]};"></span>

@@ -14,9 +14,7 @@
           <div class="tooltip">
             <div class="tooltip_header fr-text--sm fr-mb-0" />
             <div class="tooltip_body">
-              <div class="tooltip_value">
-                <span class="tooltip_dot" />
-              </div>
+              <div class="tooltip_value" />
             </div>
           </div>
 
@@ -289,14 +287,17 @@ export default {
               backgroundColor: '#6b6b6b',
               callbacks: {
                 label: (tooltipItems) => {
-                  const value = this.datasets[tooltipItems.datasetIndex].data[tooltipItems.dataIndex];
-                  return this.formatNumber(value);
+                  const label = [];
+                  this.datasets.forEach((set) => {
+                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
+                  });
+                  return label;
                 },
                 title: (tooltipItems) => {
                   return tooltipItems[0].label;
                 },
-                labelTextColor: (tooltipItems) => {
-                  return this.colorParse[tooltipItems.datasetIndex][tooltipItems.dataIndex];
+                labelTextColor: () => {
+                  return this.colorParse;
                 },
               },
               external: (context) => {
@@ -323,32 +324,41 @@ export default {
                   tooltipEl.classList.add('no-transform');
                 }
 
-                // Set Text
+                // Set tooltip content
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
                   const bodyLines = tooltipModel.body.map((bodyItem) => {
                     return bodyItem.lines;
                   });
 
-                  // Set the tooltip header
+                  // Set the title in the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                  divDate.innerHTML = titleLines;
-
-                  const color = tooltipModel.labelTextColors[0];
+                  divDate.innerHTML = titleLines[0];
 
                   // Clear the existing tooltip content
                   const divValue = tooltipEl.querySelector('.tooltip_value');
                   divValue.innerHTML = '';
 
-                  const value = bodyLines[0][0];
-                  const displayValue = `${value}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+                  // Iterate over bodyLines to set the color and value in the tooltip
+                  bodyLines[0].forEach((line, i) => {
+                    if (line && tooltipModel.dataPoints[i]) {
+                      const dataPoint = tooltipModel.dataPoints[i];
+                      const datasetIndex = dataPoint.datasetIndex;
+                      const dataIndex = dataPoint.dataIndex;
 
-                  divValue.innerHTML += `
-                    <div class="tooltip_value-content">
-                      <span class="tooltip_dot" style="background-color:${color};"></span>
-                      <p class="tooltip_place fr-mb-0">${displayValue}</p>
-                    </div>
-                  `;
+                      // Ensure the color is correctly referenced
+                      const color = this.colorParse[datasetIndex] ? this.colorParse[datasetIndex][dataIndex] : '#000';
+
+                      const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+
+                      divValue.innerHTML += `
+                        <div class="tooltip_value-content">
+                          <span class="tooltip_dot" style="background-color:${color};"></span>
+                          <p class="tooltip_place fr-mb-0">${displayValue}</p>
+                        </div>
+                      `;
+                    }
+                  });
                 }
 
                 // Position the tooltip
