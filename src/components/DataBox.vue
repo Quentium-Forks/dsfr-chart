@@ -5,7 +5,10 @@
   >
     <!-- Header -->
     <div class="fr-p-2w databox_header">
-      <h3 class="fr-h6 fr-mb-0" :id="'title-' + id">
+      <h3
+        :id="'title-' + id"
+        class="fr-h6 fr-mb-0"
+      >
         {{ name }}
       </h3>
 
@@ -43,9 +46,7 @@
         </div>
 
         <!-- Modal -->
-        <div
-          v-if="fullscreen && modalTitle"
-        >
+        <div v-if="fullscreen && modalTitle">
           <button
             type="button"
             class="fr-btn fr-btn--sm fr-icon-fullscreen-line fr-btn--tertiary-no-outline fr-ratio-1x1"
@@ -54,9 +55,7 @@
             :title="'Afficher la modale ' + modalTitle"
           />
 
-          <Teleport
-            to="body"
-          >
+          <Teleport to="body">
             <DialogModal
               :id="id"
               :modal-title="modalTitle"
@@ -221,14 +220,17 @@
 
     <!-- Content -->
     <div class="fr-p-2w databox_content">
-      <strong
-        v-if="value"
-        class="fr-display--xs fr-mb-0 databox_value"
-      >
-        {{ value }}
-      </strong>
+      <p class="fr-mb-0 text-center">
+        <strong
+          v-if="value"
+          class="fr-display--xs fr-mb-0 databox_value"
+        >
+          {{ value }}
+        </strong>
+      </p>
 
       <div
+        v-if="!value"
         :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
         :aria-hidden="selectedView === 'table'"
       >
@@ -241,6 +243,7 @@
         />
       </div>
       <div
+        v-if="!value"
         :class="selectedView === 'chart' ? 'fr-hidden' : 'w-full'"
         :aria-hidden="selectedView === 'chart'"
       >
