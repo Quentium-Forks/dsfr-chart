@@ -461,7 +461,7 @@ const downloadCSV = () => {
     });
   } else if (type === 'table' && tableSources.value.length > 0) {
     // Try x and y attributes for tables first, else fallback to name and line attribute
-    try {
+    if (dom.getAttribute('x') && dom.getAttribute('y')) {
       const x = JSON.parse(dom.getAttribute('x'));
       const y = JSON.parse(dom.getAttribute('y'));
       const name = JSON.parse(dom.getAttribute('name'));
@@ -472,7 +472,7 @@ const downloadCSV = () => {
       x.forEach((x, i) => {
         csv.push(`${x},${y.map((y) => y[i]).join(',')}\n`);
       });
-    } catch (e) {
+    } else if (dom.getAttribute('line')) {
       const name = JSON.parse(dom.getAttribute('name'));
       const line = JSON.parse(dom.getAttribute('line'));
 
