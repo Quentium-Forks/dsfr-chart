@@ -5,12 +5,13 @@
   >
     <!-- Header -->
     <div class="fr-p-2w databox_header">
-      <h3
+      <component
+        :is="headingLevel"
         :id="'title-' + id"
         class="fr-h6 fr-mb-0"
       >
         {{ name }}
-      </h3>
+      </component>
 
       <div :class="'flex screenshot-hide-' + id">
         <!-- Tooltip -->
@@ -336,6 +337,11 @@ const props = defineProps({
   name: {
     type: String,
     required: true,
+  },
+  headingLevel: {
+    type: String,
+    default: 'h3',
+    validator: (value) => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value),
   },
   description: {
     type: String,
