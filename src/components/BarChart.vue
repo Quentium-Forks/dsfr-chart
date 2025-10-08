@@ -416,7 +416,7 @@ export default {
                   divValue.innerHTML = '';
 
                   // Iterate over bodyLines to set the color and value in the tooltip
-                  bodyLines.forEach((line, i) => {
+                  bodyLines[0].forEach((line, i) => {
                     if (line && tooltipModel.dataPoints[i]) {
                       const dataPoint = tooltipModel.dataPoints[i];
                       const datasetIndex = dataPoint.datasetIndex;
