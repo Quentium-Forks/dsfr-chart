@@ -403,9 +403,9 @@ export default {
                 // Set tooltip content
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
-                  const bodyLines = tooltipModel.body.map((bodyItem) => {
+                  const bodyLines = [tooltipModel.body.map((bodyItem) => {
                     return bodyItem.lines;
-                  });
+                  }).flat()];
 
                   // Set the title in the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
