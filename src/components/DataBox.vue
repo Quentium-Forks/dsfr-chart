@@ -5,7 +5,7 @@
   >
     <!-- Header -->
     <div class="fr-p-2w databox_header">
-      <h3 class="fr-h6 fr-mb-0">
+      <h3 class="fr-h6 fr-mb-0" :id="'title-' + id">
         {{ name }}
       </h3>
 

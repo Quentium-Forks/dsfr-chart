@@ -39,7 +39,11 @@
             </p>
           </div>
 
-          <canvas :ref="chartId" />
+          <canvas
+            :ref="chartId"
+            role="img"
+            :aria-labelledby="'title-' + databoxId"
+          />
 
           <div class="chart_legend fr-mb-0 fr-mt-4v">
             <div
