@@ -1,11 +1,13 @@
-.fr-grid-row {
-  $var: 12;
+@media (min-width: 62em) {
+  .fr-grid-row {
+    $var: 12;
 
-  [class^='fr-col'] {
-    @for $i from 1 through $var {
-      &:nth-child(#{$var - $i + 1}) {
-        .databox {
-          z-index: #{$i};
+    [class^='fr-col'] {
+      @for $i from 1 through $var {
+        &:nth-child(#{$var - $i + 1}) {
+          .databox {
+            z-index: #{$i};
+          }
         }
       }
     }
