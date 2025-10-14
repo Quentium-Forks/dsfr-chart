@@ -66,9 +66,8 @@
         </div>
 
         <!-- More actions -->
-        <nav
+        <div
           v-if="screenshot || download || actions.length > 0"
-          role="navigation"
           class="fr-translate fr-nav more-actions-menu"
         >
           <div class="fr-nav__item fr-nav__item--align-right">
@@ -118,7 +117,7 @@
               </ul>
             </div>
           </div>
-        </nav>
+        </div>
       </div>
     </div>
 
