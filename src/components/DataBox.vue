@@ -218,51 +218,6 @@
       </div>
     </div>
 
-    <!-- Content -->
-    <div class="fr-p-2w databox_content">
-      <p class="fr-mb-0 text-center">
-        <strong
-          v-if="value"
-          class="fr-display--xs fr-mb-0 databox_value"
-        >
-          {{ value }}
-        </strong>
-      </p>
-
-      <div
-        v-if="!value"
-        :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
-        :aria-hidden="selectedView === 'table'"
-      >
-        <!-- Bulk create all charts source divs for teleport -->
-        <div
-          v-for="(chartSource, i) in chartSources"
-          :id="id + '-chart-' + chartSource"
-          :key="i"
-          :class="currentSource !== chartSource ? 'fr-hidden' : ''"
-        />
-      </div>
-      <div
-        v-if="!value"
-        :class="selectedView === 'chart' ? 'fr-hidden' : 'w-full'"
-        :aria-hidden="selectedView === 'chart'"
-      >
-        <!-- Bulk create all table source divs for teleport -->
-        <div
-          v-for="(tableSource, i) in tableSources.filter((s) => s !== 'global')"
-          :id="id + '-table-' + tableSource"
-          :key="i"
-          :class="currentSource !== tableSource ? 'fr-hidden' : ''"
-        />
-        <!-- Also create a global chart in case only one table is provided -->
-        <div
-          v-if="tableSources.includes('global')"
-          :id="id + '-table-global'"
-          :class="tableSources.includes(currentSource) && tableSources.length > 1 ? 'fr-hidden' : ''"
-        />
-      </div>
-    </div>
-
     <!-- Footer -->
     <div class="fr-p-2w databox_footer">
       <p class="fr-text--xs fr-mb-0">
@@ -318,6 +273,51 @@
           </div>
         </div>
       </fieldset>
+    </div>
+    
+    <!-- Content -->
+    <div class="fr-p-2w databox_content">
+      <p class="fr-mb-0 text-center">
+        <strong
+          v-if="value"
+          class="fr-display--xs fr-mb-0 databox_value"
+        >
+          {{ value }}
+        </strong>
+      </p>
+
+      <div
+        v-if="!value"
+        :class="selectedView === 'table' ? 'fr-hidden' : 'w-full'"
+        :aria-hidden="selectedView === 'table'"
+      >
+        <!-- Bulk create all charts source divs for teleport -->
+        <div
+          v-for="(chartSource, i) in chartSources"
+          :id="id + '-chart-' + chartSource"
+          :key="i"
+          :class="currentSource !== chartSource ? 'fr-hidden' : ''"
+        />
+      </div>
+      <div
+        v-if="!value"
+        :class="selectedView === 'chart' ? 'fr-hidden' : 'w-full'"
+        :aria-hidden="selectedView === 'chart'"
+      >
+        <!-- Bulk create all table source divs for teleport -->
+        <div
+          v-for="(tableSource, i) in tableSources.filter((s) => s !== 'global')"
+          :id="id + '-table-' + tableSource"
+          :key="i"
+          :class="currentSource !== tableSource ? 'fr-hidden' : ''"
+        />
+        <!-- Also create a global chart in case only one table is provided -->
+        <div
+          v-if="tableSources.includes('global')"
+          :id="id + '-table-global'"
+          :class="tableSources.includes(currentSource) && tableSources.length > 1 ? 'fr-hidden' : ''"
+        />
+      </div>
     </div>
   </div>
 </template>
