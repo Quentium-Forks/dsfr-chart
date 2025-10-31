@@ -430,6 +430,10 @@ export default {
             if (zoomDep === key) {
               // Highlight the selected path
               elCol[0].setAttribute('fill', colorScale(this.dataParse[zoomDep]));
+              elCol[0].setAttribute('stroke', '#EFB900');
+              elCol[0].setAttribute('stroke-width', 2);
+              // Teleport to end of SVG to be on top for stroke
+              elCol[0].parentNode.appendChild(elCol[0]);
               this.MapProps.displayPath[className] = '';
               xmin.push(polygon.x);
               ymin.push(polygon.y);
@@ -437,7 +441,9 @@ export default {
               ymax.push(polygon.y + polygon.height);
             } else if (listDep.includes(key)) {
               // Fill with the lighter color for other paths
-              elCol[0].setAttribute('fill', this.colorLeft + 'B3');
+              elCol[0].setAttribute('fill', colorScale(this.dataParse[key]).replace(')', ', 0.6)').replace('rgb', 'rgba'));
+              elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
+              elCol[0].setAttribute('stroke-width', '0.2%');
               this.MapProps.displayPath[className] = '';
               xmin.push(polygon.x);
               ymin.push(polygon.y);
