@@ -36,9 +36,9 @@ export const formatNumber = (value) => {
   // Format as integer or decimal number
   if (Number.isInteger(value)) {
     return parseInt(value).toLocaleString('fr-FR');
-  } else {
+  } 
     return parseFloat(value).toLocaleString('fr-FR', { maximumFractionDigits: 2 });
-  }
+  
 };
 
 /**

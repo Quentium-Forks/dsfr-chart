@@ -116,7 +116,7 @@
 import * as d3 from 'd3-scale';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
-import { formatNumber, mapMixins, isMobile } from '@/utils/global.js';
+import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
 
 export default {
@@ -226,7 +226,7 @@ export default {
     },
   },
   created() {
-    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
+    this.widgetId = `dsfr-widget-${Math.floor(Math.random() * 1000)}`;
   },
   mounted() {
     this.createChart();
@@ -277,14 +277,14 @@ export default {
       // Define color scale based on regional values
       const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colorLeft, this.colorRight]);
 
-      let xmin = [],
+      const xmin = [],
         xmax = [],
         ymin = [],
         ymax = [];
 
       // Iterate over each department in France and hide
       for (const key in this.dataParse) {
-        const className = 'FR-' + key;
+        const className = `FR-${key}`;
         const elCol = parentWidget.getElementsByClassName(className);
 
         elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
@@ -292,7 +292,7 @@ export default {
       }
       // Iterate over each department in the region and set colors
       listDep.forEach((key) => {
-        const className = 'FR-' + key;
+        const className = `FR-${key}`;
         const elCol = parentWidget.getElementsByClassName(className);
 
         if (!this.zoomDep) {
@@ -305,24 +305,22 @@ export default {
             xmax.push(polygon.x + polygon.width);
             ymax.push(polygon.y + polygon.height);
           }
-        } else {
-          if (this.zoomDep === key) {
-            const polygon = elCol[0].getBBox();
-            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
-            this.MapProps.displayPath[className] = '';
-            xmin.push(polygon.x);
-            ymin.push(polygon.y);
-            xmax.push(polygon.x + polygon.width);
-            ymax.push(polygon.y + polygon.height);
-          } else if (listDep.includes(key)) {
-            const polygon = elCol[0].getBBox();
-            elCol.length !== 0 && elCol[0].setAttribute('fill', this.colorLeft + 'B3');
-            this.MapProps.displayPath[className] = '';
-            xmin.push(polygon.x);
-            ymin.push(polygon.y);
-            xmax.push(polygon.x + polygon.width);
-            ymax.push(polygon.y + polygon.height);
-          }
+        } else if (this.zoomDep === key) {
+          const polygon = elCol[0].getBBox();
+          elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+          this.MapProps.displayPath[className] = '';
+          xmin.push(polygon.x);
+          ymin.push(polygon.y);
+          xmax.push(polygon.x + polygon.width);
+          ymax.push(polygon.y + polygon.height);
+        } else if (listDep.includes(key)) {
+          const polygon = elCol[0].getBBox();
+          elCol.length !== 0 && elCol[0].setAttribute('fill', `${this.colorLeft}B3`);
+          this.MapProps.displayPath[className] = '';
+          xmin.push(polygon.x);
+          ymin.push(polygon.y);
+          xmax.push(polygon.x + polygon.width);
+          ymax.push(polygon.y + polygon.height);
         }
       });
 
@@ -338,7 +336,7 @@ export default {
         this.MapProps.viewBox = `${xminValue} ${yminValue} ${size} ${size}`;
       }
 
-      this.InfoProps.level = 'dans la région ' + this.getReg(this.region).region;
+      this.InfoProps.level = `dans la région ${this.getReg(this.region).region}`;
       if (this.zoomDep) {
         this.InfoProps.localisation = this.getDep(this.zoomDep).department;
       } else {
@@ -372,7 +370,9 @@ export default {
       this.InfoProps.max = this.scaleMax;
     },
     displayTooltip(e) {
-      if (isMobile()) return;
+      if (isMobile()) {
+        return;
+      }
       const parentWidget = this.$refs[this.widgetId];
       const hoverElement = e.target.className.baseVal;
       const hoverValues = hoverElement.replace('FR-', '').split(' ');
@@ -396,18 +396,20 @@ export default {
       const adjust = window.innerWidth > 1000 ? window.innerWidth / 30 : window.innerWidth / 15;
 
       let tooltipX = containerRect.x - franceRect.x + tooltipRect.width - adjust;
-      let tooltipY = containerRect.y - franceRect.y;
+      const tooltipY = containerRect.y - franceRect.y;
 
       if (tooltipX + tooltipRect.width + adjust > franceRect.x) {
         tooltipX = containerRect.x / 2 - franceRect.x + tooltipRect.width + adjust / 2;
       }
 
-      this.tooltip.top = tooltipY + 'px';
-      this.tooltip.left = tooltipX + 'px';
+      this.tooltip.top = `${tooltipY}px`;
+      this.tooltip.left = `${tooltipX}px`;
       this.tooltip.visibility = 'visible';
     },
     hideTooltip(e) {
-      if (isMobile()) return;
+      if (isMobile()) {
+        return;
+      }
       this.tooltip.visibility = 'hidden';
       const parentWidget = this.$refs[this.widgetId];
       const hoverElement = e.target.className.baseVal;

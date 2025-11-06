@@ -193,7 +193,7 @@
 import * as d3 from 'd3-scale';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
-import { formatNumber, mapMixins, isMobile } from '@/utils/global.js';
+import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
 import { choosePalette } from '@/utils/colors.js';
 
 export default {
@@ -307,7 +307,7 @@ export default {
     },
   },
   created() {
-    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
+    this.widgetId = `dsfr-widget-${Math.floor(Math.random() * 1000)}`;
     this.isDep = this.level === 'dep';
     this.isReg = this.level === 'reg';
     this.isAca = this.level === 'aca';
@@ -394,14 +394,14 @@ export default {
       // Define color scale based on regional values
       const colorScale = d3.scaleLinear().domain([this.scaleMin, this.scaleMax]).range([this.colorLeft, this.colorRight]);
 
-      let xmin = [],
+      const xmin = [],
         xmax = [],
         ymin = [],
         ymax = [];
 
       // Iterate over each element in input data and set colors
       for (const key in this.dataParse) {
-        const className = this.isAca || this.isWorld ? key : 'FR-' + key;
+        const className = this.isAca || this.isWorld ? key : `FR-${key}`;
         const elCol = parentWidget.getElementsByClassName(className);
 
         if (elCol.length === 0) {
@@ -413,7 +413,7 @@ export default {
           elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
           this.MapProps.displayPath[className] = '';
         } else {
-          const path = document.querySelector('.' + className);
+          const path = document.querySelector(`.${className}`);
           // Ignore paths that are not found in the map component
           if (!path) {
             continue;
@@ -540,7 +540,9 @@ export default {
       this.InfoProps.colorMax = this.colorRight;
     },
     displayTooltip(e) {
-      if (isMobile()) return;
+      if (isMobile()) {
+        return;
+      }
       const parentWidget = this.$refs[this.widgetId];
       const hoverElement = e.target.className.baseVal;
       const hoverValues = hoverElement.replace('FR-', '').split(' ');
@@ -570,18 +572,20 @@ export default {
       const adjust = window.innerWidth > 1000 ? window.innerWidth / 30 : window.innerWidth / 15;
 
       let tooltipX = containerRect.x - franceRect.x + tooltipRect.width - adjust;
-      let tooltipY = containerRect.y - franceRect.y;
+      const tooltipY = containerRect.y - franceRect.y;
 
       if (tooltipX + tooltipRect.width + adjust > franceRect.x) {
         tooltipX = containerRect.x / 2 - franceRect.x + tooltipRect.width + adjust / 2;
       }
 
-      this.tooltip.top = tooltipY + 'px';
-      this.tooltip.left = tooltipX + 'px';
+      this.tooltip.top = `${tooltipY}px`;
+      this.tooltip.left = `${tooltipX}px`;
       this.tooltip.visibility = 'visible';
     },
     hideTooltip(e) {
-      if (isMobile()) return;
+      if (isMobile()) {
+        return;
+      }
       this.tooltip.visibility = 'hidden';
       const parentWidget = this.$refs[this.widgetId];
       const hoverElement = e.target.className.baseVal;

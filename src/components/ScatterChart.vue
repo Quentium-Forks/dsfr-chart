@@ -225,8 +225,8 @@ export default {
   },
   created() {
     configureChartDefaults();
-    this.chartId = 'dsfr-chart-' + Math.floor(Math.random() * 1000);
-    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
+    this.chartId = `dsfr-chart-${Math.floor(Math.random() * 1000)}`;
+    this.widgetId = `dsfr-widget-${Math.floor(Math.random() * 1000)}`;
   },
   mounted() {
     this.resetData();
@@ -287,7 +287,7 @@ export default {
         if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
-          this.nameParse.push('Série ' + (i + 1));
+          this.nameParse.push(`Série ${i + 1}`);
         }
       }
 
@@ -306,7 +306,7 @@ export default {
           if (tmpVlineNameParse[i]) {
             this.vlineNameParse.push(tmpVlineNameParse[i]);
           } else {
-            this.vlineNameParse.push('V' + (i + 1));
+            this.vlineNameParse.push(`V${i + 1}`);
           }
         }
       }
@@ -326,7 +326,7 @@ export default {
           if (tmpHlineNameParse[i]) {
             this.hlineNameParse.push(tmpHlineNameParse[i]);
           } else {
-            this.hlineNameParse.push('H' + (i + 1));
+            this.hlineNameParse.push(`H${i + 1}`);
           }
         }
       }
@@ -379,7 +379,9 @@ export default {
       }));
     },
     createChart() {
-      if (this.chart) this.chart.destroy();
+      if (this.chart) {
+        this.chart.destroy();
+      }
 
       this.getData();
 
@@ -396,8 +398,8 @@ export default {
             afterDraw: (chart) => {
               if (chart.tooltip?._active && chart.tooltip?._active.length) {
                 const { ctx } = chart;
-                const x = chart.tooltip.getActiveElements()[0].element.tooltipPosition().x;
-                const index = chart.tooltip._active[0].index;
+                const { x } = chart.tooltip.getActiveElements()[0].element.tooltipPosition();
+                const { index } = chart.tooltip._active[0];
 
                 ctx.save();
                 ctx.beginPath();
@@ -410,7 +412,7 @@ export default {
                 ctx.restore();
 
                 this.yparse.forEach((i) => {
-                  let y = chart.scales.y.getPixelForValue(i[index]);
+                  const y = chart.scales.y.getPixelForValue(i[index]);
                   ctx.save();
                   ctx.beginPath();
                   ctx.moveTo(chart.scales.x.left, y);
@@ -452,12 +454,12 @@ export default {
                 padding: 5,
                 maxTicksLimit: 5,
                 callback: (value) => {
-                  if (value >= 1000000000 || value <= -1000000000) {
-                    return value / 1e9 + 'B';
-                  } else if (value >= 1000000 || value <= -1000000) {
-                    return value / 1e6 + 'M';
-                  } else if (value >= 1000 || value <= -1000) {
-                    return value / 1e3 + 'K';
+                  if (Math.abs(value) >= 1000000000) {
+                    return `${value / 1e9}B`;
+                  } else if (Math.abs(value) >= 1000000) {
+                    return `${value / 1e6}M`;
+                  } else if (Math.abs(value) >= 1000) {
+                    return `${value / 1e3}K`;
                   }
                   return value;
                 },
@@ -482,22 +484,20 @@ export default {
                   });
                   return label;
                 },
-                title: (tooltipItems) => {
-                  return tooltipItems[0].parsed.x;
-                },
-                labelTextColor: () => {
-                  return this.colorParse;
-                },
+                title: (tooltipItems) => tooltipItems[0].parsed.x,
+                labelTextColor: () => this.colorParse,
               },
               external: (context) => {
                 // Tooltip Element
-                const dom = document.getElementById(this.databoxId + '-' + this.databoxType + '-' + this.databoxSource) || this.$el.nextElementSibling;
+                const dom = document.getElementById(`${this.databoxId}-${this.databoxType}-${this.databoxSource}`) || this.$el.nextElementSibling;
 
                 const tooltipEl = dom.querySelector('.tooltip');
 
                 const tooltipModel = context.tooltip;
 
-                if (!tooltipEl) return;
+                if (!tooltipEl) {
+                  return;
+                }
 
                 // Hide if no tooltip
                 if (!tooltipModel || tooltipModel.opacity === 0) {
@@ -516,9 +516,7 @@ export default {
                 // Set tooltip content
                 if (tooltipModel.body) {
                   const titleLines = tooltipModel.title || [];
-                  const bodyLines = tooltipModel.body.map((bodyItem) => {
-                    return bodyItem.lines;
-                  });
+                  const bodyLines = tooltipModel.body.map((bodyItem) => bodyItem.lines);
 
                   // Set the title in the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
@@ -531,7 +529,7 @@ export default {
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
                     if (line) {
-                      const displayValue = `${line}${this.unitTooltip ? ' ' + this.unitTooltip : ''}`;
+                      const displayValue = `${line}${this.unitTooltip ? ` ${this.unitTooltip}` : ''}`;
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
@@ -563,10 +561,10 @@ export default {
                 }
 
                 tooltipEl.style.position = 'absolute';
-                tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+                tooltipEl.style.padding = `${tooltipModel.padding}px ${tooltipModel.padding}px`;
                 tooltipEl.style.pointerEvents = 'none';
-                tooltipEl.style.left = tooltipX + 'px';
-                tooltipEl.style.top = tooltipY + 'px';
+                tooltipEl.style.left = `${tooltipX}px`;
+                tooltipEl.style.top = `${tooltipY}px`;
                 tooltipEl.style.opacity = 1;
               },
             },
@@ -618,6 +616,3 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
-
-</style>

@@ -274,7 +274,7 @@
         </div>
       </fieldset>
     </div>
-    
+
     <!-- Content -->
     <div class="fr-p-2w databox_content">
       <p class="fr-mb-0 text-center">
@@ -413,12 +413,11 @@ tableSources.value = [...document.querySelectorAll(`[databox-id="${props.id}"][d
 
 const currentSource = ref(chartSources.value.includes(props.defaultSource) ? props.defaultSource : chartSources.value[0] || tableSources.value[0]);
 
-const generateOptions = (source) => {
-  return source.map((option) => ({
+const generateOptions = (source) =>
+  source.map((option) => ({
     label: option.charAt(0).toUpperCase() + option.slice(1).replace(/-/g, ' '),
     value: option,
   }));
-};
 
 // Cast props to correct type
 const value = computed(() => (typeof props.value === 'number' ? props.value.toString() : props.value));
@@ -437,7 +436,7 @@ const changeView = (view) => {
 
 const downloadCSV = () => {
   let dom;
-  let csv = [];
+  const csv = [];
 
   let type;
   // By default, always download the table version of the data

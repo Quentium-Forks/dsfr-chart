@@ -146,8 +146,8 @@ export default {
     },
   },
   created() {
-    this.tableId = 'dsfr-table-' + Math.floor(Math.random() * 1000);
-    this.widgetId = 'dsfr-widget-' + Math.floor(Math.random() * 1000);
+    this.tableId = `dsfr-table-${Math.floor(Math.random() * 1000)}`;
+    this.widgetId = `dsfr-widget-${Math.floor(Math.random() * 1000)}`;
   },
   mounted() {
     this.resetData();
@@ -201,7 +201,7 @@ export default {
         if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
-          this.nameParse.push('Série ' + (i + 1));
+          this.nameParse.push(`Série ${i + 1}`);
         }
       }
 
@@ -209,7 +209,7 @@ export default {
         if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
-          this.nameParse.push('Série ' + (i + 1));
+          this.nameParse.push(`Série ${i + 1}`);
         }
       }
     },
@@ -228,8 +228,8 @@ export default {
     },
     observeRelatedChart() {
       const databoxSource = this.databoxSource === 'global' ? 'default' : `${this.databoxSource}`;
-      let target = document.querySelector(`#${this.databoxId}-chart-${databoxSource} .widget_container`);
-      let options = {
+      const target = document.querySelector(`#${this.databoxId}-chart-${databoxSource} .widget_container`);
+      const options = {
         attributes: true, // Listens for attribute changes.
         subtree: false, // Prevents observing descendants of the target element.
         childList: false, // Ignores additions or removals of child elements.
@@ -258,7 +258,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 * {
   --table-offset: 0px;
 }

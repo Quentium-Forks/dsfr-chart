@@ -70,9 +70,7 @@ const props = defineProps({
   },
 });
 
-const gradient = computed(() => {
-  return 'linear-gradient(90deg,' + props.data['colorMin'] + ' 0%,' + props.data['colorMax'] + ' 100%)';
-});
+const gradient = computed(() => `linear-gradient(90deg,${props.data.colorMin} 0%,${props.data.colorMax} 100%)`);
 </script>
 
 <style scoped lang="scss">
