@@ -1,6 +1,16 @@
 <template>
+  <div class="fr-notice fr-notice--warning">
+    <div class="fr-container fr-grid-row fr-grid-row--center">
+      <div class="fr-notice__body fr-col-12 fr-col-md-10">
+        <p>
+          <span class="fr-notice__title">BREAKING CHANGE (v2.1.0) :</span>
+          <span class="fr-notice__desc">L'attribut <b>title</b> de la Databox a été renommé en <b>name</b> pour des raisons d'accessibilité.</span>
+        </p>
+      </div>
+    </div>
+  </div>
   <div class="fr-container">
-    <section class="fr-grid-row fr-grid-row--center fr-mt-4w fr-mt-md-8w">
+    <section class="fr-grid-row fr-grid-row--center">
       <Intro />
 
       <!-- SIDE MENU -->
