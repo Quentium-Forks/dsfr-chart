@@ -528,7 +528,7 @@ export default {
 
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
-                    if (line) {
+                    if (line && line !== 'NaN') {
                       const displayValue = `${line}${this.unitTooltip ? ` ${this.unitTooltip}` : ''}`;
 
                       divValue.innerHTML += `
@@ -615,4 +615,3 @@ export default {
   },
 };
 </script>
-

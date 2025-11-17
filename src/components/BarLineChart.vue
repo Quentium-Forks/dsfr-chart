@@ -600,7 +600,7 @@ export default {
 
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
-                    if (line) {
+                    if (line && line !== 'NaN') {
                       // Détecter si c'est une barre ou une ligne en fonction de l'index
                       const displayValue = i === 0 ? `${line}${this.unitTooltipBar ? ` ${this.unitTooltipBar}` : ''}` : `${line}${this.unitTooltipLine ? ` ${this.unitTooltipLine}` : ''}`;
 
@@ -669,4 +669,3 @@ export default {
   },
 };
 </script>
-

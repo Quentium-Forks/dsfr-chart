@@ -419,10 +419,8 @@ export default {
 
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
-                    if (line && tooltipModel.dataPoints[i]) {
-                      const dataPoint = tooltipModel.dataPoints[i];
-                      const { datasetIndex } = dataPoint;
-                      const { dataIndex } = dataPoint;
+                    if (line && line !== 'NaN' && tooltipModel.dataPoints[i]) {
+                      const { datasetIndex, dataIndex } = tooltipModel.dataPoints[i];
 
                       // Ensure the color is correctly referenced
                       const color = this.colorParse[datasetIndex] ? this.colorParse[datasetIndex][dataIndex] : '#000';
@@ -534,4 +532,3 @@ export default {
   },
 };
 </script>
-
