@@ -25,7 +25,7 @@
           <div class="chart_legend fr-mb-0 fr-mt-4v">
             <div class="flex fr-mt-3v fr-mb-1v">
               <span
-                class="legende_dot"
+                class="legend_dot"
                 :style="{ 'background-color': colorBarParse }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
@@ -34,7 +34,7 @@
             </div>
             <div class="flex fr-mt-3v fr-mb-1v">
               <span
-                class="legende_dot"
+                class="legend_dot"
                 :style="{ 'background-color': colorParse }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
@@ -47,11 +47,11 @@
               class="flex"
             >
               <span
-                class="legende_dash_line"
+                class="legend_dash_line"
                 :style="{ 'background-color': hlineColorParse[index] }"
               />
               <span
-                class="legende_dash_line legende_dash_line_end"
+                class="legend_dash_line legend_dash_line_end"
                 :style="{ 'background-color': hlineColorParse[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
@@ -64,11 +64,11 @@
               class="flex"
             >
               <span
-                class="legende_dash_line"
+                class="legend_dash_line"
                 :style="{ 'background-color': vlineColorParse[index] }"
               />
               <span
-                class="legende_dash_line legende_dash_line_end"
+                class="legend_dash_line legend_dash_line_end"
                 :style="{ 'background-color': vlineColorParse[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">

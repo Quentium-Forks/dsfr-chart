@@ -52,7 +52,7 @@
               class="flex fr-mt-3v fr-mb-1v"
             >
               <span
-                class="legende_dot"
+                class="legend_dot"
                 :style="{ 'background-color': legendColors[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">

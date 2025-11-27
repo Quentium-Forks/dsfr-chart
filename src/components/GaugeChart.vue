@@ -45,7 +45,7 @@
             v-if="legend"
             class="flex"
           >
-            <span class="legende_dot target_legend" />
+            <span class="legend_dot target_legend" />
             <p class="fr-text--sm fr-text--bold fr-ml-2v fr-mb-0">
               Valeur cible
             </p>
@@ -54,7 +54,7 @@
             v-if="legend"
             class="flex fr-mt-3v fr-mb-1v"
           >
-            <span class="legende_dot actual_legend" />
+            <span class="legend_dot actual_legend" />
             <p class="fr-text--sm fr-text--bold fr-ml-2v fr-mb-0">
               Valeur actuelle
             </p>
