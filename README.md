@@ -985,6 +985,8 @@ Voici la liste des props disponibles pour le composant `DataBox` :
 
 ### Optionnelles
 
+- **value** `(Number | String)` (défaut : '') : valeur de la tooltip si chiffre clé
+- **description** `(String)` (défaut : '') : description de la tooltip
 - **tooltip-title** `(String)` (défaut : '') : titre de la tooltip
 - **tooltip-content** `(String)` (défaut : '') : contenu de la tooltip
 - **modal-title** `(String)` (défaut : '') : titre de la modale
