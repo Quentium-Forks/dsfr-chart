@@ -72,6 +72,7 @@
         >
           <div class="fr-nav__item fr-nav__item--align-right">
             <button
+              type="button"
               class="fr-btn fr-btn--sm fr-icon-more-line fr-btn--tertiary-no-outline fr-ratio-1x1"
               :aria-controls="'translate-' + id"
               aria-expanded="false"
@@ -84,6 +85,7 @@
               <ul class="fr-menu__list">
                 <li v-if="screenshot">
                   <button
+                    type="button"
                     class="fr-translate__language fr-nav__link"
                     title="Prendre une capture d'écran"
                     @click="screenshotChart()"
@@ -93,6 +95,7 @@
                 </li>
                 <li v-if="download">
                   <button
+                    type="button"
                     class="fr-translate__language fr-nav__link"
                     title="Télécharger les données en CSV"
                     @click="downloadCSV()"
@@ -495,11 +498,12 @@ const downloadCSV = () => {
     return;
   }
 
+  const filename = props.title.replace(/[\/|\\:*?"<>]/g, " ").trim();
   const blob = new Blob(csv, { type: 'text/csv' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `data-${props.id}-${currentSource.value}.csv`;
+  a.download = (filename ?? `data-${props.id}-${currentSource.value}`) + '.csv';
   a.style.display = 'none';
   a.click();
   window.URL.revokeObjectURL(url);
