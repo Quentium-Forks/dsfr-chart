@@ -342,23 +342,8 @@ export default {
         }
       }
 
-      let dataLine = [];
-      let dataBar = [];
-      // Cas où x est numérique
-      if (typeof this.xparse[0] === 'number') {
-        const xsort = this.xparse.map((a) => a).sort((a, b) => a - b);
-        xsort.forEach((k) => {
-          const index = this.xparse.findIndex((element) => element === k);
-          dataBar.push(this.ybarparse[index]);
-          dataLine.push(this.ylineparse[index]);
-        });
-        this.labels = xsort;
-      } else {
-        // Cas où x est non numérique
-        dataBar = this.ybarparse;
-        dataLine = this.ylineparse;
-        this.labels = this.xparse;
-      }
+      // Assignation des labels
+      this.labels = this.xparse;
 
       // Chargement des couleurs
       this.loadColors();
@@ -366,7 +351,7 @@ export default {
       // Préparation des datasets
       this.datasets = [
         {
-          data: dataBar,
+          data: this.ybarparse,
           type: 'bar',
           borderColor: this.colorBarParse,
           backgroundColor: this.colorBarParse,
@@ -379,7 +364,7 @@ export default {
           barPercentage: 0.5,
         },
         {
-          data: dataLine,
+          data: this.ylineparse,
           type: 'line',
           borderColor: this.colorParse,
           backgroundColor: 'rgba(0, 0, 0, 0)',
@@ -549,13 +534,7 @@ export default {
               displayColors: false,
               backgroundColor: '#6b6b6b',
               callbacks: {
-                label: (tooltipItems) => {
-                  const label = [];
-                  this.datasets.forEach((set) => {
-                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
-                  });
-                  return label;
-                },
+                label: (tooltipItems) => this.datasets.map((set) => this.formatNumber(set.data[tooltipItems.dataIndex])),
                 title: (tooltipItems) => tooltipItems[0].label,
                 labelTextColor: () => this.colorParse,
               },

@@ -191,7 +191,6 @@ export default {
       chartId: '',
       display: '',
       datasets: [],
-      xAxisType: 'category',
       labels: [],
       xparse: [],
       yparse: [],
@@ -246,7 +245,6 @@ export default {
         this.chart.destroy();
       }
       this.datasets = [];
-      this.xAxisType = 'category';
       this.labels = [];
       this.xparse = [];
       this.yparse = [];
@@ -331,40 +329,15 @@ export default {
         }
       }
 
-      // Formatage des données
-      let data = [];
-      // Cas où x est numérique
-      if (typeof this.xparse[0][0] === 'number') {
-        const allX = [];
-        this.xparse.forEach((x, i) => {
-          const dj = [];
-          const xsort = x.map((a) => a).sort((a, b) => a - b);
-          xsort.forEach((k) => {
-            const index = x.findIndex((element) => element === k);
-            dj.push({
-              x: k,
-              y: this.yparse[i][index],
-            });
-            if (!allX.includes(k)) {
-              allX.push(k);
-            }
-          });
-          data.push(dj);
-        });
-        this.labels = [];
-        this.xAxisType = 'linear';
-      } else {
-        // Cas où x est non numérique
-        data = this.yparse;
-        this.labels = this.xparse[0];
-        this.xAxisType = 'category';
-      }
+      // Assignation des labels
+      this.labels = this.xparse[0];
 
       // Chargement des couleurs
       this.loadColors();
 
       // Préparation des datasets
-      this.datasets = data.map((dataSet, index) => ({
+      this.datasets = this.yparse.map((dataSet, index) => ({
+        label: this.nameParse[index],
         data: dataSet,
         fill: false,
         borderColor: this.colorParse[index],
@@ -432,7 +405,7 @@ export default {
           scales: {
             x: {
               offset: true,
-              type: this.xAxisType,
+              type: 'linear',
               grid: {
                 drawOnChartArea: false,
               },
@@ -477,13 +450,7 @@ export default {
               displayColors: false,
               backgroundColor: '#6b6b6b',
               callbacks: {
-                label: (tooltipItems) => {
-                  const label = [];
-                  this.datasets.forEach((set) => {
-                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex].y));
-                  });
-                  return label;
-                },
+                label: (tooltipItems) => this.datasets.map((set) => this.formatNumber(set.data[tooltipItems.dataIndex])),
                 title: (tooltipItems) => tooltipItems[0].parsed.x,
                 labelTextColor: () => this.colorParse,
               },

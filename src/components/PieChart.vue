@@ -292,13 +292,7 @@ export default {
               displayColors: false,
               backgroundColor: '#6b6b6b',
               callbacks: {
-                label: (tooltipItems) => {
-                  const label = [];
-                  this.datasets.forEach((set) => {
-                    label.push(this.formatNumber(set.data[tooltipItems.dataIndex]));
-                  });
-                  return label;
-                },
+                label: (tooltipItems) => this.datasets.map((set) => this.formatNumber(set.data[tooltipItems.dataIndex])),
                 title: (tooltipItems) => tooltipItems[0].label,
                 labelTextColor: () => this.colorParse,
               },
