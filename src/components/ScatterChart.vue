@@ -411,6 +411,8 @@ export default {
               },
               ticks: {
                 padding: 10,
+                // Ticks were formatted as numerical values, we prefer original value
+                callback: (value) => value,
               },
               ...(this.xMin ? { suggestedMin: this.xMin } : {}),
               ...(this.xMax ? { suggestedMax: this.xMax } : {}),
