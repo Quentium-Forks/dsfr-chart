@@ -55,7 +55,7 @@ export const chartExamples = [
       { component: MapChart, noPalette: true, heading: 'Niveau régional', props: chartData.mapChart.regions },
       { component: MapChart, noPalette: true, heading: 'Niveau académique', props: chartData.mapChart.academies },
       { component: MapChartReg, noPalette: true, heading: 'Niveau départemental isolé par la région', props: chartData.mapChartReg.region },
-      { component: MapChart, noPalette: true, heading: 'Niveau mondial', props: chartData.mapChart.world },
+      { component: MapChart, noPalette: true, heading: 'Niveau mondial', props: chartData.mapChart.monde },
     ],
   },
   // Nuage de points

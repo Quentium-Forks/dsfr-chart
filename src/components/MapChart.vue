@@ -311,7 +311,7 @@ export default {
     this.isDep = this.level === 'dep';
     this.isReg = this.level === 'reg';
     this.isAca = this.level === 'aca';
-    this.isWorld = this.level === 'world';
+    this.isWorld = this.level === 'monde';
   },
   mounted() {
     this.createChart();
