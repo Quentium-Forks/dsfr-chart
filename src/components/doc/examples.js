@@ -64,7 +64,7 @@ export const chartExamples = [
     desc: 'Le nuage de points est largement utilisée pour présenter plusieurs séries de données. C’est une représentation graphique qui est particulièrement utile lorsque les valeurs des données sur l’axe Y dépendent des valeurs d’un autre axe X.',
     graphs: [
       { component: ScatterChart, heading: 'Nuage de points simple', title: 'Évolution du taux moyen d’émissions de CO₂ en France', desc: 'Véhicules particuliers neufs vendus en France. Ademe, 04/11/2024', props: chartData.scatterChart.default },
-      { component: ScatterChart, heading: 'Nuage de points reliés', title: 'Carrières complètes selon le sexe et la génération en 2016', desc: 'Retraités ayant perçu un droit direct au cours de l’année, résidant en France, vivants au 31 décembre 2016 ; tous régimes confondus. Insee, 09/09/2011', props: chartData.scatterChart.linked },
+      { component: ScatterChart, heading: 'Nuage de points reliés', title: 'Carrières complètes selon le sexe et la génération en 2020', desc: 'Retraités ayant perçu un droit direct au cours de l’année, résidant en France, vivants au 31 décembre 2020 ; tous régimes confondus. Insee, 09/12/2024', props: chartData.scatterChart.linked },
     ],
   },
   // Diagramme en étoile
