@@ -41,41 +41,43 @@
                 {{ capitalize(nameLine) }}
               </p>
             </div>
-            <div
-              v-for="(item, index) in hlineNameParse"
-              :key="index"
-              class="flex"
-            >
-              <span
-                class="legend_dash_line"
-                :style="{ 'background-color': hlineColorParse[index] }"
-              />
-              <span
-                class="legend_dash_line legend_dash_line_end"
-                :style="{ 'background-color': hlineColorParse[index] }"
-              />
-              <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-                {{ capitalize(item) }}
-              </p>
-            </div>
-            <div
-              v-for="(item, index) in vlineNameParse"
-              :key="index"
-              class="flex"
-            >
-              <span
-                class="legend_dash_line"
-                :style="{ 'background-color': vlineColorParse[index] }"
-              />
-              <span
-                class="legend_dash_line legend_dash_line_end"
-                :style="{ 'background-color': vlineColorParse[index] }"
-              />
-              <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
-                {{ capitalize(item) }}
-              </p>
-            </div>
           </div>
+
+          <div
+            v-for="(item, index) in hlineNameParse"
+            :key="index"
+            class="flex"
+          >
+            <span
+              class="legend_dash_line"
+              :style="{ 'background-color': hlineColorParse[index] }"
+            />
+            <span
+              class="legend_dash_line legend_dash_line_end"
+              :style="{ 'background-color': hlineColorParse[index] }"
+            />
+            <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
+              {{ capitalize(item) }}
+            </p>
+          </div>
+          <div
+            v-for="(item, index) in vlineNameParse"
+            :key="index"
+            class="flex"
+          >
+            <span
+              class="legend_dash_line"
+              :style="{ 'background-color': vlineColorParse[index] }"
+            />
+            <span
+              class="legend_dash_line legend_dash_line_end"
+              :style="{ 'background-color': vlineColorParse[index] }"
+            />
+            <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
+              {{ capitalize(item) }}
+            </p>
+          </div>
+
           <div
             v-if="date"
             class="flex fr-mt-1w"
@@ -415,6 +417,40 @@ export default {
         },
         plugins: [
           {
+            afterDatasetDraw: (chart) => {
+              if (this.vlineParse) {
+                this.vlineParse.forEach((line, i) => {
+                  const { ctx } = chart;
+                  const x = chart.scales.x.getPixelForValue(line);
+
+                  ctx.save();
+                  ctx.beginPath();
+                  ctx.moveTo(x, chart.scales.y.bottom);
+                  ctx.strokeStyle = this.vlineColorParse[i];
+                  ctx.lineWidth = 3;
+                  ctx.setLineDash([10, 5]);
+                  ctx.lineTo(x, chart.scales.y.top);
+                  ctx.stroke();
+                  ctx.restore();
+                });
+              }
+              if (this.hlineParse) {
+                this.hlineParse.forEach((line, i) => {
+                  const { ctx } = chart;
+                  const y = chart.scales.y.getPixelForValue(line);
+
+                  ctx.save();
+                  ctx.beginPath();
+                  ctx.moveTo(chart.scales.x.left, y);
+                  ctx.strokeStyle = this.hlineColorParse[i];
+                  ctx.lineWidth = 3;
+                  ctx.setLineDash([10, 5]);
+                  ctx.lineTo(chart.scales.x.right, y);
+                  ctx.stroke();
+                  ctx.restore();
+                });
+              }
+            },
             afterDraw: (chart) => {
               if (chart.tooltip?._active && chart.tooltip?._active.length) {
                 const { ctx } = chart;

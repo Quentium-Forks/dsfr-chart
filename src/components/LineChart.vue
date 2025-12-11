@@ -37,6 +37,7 @@
               </p>
             </div>
           </div>
+
           <div
             v-for="(item, index) in hlineNameParse"
             :key="index"
@@ -71,6 +72,7 @@
               {{ capitalize(item) }}
             </p>
           </div>
+
           <div
             v-if="date"
             class="flex fr-mt-1w"
