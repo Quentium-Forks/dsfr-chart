@@ -557,16 +557,18 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 - **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département ou de région, associe la valeur de l’indicateur dans cette zone géographique.
 
+### Optionnels :
+
 - **value** : _(String | Number)_ La valeur de l'indicateur à l'échelle nationale. Cette valeur sera affichée dans la barre latérale.
 
 - **name** : _(String)_ Nom de l'indicateur.
-
-### Optionnels :
 
 - **level** : _(String)_ Choix du niveau de zoom. Les valeurs possibles sont :
 
     - `'dep'` : Carte avec découpage par départements (par défaut).
     - `'reg'` : Carte avec découpage par régions.
+    - `'aca'` : Carte avec découpage par académies.
+    - `'monde'` : Carte avec découpage par pays du monde.
 
 - **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour la carte. Les valeurs possibles sont :
 
@@ -597,7 +599,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
     "40": 78, "41": 92, "42": 9, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72,
     "48": 61, "49": 27, "50": 47, "51": 41, "52": 44, "53": 29, "54": 22, "55": 4,
     "56": 57, "57": 96, "58": 46, "59": 33, "60": 0, "61": 15, "62": 60, "63": 100,
-    "64": 98, "65": 77, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 93,
+    "64": 98, "65": 77, "66": 51, "67": 67, "68": 19, "69": 44, "70": 92, "71": 93,
     "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72,
     "80": 52, "81": 48, "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64,
     "88": 78, "89": 72, "90": 85, "91": 87, "92": 46, "93": 89, "94": 18, "95": 56,
@@ -655,21 +657,52 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 ---
 
-### 4. Carte régionale détaillée (MapChartReg)
+### 4. Carte avec découpage par pays du monde
+
+## Exemple :
+
+```html
+<map-chart
+  data='{
+    "AE": 35, "AF": 65, "AL": 28, "AM": 9, "AO": 21, "AR": 71, "AT": 79, "AU": 17, "AZ": 76,
+    "BA": 38, "BD": 51, "BE": 83, "BF": 62, "BG": 67, "BI": 61, "BJ": 68, "BN": 56, "BO": 8,
+    "BR": 32, "BS": 2, "BT": 98, "BW": 33, "BY": 88, "BZ": 24, "CA": 96, "CD": 54, "CF": 33,
+    "CG": 57, "CH": 60, "CI": 33, "CL": 41, "CM": 61, "CN": 6, "CO": 59, "CR": 71, "CU": 23,
+    "CY": 52, "CZ": 73, "DE": 85, "DJ": 40, "DK": 3, "DO": 65, "DZ": 58, "EC": 35, "EE": 19,
+    "EG": 88, "EH": 60, "ER": 4, "ES": 84, "ET": 49, "FI": 9, "FJ": 12, "FK": 81, "FR": 100,
+    "GA": 16, "GB": 51, "GD": 2, "GE": 76, "GF": 68, "GH": 28, "GM": 97, "GN": 97, "GQ": 91,
+    "GR": 87, "GT": 5, "GW": 12, "GY": 38, "HN": 41, "HR": 71, "HT": 61, "HU": 87, "ID": 72,
+    "IE": 38, "IL": 82, "IN": 30, "IQ": 32, "IR": 4, "IS": 81, "IT": 60, "JM": 81, "JO": 56,
+    "JP": 17, "KE": 63, "KG": 93, "KH": 15, "KP": 19, "KR": 10, "KW": 44, "KZ": 8, "LA": 95,
+    "LB": 82, "LK": 35, "LR": 1, "LS": 77, "LT": 6, "LU": 17, "LV": 46, "LY": 27, "MA": 29,
+    "MD": 55, "ME": 12, "MG": 22, "MK": 63, "ML": 72, "MM": 2, "MN": 25, "MR": 2, "MW": 60,
+    "MX": 35, "MY": 42, "MZ": 7, "NA": 98, "NC": 84, "NE": 97, "NG": 94, "NI": 5, "NL": 87,
+    "NO": 46, "NP": 85, "NZ": 56, "OM": 90, "PA": 11, "PE": 93, "PG": 50, "PH": 20, "PK": 0,
+    "PL": 51, "PR": 57, "PS": 55, "PT": 23, "PY": 50, "QA": 67, "RO": 70, "RS": 24, "RU": 9,
+    "RW": 91, "SA": 50, "SB": 5, "SD": 96, "SE": 33, "SI": 80, "SJ": 54, "SK": 59, "SL": 71,
+    "SN": 57, "SO": 9, "SR": 94, "SS": 98, "SV": 40, "SY": 37, "SZ": 65, "TD": 88, "TF": 23,
+    "TG": 78, "TH": 65, "TJ": 44, "TL": 53, "TM": 41, "TN": 32, "TR": 8, "TT": 63, "TW": 9,
+    "TZ": 66, "UA": 82, "UG": 90, "US": 72, "UY": 64, "UZ": 25, "VE": 48, "VN": 9, "VU": 29,
+    "XK": 73, "YE": 84, "ZA": 32, "ZM": 46, "ZW": 56
+  }'
+  value="10"
+  name="Nom de l'indicateur"
+  level="monde"
+  date="11/02/2025"
+></map-chart>
+```
+
+---
+
+### 5. Carte régionale détaillée (MapChartReg)
 
 Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`.
 
 #### Paramètres spécifiques :
 
-- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département.
-
-- **value** : _(String | Number)_ La valeur de l'indicateur à l'échelle régionale. Cette valeur sera affichée dans la barre latérale.
-
-- **name** : _(String)_ Nom de l'indicateur.
+- **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département au sein d'une région spécifique.
 
 - **region** : _(String)_ Code de la région à afficher.
-
-- **selected-palette** : _(String)_ Palette de couleurs utilisée pour la carte (identique à MapChart).
 
 ## Exemple :
 
@@ -683,8 +716,8 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
     "32": 0, "33": 86, "34": 19, "35": 13, "36": 32, "37": 59, "38": 82, "39": 13,
     "40": 78, "41": 92, "42": 9, "43": 22, "44": 70, "45": 85, "46": 58, "47": 72,
     "48": 61, "49": 27, "50": 47, "51": 41, "52": 44, "53": 29, "54": 22, "55": 4,
-    "56": 57, "57": 96, "58": 46, "59": 33, "60": 0, "61": 15, "62": 60, "63": 100,
-    "64": 98, "65": 77, "66": 51, "67": 56, "68": 19, "69": 44, "70": 92, "71": 93,
+    "56": 35, "57": 96, "58": 46, "59": 33, "60": 0, "61": 15, "62": 60, "63": 100,
+    "64": 98, "65": 77, "66": 51, "67": 67, "68": 19, "69": 44, "70": 92, "71": 93,
     "72": 51, "73": 32, "74": 19, "75": 96, "76": 91, "77": 21, "78": 48, "79": 72,
     "80": 52, "81": 48, "82": 57, "83": 38, "84": 23, "85": 46, "86": 37, "87": 64,
     "88": 78, "89": 72, "90": 85, "91": 87, "92": 46, "93": 89, "94": 18, "95": 56,
@@ -703,7 +736,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 - **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
 
-- **level** : Par défaut, la carte affiche le découpage par départements (`"dep"`). En spécifiant `"reg"`, vous pouvez afficher la carte avec le découpage par régions. Vous pouvez également utiliser `"aca"` pour afficher la carte avec le découpage par académies.
+- **level** : Par défaut, la carte affiche le découpage par départements (`"dep"`). En spécifiant `"reg"`, vous pouvez afficher la carte avec le découpage par régions. Vous pouvez également utiliser `"aca"` pour afficher la carte avec le découpage par académies.= ou `"monde"` pour une carte mondiale.
 
 ---
 
@@ -713,6 +746,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
   - Départements : Les clés du dictionnaire `data` doivent correspondre aux codes des départements au format ISO 3166-2 (par exemple, `"75"` pour Paris, `"67"` pour le Bas-Rhin).
   - Régions : Les clés du dictionnaire `data` doivent correspondre aux codes des régions au format ISO 3166-2 (par exemple, `"IDF"` pour l'Île-de-France, `"GES"` pour le Grand Est).
   - Académies : Les clés du dictionnaire `data` doivent correspondre aux codes des académies (par exemple, `"PARIS"` pour l'académie de Paris, `"STRASBOURG"` pour l'académie de Strasbourg).
+  - Pays du monde : Les clés du dictionnaire `data` doivent correspondre aux codes des pays au format ISO 3166-1 alpha-2 (par exemple, `"FR"` pour la France, `"US"` pour les États-Unis).
 
 - **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser votre carte.
 
@@ -720,14 +754,14 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 ## Résumé des paramètres de MapChart
 
-| **paramètre**    | **type**                       | **obligatoire** | **description**                                                                                  |
-|------------------|--------------------------------|-----------------|--------------------------------------------------------------------------------------------------|
-| data             | String                         | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur                    |
-| value            | String ou Number               | oui             | Valeur de l'indicateur à l'échelle nationale                                                     |
-| name             | String                         | oui             | Nom de l'indicateur                                                                              |
-| level            | String ('dep', 'reg' ou 'aca') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions et 'aca' pour académies) |
-| date             | String                         | non             | Date de référence de l'indicateur                                                                |
-| selected-palette | String                         | non             | Palette de couleurs utilisée pour la carte                                                       |
+| **paramètre**    | **type**                                | **obligatoire** | **description**                                                                                  |
+|------------------|-----------------------------------------|-----------------|--------------------------------------------------------------------------------------------------|
+| data             | String                                  | oui             | dictionnaire associant les codes des départements aux valeurs de l'indicateur                    |
+| value            | String ou Number                        | oui             | Valeur de l'indicateur à l'échelle nationale                                                     |
+| name             | String                                  | oui             | Nom de l'indicateur                                                                              |
+| level            | String ('dep', 'reg', 'aca' ou 'monde') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions et 'aca' pour académies) |
+| date             | String                                  | non             | Date de référence de l'indicateur                                                                |
+| selected-palette | String                                  | non             | Palette de couleurs utilisée pour la carte                                                       |
 
 ## Résumé des paramètres de MapChartReg
 
@@ -950,25 +984,27 @@ Le composant `DataBox` est un composant permettant d’afficher dans un cadre no
 
 Polyvalente, la databox intègre également des fonctionnalités interactives telles que des sélecteurs de sources, des modales, et des menus déroulants permettant la mise à disposition d’actions supplémentaires.
 
-## Utilisation de base
+## Utilisation classique avec toutes les options :
 
 ```html
 <data-box
-    id="abc"
-    name="Emplois en France de 1926 à 1950"
-    tooltip-title="Emplois en France"
-    tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
-    modal-title="Titre de la modale"
-    modal-content="Contenu de la modale"
-    source="INSEE, Pôle Emploi, Autre source"
-    date="2021-01-01"
-    default-source="pole-emploi"
-    trend="5%"
-    segmented-control="true"
-    screenshot="true"
-    download="true"
-    fullscreen="true"
-    actions='["Source officielle", "Pôle emploi"]'>
+  id="abc"
+  name="Emplois en France de 1926 à 1950"
+  heading-level="h3"
+  description="Description du graphique <b>avec du HTML</b>"
+  tooltip-title="Emplois en France"
+  tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
+  modal-title="Titre de la modale"
+  modal-content="Contenu de la modale"
+  source="INSEE, Pôle Emploi, Autre source"
+  date="2021-01-01"
+  default-source="pole-emploi"
+  trend="5%"
+  segmented-control="true"
+  fullscreen="true"
+  screenshot="true"
+  download="true"
+  actions='["Source officielle", "Pôle emploi"]'>
 </data-box>
 ```
 
@@ -986,7 +1022,8 @@ Voici la liste des props disponibles pour le composant `DataBox` :
 ### Optionnelles
 
 - **value** `(Number | String)` (défaut : '') : valeur de la tooltip si chiffre clé
-- **description** `(String)` (défaut : '') : description de la tooltip
+- **heading-level** `(String)` (défaut : 'h3') : niveau du titre de la DataBox (h1, h2, h3, h4, h5, h6)
+- **description** `(String)` (défaut : '') : description de la tooltip (HTML possible)
 - **tooltip-title** `(String)` (défaut : '') : titre de la tooltip
 - **tooltip-content** `(String)` (défaut : '') : contenu de la tooltip
 - **modal-title** `(String)` (défaut : '') : titre de la modale
@@ -1013,6 +1050,8 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
 <data-box
   id="abc"
   name="Emplois en France de 1926 à 1950"
+  heading-level="h3"
+  description="Description du graphique <b>avec du HTML</b>"
   tooltip-title="Emplois en France"
   tooltip-content="Nombre d'emplois en France de 1926 à 1950, par genre. Se base sur les données de l'INSEE et de Pôle Emploi et d'une autre source."
   modal-title="Titre de la modale"
@@ -1022,9 +1061,9 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
   default-source="pole-emploi"
   trend="5%"
   segmented-control="true"
+  fullscreen="true"
   screenshot="true"
   download="true"
-  fullscreen="true"
   actions='["Source officielle", "Pôle emploi"]'>
 </data-box>
 
@@ -1032,8 +1071,8 @@ Pour y intégrer un graphique, il faut juxtaposer la balise d'un graphique en sp
   databox-id="abc"
   databox-type="chart"
   databox-source="pole-emploi"
-  x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950]]"
-  y="[[48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60], [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73], [55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67]]"
+  x="[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950, 1952], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950, 1952], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950, 1952]]"
+  y="[[35, 35, 37, 37, 39, 41, 43, 48, 51, 52, 54, 55, 55, 58], [76, 83, 82, 80, 81, 80, 81, 80, 81, 80, 79, 75, 72, 72], [54, 56, 58, 57, 59, 60, 62, 64, 66, 66, 66, 65, 64, 65]]"
   name='["Femmes", "Hommes", "Ensemble"]'
   unit-tooltip="%"
   show-line="true">
