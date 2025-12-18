@@ -189,6 +189,7 @@ export default {
       display: '',
       datasets: [],
       labels: [],
+      xAxisType: '',
       xparse: [],
       yparse: [],
       nameParse: [],
@@ -244,6 +245,7 @@ export default {
       this.display = '';
       this.datasets = [];
       this.labels = [];
+      this.xAxisType = '';
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
@@ -329,6 +331,9 @@ export default {
 
       // Assignation des labels
       this.labels = this.xparse[0];
+
+      // Détection du type d'axe X
+      this.xAxisType = parseFloat(this.labels[0]) == this.labels[0] ? 'linear' : 'category';
 
       // Chargement des couleurs
       this.loadColors();
@@ -497,14 +502,14 @@ export default {
           scales: {
             x: {
               offset: true,
-              type: 'linear',
+              type: this.xAxisType,
               grid: {
                 drawOnChartArea: false,
               },
               ticks: {
                 padding: 10,
                 // Ticks were formatted as numerical values, we prefer original value
-                callback: (value) => value,
+                callback: (value) => this.xAxisType === 'category' ? this.labels[value] : value
               },
               ...(this.xMin ? { suggestedMin: this.xMin } : {}),
               ...(this.xMax ? { suggestedMax: this.xMax } : {}),
@@ -545,7 +550,7 @@ export default {
               backgroundColor: '#6b6b6b',
               callbacks: {
                 label: (tooltipItems) => this.datasets.map((set) => this.formatNumber(set.data[tooltipItems.dataIndex])),
-                title: (tooltipItems) => tooltipItems[0].parsed.x,
+                title: (tooltipItems) => tooltipItems[0].label,
                 labelTextColor: () => this.colorParse,
               },
               external: (context) => {
