@@ -177,6 +177,7 @@ export default {
     return {
       widgetId: '',
       chartId: '',
+      display: '',
       selectedIndex: -1,
       datasets: [],
       labels: [],
@@ -230,6 +231,7 @@ export default {
       if (this.chart) {
         this.chart.destroy();
       }
+      this.display = '';
       this.datasets = [];
       this.labels = [];
       this.xparse = [];

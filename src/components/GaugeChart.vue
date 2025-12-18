@@ -132,6 +132,7 @@ export default {
   data() {
     return {
       widgetId: '',
+      display: '',
       percentage: 0,
       styleRectangleOver: '',
       styleRectangleUnder: '',
