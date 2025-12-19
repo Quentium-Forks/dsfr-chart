@@ -287,7 +287,7 @@ export default {
         const className = `FR-${key}`;
         const elCol = parentWidget.getElementsByClassName(className);
 
-        elCol.length !== 0 && elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
+        elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
         this.MapProps.displayPath[className] = 'none';
       }
       // Iterate over each department in the region and set colors
@@ -298,7 +298,9 @@ export default {
         if (!this.zoomDep) {
           if (listDep.includes(key)) {
             const polygon = elCol[0].getBBox();
-            elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
+            elCol[0].setAttribute('stroke-width', '0.2%');
             this.MapProps.displayPath[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
@@ -307,7 +309,11 @@ export default {
           }
         } else if (this.zoomDep === key) {
           const polygon = elCol[0].getBBox();
-          elCol.length !== 0 && elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+          elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+          elCol[0].setAttribute('stroke', '#EFB900');
+          elCol[0].setAttribute('stroke-width', 2);
+          // Teleport to end of SVG to be on top for stroke
+          elCol[0].parentNode.appendChild(elCol[0]);
           this.MapProps.displayPath[className] = '';
           xmin.push(polygon.x);
           ymin.push(polygon.y);
@@ -315,7 +321,9 @@ export default {
           ymax.push(polygon.y + polygon.height);
         } else if (listDep.includes(key)) {
           const polygon = elCol[0].getBBox();
-          elCol.length !== 0 && elCol[0].setAttribute('fill', `${this.colorLeft}B3`);
+          elCol[0].setAttribute('fill', colorScale(this.dataParse[key]).replace(')', ', 0.6)').replace('rgb', 'rgba'));
+          elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
+          elCol[0].setAttribute('stroke-width', '0.2%');
           this.MapProps.displayPath[className] = '';
           xmin.push(polygon.x);
           ymin.push(polygon.y);

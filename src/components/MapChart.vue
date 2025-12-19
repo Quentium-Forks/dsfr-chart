@@ -411,6 +411,8 @@ export default {
 
         if (!this.zoomDep) {
           elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
+          elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
+          elCol[0].setAttribute('stroke-width', '0.2%');
           this.MapProps.displayPath[className] = '';
         } else {
           const path = document.querySelector(`.${className}`);
