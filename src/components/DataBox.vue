@@ -223,9 +223,32 @@
 
     <!-- Footer -->
     <div class="fr-p-2w databox_footer">
-      <p class="fr-text--xs fr-mb-0">
-        {{ source }}, {{ date }}
-      </p>
+      <div>
+        <p class="fr-text--xs fr-mb-0">
+          {{ source }}, {{ date }}
+        </p>
+
+        <p
+          v-if="textIa"
+          class="fr-text--xs fr-mb-0"
+        >
+          <span
+            class="fr-icon-sparkling-2-line fr-icon--sm"
+            aria-disabled="true"
+          />
+          <a
+            v-if="linkIa"
+            :href="linkIa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ textIa }}
+          </a>
+          <span v-else>
+            {{ textIa }}
+          </span>
+        </p>
+      </div>
 
       <fieldset
         v-if="segmentedControl && chartSources.length > 0"
@@ -377,6 +400,15 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  linkIa: {
+    type: String,
+    default: '',
+    validator: (value) => value === '' || /^https?:\/\//.test(value),
+  },
+  textIa: {
+    type: String,
+    default: '',
+  },
   defaultSource: {
     type: String,
     default: null,
@@ -498,7 +530,7 @@ const downloadCSV = () => {
     return;
   }
 
-  const filename = props.title.replace(/[\/|\\:*?"<>]/g, " ").trim();
+  const filename = props.title.replace(/[/|\\:*?"<>]/g, ' ').trim();
   const blob = new Blob(csv, { type: 'text/csv' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
