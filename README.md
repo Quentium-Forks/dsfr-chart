@@ -998,6 +998,8 @@ Polyvalente, la databox intègre également des fonctionnalités interactives te
   modal-content="Contenu de la modale"
   source="INSEE, Pôle Emploi, Autre source"
   date="2021-01-01"
+  text-ia="Données générées par Intelligence Artificielle (IA)"
+  link-ia="https://www.info.gouv.fr/actualite/lintelligence-artificielle"
   default-source="pole-emploi"
   trend="5%"
   segmented-control="true"
@@ -1028,6 +1030,8 @@ Voici la liste des props disponibles pour le composant `DataBox` :
 - **tooltip-content** `(String)` (défaut : '') : contenu de la tooltip
 - **modal-title** `(String)` (défaut : '') : titre de la modale
 - **modal-content** `(String)` (défaut : '') : contenu de la modale
+- **text-ia** `(String)` (défaut : '') : texte indiquant que les données ont été générées par une IA
+- **link-ia** `(String)` (défaut : '') : lien vers une page d'information sur l'IA ou la source des données générées par l'IA
 - **default-source** `(String)` (défaut : null) : source à afficher par défaut
 - **trend** `(String)` (défaut : null) : tendance de l'évolution des données
 - **segmented-control** `(Boolean)` (défaut : true) : afficher le système de vue graphique/tableau
