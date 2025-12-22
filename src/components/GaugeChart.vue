@@ -94,11 +94,11 @@ export default {
     },
     value: {
       type: [Number, String],
-      default: '',
+      default: 0,
     },
     percent: {
       type: [Number, String],
-      default: '',
+      default: null,
     },
     init: {
       type: [Number, String],
@@ -165,8 +165,8 @@ export default {
   },
   methods: {
     createChart() {
-      if (!this.percent) {
-        this.percentage = Math.round((100 * (this.value - this.init)) / (this.target - this.init));
+      if (this.percent === null) {
+        this.percentage = Math.round((100 * (Number(this.value) - Number(this.init))) / (this.target - this.init));
       } else {
         this.percentage = Math.round(this.percent);
       }
