@@ -306,6 +306,7 @@ export default {
         if (!this.zoomDep) {
           if (listDep.includes(key)) {
             const polygon = elCol[0].getBBox();
+            // Reset the fill and stroke for all paths
             elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
             elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
             elCol[0].setAttribute('stroke-width', '0.2%');
@@ -317,6 +318,7 @@ export default {
           }
         } else if (this.zoomDep === key) {
           const polygon = elCol[0].getBBox();
+          // Highlight the selected path with a stroke
           elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
           elCol[0].setAttribute('stroke', '#EFB900');
           elCol[0].setAttribute('stroke-width', 2);

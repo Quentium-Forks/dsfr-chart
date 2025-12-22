@@ -410,17 +410,13 @@ export default {
         }
 
         if (!this.zoomDep) {
+          // Reset the fill and stroke for all paths
           elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
           elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
           elCol[0].setAttribute('stroke-width', '0.2%');
           this.MapProps.displayPath[className] = '';
         } else {
-          const path = parentWidget.getElementsByClassName(className);
-          // Ignore paths that are not found in the map component
-          if (!path) {
-            continue;
-          }
-          const polygon = path.getBBox();
+          const polygon = elCol[0].getBBox();
 
           const zoomDepValues = this.zoomDep.split(' ');
 
@@ -430,7 +426,7 @@ export default {
             }
 
             if (zoomDep === key) {
-              // Highlight the selected path
+              // Highlight the selected path with a stroke
               elCol[0].setAttribute('fill', colorScale(this.dataParse[zoomDep]));
               elCol[0].setAttribute('stroke', '#EFB900');
               elCol[0].setAttribute('stroke-width', 2);
