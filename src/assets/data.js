@@ -190,7 +190,7 @@ export const chartData = {
       level: 'aca',
       date: '11/02/2025',
     },
-    monde: {
+    world: {
       data: `{"AE": 35, "AF": 65, "AL": 28, "AM": 9, "AO": 21, "AR": 71, "AT": 79, "AU": 17, "AZ": 76,
               "BA": 38, "BD": 51, "BE": 83, "BF": 62, "BG": 67, "BI": 61, "BJ": 68, "BN": 56, "BO": 8,
               "BR": 32, "BS": 2, "BT": 98, "BW": 33, "BY": 88, "BZ": 24, "CA": 96, "CD": 54, "CF": 33,
