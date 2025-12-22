@@ -350,7 +350,7 @@ export default {
 
       this.MapProps.displayPath = {};
 
-      // Remplir la carte avec les départements/régions/académies/pays
+      // Préparation des valeurs de la carte avec les départements/régions/académies/pays
       if (this.zoomDep) {
         const zoomDepValues = this.zoomDep.split(' ');
 
@@ -415,7 +415,7 @@ export default {
           elCol[0].setAttribute('stroke-width', '0.2%');
           this.MapProps.displayPath[className] = '';
         } else {
-          const path = document.querySelector(`.${className}`);
+          const path = parentWidget.getElementsByClassName(className);
           // Ignore paths that are not found in the map component
           if (!path) {
             continue;

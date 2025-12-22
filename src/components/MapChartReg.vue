@@ -252,6 +252,7 @@ export default {
 
       const palette = this.choosePalette();
 
+      // Choisir les couleurs extrêmes basées sur la palette
       this.colorLeft = palette[0];
       this.colorRight = palette[palette.length - 1];
       this.InfoProps.colorMin = this.colorLeft;
@@ -266,9 +267,11 @@ export default {
 
       // Afficher uniquement les départements de la région sélectionnée
       listDep = this.getDepsFromReg(this.region);
-      listDep.forEach((key) => {
-        values.push(this.dataParse[key]);
-      });
+      for (const key of listDep) {
+        if (this.dataParse[key] !== undefined) {
+          values.push(this.dataParse[key]);
+        }
+      }
 
       // Calcul des min et max pour l'échelle
       this.scaleMin = Math.min(...values);
@@ -283,7 +286,7 @@ export default {
         ymax = [];
 
       // Iterate over each department in France and hide
-      for (const key in this.dataParse) {
+      for (const key of this.getAllDep()) {
         const className = `FR-${key}`;
         const elCol = parentWidget.getElementsByClassName(className);
 
@@ -291,9 +294,14 @@ export default {
         this.MapProps.displayPath[className] = 'none';
       }
       // Iterate over each department in the region and set colors
-      listDep.forEach((key) => {
+      for (const key of listDep) {
         const className = `FR-${key}`;
         const elCol = parentWidget.getElementsByClassName(className);
+
+        if (elCol.length === 0) {
+          console.warn(`L'élément de la carte n'existe pas pour la valeur ${className}, veuillez le supprimer de vos données.`);
+          continue;
+        }
 
         if (!this.zoomDep) {
           if (listDep.includes(key)) {
@@ -330,7 +338,7 @@ export default {
           xmax.push(polygon.x + polygon.width);
           ymax.push(polygon.y + polygon.height);
         }
-      });
+      }
 
       // Calculate viewBox to focus on the selected region
       if (xmin.length && ymin.length && xmax.length && ymax.length) {
