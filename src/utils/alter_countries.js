@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import { WORLD } from './constants';
+import { WORLD } from '@/utils/constants';
 
 function parseCsv(content) {
   const lines = content

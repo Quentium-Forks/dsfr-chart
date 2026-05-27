@@ -90,7 +90,7 @@
 <script>
 import { Chart, ScatterController } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { choosePalette, generateScatterChartColors } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 Chart.register(ScatterController);
 
@@ -614,24 +614,29 @@ export default {
       });
     },
     loadColors() {
-      const { colorParse, colorHover, vlineColorParse, hlineColorParse } = generateScatterChartColors({
-        yparse: this.yparse,
-        tmpColorParse: this.tmpColorParse,
-        selectedPalette: this.selectedPalette,
-        vlineParse: this.vlineParse,
-        tmpVlineColorParse: this.tmpVlineColorParse,
-        hlineParse: this.hlineParse,
-        tmpHlineColorParse: this.tmpHlineColorParse,
-      });
+      const colors = getColors(this.yparse[0].length);
+      this.colorParse = colors.background;
+      this.colorHover = colors.hover;
 
-      this.colorParse = colorParse;
-      this.colorHover = colorHover;
-      this.vlineColorParse = vlineColorParse;
-      this.hlineColorParse = hlineColorParse;
-    },
-    choosePalette() {
-      // Using the refactored choosePalette function from utils
-      return choosePalette(this.selectedPalette);
+      // Couleurs pour les lignes verticales (vlines)
+      this.vlineColorParse = [];
+      for (let i = 0; i < this.vlineParse.length; i++) {
+        if (this.tmpVlineColorParse[i]) {
+          this.vlineColorParse.push(this.tmpVlineColorParse[i]);
+        } else {
+          this.vlineColorParse.push('#6b6b6b');
+        }
+      }
+
+      // Couleurs pour les lignes horizontales (hlines)
+      this.hlineColorParse = [];
+      for (let i = 0; i < this.hlineParse.length; i++) {
+        if (this.tmpHlineColorParse[i]) {
+          this.hlineColorParse.push(this.tmpHlineColorParse[i]);
+        } else {
+          this.hlineColorParse.push('#6b6b6b');
+        }
+      }
     },
     changeColors(theme) {
       this.loadColors();

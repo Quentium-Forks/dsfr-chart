@@ -126,15 +126,15 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 - **y-max** : Permet de définir le maximum sur l’axe des ordonnées.
 - **date** : _(String)_ Permet d'afficher une date associée au graphique.
 - **aspect-ratio** : _(String)_ Permet de définir le ratio largeur/hauteur du graphique. Par défaut, le ratio est de `2`.
-- **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
-  - `'neutral'` : Palette neutre.
+- **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
+  - `'unicolor'` : Palette unicolore.
+  - `'gradient'` : Palette dégradée.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+  - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+  - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
@@ -216,7 +216,6 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 <line-chart
   x="[[1, 2, 3, 4, 5]]"
   y="[[15, 25, 35, 45, 55]]"
-  selected-palette="categorical"
   unit-tooltip="kWh"
 ></line-chart>
 ```
@@ -247,15 +246,15 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 - **x-max** : Permet de définir le maximum sur l’axe des abscisses.
 - **y-min** : Permet de définir le minimum sur l’axe des ordonnées.
 - **y-max** : Permet de définir le maximum sur l’axe des ordonnées.
-- **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
-  - `'neutral'` : Palette neutre.
+- **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
+  - `'unicolor'` : Palette unicolore.
+  - `'gradient'` : Palette dégradée.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+  - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+  - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
@@ -286,7 +285,6 @@ Pour tracer un **BarChart horizontal**, il faut renseigner l’option **horizont
   x='[["2025", "2030", "2035", "2040"]]'
   y="[[10, 20, 30, 40]]"
   horizontal="true"
-  selected-palette="categorical"
 ></bar-chart>
 ```
 
@@ -410,15 +408,15 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 - **y-bar-max** : Permet de définir le maximum sur l’axe des ordonnées pour les barres.
 - **y-line-min** : Permet de définir le minimum sur l’axe des ordonnées pour la ligne.
 - **y-line-max** : Permet de définir le maximum sur l’axe des ordonnées pour la ligne.
-- **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
-  - `'neutral'` : Palette neutre.
+- **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
+  - `'unicolor'` : Palette unicolore.
+  - `'gradient'` : Palette dégradée.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+  - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+  - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
@@ -455,15 +453,15 @@ Les diagrammes circulaires sont accessibles à travers la balise : `<pie-chart>`
 - **unit-tooltip** : _(String)_ Permet de spécifier l’unité à afficher dans l’infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **date** : _(String)_ Permet d'afficher une date associée au graphique.
 - **aspect-ratio** : _(String)_ Permet de définir le ratio largeur/hauteur du graphique. Par défaut, le ratio est de `2`.
-- **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
+- **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
+  - `'unicolor'` : Palette unicolore.
+  - `'gradient'` : Palette dégradée.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+  - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+  - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
@@ -477,7 +475,6 @@ Les diagrammes circulaires sont accessibles à travers la balise : `<pie-chart>`
   y="[[74.8, 11.7, 9.3, 1.6, 2.6]]"
   name='["Emplois à durée indéterminée", "Non-salariés", "Contrats à durée déterminée", "Apprentis", "Intérimaires"]'
   unit-tooltip="%"
-  selected-palette="categorical"
 ></pie-chart>
 ```
 
@@ -537,14 +534,15 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
   - `'aca'` : Carte avec découpage par académies.
   - `'monde'` : Carte avec découpage par pays du monde.
 - **date** : _(String)_ Permet d'afficher une date associée au graphique.
-- **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour la carte. Les valeurs possibles sont :
-  - `'categorical'`
-  - `'sequentialAscending'` (par défaut)
-  - `'sequentialDescending'`
-  - `'divergentAscending'`
-  - `'divergentDescending'`
-  - `'neutral'`
-  - _(laisser vide pour utiliser la palette par défaut)_
+- **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
+  - `'categorical'` : Palette catégorielle par défaut.
+  - `'unicolor'` : Palette unicolore.
+  - `'gradient'` : Palette dégradée.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+  - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+  - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
@@ -751,15 +749,15 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
 - **x-max** : Permet de définir le maximum sur l’axe des abscisses.
 - **y-min** : Permet de définir le minimum sur l’axe des ordonnées.
 - **y-max** : Permet de définir le maximum sur l’axe des ordonnées.
-- **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
+- **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
+  - `'unicolor'` : Palette unicolore.
+  - `'gradient'` : Palette dégradée.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+  - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+  - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
@@ -824,24 +822,21 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 ### Obligatoires :
 
 - **x** : _(String)_ Les noms de chaque groupe sous la forme d’une liste de listes entre crochets.
-
 - **y** : _(String)_ Les valeurs de chaque groupe sous la forme d’une liste de listes entre crochets.
 
 ### Optionnels :
 
 - **name** : _(String)_ Les noms des séries de données sous forme d'une liste entre crochets.
-
-- **selected-palette** : _(String)_ Permet de choisir la palette de couleurs utilisée pour le graphique. Les valeurs possibles sont :
-  - `'categorical'` : Palette catégorielle par défaut.
-  - `'sequentialAscending'` : Palette séquentielle ascendante.
-  - `'sequentialDescending'` : Palette séquentielle descendante.
-  - `'divergentAscending'` : Palette divergente ascendante.
-  - `'divergentDescending'` : Palette divergente descendante.
-  - `'neutral'` : Palette neutre.
-  - `'default'` : Couleur par défaut.
-  - _(laisser vide pour utiliser la palette par défaut)_
-
 - **unit-tooltip** : _(String)_ Permet de spécifier l’unité à afficher dans l’infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
+- **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
+  - `'categorical'` : Palette catégorielle par défaut.
+  - `'unicolor'` : Palette unicolore.
+  - `'gradient'` : Palette dégradée.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+  - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+  - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
@@ -854,7 +849,6 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
       [10.6, 77.8, 8.8, 0.2, 2.6],
       [16.5, 77.3, 4.9, 0.0, 1.3]]"
   name='["15-24 ans", "25-49 ans", "50-64 ans"]'
-  selected-palette="categorical"
   unit-tooltip="%"
 ></radar-chart>
 ```
@@ -1094,41 +1088,24 @@ Toutefois, ces fonctionnalités sont optionnelles, et ne doivent pas apparaître
 
 Un graphique étant par définition une représentation visuelle d’un ensemble de données, la couleur est un paramètre avec lequel il est possible de jouer pour en améliorer la compréhension et la perception. Une utilisation appropriée des couleurs est par conséquent essentielle pour réussir vos graphiques.
 
-Dans DSFR Chart, le paramètre `selectedPalette` vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée :
+Dans DSFR Chart, le paramètre `palette-type` vous permet de choisir un type de palette et `palette-colors` vous permet de personnaliser les couleurs utilisées par cette palette. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée :
 
-- `'default'` : Couleur par défaut.
-- `'neutral'` : Palette neutre.
 - `'categorical'` : Palette catégorielle par défaut.
-- `'sequentialAscending'` : Palette séquentielle ascendante.
-- `'sequentialDescending'` : Palette séquentielle descendante.
-- `'divergentAscending'` : Palette divergente ascendante.
-- `'divergentDescending'` : Palette divergente descendante.
+- `'unicolor'` : Palette unicolore.
+- `'gradient'` : Palette dégradée.
 
-### Graphiques unicolores
+Puis personnalisez si besoin, les couleurs utilisées par la palette choisie avec les noms des couleurs DSFR 2 :
 
-`default Catégorie 1`
-
-Une représentation graphique n’a pas toujours besoin d’être colorée. Lorsqu’il n’est pas nécessaire de différencier les formes par des couleurs, on affichera les graphes avec la couleur par défaut pour les graphes unicolores, avec l’option `'default'`.
-
-|                | Thème clair | Thème sombre |
-|----------------|-------------|--------------|
-| État initial   | #5C68E5     | #5C68E5      |
-| État de survol | #2846bc     | #2846bc      |
-
-`neutral Catégorie 1`
-
-Pour mettre en évidence une donnée d'un ensemble de données, utilisez la couleur par défaut pour colorer cette donnée, et colorez les autres données en utilisant l’option `'neutral'`.
-
-|                | Thème clair | Thème sombre |
-|----------------|-------------|--------------|
-| État initial   | #B1B1B1     | #808080      |
-| État de survol | #8b8b8b     | #5c5c5c      |
+- `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
+- `'lagon'` : pour une représentation unicolore en cyan.
+- `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
+- `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ### Graphiques catégoriels
 
-Lorsque les formes du graphique doivent être différenciées par des couleurs mais que celles-ci ne sont pas porteuses de sens supplémentaire que la catégorisation, la palette catégorielle doit être utilisée : utilisez alors l’option `'categorical'`.
+Lorsque les formes du graphique doivent être différenciées par des couleurs mais que celles-ci ne sont pas porteuses de sens supplémentaire que la catégorisation, la palette catégorielle doit être utilisée avec la valeur `'default'` (non obligatoire car par défaut).
 
-La palette catégorielle ne comprend que 8 teintes de couleurs pour limiter le nombre de catégories affichées, car représenter plus de 8 catégories nuirait à la compréhension de l’utilisateur. Au-delà de ce nombre, il conviendra de rassembler les dernières catégories dans un ensemble “Autres”.
+Il est conseillé de ne pas représenter plus de 8 catégories, car cela nuirait à la compréhension de l’utilisateur. Au-delà de ce nombre, il conviendra de rassembler les dernières catégories dans un ensemble “Autres”.
 
 `Catégorie 1`
 
@@ -1186,58 +1163,89 @@ La palette catégorielle ne comprend que 8 teintes de couleurs pour limiter le n
 | État initial   | #CECECE     | #A4A4A4      |
 | État de survol | #a7a7a7     | #7e7e7e      |
 
-### Graphiques séquentiels
+### Graphiques unicolores
 
-Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle doit être utilisée. Il en existe deux versions à utiliser en fonction du besoin :
+Une représentation graphique n’a pas toujours besoin d’être très colorée. Lorsqu’il n’est pas nécessaire de différencier les formes par des couleurs, on peut afficher les graphiques avec une couleur unie avec la valeur `'unicolor'`.
 
-#### Palette séquentielle unicolore
+Si aucune couleur n’est renseignée via l’attribut `palette-colors`, la couleur par défaut est la suivante :
 
-Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle doit être utilisée. Sélectionnez l’option `'sequentialAscending'` ou `'sequentialDescending'` en fonction du sens que vous souhaitez donner à cette gradation.
+`Couleur par défaut`
 
-En fonction du nombre de catégories, on appliquera autant de valeurs de couleurs qu’il en existe dans un dégradé allant de la couleur de départ à la couleur d’arrivée.
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| État initial   | #5C68E5     | #5C68E5      |
+| État de survol | #2846bc     | #2846bc      |
 
-`Catégorie 1`
+### Graphiques dégradés
+
+Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette dégradée doit être utilisée avec la valeur `'gradient'`. Les possibilités sont multiples en fonction du type de données que vous souhaitez représenter.
+
+Si aucune couleur n’est renseignée via l’attribut `palette-colors`, le dégradé par défaut est le suivant :
+
+`Couleur de départ`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
 | État initial   | #DBDAFF     | #B8B9FF      |
-| État de survol | #b3b2d6     | #9093d6      |
+| État de survol | #           | #            |
 
-`Catégorie 2`
+`Couleur d’arrivée`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
 | État initial   | #00005F     | #3647CA      |
-| État de survol | #00003d     | #0027a2      |
+| État de survol | #           | #            |
 
-### Palette séquentielle divergente
+#### Palette dégradée unicolore
 
-Cette palette convient pour matérialiser des échelles numériques mais qui intègrent des valeurs négatives, ou des plages comportant **deux extrêmes avec une ligne de base au milieu**.
+Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle dégradée peut être utilisée.
 
-Sélectionnez l’option `'divergentAscending'` ou `'divergentDescending'` en fonction du sens que vous souhaitez donner à cette gradation. Dans la mesure du possible, le nombre de catégories doit refléter cette divergence, à travers un nombre impair de catégories distinctes (3, 5, 7, etc.) qui permettra de **marquer la médiane**.
+En fonction du nombre de catégories, il y aura autant de valeurs de couleurs générées qu’il en existe dans un dégradé allant de la couleur de départ à la couleur d’arrivée.
 
-Dans le cas où le nombre de catégories devrait être supérieur à 5, on appliquera autant de valeurs de couleurs qu’il en existe dans un dégradé allant du vert vers le rouge en passant par le jaune.
+Par exemple, si l’on souhaite utiliser un dégradé du rose vers le violet, l’attribut `palette-colors` pourra être renseigné de la manière suivante : `['guimauve', 'lavande']`.
 
-`Catégorie 1`
+`Couleur de départ`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| État initial   | #CFB1F5     | #CFB1F5      |
+| État de survol | #a78bcc     | #a78bcc      |
+
+`Couleur d’arrivée`
+
+|                | Thème clair | Thème sombre |
+|----------------|-------------|--------------|
+| État initial   | #B478F1     | #BC8AF2      |
+| État de survol | #8b53c8     | #9465c9      |
+
+#### Palette dégradée divergente
+
+Cette palette convient pour matérialiser des échelles numériques mais qui intègrent des valeurs évolutives, ou des plages comportant deux extrêmes avec une ligne de base au milieu.
+
+Dans le cas où le nombre de catégories devrait être supérieur à 3, on appliquera autant de valeurs de couleurs qu’il en existe dans un dégradé allant du vert vers le rouge en passant par le jaune.
+
+Par exemple, si l’on souhaite utiliser un dégradé du vert vers le rouge en passant par le jaune, l’attribut `palette-colors` pourra être renseigné de la manière suivante : `['sapin', 'citron', 'coquelicot']`.
+
+`Couleur basse`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
 | État initial   | #298641     | #298641      |
-| État de survol | #00611f     | #00611f      |
+| État de survol | #           | #            |
 
-`Catégorie 2`
+`Couleur médiane`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
 | État initial   | #EFB900     | #AF8800      |
-| État de survol | #c39300     | #856400      |
+| État de survol | #           | #            |
 
-`Catégorie 3`
+`Couleur haute`
 
 |                | Thème clair | Thème sombre |
 |----------------|-------------|--------------|
 | État initial   | #E91719     | #E16834      |
-| État de survol | #b90000     | #b4420f      |
+| État de survol | #           | #            |
 
 ---
 

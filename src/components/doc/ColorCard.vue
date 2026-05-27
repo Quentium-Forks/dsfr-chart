@@ -9,13 +9,13 @@
         {{ title }}
       </strong>
       <strong
-        v-if="isLightTheme"
+        v-if="isLightTheme === true"
         class="block"
       >
         (thème clair)
       </strong>
       <strong
-        v-else
+        v-else-if="isLightTheme === false"
         class="block"
       >
         (thème sombre)
@@ -56,7 +56,7 @@ defineProps({
   },
   isLightTheme: {
     type: Boolean,
-    default: true,
+    default: null,
   },
 });
 

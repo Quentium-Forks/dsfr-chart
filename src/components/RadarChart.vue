@@ -55,7 +55,7 @@
 import { Chart, RadarController, RadialLinearScale } from 'chart.js';
 import chroma from 'chroma-js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { choosePalette, generateColors } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 Chart.register(RadarController, RadialLinearScale);
 
@@ -251,19 +251,9 @@ export default {
       }));
     },
     loadColors() {
-      // Utilisation de generateColors
-      const { colorParse, colorHover } = generateColors({
-        yparse: this.yparse.map(() => [1]), // Simule une série avec une valeur unique
-        tmpColorParse: this.tmpColorParse,
-        selectedPalette: this.selectedPalette,
-      });
-
-      this.colorParse = colorParse.map((colors) => colors[0]); // Récupère uniquement la première couleur de chaque série
-      this.colorHover = colorHover.map((colors) => colors[0]); // Idem pour les couleurs de survol
-    },
-    choosePalette() {
-      // Using the refactored choosePalette function from utils
-      return choosePalette(this.selectedPalette);
+      const colors = getColors(this.yparse[0].length);
+      this.colorParse = colors.background;
+      this.colorHover = colors.hover;
     },
     changeColors(theme) {
       this.loadColors();

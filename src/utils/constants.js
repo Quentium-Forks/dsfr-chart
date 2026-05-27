@@ -1,3 +1,161 @@
+export const COLORS_DSFR_V2 = {
+  light: {
+    saphir: {
+      bg: '#BFCCFF',
+      text: '#1D3AC8',
+    },
+    caramel: {
+      bg: '#FEC28C',
+      text: '#7E3A00',
+    },
+    coquelicot: {
+      bg: '#FFBEB8',
+      text: '#9B111D',
+    },
+    emeraude: {
+      bg: '#96DDB6',
+      text: '#21564A',
+    },
+    sapin: {
+      bg: '#A0DE85',
+      text: '#1D5837',
+    },
+    moutarde: {
+      bg: '#F2CA46',
+      text: '#6A4600',
+    },
+    lavande: {
+      bg: '#DDC3FE',
+      text: '#6D28A4',
+    },
+    guimauve: {
+      bg: '#FCBBDF',
+      text: '#842C5B',
+    },
+    cacao: {
+      bg: '#E8C7B7',
+      text: '#664636',
+    },
+    ocean: {
+      bg: '#ACD1FF',
+      text: '#214C8E',
+    },
+    cannelle: {
+      bg: '#EFC4BC',
+      text: '#763D37',
+    },
+    lagon: {
+      bg: '#9DD6F0',
+      text: '#22526C',
+    },
+    fougere: {
+      bg: '#BBD972',
+      text: '#305717',
+    },
+    citron: {
+      bg: '#DDD147',
+      text: '#5F4B00',
+    },
+  },
+};
+
+export const COLORS_CHARTS = {
+  light: {
+    categorical1: {
+      bg: '#5C68E5',
+    },
+    categorical2: {
+      bg: '#82B5F2',
+    },
+    categorical3: {
+      bg: '#29598F',
+    },
+    categorical4: {
+      bg: '#31A7AE',
+    },
+    categorical5: {
+      bg: '#81EEF5',
+    },
+    categorical6: {
+      bg: '#B478F1',
+    },
+    categorical7: {
+      bg: '#CFB1F5',
+    },
+    categorical8: {
+      bg: '#CECECE',
+    },
+    gradient1: {
+      bg: '#DBDAFF',
+    },
+    gradient2: {
+      bg: '#00005F',
+    },
+    excellent: {
+      bg: '#298641',
+    },
+    good: {
+      bg: '#79D289',
+    },
+    average: {
+      bg: '#EFB900',
+    },
+    bad: {
+      bg: '#FFA373',
+    },
+    terrible: {
+      bg: '#E91719',
+    },
+  },
+  dark: {
+    categorical1: {
+      bg: '#5C68E5',
+    },
+    categorical2: {
+      bg: '#699BD6',
+    },
+    categorical3: {
+      bg: '#4878B1',
+    },
+    categorical4: {
+      bg: '#00828A',
+    },
+    categorical5: {
+      bg: '#51C1C8',
+    },
+    categorical6: {
+      bg: '#BC8AF2',
+    },
+    categorical7: {
+      bg: '#CFB1F5',
+    },
+    categorical8: {
+      bg: '#A4A4A4',
+    },
+    gradient1: {
+      bg: '#B8B9FF',
+    },
+    gradient2: {
+      bg: '#3647CA',
+    },
+    excellent: {
+      bg: '#298641',
+    },
+    good: {
+      bg: '#449D57',
+    },
+    average: {
+      bg: '#AF8800',
+    },
+    bad: {
+      bg: '#FFA373',
+    },
+    terrible: {
+      bg: '#E16834',
+    },
+  },
+};
+
 export const FRANCE = [
   {
     department: 'Ain',

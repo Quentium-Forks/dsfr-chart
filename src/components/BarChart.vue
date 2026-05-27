@@ -43,8 +43,7 @@
           <canvas
             :ref="chartId"
             role="img"
-            :aria-labelledby="databoxId ? 'title-' + databoxId : null"
-            :aria-label="!databoxId ? 'Graphique en barres' : null"
+            :aria-labelledby="'title-' + databoxId"
           />
 
           <div class="chart_legend fr-mb-0 fr-mt-4v">
@@ -55,7 +54,7 @@
             >
               <span
                 class="legend_dot"
-                :style="{ 'background-color': legendColors[index] }"
+                :style="{ 'background-color': colorParse[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
                 {{ capitalize(item) }}
@@ -78,7 +77,7 @@
 <script>
 import { BarController, BarElement, Chart } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { choosePalette, generateColors } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 Chart.register(BarController, BarElement);
 
@@ -185,10 +184,8 @@ export default {
       subXParse: [],
       subYParse: [],
       nameParse: [],
-      tmpColorParse: [],
       colorParse: [],
       colorHover: [],
-      legendColors: [],
       isSubChart: false,
       isSubLevel: false,
       subTitle: null,
@@ -264,8 +261,6 @@ export default {
       this.subXParse = [];
       this.subYParse = [];
       this.nameParse = [];
-      this.tmpColorParse = [];
-      this.highlightIndexParse = [];
       this.colorParse = [];
       this.colorHover = [];
     },
@@ -321,27 +316,10 @@ export default {
         ...(this.maxBarSize ? { maxBarThickness: this.maxBarSize } : {}),
       }));
     },
-    choosePalette() {
-      // Using the refactored choosePalette function from utils
-      return choosePalette(this.selectedPalette);
-    },
     loadColors() {
-      try {
-        this.highlightIndexParse = Array.isArray(this.highlightIndex) ? this.highlightIndex : JSON.parse(this.highlightIndex);
-      } catch (error) {
-        console.error('Erreur lors du parsing des données highlight-index:', error);
-        this.highlightIndexParse = [];
-      }
-      const { colorParse, colorHover, legendColors } = generateColors({
-        yparse: this.yparse,
-        tmpColorParse: this.tmpColorParse,
-        highlightIndex: this.highlightIndexParse,
-        selectedPalette: this.selectedPalette,
-      });
-
-      this.colorParse = colorParse;
-      this.colorHover = colorHover;
-      this.legendColors = legendColors;
+      const colors = getColors(this.yparse[0].length);
+      this.colorParse = colors.background;
+      this.colorHover = colors.hover;
     },
     createChart() {
       if (this.chart) {

@@ -4,7 +4,6 @@ export const chartData = {
       x: '[[2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]]',
       y: '[[51.50, 55.30, 61.50, 70.20, 81.10, 92.60, 100.20, 104.60, 96.90, 98.00, 104.90, 106.80, 104.70, 102.70, 100.20, 100.40, 102.90, 106.00, 109.10, 114.60]]',
       name: '["Indices des prix des logements anciens"]',
-      selectedPalette: 'default',
       unitTooltip: 'points d’indice',
     },
     multiple: {
@@ -26,14 +25,13 @@ export const chartData = {
       x: '[[2025, 2030, 2035, 2040, 2050, 2060, 2070]]',
       y: '[[69.1, 70.3, 71.4, 72.5, 74, 75.2, 76.4]]',
       name: '["Population en millions"]',
-      selectedPalette: 'default',
       unitTooltip: 'millions',
     },
     unicolor: {
       x: '[["15 à 29 ans", "30 à 44 ans", "45 à 59 ans", "60 à 74 ans", "75 ans ou plus"]]',
       y: '[[75.4, 80.5, 66.8, 43.4, 12.1]]',
       name: '["Achat sur internet au cours des 12 derniers mois (%)"]',
-      selectedPalette: 'neutral',
+      selectedPalette: 'unicolor',
       unitTooltip: '%',
       highlightIndex: '[3, 4]',
     },

@@ -19,7 +19,7 @@
                 class="jauge-fill"
                 :style="{ width: width + '%', backgroundColor: colorParse }"
               >
-                <span class="jauge-text fr-text fr-text--sm fr-text-inverted--grey fr-pl-1w">{{ percentage }}%</span>
+                <span class="jauge-text fr-text fr-text--sm fr-text-title--blue-france fr-pl-1w">{{ percentage }}%</span>
               </div>
             </div>
           </div>
@@ -73,7 +73,7 @@
 
 <script>
 import { chartMixins } from '@/utils/global.js';
-import { generateColors } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 export default {
   name: 'GaugeChart',
@@ -133,7 +133,6 @@ export default {
       widgetId: '',
       percentage: 0,
       width: '',
-      tmpColorParse: [],
       colorParse: '',
       targetReady: false,
     };
@@ -201,14 +200,9 @@ export default {
       }
       this.width = Math.min(100, this.percentage);
     },
-    loadColors() {
-      const { colorParse } = generateColors({
-        yparse: [null],
-        tmpColorParse: this.tmpColorParse,
-        selectedPalette: 'default',
-      });
-
-      this.colorParse = colorParse;
+    loadColors(theme) {
+      const colors = getColors(1, 'categorical');
+      this.colorParse = colors.background[0];
     },
     changeColors(theme) {
       this.loadColors();

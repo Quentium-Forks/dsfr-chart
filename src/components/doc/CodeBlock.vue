@@ -54,7 +54,7 @@ const toKebabCase = (str) =>
     .replace(/^-/, '');
 
 const tag = toKebabCase(components[0]?.name);
-const id = Math.floor(Math.random() * 1000);
+const id = Math.floor(Math.random() * 1000000);
 </script>
 
 <style scoped>

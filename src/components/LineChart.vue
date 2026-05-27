@@ -89,9 +89,8 @@
 
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
-import chroma from 'chroma-js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { choosePalette, getColorsByIndex, getNeutralColor } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
@@ -192,7 +191,6 @@ export default {
       xparse: [],
       yparse: [],
       nameParse: [],
-      tmpColorParse: [],
       colorParse: [],
       vlineParse: [],
       vlineColorParse: [],
@@ -274,7 +272,6 @@ export default {
       this.xparse = [];
       this.yparse = [];
       this.nameParse = [];
-      this.tmpColorParse = [];
       this.colorParse = [];
       this.vlineParse = [];
       this.vlineColorParse = [];
@@ -382,20 +379,9 @@ export default {
       }));
     },
     loadColors() {
-      this.colorParse = [];
-      this.colorHover = [];
-      const palette = this.choosePalette();
-      for (let i = 0; i < this.yparse.length; i++) {
-        if (this.tmpColorParse[i]) {
-          const color = this.tmpColorParse[i];
-          this.colorParse.push(color);
-          this.colorHover.push(chroma(color).brighten(0.5).hex());
-        } else {
-          const color = getColorsByIndex(i, palette);
-          this.colorParse.push(color);
-          this.colorHover.push(chroma(color).brighten(0.5).hex());
-        }
-      }
+      const colors = getColors(this.yparse[0].length);
+      this.colorParse = colors.background;
+      this.colorHover = colors.hover;
 
       // Couleurs pour les lignes verticales (vlines)
       this.vlineColorParse = [];
@@ -403,7 +389,7 @@ export default {
         if (this.tmpVlineColorParse[i]) {
           this.vlineColorParse.push(this.tmpVlineColorParse[i]);
         } else {
-          this.vlineColorParse.push(getNeutralColor());
+          this.vlineColorParse.push('#6b6b6b');
         }
       }
 
@@ -413,13 +399,9 @@ export default {
         if (this.tmpHlineColorParse[i]) {
           this.hlineColorParse.push(this.tmpHlineColorParse[i]);
         } else {
-          this.hlineColorParse.push(getNeutralColor());
+          this.hlineColorParse.push('#6b6b6b');
         }
       }
-    },
-    choosePalette() {
-      // Using the refactored choosePalette function from utils
-      return choosePalette(this.selectedPalette);
     },
     changeColors(theme) {
       this.loadColors();

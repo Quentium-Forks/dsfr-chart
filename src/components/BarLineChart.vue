@@ -28,7 +28,7 @@
             <div class="flex fr-mt-3v fr-mb-1v">
               <span
                 class="legend_dot"
-                :style="{ 'background-color': colorBarParse }"
+                :style="{ 'background-color': colorBarParse[0] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
                 {{ capitalize(nameBar) }}
@@ -37,7 +37,7 @@
             <div class="flex fr-mt-3v fr-mb-1v">
               <span
                 class="legend_dot"
-                :style="{ 'background-color': colorParse }"
+                :style="{ 'background-color': colorLineParse[0] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
                 {{ capitalize(nameLine) }}
@@ -95,7 +95,7 @@
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { choosePalette, generateBarLineChartColors } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
@@ -231,9 +231,9 @@ export default {
       hlineColorParse: [],
       tmpHlineColorParse: [],
       hlineNameParse: [],
-      colorParse: [],
+      colorLineParse: [],
       colorBarParse: [],
-      colorHover: [],
+      colorLineHover: [],
       colorBarHover: [],
       targetReady: false,
     };
@@ -313,9 +313,9 @@ export default {
       this.hlineColorParse = [];
       this.tmpHlineColorParse = [];
       this.hlineNameParse = [];
-      this.colorParse = [];
+      this.colorLineParse = [];
       this.colorBarParse = [];
-      this.colorHover = [];
+      this.colorLineHover = [];
       this.colorBarHover = [];
     },
     getData() {
@@ -393,14 +393,14 @@ export default {
         {
           data: this.ylineparse,
           type: 'line',
-          borderColor: this.colorParse[0],
-          backgroundColor: this.colorParse[0],
-          hoverBorderColor: this.colorHover[0],
-          hoverBackgroundColor: this.colorHover[0],
-          pointBorderColor: this.colorParse[0],
-          pointBackgroundColor: this.colorParse[0],
-          pointHoverBorderColor: this.colorHover[0],
-          pointHoverBackgroundColor: this.colorHover[0],
+          borderColor: this.colorLineParse[0],
+          backgroundColor: this.colorLineParse[0],
+          hoverBorderColor: this.colorLineHover[0],
+          hoverBackgroundColor: this.colorLineHover[0],
+          pointBorderColor: this.colorLineParse[0],
+          pointBackgroundColor: this.colorLineParse[0],
+          pointHoverBorderColor: this.colorLineHover[0],
+          pointHoverBackgroundColor: this.colorLineHover[0],
           pointRadius: 5,
           pointHoverRadius: 5,
           yAxisID: 'yLine',
@@ -408,25 +408,32 @@ export default {
         },
       ];
     },
-    choosePalette() {
-      // Using the refactored choosePalette function from utils
-      return choosePalette(this.selectedPalette);
-    },
     loadColors() {
-      const { colorBarParse, colorBarHover, colorParse, colorHover, vlineColorParse, hlineColorParse } = generateBarLineChartColors({
-        vlineParse: this.vlineParse,
-        hlineParse: this.hlineParse,
-        tmpVlineColorParse: this.tmpVlineColorParse,
-        tmpHlineColorParse: this.tmpHlineColorParse,
-        selectedPalette: this.selectedPalette,
-      });
+      const colors = getColors(this.ylineparse.length + this.ybarparse.length);
+      this.colorBarParse = [colors.background[0]];
+      this.colorLineParse = [colors.background[1]];
+      this.colorBarHover = [colors.hover[0]];
+      this.colorLineHover = [colors.hover[1]];
 
-      this.colorBarParse = colorBarParse;
-      this.colorBarHover = colorBarHover;
-      this.colorParse = colorParse;
-      this.colorHover = colorHover;
-      this.vlineColorParse = vlineColorParse;
-      this.hlineColorParse = hlineColorParse;
+      // Couleurs pour les lignes verticales (vlines)
+      this.vlineColorParse = [];
+      for (let i = 0; i < this.vlineParse.length; i++) {
+        if (this.tmpVlineColorParse[i]) {
+          this.vlineColorParse.push(this.tmpVlineColorParse[i]);
+        } else {
+          this.vlineColorParse.push('#6b6b6b');
+        }
+      }
+
+      // Couleurs pour les lignes horizontales (hlines)
+      this.hlineColorParse = [];
+      for (let i = 0; i < this.hlineParse.length; i++) {
+        if (this.tmpHlineColorParse[i]) {
+          this.hlineColorParse.push(this.tmpHlineColorParse[i]);
+        } else {
+          this.hlineColorParse.push('#6b6b6b');
+        }
+      }
     },
     createChart() {
       if (this.chart) {
@@ -599,7 +606,7 @@ export default {
               callbacks: {
                 label: (tooltipItems) => this.datasets.map((set) => this.formatNumber(set.data[tooltipItems.dataIndex])),
                 title: (tooltipItems) => tooltipItems[0].label,
-                labelTextColor: () => this.colorParse,
+                labelTextColor: () => this.colorLineParse,
               },
               external: (context) => {
                 // Tooltip Element
@@ -648,7 +655,7 @@ export default {
 
                       divValue.innerHTML += `
                         <div class="tooltip_value-content">
-                          <span class="tooltip_dot" data-color="${[this.colorBarParse, this.colorParse][i]}"></span>
+                          <span class="tooltip_dot" data-color="${[this.colorBarParse, this.colorLineParse][i]}"></span>
                           <p class="tooltip_place fr-mb-0">${displayValue}</p>
                         </div>
                       `;
@@ -696,14 +703,14 @@ export default {
 
       // Mise à jour des couleurs dans le graphique
       this.chart.data.datasets.forEach((dataset) => {
-        dataset.borderColor = this.colorParse[0];
+        dataset.borderColor = this.colorLineParse[0];
         dataset.backgroundColor = this.colorBarParse[0];
-        dataset.hoverBorderColor = this.colorHover[0];
+        dataset.hoverBorderColor = this.colorLineHover[0];
         dataset.hoverBackgroundColor = this.colorBarHover[0];
-        dataset.pointBorderColor = this.colorParse[0];
-        dataset.pointBackgroundColor = this.colorParse[0];
-        dataset.pointHoverBorderColor = this.colorHover[0];
-        dataset.pointHoverBackgroundColor = this.colorHover[0];
+        dataset.pointBorderColor = this.colorLineParse[0];
+        dataset.pointBackgroundColor = this.colorLineParse[0];
+        dataset.pointHoverBorderColor = this.colorLineHover[0];
+        dataset.pointHoverBackgroundColor = this.colorLineHover[0];
       });
 
       this.chart.options.scales.x.ticks.color = theme === 'dark' ? '#cecece' : Chart.defaults.color;

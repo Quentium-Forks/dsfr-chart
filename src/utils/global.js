@@ -50,7 +50,7 @@ export const formatNumber = (value) => {
  * @returns {boolean} True if the device is a mobile, false otherwise
  * @see https://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
  */
-export const isMobile = function () {
+export const isMobile = () => {
   const nav = navigator.userAgent || navigator.vendor || window.opera;
   /* eslint-disable */
   return (

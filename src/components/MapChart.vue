@@ -195,7 +195,7 @@ import chroma from 'chroma-js';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
-import { choosePalette } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 export default {
   name: 'MapChart',
@@ -365,11 +365,10 @@ export default {
         return;
       }
 
-      const palette = this.choosePalette();
-
       // Choisir les couleurs extrêmes basées sur la palette
-      this.colorLeft = palette[0];
-      this.colorRight = palette[palette.length - 1];
+      const colors = getColors(2, 'default', ['lagon', 'saphir']);
+      this.colorLeft = colors.background[0];
+      this.colorRight = colors.background[1];
       this.InfoProps.colorMin = this.colorLeft;
       this.InfoProps.colorMax = this.colorRight;
       this.InfoProps.date = this.date;
@@ -628,9 +627,6 @@ export default {
     resetGeoFilters() {
       this.zoomDep = '';
       this.createChart();
-    },
-    choosePalette() {
-      return choosePalette(this.selectedPalette);
     },
     changeColors(theme) {
       if (theme === 'light') {

@@ -77,7 +77,7 @@
 <script>
 import { ArcElement, Chart, DoughnutController, PieController } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { choosePalette, generateColors } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 Chart.register(DoughnutController, PieController, ArcElement);
 
@@ -446,23 +446,9 @@ export default {
       });
     },
     loadColors() {
-      let yparseSimple = this.yparse;
-      if (this.selectedPalette === '' || this.selectedPalette === 'categorical') {
-        yparseSimple = this.yparse[0];
-      }
-
-      const { colorParse, colorHover } = generateColors({
-        yparse: yparseSimple,
-        tmpColorParse: this.tmpColorParse,
-        selectedPalette: this.selectedPalette,
-      });
-
-      this.colorParse = [colorParse.flat()];
-      this.colorHover = [colorHover.flat()];
-    },
-    choosePalette() {
-      // Using the refactored choosePalette function from utils
-      return choosePalette(this.selectedPalette);
+      const colors = getColors(this.yparse[0].length);
+      this.colorParse = [colors.background];
+      this.colorHover = [colors.hover];
     },
     // eslint-disable-next-line no-unused-vars
     changeColors(theme) {

@@ -180,13 +180,9 @@ import ColorsSection from './ColorsSection.vue';
 import AccessibilitySection from './AccessibilitySection.vue';
 
 const PALETTE_LABELS = {
-  default: 'Palette par défaut',
-  neutral: 'Palette neutre',
-  categorical: 'Palette catégorielle',
-  sequentialAscending: 'Palette séquentielle',
-  sequentialDescending: 'Palette séquentielle',
-  divergentAscending: 'Palette séquentielle divergente',
-  divergentDescending: 'Palette séquentielle divergente',
+  categorical: 'Palette catégorielle par défaut',
+  unicolor: 'Palette unicolore',
+  gradient: 'Palette dégradée',
 };
 
 const currentPage = ref(window.location.hash.slice(1));
