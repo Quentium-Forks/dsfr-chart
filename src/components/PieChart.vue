@@ -374,8 +374,7 @@ export default {
                     if (line && line !== 'NaN' && tooltipModel.dataPoints[i]) {
                       const { datasetIndex, dataIndex } = tooltipModel.dataPoints[i];
 
-                      // Ensure the color is correctly referenced
-                      const color = this.colorParse[datasetIndex] ? this.colorParse[datasetIndex][dataIndex] : '#000';
+                      const color = Array.isArray(this.colorParse[datasetIndex]) ? this.colorParse[datasetIndex][dataIndex] : this.colorParse[datasetIndex];
 
                       const displayValue = `${line}${this.unitTooltip ? ` ${this.unitTooltip}` : ''}`;
 

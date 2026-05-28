@@ -54,7 +54,7 @@
             >
               <span
                 class="legend_dot"
-                :style="{ 'background-color': colorParse[index] }"
+                :style="{ 'background-color': Array.isArray(colorParse[index]) ? colorParse[index][0] : colorParse[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
                 {{ capitalize(item) }}
@@ -160,6 +160,14 @@ export default {
     highlightIndex: {
       type: [Array, String],
       default: () => [],
+    },
+    highlightColor: {
+      type: String,
+      default: '',
+      validator: (value) => {
+        const colorNames = getColorNames();
+        return value === '' || colorNames.includes(value);
+      },
     },
     unitTooltip: {
       type: String,
@@ -326,7 +334,7 @@ export default {
       }));
     },
     loadColors() {
-      const colors = getColors(this.yparse[0].length, this.paletteType, this.paletteColors);
+      const colors = getColors(this.yparse[0].length, this.paletteType, this.paletteColors, this.highlightIndex, this.highlightColor);
       this.colorParse = colors.background;
       this.colorHover = colors.hover;
     },
@@ -436,9 +444,9 @@ export default {
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
                     if (line && line !== 'NaN' && tooltipModel.dataPoints[i]) {
-                      const { datasetIndex } = tooltipModel.dataPoints[i];
+                      const { datasetIndex, dataIndex } = tooltipModel.dataPoints[i];
 
-                      const color = this.colorParse[datasetIndex];
+                      const color = Array.isArray(this.colorParse[datasetIndex]) ? this.colorParse[datasetIndex][dataIndex] : this.colorParse[datasetIndex];
 
                       const displayValue = `${line}${this.unitTooltip ? ` ${this.unitTooltip}` : ''}`;
 

@@ -6,10 +6,13 @@ export const getColorNames = (theme = null) => {
   return Object.keys(themeColors);
 };
 
-export const getColors = (count = 1, type = 'categorical', colors = [], theme = null) => {
+export const getColors = (count = 1, type = 'categorical', colors = [], highlight = [], highlightColor = null, theme = null) => {
   const themeColors = COLORS_DSFR_V2[theme || document.documentElement.getAttribute('data-fr-theme') || 'light'];
   const customColors = typeof colors === 'string' ? JSON.parse(colors) : colors;
   const validCustomColors = customColors.filter((color) => themeColors[color]);
+  const highlightIndexes = typeof highlight === 'string' ? JSON.parse(highlight) : highlight;
+  const validHighlightColor = themeColors[highlightColor] ?? themeColors.caramel;
+
   if (type === 'gradient') {
     if (validCustomColors.length === 0) {
       return {
@@ -21,17 +24,16 @@ export const getColors = (count = 1, type = 'categorical', colors = [], theme = 
             .map((color) => chroma(color).darken(0.8).hex()),
         ],
       };
-    } else {
-      return {
-        background: [chroma.scale(validCustomColors.map((color) => themeColors[color].bg)).colors(count)],
-        hover: [
-          chroma
-            .scale(validCustomColors.map((color) => themeColors[color].bg))
-            .colors(count)
-            .map((color) => chroma(color).darken(0.8).hex()),
-        ],
-      };
     }
+    return {
+      background: [chroma.scale(validCustomColors.map((color) => themeColors[color].bg)).colors(count)],
+      hover: [
+        chroma
+          .scale(validCustomColors.map((color) => themeColors[color].bg))
+          .colors(count)
+          .map((color) => chroma(color).darken(0.8).hex()),
+      ],
+    };
   } else {
     if (type !== 'categorical') {
       console.warn(`Unknown color type: ${type}. Returning categorical colors.`);
@@ -41,11 +43,26 @@ export const getColors = (count = 1, type = 'categorical', colors = [], theme = 
         background: Object.values(themeColors).map((color) => color.bg),
         hover: Object.values(themeColors).map((color) => chroma(color.bg).darken(0.8).hex()),
       };
-    } else {
-      return {
-        background: validCustomColors.map((color) => (themeColors[color] ? themeColors[color].bg : themeColors.saphir.bg)),
-        hover: validCustomColors.map((color) => (themeColors[color] ? chroma(themeColors[color].bg).darken(0.8).hex() : chroma(themeColors.saphir.bg).darken(0.8).hex())),
-      };
     }
+    let backgroundColors = validCustomColors.map((color) => (themeColors[color] ? themeColors[color].bg : themeColors.saphir.bg));
+    let hoverColors = validCustomColors.map((color) => (themeColors[color] ? chroma(themeColors[color].bg).darken(0.8).hex() : chroma(themeColors.saphir.bg).darken(0.8).hex()));
+    if (highlightIndexes.length > 0) {
+      for (let i = 0; i < count; i++) {
+        if (highlightIndexes.includes(i)) {
+          backgroundColors[i] = validHighlightColor.bg;
+          hoverColors[i] = chroma(validHighlightColor.bg).darken(0.8).hex();
+        } else {
+          backgroundColors[i] = backgroundColors[0];
+          hoverColors[i] = hoverColors[0];
+        }
+      }
+      backgroundColors = [backgroundColors];
+      hoverColors = [hoverColors];
+    }
+
+    return {
+      background: backgroundColors,
+      hover: hoverColors,
+    };
   }
 };

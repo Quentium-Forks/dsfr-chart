@@ -31,9 +31,10 @@ export const chartData = {
       x: '[["15 à 29 ans", "30 à 44 ans", "45 à 59 ans", "60 à 74 ans", "75 ans ou plus"]]',
       y: '[[75.4, 80.5, 66.8, 43.4, 12.1]]',
       name: '["Achat sur internet au cours des 12 derniers mois (%)"]',
-      paletteColors: '["cacao", "cannelle"]',
+      paletteColors: '["cacao"]',
       unitTooltip: '%',
       highlightIndex: '[3, 4]',
+      highlightColor: 'caramel',
     },
     sequential: {
       x: '[["Nouvelle-Aquitaine", "Hauts-de-France", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Normandie", "Bretagne", "Pays de la Loire", "Occitanie", "Grand Est", "Centre-Val de Loire", "Île-de-France", "Provence-Alpes-Côte d’Azur", "Corse"]]',
