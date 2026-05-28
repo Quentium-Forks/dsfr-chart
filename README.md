@@ -128,11 +128,10 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 - **aspect-ratio** : _(String)_ Permet de définir le ratio largeur/hauteur du graphique. Par défaut, le ratio est de `2`.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'unicolor'` : Palette unicolore.
   - `'gradient'` : Palette dégradée.
 - **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
   - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
@@ -151,7 +150,7 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 
 ---
 
-### 2. Graphique en ligne avec palette divergente ascendante
+### 2. Graphique en ligne avec palette catégorielle divergente
 
 **Exemple**:
 
@@ -159,7 +158,8 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 <line-chart
   x="[[1, 2, 3, 4]]"
   y="[[10, 20, 30, 40]]"
-  selected-palette="divergentAscending"
+  palette-type="categorical"
+  palette-colors='["sapin", "caramel", "coquelicot"]'
 ></line-chart>
 ```
 
@@ -196,14 +196,14 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 ## Notes supplémentaires
 
 - **unit-tooltip** : Ce paramètre vous permet de spécifier l’unité qui sera affichée dans l’infobulle (tooltip) lorsque l’utilisateur survole un point du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l’unité de mesure.
-- **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
+- **palette-type** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
 
 ---
 
 ## Conseils d'utilisation
 
 - **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes, par exemple `x="[1, 2, 3]"`.
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, par exemple en utilisant `selected-palette` avec `unit-tooltip`.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, par exemple en utilisant `palette-type` avec `unit-tooltip`.
 - **Personnalisation des séries** : Chaque série de données sera représentée par une ligne distincte. Les couleurs des lignes seront attribuées en fonction de la palette sélectionnée.
 
 ---
@@ -248,11 +248,10 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 - **y-max** : Permet de définir le maximum sur l’axe des ordonnées.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'unicolor'` : Palette unicolore.
   - `'gradient'` : Palette dégradée.
 - **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
   - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
@@ -267,7 +266,6 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
   x='[["2025", "2030", "2035", "2040", "2050", "2060", "2070"]]'
   y="[[69.1, 70.3, 71.4, 72.5, 74, 75.2, 76.4]]"
   name='["Population en millions"]'
-  selected-palette="default"
   unit-tooltip="millions"
 ></bar-chart>
 ```
@@ -302,7 +300,6 @@ Pour tracer un **BarChart empilé**, il faut renseigner l’option **stacked="tr
   y="[[15, 19, 15, 13], [45, 40, 47, 41], [36, 32, 34, 44], [4, 9, 4, 2]]"
   name='["Série 1", "Série 2", "Série 3", "Série 4"]'
   stacked="true"
-  selected-palette="divergentDescending"
   unit-tooltip="%"
 ></bar-chart>
 ```
@@ -311,7 +308,7 @@ Pour tracer un **BarChart empilé**, il faut renseigner l’option **stacked="tr
 
 ### 4. Barres avec mise en avant de certaines catégories
 
-Utilisez **highlight-index** pour mettre en avant certaines barres, en combinaison avec **selected-palette="neutral"**.
+Utilisez **highlight-index** pour mettre en avant certaines barres, en combinaison avec **palette-colors='["cacao", "cannelle"]'**.
 
 **Exemple**:
 
@@ -319,7 +316,7 @@ Utilisez **highlight-index** pour mettre en avant certaines barres, en combinais
 <bar-chart
   x='[["Jan", "Feb", "Mar", "Apr", "May", "Jun"]]'
   y="[[5, 10, 15, 20, 25, 30]]"
-  selected-palette="neutral"
+  palette-colors='["cacao", "cannelle"]'
   highlight-index="[2, 4]"
   unit-tooltip="k€"
 ></bar-chart>
@@ -335,7 +332,7 @@ Utilisez **highlight-index** pour mettre en avant certaines barres, en combinais
 <bar-chart
   x='[["Q1", "Q2", "Q3", "Q4"]]'
   y="[[200, 400, 600, 800]]"
-  selected-palette="sequentialAscending"
+  palette-type="gradient"
   unit-tooltip="units"
 ></bar-chart>
 ```
@@ -344,7 +341,7 @@ Utilisez **highlight-index** pour mettre en avant certaines barres, en combinais
 
 ## Notes supplémentaires
 
-- **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
+- **palette-type** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
 - **highlight-index** : Utilisé en combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des barres spécifiques du graphique. Les index commencent à **0**.
 - **unit-tooltip** : Ce paramètre vous permet de spécifier l’unité qui sera affichée dans l’infobulle (tooltip) lorsque l’utilisateur survole une barre du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l’unité de mesure.
 - **horizontal** : Définit l’orientation du graphique. Par défaut, les barres sont verticales.
@@ -371,7 +368,7 @@ Utilisez **highlight-index** pour mettre en avant certaines barres, en combinais
   x='[["Produit A", "Produit B", "Produit C", "Produit D"]]'
   y="[[50, 70, 30, 90]]"
   name='["Ventes"]'
-  selected-palette="neutral"
+  palette-colors='["citron", "moutarde"]'
   highlight-index="[3]"
   horizontal="true"
   unit-tooltip="€"
@@ -410,24 +407,22 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 - **y-line-max** : Permet de définir le maximum sur l’axe des ordonnées pour la ligne.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'unicolor'` : Palette unicolore.
   - `'gradient'` : Palette dégradée.
 - **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
   - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
-## Exemple :
+**Exemple**:
 
 ```html
 <bar-line-chart
   x="[1, 2, 3, 4, 5]"
   y="[20, 25, 30, 35, 40]"
   y-bar="[15, 18, 22, 28, 33]"
-  selected-palette="sequentialAscending"
   unit-tooltip="kW"
   unit-tooltip-bar="kWh"
 ></bar-line-chart>
@@ -455,11 +450,10 @@ Les diagrammes circulaires sont accessibles à travers la balise : `<pie-chart>`
 - **aspect-ratio** : _(String)_ Permet de définir le ratio largeur/hauteur du graphique. Par défaut, le ratio est de `2`.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'unicolor'` : Palette unicolore.
   - `'gradient'` : Palette dégradée.
 - **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
   - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
@@ -467,7 +461,7 @@ Les diagrammes circulaires sont accessibles à travers la balise : `<pie-chart>`
 
 ### 1. Diagramme circulaire creux (donut)
 
-## Exemple :
+**Exemple**:
 
 ```html
 <pie-chart
@@ -484,7 +478,7 @@ Les diagrammes circulaires sont accessibles à travers la balise : `<pie-chart>`
 
 L’option **fill="true"** permet de remplir l’intérieur du graphique pour obtenir un diagramme circulaire plein.
 
-## Exemple :
+**Exemple**:
 
 ```html
 <pie-chart
@@ -492,7 +486,6 @@ L’option **fill="true"** permet de remplir l’intérieur du graphique pour ob
   y="[[10, 20, 30]]"
   fill="true"
   unit-tooltip="%"
-  selected-palette="divergentAscending"
 ></pie-chart>
 ```
 
@@ -500,7 +493,7 @@ L’option **fill="true"** permet de remplir l’intérieur du graphique pour ob
 
 ## Notes supplémentaires
 
-- **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
+- **palette-type** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
 - **unit-tooltip** : Ce paramètre vous permet de spécifier l’unité qui sera affichée dans l’infobulle (tooltip) lorsque l’utilisateur survole une portion du diagramme. Cela rend la lecture des valeurs plus intuitive en indiquant l’unité de mesure.
 - **fill** : Par défaut, le PieChart est affiché sous forme de donut (creux au centre). En définissant **fill="true"**, vous obtiendrez un diagramme circulaire plein.
 
@@ -509,7 +502,7 @@ L’option **fill="true"** permet de remplir l’intérieur du graphique pour ob
 ## Conseils d'utilisation
 
 - **Format des données** : Assurez-vous que les valeurs de `x` et `y` sont des chaînes représentant des listes, par exemple `x='["Groupe A", "Groupe B"]'`.
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `fill="true"` avec `selected-palette`.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `fill="true"` avec `palette-type`.
 - **Personnalisation des séries** : Le paramètre `name` peut être utilisé pour spécifier des noms de séries personnalisés.
 
 ---
@@ -536,11 +529,10 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 - **date** : _(String)_ Permet d'afficher une date associée au graphique.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'unicolor'` : Palette unicolore.
   - `'gradient'` : Palette dégradée.
 - **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
   - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
@@ -550,7 +542,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 ### 1. Carte avec découpage par départements
 
-## Exemple :
+**Exemple**:
 
 ```html
 <map-chart
@@ -580,7 +572,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 ### 2. Carte avec découpage par régions
 
-## Exemple :
+**Exemple**:
 
 ```html
 <map-chart
@@ -600,7 +592,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 ### 3. Carte avec découpage par académies
 
-## Exemple :
+**Exemple**:
 
 ```html
 <map-chart
@@ -623,7 +615,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 
 ### 4. Carte avec découpage par pays du monde
 
-## Exemple :
+**Exemple**:
 
 ```html
 <map-chart
@@ -667,7 +659,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 - **data** : _(String)_ Un dictionnaire qui, pour chaque numéro de département, associe la valeur de l’indicateur dans ce département au sein d'une région spécifique. Seul les numéro de départements de la région seront affichés et sont obligatoires.
 - **region** : _(String)_ Code de la région à afficher.
 
-## Exemple :
+**Exemple**:
 
 ```html
 <map-chart-reg
@@ -686,7 +678,7 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 ## Notes supplémentaires
 
-- **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
+- **palette-type** : Ce paramètre vous permet de personnaliser les couleurs utilisées sur la carte. Les palettes disponibles permettent de représenter les données selon différentes échelles de couleurs.
 - **level** : Par défaut, la carte affiche le découpage par départements (`'dep'`). En spécifiant `'reg'`, vous pouvez afficher la carte avec le découpage par régions. Vous pouvez également utiliser `'aca'` pour afficher la carte avec le découpage par académies.= ou `'monde'` pour une carte mondiale.
 
 ---
@@ -705,25 +697,25 @@ Les cartes par région sont accessibles à travers la balise : `<map-chart-reg>`
 
 ## Résumé des paramètres de MapChart
 
-| **paramètre**    | **type**                                | **obligatoire** | **description**                                                                                  |
-|------------------|-----------------------------------------|-----------------|--------------------------------------------------------------------------------------------------|
-| data             | String                                  | oui             | dictionnaire associant les codes des départements aux valeurs de l’indicateur                    |
-| value            | String ou Number                        | oui             | Valeur de l’indicateur à l’échelle nationale                                                     |
-| name             | String                                  | oui             | Nom de l’indicateur                                                                              |
-| level            | String ('dep', 'reg', 'aca' ou 'monde') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions et 'aca' pour académies) |
-| date             | String                                  | non             | Date de référence de l’indicateur                                                                |
-| selected-palette | String                                  | non             | Palette de couleurs utilisée pour la carte                                                       |
+| **paramètre** | **type**                                | **obligatoire** | **description**                                                                                  |
+|---------------|-----------------------------------------|-----------------|--------------------------------------------------------------------------------------------------|
+| data          | String                                  | oui             | dictionnaire associant les codes des départements aux valeurs de l’indicateur                    |
+| value         | String ou Number                        | oui             | Valeur de l’indicateur à l’échelle nationale                                                     |
+| name          | String                                  | oui             | Nom de l’indicateur                                                                              |
+| level         | String ('dep', 'reg', 'aca' ou 'monde') | non             | Niveau de zoom de la carte ('dep' pour départements, 'reg' pour régions et 'aca' pour académies) |
+| date          | String                                  | non             | Date de référence de l’indicateur                                                                |
+| palette-type  | String                                  | non             | Palette de couleurs utilisée pour la carte                                                       |
 
 ## Résumé des paramètres de MapChartReg
 
-| **paramètre**    | **type**         | **obligatoire** | **description**                                                               |
-|------------------|------------------|-----------------|-------------------------------------------------------------------------------|
-| data             | String           | oui             | dictionnaire associant les codes des départements aux valeurs de l’indicateur |
-| value            | String ou Number | oui             | valeur de l’indicateur à l’échelle régionale                                  |
-| name             | String           | oui             | nom de l’indicateur                                                           |
-| region           | String           | oui             | code de la région à afficher                                                  |
-| date             | String           | non             | Date de référence de l’indicateur                                             |
-| selected-palette | String           | non             | palette de couleurs utilisée pour la carte                                    |
+| **paramètre** | **type**         | **obligatoire** | **description**                                                               |
+|---------------|------------------|-----------------|-------------------------------------------------------------------------------|
+| data          | String           | oui             | dictionnaire associant les codes des départements aux valeurs de l’indicateur |
+| value         | String ou Number | oui             | valeur de l’indicateur à l’échelle régionale                                  |
+| name          | String           | oui             | nom de l’indicateur                                                           |
+| region        | String           | oui             | code de la région à afficher                                                  |
+| date          | String           | non             | Date de référence de l’indicateur                                             |
+| palette-type  | String           | non             | palette de couleurs utilisée pour la carte                                    |
 
 ---
 
@@ -751,11 +743,10 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
 - **y-max** : Permet de définir le maximum sur l’axe des ordonnées.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'unicolor'` : Palette unicolore.
   - `'gradient'` : Palette dégradée.
 - **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
   - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
@@ -792,9 +783,7 @@ On peut choisir de relier les points d'un `ScatterChart` avec l’option **show-
 
 ---
 
-### 3. Nuage de points avec palette divergente ascendante
-
-Vous pouvez spécifier une palette de couleurs pour le graphique en utilisant le paramètre **selected-palette**.
+### 3. Nuage de points avec palette catégorielle divergente
 
 **Exemple**:
 
@@ -802,7 +791,8 @@ Vous pouvez spécifier une palette de couleurs pour le graphique en utilisant le
 <scatter-chart
   x="[[1, 5, 8], [2, 6, 9]]"
   y="[[30, 10, 20], [15, 25, 35]]"
-  selected-palette="divergentAscending"
+  palette-type="categorical"
+  palette-colors='["sapin", "caramel", "coquelicot"]'
 ></scatter-chart>
 ```
 
@@ -810,7 +800,7 @@ Vous pouvez spécifier une palette de couleurs pour le graphique en utilisant le
 
 ## Notes supplémentaires
 
-- **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
+- **palette-type** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Les différentes options vous offrent une flexibilité pour représenter vos données selon vos besoins esthétiques ou sémantiques.
 - **show-line** : Utile pour visualiser les tendances ou les relations entre les points en les reliant par des lignes.
 
 # Diagramme en étoile (RadarChart)
@@ -830,17 +820,16 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 - **unit-tooltip** : _(String)_ Permet de spécifier l’unité à afficher dans l’infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
-  - `'unicolor'` : Palette unicolore.
   - `'gradient'` : Palette dégradée.
 - **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-  - `'lagon'` : pour une représentation unicolore en cyan.
+  - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
   - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
 ---
 
-## Exemple :
+**Exemple**:
 
 ```html
 <radar-chart
@@ -857,7 +846,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 ## Notes supplémentaires
 
-- **selected-palette** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
+- **palette-type** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
 - **unit-tooltip** : Ce paramètre vous permet de spécifier l’unité qui sera affichée dans l’infobulle (tooltip) lorsque l’utilisateur survole une valeur du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l’unité de mesure.
 
 ---
@@ -868,7 +857,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
   - Pour `x` : `x='[["Label1", "Label2", "Label3"]]'`
   - Pour `y` : `y='[[10, 20, 30], [15, 25, 35]]'`
 
-- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `selected-palette` avec `unit-tooltip`.
+- **Combinaison des options** : Vous pouvez combiner plusieurs options pour personnaliser davantage votre graphique, comme utiliser `palette-type` avec `unit-tooltip`.
 
 - **Personnalisation des séries** : Le paramètre `name` est utilisé pour spécifier les noms des séries de données. Si vous avez plusieurs séries (plusieurs listes dans `y`), vous devez fournir une liste de noms correspondante dans `name`.
 
@@ -876,16 +865,17 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 ## Autres exemples
 
-### 1. Diagramme en étoile avec palette divergente ascendante
+### 1. Diagramme en étoile avec palette catégorielle divergente
 
-## Exemple :
+**Exemple**:
 
 ```html
 <radar-chart
   x='[["Critère 1", "Critère 2", "Critère 3", "Critère 4", "Critère 5"]]'
   y="[[80, 90, 70, 60, 50], [60, 70, 80, 90, 100]]"
   name='["Série A", "Série B"]'
-  selected-palette="divergentAscending"
+  palette-type="categorical"
+  palette-colors='["sapin", "caramel", "coquelicot"]'
   unit-tooltip="%"
 ></radar-chart>
 ```
@@ -894,7 +884,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 
 ### 2. Diagramme en étoile avec unité personnalisée
 
-## Exemple :
+**Exemple**:
 
 ```html
 <radar-chart
@@ -926,7 +916,7 @@ Les jauges sont accessibles à travers la balise : `<gauge-chart>`.
 - **legend** : _(Boolean)_ Permet d’afficher une légende sous la jauge, avec "Valeur cible" et "Valeur actuelle". Par défaut, la légende est affichée.
 - **date** : _(String)_ Permet d'afficher une date associée au graphique.
 
-## Exemple :
+**Exemple**:
 
 ```html
 <gauge-chart
@@ -1091,13 +1081,12 @@ Un graphique étant par définition une représentation visuelle d’un ensemble
 Dans DSFR Chart, le paramètre `palette-type` vous permet de choisir un type de palette et `palette-colors` vous permet de personnaliser les couleurs utilisées par cette palette. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée :
 
 - `'categorical'` : Palette catégorielle par défaut.
-- `'unicolor'` : Palette unicolore.
 - `'gradient'` : Palette dégradée.
 
 Puis personnalisez si besoin, les couleurs utilisées par la palette choisie avec les noms des couleurs DSFR 2 :
 
 - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
-- `'lagon'` : pour une représentation unicolore en cyan.
+- `['lagon']` : pour une représentation ayant un seul dataset en cyan.
 - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
 - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 

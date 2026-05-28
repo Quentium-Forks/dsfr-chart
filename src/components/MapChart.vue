@@ -195,7 +195,7 @@ import chroma from 'chroma-js';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
-import { getColors } from '@/utils/colors.js';
+import { getColors, getColorNames } from '@/utils/colors.js';
 
 export default {
   name: 'MapChart',
@@ -244,9 +244,18 @@ export default {
       type: String,
       default: 'Données',
     },
-    selectedPalette: {
+    paletteType: {
       type: String,
-      default: 'sequentialAscending',
+      default: 'gradient',
+    },
+    paletteColors: {
+      type: [Array, String],
+      default: () => [],
+      validator: (value) => {
+        const colorNames = getColorNames();
+        const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
+        return colorsToCheck.every((color) => colorNames.includes(color));
+      },
     },
   },
   data() {
@@ -366,7 +375,7 @@ export default {
       }
 
       // Choisir les couleurs extrêmes basées sur la palette
-      const colors = getColors(2, 'default', ['lagon', 'saphir']);
+      const colors = getColors(2, 'categorical', ['lagon', 'saphir']);
       this.colorLeft = colors.background[0];
       this.colorRight = colors.background[1];
       this.InfoProps.colorMin = this.colorLeft;

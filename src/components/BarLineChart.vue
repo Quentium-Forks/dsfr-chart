@@ -95,7 +95,7 @@
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { getColors } from '@/utils/colors.js';
+import { getColors, getColorNames } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
@@ -199,10 +199,6 @@ export default {
       type: [Number, String],
       default: 2,
     },
-    selectedPalette: {
-      type: String,
-      default: '',
-    },
     unitTooltipBar: {
       type: String,
       default: '',
@@ -210,6 +206,19 @@ export default {
     unitTooltipLine: {
       type: String,
       default: '',
+    },
+    paletteType: {
+      type: String,
+      default: 'categorical',
+    },
+    paletteColors: {
+      type: [Array, String],
+      default: () => [],
+      validator: (value) => {
+        const colorNames = getColorNames();
+        const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
+        return colorsToCheck.every((color) => colorNames.includes(color));
+      },
     },
   },
   data() {
@@ -409,7 +418,7 @@ export default {
       ];
     },
     loadColors() {
-      const colors = getColors(this.ylineparse.length + this.ybarparse.length);
+      const colors = getColors(this.ylineparse.length + this.ybarparse.length, this.paletteType, this.paletteColors);
       this.colorBarParse = [colors.background[0]];
       this.colorLineParse = [colors.background[1]];
       this.colorBarHover = [colors.hover[0]];

@@ -30,7 +30,7 @@
     <div class="fr-mb-4v">
       <component
         :is="BarChart"
-        v-bind="chartData.barChart.unicolor"
+        v-bind="chartData.barChart.highlight"
       />
     </div>
     <p>Par exemple, pour le diagramme en barre simple ci-dessus, l’alternative pourrait être :</p>

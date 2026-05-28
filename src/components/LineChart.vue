@@ -90,7 +90,7 @@
 <script>
 import { Chart, LineController, LineElement } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { getColors } from '@/utils/colors.js';
+import { getColors, getColorNames } from '@/utils/colors.js';
 
 Chart.register(LineController, LineElement);
 
@@ -170,13 +170,22 @@ export default {
       type: [Number, String],
       default: 2,
     },
-    selectedPalette: {
-      type: String,
-      default: '',
-    },
     unitTooltip: {
       type: String,
       default: '',
+    },
+    paletteType: {
+      type: String,
+      default: 'categorical',
+    },
+    paletteColors: {
+      type: [Array, String],
+      default: () => [],
+      validator: (value) => {
+        const colorNames = getColorNames();
+        const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
+        return colorsToCheck.every((color) => colorNames.includes(color));
+      },
     },
   },
   data() {
@@ -379,7 +388,7 @@ export default {
       }));
     },
     loadColors() {
-      const colors = getColors(this.yparse[0].length);
+      const colors = getColors(this.yparse[0].length, this.paletteType, this.paletteColors);
       this.colorParse = colors.background;
       this.colorHover = colors.hover;
 

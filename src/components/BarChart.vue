@@ -77,7 +77,7 @@
 <script>
 import { BarController, BarElement, Chart } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { getColors } from '@/utils/colors.js';
+import { getColors, getColorNames } from '@/utils/colors.js';
 
 Chart.register(BarController, BarElement);
 
@@ -157,10 +157,6 @@ export default {
       type: [Number, String],
       default: 2,
     },
-    selectedPalette: {
-      type: String,
-      default: '',
-    },
     highlightIndex: {
       type: [Array, String],
       default: () => [],
@@ -168,6 +164,19 @@ export default {
     unitTooltip: {
       type: String,
       default: '',
+    },
+    paletteType: {
+      type: String,
+      default: 'categorical',
+    },
+    paletteColors: {
+      type: [Array, String],
+      default: () => [],
+      validator: (value) => {
+        const colorNames = getColorNames();
+        const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
+        return colorsToCheck.every((color) => colorNames.includes(color));
+      },
     },
   },
   data() {
@@ -317,7 +326,7 @@ export default {
       }));
     },
     loadColors() {
-      const colors = getColors(this.yparse[0].length);
+      const colors = getColors(this.yparse[0].length, this.paletteType, this.paletteColors);
       this.colorParse = colors.background;
       this.colorHover = colors.hover;
     },
@@ -427,10 +436,9 @@ export default {
                   // Iterate over bodyLines to set the color and value in the tooltip
                   bodyLines[0].forEach((line, i) => {
                     if (line && line !== 'NaN' && tooltipModel.dataPoints[i]) {
-                      const { datasetIndex, dataIndex } = tooltipModel.dataPoints[i];
+                      const { datasetIndex } = tooltipModel.dataPoints[i];
 
-                      // Ensure the color is correctly referenced
-                      const color = this.colorParse[datasetIndex] ? this.colorParse[datasetIndex][dataIndex] : '#000';
+                      const color = this.colorParse[datasetIndex];
 
                       const displayValue = `${line}${this.unitTooltip ? ` ${this.unitTooltip}` : ''}`;
 

@@ -134,7 +134,7 @@
               v-if="!graph.noPalette"
               class="fr-badge fr-badge--info fr-mt-1w fr-mb-1w"
             >
-              {{ PALETTE_LABELS?.[graph.props.selectedPalette] ?? PALETTE_LABELS.categorical }}
+              {{ PALETTE_LABELS?.[graph.props.paletteType] ?? PALETTE_LABELS.categorical }}
             </p>
             <h3
               v-if="graph.title"
@@ -181,7 +181,6 @@ import AccessibilitySection from './AccessibilitySection.vue';
 
 const PALETTE_LABELS = {
   categorical: 'Palette catégorielle par défaut',
-  unicolor: 'Palette unicolore',
   gradient: 'Palette dégradée',
 };
 

@@ -5,13 +5,12 @@
     <p>Dans DSFR Chart, le paramètre <strong>palette-type</strong> vous permet de choisir un type de palette et <strong>palette-colors</strong> vous permet de personnaliser les couleurs utilisées par cette palette. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée :</p>
     <ul>
       <li><code>categorical</code> : Palette catégorielle par défaut.</li>
-      <li><code>unicolor</code> : Palette unicolore.</li>
       <li><code>gradient</code> : Palette dégradée.</li>
     </ul>
     <p>Puis personnalisez si besoin, les couleurs utilisées par la palette choisie avec les noms des couleurs DSFR 2 :</p>
     <ul>
       <li><code>['cacao', 'coquelicot', 'caramel', 'citron']</code> pour avoir une palette catégorielle sur un ton automne.</li>
-      <li><code>'lagon'</code> pour une représentation unicolore en cyan.</li>
+      <li><code>['lagon']</code> pour une représentation ayant un seul dataset en cyan.</li>
       <li><code>['guimauve', 'lavande']</code> pour une palette dégradée du rose vers le violet.</li>
       <li><code>['sapin', 'citron', 'coquelicot']</code> pour une palette dégradée divergente.</li>
     </ul>
@@ -32,18 +31,6 @@
       </div>
     </div>
 
-    <h3>Graphiques unicolores</h3>
-    <p>Une représentation graphique n’a pas toujours besoin d’être très colorée. Lorsqu’il n’est pas nécessaire de différencier les formes par des couleurs, on peut afficher les graphiques avec une couleur unie avec la valeur <code>unicolor</code>.</p>
-    <p>Si aucune couleur n’est renseignée via l’attribut <code>palette-colors</code>, la couleur par défaut est la suivante :</p>
-    <div class="fr-grid-row fr-grid-row--gutters fr-mb-6v">
-      <div class="fr-col-6 fr-col-md-4">
-        <ColorCard
-          title="Couleur par défaut"
-          :color="COLORS_DSFR_V2.light.saphir.bg"
-        />
-      </div>
-    </div>
-
     <h3>Graphiques dégradés</h3>
     <p>Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette dégradée doit être utilisée avec la valeur <code>gradient</code>. Les possibilités sont multiples en fonction du type de données que vous souhaitez représenter.</p>
     <p>Si aucune couleur n’est renseignée via l’attribut <code>palette-colors</code>, le dégradé par défaut est le suivant :</p>
@@ -57,12 +44,12 @@
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur d’arrivée"
-          :color="COLORS_DSFR_V2.light.saphir.text"
+          :color="COLORS_DSFR_V2.light.lagon.bg"
         />
       </div>
     </div>
 
-    <h4>Palette dégradée unicolore</h4>
+    <h4>Palette dégradée séquentielle</h4>
     <p>Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle dégradée peut être utilisée.</p>
     <p>En fonction du nombre de catégories, il y aura autant de valeurs de couleurs générées qu’il en existe dans un dégradé allant de la couleur de départ à la couleur d’arrivée.</p>
     <p>Par exemple, si l’on souhaite utiliser un dégradé du rose vers le violet, l’attribut <code>palette-colors</code> pourra être renseigné de la manière suivante : <code>['guimauve', 'lavande']</code>.</p>

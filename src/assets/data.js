@@ -27,11 +27,11 @@ export const chartData = {
       name: '["Population en millions"]',
       unitTooltip: 'millions',
     },
-    unicolor: {
+    highlight: {
       x: '[["15 à 29 ans", "30 à 44 ans", "45 à 59 ans", "60 à 74 ans", "75 ans ou plus"]]',
       y: '[[75.4, 80.5, 66.8, 43.4, 12.1]]',
       name: '["Achat sur internet au cours des 12 derniers mois (%)"]',
-      selectedPalette: 'unicolor',
+      paletteColors: '["cacao", "cannelle"]',
       unitTooltip: '%',
       highlightIndex: '[3, 4]',
     },
@@ -39,7 +39,8 @@ export const chartData = {
       x: '[["Nouvelle-Aquitaine", "Hauts-de-France", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Normandie", "Bretagne", "Pays de la Loire", "Occitanie", "Grand Est", "Centre-Val de Loire", "Île-de-France", "Provence-Alpes-Côte d’Azur", "Corse"]]',
       y: '[[1071, 927, 921, 850, 845, 838, 821, 793, 789, 771, 734, 485, 482]]',
       name: '["Hauteur des précipitations (en mm)"]',
-      selectedPalette: 'sequentialDescending',
+      paletteType: 'gradient',
+      paletteColors: '["saphir", "lagon"]',
       unitTooltip: 'mm',
     },
     horizontal: {
@@ -55,7 +56,7 @@ export const chartData = {
       y: '[[15, 19, 15, 13], [45, 40, 47, 41], [36, 32, 34, 44], [4, 9, 4, 2]]',
       name: '["Tout à fait satisfait", "Plutôt satisfait", "Plutôt pas satisfait", "Pas du tout satisfait"]',
       stacked: true,
-      selectedPalette: 'divergentAscending',
+      paletteColors: '["sapin", "fougere", "caramel", "coquelicot"]',
       unitTooltip: '%',
     },
     drilldown: {
