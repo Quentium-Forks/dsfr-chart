@@ -1,60 +1,49 @@
 export const COLORS_DSFR_V2 = {
   light: {
     saphir: {
-      bg: '#BFCCFF',
-      text: '#1D3AC8',
+      bg: '#1D00FF',
     },
     caramel: {
-      bg: '#FEC28C',
-      text: '#7E3A00',
+      bg: '#F48900',
     },
     coquelicot: {
-      bg: '#FFBEB8',
-      text: '#9B111D',
+      bg: '#D80025',
     },
     emeraude: {
-      bg: '#96DDB6',
-      text: '#21564A',
+      bg: '#046E5A',
     },
     sapin: {
-      bg: '#A0DE85',
-      text: '#1D5837',
+      bg: '#09B020',
     },
     moutarde: {
-      bg: '#F2CA46',
-      text: '#6A4600',
+      bg: '#F9C800',
     },
     lavande: {
-      bg: '#DDC3FE',
-      text: '#6D28A4',
+      bg: '#8400D1',
     },
     guimauve: {
-      bg: '#FCBBDF',
-      text: '#842C5B',
+      bg: '#FF53BD',
     },
     cacao: {
-      bg: '#E8C7B7',
-      text: '#664636',
+      bg: '#7C5947',
     },
     ocean: {
-      bg: '#ACD1FF',
-      text: '#214C8E',
+      bg: '#007DFA',
     },
     cannelle: {
-      bg: '#EFC4BC',
-      text: '#763D37',
+      bg: '#FAD5CF',
     },
     lagon: {
-      bg: '#9DD6F0',
-      text: '#22526C',
+      bg: '#4FCCFF',
     },
     fougere: {
-      bg: '#BBD972',
-      text: '#305717',
+      bg: '#A4CE0C',
     },
     citron: {
-      bg: '#DDD147',
-      text: '#5F4B00',
+      bg: '#FEF300',
+    },
+    ardoise: {
+      bg: '#A5B2C9',
     },
   },
 };
