@@ -1,3 +1,7 @@
+import { COLOR_SET } from '@/utils/constants';
+
+const getColorName = (colorValue) => Object.entries(COLOR_SET.palette.light).find(([, value]) => value === colorValue)?.[0] ?? colorValue;
+
 export const chartData = {
   lineChart: {
     default: {
@@ -31,17 +35,17 @@ export const chartData = {
       x: '[["15 à 29 ans", "30 à 44 ans", "45 à 59 ans", "60 à 74 ans", "75 ans ou plus"]]',
       y: '[[75.4, 80.5, 66.8, 43.4, 12.1]]',
       name: '["Achat sur internet au cours des 12 derniers mois (%)"]',
-      paletteColors: '["cacao"]',
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}"]`,
       unitTooltip: '%',
       highlightIndex: '[3, 4]',
-      highlightColor: 'caramel',
+      highlightColor: getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.bad),
     },
     sequential: {
       x: '[["Nouvelle-Aquitaine", "Hauts-de-France", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Normandie", "Bretagne", "Pays de la Loire", "Occitanie", "Grand Est", "Centre-Val de Loire", "Île-de-France", "Provence-Alpes-Côte d’Azur", "Corse"]]',
       y: '[[1071, 927, 921, 850, 845, 838, 821, 793, 789, 771, 734, 485, 482]]',
       name: '["Hauteur des précipitations (en mm)"]',
       paletteType: 'gradient',
-      paletteColors: '["saphir", "lagon"]',
+      paletteColors: `["${getColorName(COLOR_SET.gradient_start)}", "${getColorName(COLOR_SET.gradient_end)}"]`,
       unitTooltip: 'mm',
     },
     horizontal: {
@@ -57,7 +61,7 @@ export const chartData = {
       y: '[[15, 19, 15, 13], [45, 40, 47, 41], [36, 32, 34, 44], [4, 9, 4, 2]]',
       name: '["Tout à fait satisfait", "Plutôt satisfait", "Plutôt pas satisfait", "Pas du tout satisfait"]',
       stacked: true,
-      paletteColors: '["sapin", "fougere", "caramel", "coquelicot"]',
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.fougere || COLOR_SET.palette.light.bourgeon || COLOR_SET.palette.light.good)}", "${getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.terrible)}"]`,
       unitTooltip: '%',
     },
     drilldown: {

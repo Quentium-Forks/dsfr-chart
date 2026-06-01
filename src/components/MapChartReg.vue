@@ -289,8 +289,8 @@ export default {
         return;
       }
 
-      // Choisir les couleurs extrêmes basées sur la palette
-      const colors = getColors(2, 'categorical', ['lagon', 'saphir']);
+      // Choisir les couleurs extrêmes basées sur la palette (easy fallback to other color sets, only 2 colors are used for the map)
+      const colors = getColors(2, 'categorical', ['lagon', 'saphir', 'france', 'archipel', 'gradient1', 'gradient2']);
       this.colorLeft = colors.background[0];
       this.colorRight = colors.background[1];
       this.InfoProps.colorMin = this.colorLeft;

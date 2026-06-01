@@ -9,7 +9,7 @@ export const getColors = (count = 1, type = 'categorical', colors = [], highligh
   const customColors = typeof colors === 'string' ? JSON.parse(colors) : colors;
   const validCustomColors = customColors.filter((color) => themeColors[color]);
   const highlightIndexes = typeof highlight === 'string' ? JSON.parse(highlight) : highlight;
-  const validHighlightColor = themeColors[highlightColor] ?? themeColors.caramel;
+  const validHighlightColor = themeColors[highlightColor] ?? (themeColors.caramel || themeColors.average);
 
   if (type === 'gradient') {
     if (validCustomColors.length === 0) {
