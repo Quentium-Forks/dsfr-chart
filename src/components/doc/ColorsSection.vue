@@ -20,13 +20,13 @@
     <p>Il est conseillé de ne pas représenter plus de 8 catégories, car cela nuirait à la compréhension de l’utilisateur. Au-delà de ce nombre, il conviendra de rassembler les dernières catégories dans un ensemble “Autres”.</p>
     <div class="fr-grid-row fr-grid-row--gutters fr-mb-6v">
       <div
-        v-for="color in Object.keys(COLORS_DSFR_V2.light)"
+        v-for="color in Object.keys(COLOR_SET.palette.light)"
         :key="color"
         class="fr-col-6 fr-col-md-4"
       >
         <ColorCard
           :title="color"
-          :color="COLORS_DSFR_V2.light[color].bg"
+          :color="COLOR_SET.palette.light[color]"
         />
       </div>
     </div>
@@ -38,13 +38,13 @@
       <div class="fr-col-6 fr-col-md-4">
         <ColorCard
           title="Couleur de départ"
-          :color="COLORS_DSFR_V2.light.saphir.bg"
+          :color="COLOR_SET.gradient_start"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur d’arrivée"
-          :color="COLORS_DSFR_V2.light.lagon.bg"
+          :color="COLOR_SET.gradient_end"
         />
       </div>
     </div>
@@ -57,13 +57,13 @@
       <div class="fr-col-6 fr-col-md-4">
         <ColorCard
           title="Couleur de départ"
-          :color="COLORS_DSFR_V2.light.guimauve.bg"
+          :color="COLOR_SET.palette.light.guimauve || COLOR_SET.palette.light.macaron || COLOR_SET.palette.light.categorical7"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur d’arrivée"
-          :color="COLORS_DSFR_V2.light.lavande.bg"
+          :color="COLOR_SET.palette.light.lavande || COLOR_SET.palette.light.glycine || COLOR_SET.palette.light.categorical6"
         />
       </div>
     </div>
@@ -76,19 +76,19 @@
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur haute"
-          :color="COLORS_DSFR_V2.light.sapin.bg"
+          :color="COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur médiane"
-          :color="COLORS_DSFR_V2.light.citron.bg"
+          :color="COLOR_SET.palette.light.citron || COLOR_SET.palette.light.tournesol || COLOR_SET.palette.light.average"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur basse"
-          :color="COLORS_DSFR_V2.light.coquelicot.bg"
+          :color="COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light['terre-battue'] || COLOR_SET.palette.light.terrible"
         />
       </div>
     </div>
@@ -97,7 +97,7 @@
 
 <script setup>
 import ColorCard from './ColorCard.vue';
-import { COLORS_DSFR_V2 } from '@/utils/constants';
+import { COLOR_SET } from '@/utils/constants';
 </script>
 
 <style scoped>

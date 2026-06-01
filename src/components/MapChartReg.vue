@@ -118,7 +118,7 @@ import chroma from 'chroma-js';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
-import { getColors, getColorNames } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 export default {
   name: 'MapChartReg',
@@ -175,7 +175,7 @@ export default {
       type: [Array, String],
       default: () => [],
       validator: (value) => {
-        const colorNames = getColorNames();
+        const colorNames = getColors(0, 'keys');
         const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
         return colorsToCheck.every((color) => colorNames.includes(color));
       },

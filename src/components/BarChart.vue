@@ -77,7 +77,7 @@
 <script>
 import { BarController, BarElement, Chart } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
-import { getColors, getColorNames } from '@/utils/colors.js';
+import { getColors } from '@/utils/colors.js';
 
 Chart.register(BarController, BarElement);
 
@@ -165,7 +165,7 @@ export default {
       type: String,
       default: '',
       validator: (value) => {
-        const colorNames = getColorNames();
+        const colorNames = getColors(0, 'keys');
         return value === '' || colorNames.includes(value);
       },
     },
@@ -181,7 +181,7 @@ export default {
       type: [Array, String],
       default: () => [],
       validator: (value) => {
-        const colorNames = getColorNames();
+        const colorNames = getColors(0, 'keys');
         const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
         return colorsToCheck.every((color) => colorNames.includes(color));
       },

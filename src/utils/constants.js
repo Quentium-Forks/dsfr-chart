@@ -1,149 +1,114 @@
 export const COLORS_DSFR_V2 = {
   light: {
-    saphir: {
-      bg: '#1D00FF',
-    },
-    caramel: {
-      bg: '#F48900',
-    },
-    coquelicot: {
-      bg: '#D80025',
-    },
-    emeraude: {
-      bg: '#046E5A',
-    },
-    sapin: {
-      bg: '#09B020',
-    },
-    moutarde: {
-      bg: '#F9C800',
-    },
-    lavande: {
-      bg: '#8400D1',
-    },
-    guimauve: {
-      bg: '#FF53BD',
-    },
-    cacao: {
-      bg: '#7C5947',
-    },
-    ocean: {
-      bg: '#007DFA',
-    },
-    cannelle: {
-      bg: '#FAD5CF',
-    },
-    lagon: {
-      bg: '#4FCCFF',
-    },
-    fougere: {
-      bg: '#A4CE0C',
-    },
-    citron: {
-      bg: '#FEF300',
-    },
-    ardoise: {
-      bg: '#A5B2C9',
-    },
+    saphir: '#1D00FF',
+    caramel: '#F48900',
+    coquelicot: '#D80025',
+    emeraude: '#046E5A',
+    sapin: '#09B020',
+    moutarde: '#F9C800',
+    lavande: '#8400D1',
+    guimauve: '#FF53BD',
+    cacao: '#7C5947',
+    ocean: '#007DFA',
+    cannelle: '#FAD5CF',
+    lagon: '#4FCCFF',
+    fougere: '#A4CE0C',
+    citron: '#FEF300',
+    ardoise: '#A5B2C9',
+  },
+};
+
+export const COLORS_DSFR_V1 = {
+  light: {
+    france: '#6A6AF4',
+    marianne: '#E1000F',
+    'tilleul-verveine': '#B7A73F',
+    bourgeon: '#68A532',
+    emeraude: '#00A95F',
+    menthe: '#009081',
+    archipel: '#009099',
+    ecume: '#808AA3',
+    cumulus: '#417DC4',
+    glycine: '#A558A0',
+    macaron: '#E18B76',
+    tuile: '#CE614A',
+    tournesol: '#C8AA39',
+    moutarde: '#C3992A',
+    'terre-battue': '#E4794A',
+    'cafe-creme': '#D1B781',
+    caramel: '#C08C65',
+    opera: '#BD987A',
+    'gris-galet': '#AEA397',
+    info: '#0078F3',
+    success: '#1F8D49',
+    warning: '#D64D00',
+    error: '#F60700',
+    grey: '#7B7B7B',
   },
 };
 
 export const COLORS_CHARTS = {
   light: {
-    categorical1: {
-      bg: '#5C68E5',
-    },
-    categorical2: {
-      bg: '#82B5F2',
-    },
-    categorical3: {
-      bg: '#29598F',
-    },
-    categorical4: {
-      bg: '#31A7AE',
-    },
-    categorical5: {
-      bg: '#81EEF5',
-    },
-    categorical6: {
-      bg: '#B478F1',
-    },
-    categorical7: {
-      bg: '#CFB1F5',
-    },
-    categorical8: {
-      bg: '#CECECE',
-    },
-    gradient1: {
-      bg: '#DBDAFF',
-    },
-    gradient2: {
-      bg: '#00005F',
-    },
-    excellent: {
-      bg: '#298641',
-    },
-    good: {
-      bg: '#79D289',
-    },
-    average: {
-      bg: '#EFB900',
-    },
-    bad: {
-      bg: '#FFA373',
-    },
-    terrible: {
-      bg: '#E91719',
-    },
+    categorical1: '#5C68E5',
+    categorical2: '#82B5F2',
+    categorical3: '#29598F',
+    categorical4: '#31A7AE',
+    categorical5: '#81EEF5',
+    categorical6: '#B478F1',
+    categorical7: '#CFB1F5',
+    categorical8: '#CECECE',
+    gradient1: '#DBDAFF',
+    gradient2: '#00005F',
+    excellent: '#298641',
+    good: '#79D289',
+    average: '#EFB900',
+    bad: '#FFA373',
+    terrible: '#E91719',
   },
   dark: {
-    categorical1: {
-      bg: '#5C68E5',
-    },
-    categorical2: {
-      bg: '#699BD6',
-    },
-    categorical3: {
-      bg: '#4878B1',
-    },
-    categorical4: {
-      bg: '#00828A',
-    },
-    categorical5: {
-      bg: '#51C1C8',
-    },
-    categorical6: {
-      bg: '#BC8AF2',
-    },
-    categorical7: {
-      bg: '#CFB1F5',
-    },
-    categorical8: {
-      bg: '#A4A4A4',
-    },
-    gradient1: {
-      bg: '#B8B9FF',
-    },
-    gradient2: {
-      bg: '#3647CA',
-    },
-    excellent: {
-      bg: '#298641',
-    },
-    good: {
-      bg: '#449D57',
-    },
-    average: {
-      bg: '#AF8800',
-    },
-    bad: {
-      bg: '#FFA373',
-    },
-    terrible: {
-      bg: '#E16834',
-    },
+    categorical1: '#5C68E5',
+    categorical2: '#699BD6',
+    categorical3: '#4878B1',
+    categorical4: '#00828A',
+    categorical5: '#51C1C8',
+    categorical6: '#BC8AF2',
+    categorical7: '#CFB1F5',
+    categorical8: '#A4A4A4',
+    gradient1: '#B8B9FF',
+    gradient2: '#3647CA',
+    excellent: '#298641',
+    good: '#449D57',
+    average: '#AF8800',
+    bad: '#FFA373',
+    terrible: '#E16834',
   },
 };
+
+export const COLOR_SETS = {
+  dsfrV2: {
+    palette: COLORS_DSFR_V2,
+    default: COLORS_DSFR_V2.light.saphir,
+    gradient_start: COLORS_DSFR_V2.light.saphir,
+    gradient_end: COLORS_DSFR_V2.light.lagon,
+    themed: false,
+  },
+  dsfrV1: {
+    palette: COLORS_DSFR_V1,
+    default: COLORS_DSFR_V1.light.france,
+    gradient_start: COLORS_DSFR_V1.light.france,
+    gradient_end: COLORS_DSFR_V1.light.archipel,
+    themed: false,
+  },
+  charts: {
+    palette: COLORS_CHARTS,
+    default: COLORS_CHARTS.light.france,
+    gradient_start: COLORS_CHARTS.light.gradient2,
+    gradient_end: COLORS_CHARTS.light.gradient1,
+    themed: true,
+  },
+};
+
+export const COLOR_SET = COLOR_SETS.charts;
 
 export const FRANCE = [
   {

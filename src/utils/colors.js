@@ -1,13 +1,11 @@
 import chroma from 'chroma-js';
-import { COLORS_DSFR_V2, COLORS_CHARTS } from '@/utils/constants';
-
-export const getColorNames = (theme = null) => {
-  const themeColors = COLORS_DSFR_V2[theme || document.documentElement.getAttribute('data-fr-theme') || 'light'];
-  return Object.keys(themeColors);
-};
+import { COLOR_SET } from '@/utils/constants';
 
 export const getColors = (count = 1, type = 'categorical', colors = [], highlight = [], highlightColor = null, theme = null) => {
-  const themeColors = COLORS_DSFR_V2[theme || document.documentElement.getAttribute('data-fr-theme') || 'light'];
+  const themeColors = COLOR_SET.themed ? COLOR_SET.palette[theme || document.documentElement.getAttribute('data-fr-theme') || 'light'] : COLOR_SET.palette.light;
+  if (type === 'keys') {
+    return Object.keys(themeColors);
+  }
   const customColors = typeof colors === 'string' ? JSON.parse(colors) : colors;
   const validCustomColors = customColors.filter((color) => themeColors[color]);
   const highlightIndexes = typeof highlight === 'string' ? JSON.parse(highlight) : highlight;
@@ -16,20 +14,20 @@ export const getColors = (count = 1, type = 'categorical', colors = [], highligh
   if (type === 'gradient') {
     if (validCustomColors.length === 0) {
       return {
-        background: [chroma.scale([themeColors.saphir.bg, themeColors.lagon.bg]).colors(count)],
+        background: [chroma.scale([COLOR_SET.gradient_start, COLOR_SET.gradient_end]).colors(count)],
         hover: [
           chroma
-            .scale([themeColors.saphir.bg, themeColors.lagon.bg])
+            .scale([COLOR_SET.gradient_start, COLOR_SET.gradient_end])
             .colors(count)
             .map((color) => chroma(color).darken(0.8).hex()),
         ],
       };
     }
     return {
-      background: [chroma.scale(validCustomColors.map((color) => themeColors[color].bg)).colors(count)],
+      background: [chroma.scale(validCustomColors.map((color) => themeColors[color])).colors(count)],
       hover: [
         chroma
-          .scale(validCustomColors.map((color) => themeColors[color].bg))
+          .scale(validCustomColors.map((color) => themeColors[color]))
           .colors(count)
           .map((color) => chroma(color).darken(0.8).hex()),
       ],
@@ -40,17 +38,17 @@ export const getColors = (count = 1, type = 'categorical', colors = [], highligh
     }
     if (validCustomColors.length === 0) {
       return {
-        background: Object.values(themeColors).map((color) => color.bg),
-        hover: Object.values(themeColors).map((color) => chroma(color.bg).darken(0.8).hex()),
+        background: Object.values(themeColors).map((color) => color),
+        hover: Object.values(themeColors).map((color) => chroma(color).darken(0.8).hex()),
       };
     }
-    let backgroundColors = validCustomColors.map((color) => (themeColors[color] ? themeColors[color].bg : themeColors.saphir.bg));
-    let hoverColors = validCustomColors.map((color) => (themeColors[color] ? chroma(themeColors[color].bg).darken(0.8).hex() : chroma(themeColors.saphir.bg).darken(0.8).hex()));
+    let backgroundColors = validCustomColors.map((color) => (themeColors[color] ? themeColors[color] : COLOR_SET.default));
+    let hoverColors = validCustomColors.map((color) => (themeColors[color] ? chroma(themeColors[color]).darken(0.8).hex() : chroma(COLOR_SET.default).darken(0.8).hex()));
     if (highlightIndexes.length > 0) {
       for (let i = 0; i < count; i++) {
         if (highlightIndexes.includes(i)) {
-          backgroundColors[i] = validHighlightColor.bg;
-          hoverColors[i] = chroma(validHighlightColor.bg).darken(0.8).hex();
+          backgroundColors[i] = validHighlightColor;
+          hoverColors[i] = chroma(validHighlightColor).darken(0.8).hex();
         } else {
           backgroundColors[i] = backgroundColors[0];
           hoverColors[i] = hoverColors[0];
