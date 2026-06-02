@@ -487,6 +487,11 @@ export default {
     resetSub() {
       this.isSubLevel = false;
       this.subTitle = null;
+      this.chart.data.labels = this.xparse[0];
+      this.chart.data.datasets[0].data = this.yparse[0];
+      this.chart.update();
+
+      this.selectedIndex = -1;
 
       let tmpNameParse = [];
       if (this.name) {
@@ -505,12 +510,6 @@ export default {
           this.nameParse.push(`Série ${i + 1}`);
         }
       }
-
-      this.chart.data.labels = this.xparse[0];
-      this.chart.data.datasets[0].data = this.yparse[0];
-      this.chart.update();
-
-      this.selectedIndex = -1;
     },
   },
 };
