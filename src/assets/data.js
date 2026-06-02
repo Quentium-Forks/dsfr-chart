@@ -61,6 +61,7 @@ export const chartData = {
       y: '[[15, 19, 15, 13], [45, 40, 47, 41], [36, 32, 34, 44], [4, 9, 4, 2]]',
       name: '["Tout à fait satisfait", "Plutôt satisfait", "Plutôt pas satisfait", "Pas du tout satisfait"]',
       stacked: true,
+      paletteType: 'gradient',
       paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.fougere || COLOR_SET.palette.light.bourgeon || COLOR_SET.palette.light.good)}", "${getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.terrible)}"]`,
       unitTooltip: '%',
     },

@@ -306,7 +306,6 @@ export default {
         }
       }
 
-      // Assignation des noms de séries
       this.nameParse = [];
       for (let i = 0; i < this.yparse.length; i++) {
         if (tmpNameParse[i]) {
@@ -337,6 +336,11 @@ export default {
       const colors = getColors(this.yparse[0].length, this.paletteType, this.paletteColors, this.highlightIndex, this.highlightColor);
       this.colorParse = colors.background;
       this.colorHover = colors.hover;
+      // When the chart is stacked, we need to make sure all datasets have the same color
+      if (this.stacked) {
+        this.colorParse = this.colorParse[0];
+        this.colorHover = this.colorHover[0];
+      }
     },
     createChart() {
       if (this.chart) {
