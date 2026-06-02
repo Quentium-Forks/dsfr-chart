@@ -172,6 +172,7 @@ export const chartData = {
       name: 'Nom de l’indicateur',
       level: 'dep',
       date: '11/02/2025',
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.terrible)}", "${getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.excellent)}"]`,
     },
     regions: {
       data: `{"ARA": 32, "BFC": 8, "BRE": 38, "CVL": 12, "GES": 67, "HDF": 89, "IDF": 0,
@@ -193,6 +194,7 @@ export const chartData = {
       name: 'Nom de l’indicateur',
       level: 'aca',
       date: '11/02/2025',
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.terrible)}"]`,
     },
     world: {
       data: `{"AE": 35, "AF": 65, "AL": 28, "AM": 9, "AO": 21, "AR": 71, "AT": 79, "AU": 17, "AZ": 76,

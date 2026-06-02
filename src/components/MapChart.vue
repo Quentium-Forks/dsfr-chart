@@ -196,6 +196,9 @@ import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
 import { getColors } from '@/utils/colors.js';
+import { COLOR_SET } from '@/utils/constants.js';
+
+const getColorName = (colorValue) => Object.entries(COLOR_SET.palette.light).find(([, value]) => value === colorValue)?.[0] ?? colorValue;
 
 export default {
   name: 'MapChart',
@@ -244,13 +247,9 @@ export default {
       type: String,
       default: 'Données',
     },
-    paletteType: {
-      type: String,
-      default: 'gradient',
-    },
     paletteColors: {
       type: [Array, String],
-      default: () => [],
+      default: () => [getColorName(COLOR_SET.palette.light.lagon || COLOR_SET.palette.light.france || COLOR_SET.palette.light.gradient1), getColorName(COLOR_SET.palette.light.saphir || COLOR_SET.palette.light.archipel || COLOR_SET.palette.light.gradient2)],
       validator: (value) => {
         const colorNames = getColors(0, 'keys');
         const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
@@ -264,8 +263,6 @@ export default {
       widgetId: '',
       scaleMin: 0,
       scaleMax: 0,
-      colorLeft: '',
-      colorRight: '',
       isDep: true,
       isReg: false,
       isAca: false,
@@ -277,8 +274,7 @@ export default {
         names: [],
         min: 0,
         max: 0,
-        colorMin: '',
-        colorMax: '',
+        colors: [],
         value: 0,
         valueNat: null,
         date: '',
@@ -374,19 +370,14 @@ export default {
         return;
       }
 
-      // Choisir les couleurs extrêmes basées sur la palette (easy fallback to other color sets, only 2 colors are used for the map)
-      const colors = getColors(2, 'categorical', ['lagon', 'saphir', 'france', 'archipel', 'gradient1', 'gradient2']);
-      this.colorLeft = colors.background[0];
-      this.colorRight = colors.background[1];
-      this.InfoProps.colorMin = this.colorLeft;
-      this.InfoProps.colorMax = this.colorRight;
       this.InfoProps.date = this.date;
       this.InfoProps.names = this.name;
 
+      const colors = getColors(this.paletteColors.length, 'categorical', this.paletteColors);
+      this.InfoProps.colors = colors.background;
+
       let values = [];
       let listDep = [];
-
-      this.MapProps.displayPath = {};
 
       // Préparation des valeurs de la carte avec les départements/régions/académies/pays
       if (this.zoomDep) {
@@ -429,13 +420,18 @@ export default {
       this.scaleMin = values.length > 0 ? Math.min(...values) : 0;
       this.scaleMax = values.length > 0 ? Math.max(...values) : 0;
 
+      this.InfoProps.min = this.scaleMin;
+      this.InfoProps.max = this.scaleMax;
+
       // Define color scale based on regional values
-      const colorScale = chroma.scale([this.colorLeft, this.colorRight]).domain([this.scaleMin, this.scaleMax]);
+      const colorScale = chroma.scale(colors.background).domain([this.scaleMin, this.scaleMax]);
 
       const xmin = [],
         xmax = [],
         ymin = [],
         ymax = [];
+
+      this.MapProps.displayPath = {};
 
       // Iterate over each element in input data and set colors
       for (const key in this.dataParse) {
@@ -568,12 +564,6 @@ export default {
         this.displayReunion = '';
         this.displayGuyane = '';
       }
-
-      this.InfoProps.names = this.name;
-      this.InfoProps.min = this.scaleMin;
-      this.InfoProps.max = this.scaleMax;
-      this.InfoProps.colorMin = this.colorLeft;
-      this.InfoProps.colorMax = this.colorRight;
     },
     displayTooltip(e) {
       if (isMobile()) {
