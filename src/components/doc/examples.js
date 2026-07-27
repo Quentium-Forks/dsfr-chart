@@ -26,7 +26,7 @@ export const chartExamples = [
     graphs: [
       { component: BarChart, heading: 'Barres verticales', title: 'Projection de la population française', desc: 'Population au 1er janvier - Données issues du scénario central des projections de population 2013-2070. Insee, 04/11/2024', props: chartData.barChart.vertical },
       { component: BarChart, heading: '', title: 'Pratique de l’internet des plus de 60 ans en 2018', desc: 'France hors Mayotte, individus de 15 ans ou plus vivant dans un ménage ordinaire. Insee, enquête Technologies de l’information et de la communication auprès des ménages, 04/11/2024', props: chartData.barChart.highlight },
-      { component: BarChart, heading: '', title: 'Les régions les plus pluvieuses de France en 2023', desc: 'France métropolitaine uniquement. Météo France, 04/11/2024', props: chartData.barChart.sequential },
+      { component: BarChart, heading: '', title: 'Les régions les plus pluvieuses de France en 2023', desc: 'France métropolitaine uniquement. Météo France, 04/11/2024', props: chartData.barChart.gradient },
       { component: BarChart, heading: 'Barres horizontales', title: 'Émissions de gaz à effet de serre par habitant en France', desc: 'En tonnes équivalent CO₂ par habitant. France métropolitaine. Insee, 12/02/2024', props: chartData.barChart.horizontal },
       { component: BarChart, heading: 'Barres empilées', title: 'Satisfaction des français à l’égard des services publics', desc: 'Étude IFOP pour TF1, janvier 2024 - Le regard des Français sur les services publics : satisfaction, jugement sur leur financement par les impôts et attentes. Ifop, enquête Emploi, 04/01/2024', props: chartData.barChart.stacked },
     ],
@@ -44,6 +44,7 @@ export const chartExamples = [
     graphs: [
       { component: PieChart, heading: 'Diagramme circulaire creux (donut)', title: 'Statut des emplois en France', desc: 'Pour l’année 2018. France hors Mayotte, population des ménages, personnes en emploi. Insee, enquête Emploi, 04/11/2024', props: chartData.pieChart.doughnut },
       { component: PieChart, heading: 'Diagramme circulaire plein', title: 'Structure des dépenses publiques en France en 2022', desc: 'France métropolitaine. Insee, 30/11/2023', props: chartData.pieChart.pie },
+      { component: PieChart, heading: 'Diagramme circulaire creux dégradé (donut)', title: 'Mode de transport pour aller travailler en 2022', desc: 'France hors Mayotte, personnes se déclarant en emploi. Insee, 07/10/2025', props: chartData.pieChart.gradient },
     ],
   },
   // Cartes

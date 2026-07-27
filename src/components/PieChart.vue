@@ -455,8 +455,13 @@ export default {
     },
     loadColors() {
       const colors = getColors(this.yparse[0].length, this.paletteType, this.paletteColors);
-      this.colorParse = [colors.background];
-      this.colorHover = [colors.hover];
+      this.colorParse = colors.background;
+      this.colorHover = colors.hover;
+
+      if (this.paletteType === 'categorical') {
+        this.colorParse = [colors.background];
+        this.colorHover = [colors.hover];
+      }
     },
     // eslint-disable-next-line no-unused-vars
     changeColors(theme) {

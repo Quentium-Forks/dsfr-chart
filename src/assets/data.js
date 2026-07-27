@@ -40,7 +40,7 @@ export const chartData = {
       highlightIndex: '[3, 4]',
       highlightColor: getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.bad),
     },
-    sequential: {
+    gradient: {
       x: '[["Nouvelle-Aquitaine", "Hauts-de-France", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Normandie", "Bretagne", "Pays de la Loire", "Occitanie", "Grand Est", "Centre-Val de Loire", "Île-de-France", "Provence-Alpes-Côte d’Azur", "Corse"]]',
       y: '[[1071, 927, 921, 850, 845, 838, 821, 793, 789, 771, 734, 485, 482]]',
       name: '["Hauteur des précipitations (en mm)"]',
@@ -127,6 +127,14 @@ export const chartData = {
       name: '["Protection sociale", "Santé", "Affaires économiques", "Services publics généraux", "Autres", "Enseignement", "Défense"]',
       fill: true,
       unitTooltip: '%',
+    },
+    gradient: {
+      x: '[["Voiture et deux-roues motorisés", "Transports en commun", "Marche à pied", "Pas de déplacement", "Vélo"]]',
+      y: '[[71.0, 15.3, 6.1, 4.1, 3.5]]',
+      name: '["Voiture et deux-roues motorisés", "Transports en commun", "Marche à pied", "Pas de déplacement", "Vélo"]',
+      unitTooltip: '%',
+      paletteType: 'gradient',
+      paletteColors: `["${getColorName(COLOR_SET.gradient_start)}", "${getColorName(COLOR_SET.gradient_end)}"]`,
     },
     drilldown: {
       x: '[["Google", "Apple", "Mozilla", "Microsoft", "Opera"]]',
