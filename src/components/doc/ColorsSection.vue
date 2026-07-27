@@ -50,7 +50,7 @@
     </div>
 
     <h4>Palette dégradée séquentielle</h4>
-    <p>Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle dégradée peut être utilisée.</p>
+    <p>Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette dégradée séquentielle peut être utilisée.</p>
     <p>En fonction du nombre de catégories, il y aura autant de valeurs de couleurs générées qu’il en existe dans un dégradé allant de la couleur de départ à la couleur d’arrivée.</p>
     <p>Par exemple, si l’on souhaite utiliser un dégradé du rose vers le violet, l’attribut <code>palette-colors</code> pourra être renseigné de la manière suivante : <code>['guimauve', 'lavande']</code>.</p>
     <div class="fr-grid-row fr-grid-row--gutters fr-mb-6v">

@@ -22,7 +22,7 @@ export const chartExamples = [
   // Diagramme en barres
   {
     title: 'Diagramme en barres',
-    desc: 'Un diagramme en barres montre les dénombrements de valeurs pour les niveaux d’une variable catégorielle, séquentielle ou neutre. Les barres peuvent être présentées de manière horizontale, verticale ou être empilées.',
+    desc: 'Un diagramme en barres montre les dénombrements de valeurs pour les différents sets de données. Les barres peuvent être présentées de manière horizontale, verticale ou être empilées.',
     graphs: [
       { component: BarChart, heading: 'Barres verticales', title: 'Projection de la population française', desc: 'Population au 1er janvier - Données issues du scénario central des projections de population 2013-2070. Insee, 04/11/2024', props: chartData.barChart.vertical },
       { component: BarChart, heading: '', title: 'Pratique de l’internet des plus de 60 ans en 2018', desc: 'France hors Mayotte, individus de 15 ans ou plus vivant dans un ménage ordinaire. Insee, enquête Technologies de l’information et de la communication auprès des ménages, 04/11/2024', props: chartData.barChart.highlight },

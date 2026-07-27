@@ -238,7 +238,7 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 - **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer.
 - **bar-size** : _(Number)_ Permet de définir la largeur des barres en pixels. Par défaut, la largeur est automatique (`'flex'`).
 - **max-bar-size** : _(Number)_ Permet de définir la largeur maximale des barres en pixels. Par défaut, la largeur maximale est de `32` pixels.
-- **highlight-index** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'neutral'`).
+- **highlight-index** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'categorical'`).
 - **unit-tooltip** : _(String)_ Permet de spécifier l’unité à afficher dans l’infobulle (tooltip) du graphique. Par exemple, `%`, `€`, `$`, etc.
 - **date** : _(String)_ Permet d'afficher une date associée au graphique.
 - **aspect-ratio** : _(String)_ Permet de définir le ratio largeur/hauteur du graphique. Par défaut, le ratio est de `2`.
@@ -324,7 +324,7 @@ Utilisez **highlight-index** pour mettre en avant certaines barres, en combinais
 
 ---
 
-### 5. Barres avec palette séquentielle ascendante
+### 5. Barres avec palette dégradée séquentielle
 
 **Exemple**:
 
@@ -342,7 +342,7 @@ Utilisez **highlight-index** pour mettre en avant certaines barres, en combinais
 ## Notes supplémentaires
 
 - **palette-type** : Ce paramètre vous permet de personnaliser les couleurs utilisées dans le graphique. Choisissez parmi les options disponibles pour représenter vos données de manière appropriée.
-- **highlight-index** : Utilisé en combinaison avec la palette `'neutral'`, ce paramètre vous permet de mettre en avant des barres spécifiques du graphique. Les index commencent à **0**.
+- **highlight-index** : Utilisé en combinaison avec la palette `'categorical'`, ce paramètre vous permet de mettre en avant des barres spécifiques du graphique. Les index commencent à **0**.
 - **unit-tooltip** : Ce paramètre vous permet de spécifier l’unité qui sera affichée dans l’infobulle (tooltip) lorsque l’utilisateur survole une barre du graphique. Cela rend la lecture des valeurs plus intuitive en indiquant l’unité de mesure.
 - **horizontal** : Définit l’orientation du graphique. Par défaut, les barres sont verticales.
 - **stacked** : Permet d'empiler les séries de données, utile pour visualiser la contribution de chaque série au total.
@@ -1090,9 +1090,9 @@ Puis personnalisez si besoin, les couleurs utilisées par la palette choisie ave
 - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
 - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
 
-### Graphiques catégoriels
+### Graphiques catégoriels (par défaut)
 
-Lorsque les formes du graphique doivent être différenciées par des couleurs mais que celles-ci ne sont pas porteuses de sens supplémentaire que la catégorisation, la palette catégorielle doit être utilisée avec la valeur `'default'` (non obligatoire car par défaut).
+Lorsque les formes du graphique doivent être différenciées par des couleurs mais que celles-ci ne sont pas porteuses de sens supplémentaire que la catégorisation, la palette catégorielle doit être utilisée avec la valeur `'categorical'` (non obligatoire car par défaut).
 
 Il est conseillé de ne pas représenter plus de 8 catégories, car cela nuirait à la compréhension de l’utilisateur. Au-delà de ce nombre, il conviendra de rassembler les dernières catégories dans un ensemble “Autres”.
 
@@ -1152,19 +1152,6 @@ Il est conseillé de ne pas représenter plus de 8 catégories, car cela nuirait
 | État initial   | #CECECE     | #A4A4A4      |
 | État de survol | #a7a7a7     | #7e7e7e      |
 
-### Graphiques unicolores
-
-Une représentation graphique n’a pas toujours besoin d’être très colorée. Lorsqu’il n’est pas nécessaire de différencier les formes par des couleurs, on peut afficher les graphiques avec une couleur unie avec la valeur `'unicolor'`.
-
-Si aucune couleur n’est renseignée via l’attribut `palette-colors`, la couleur par défaut est la suivante :
-
-`Couleur par défaut`
-
-|                | Thème clair | Thème sombre |
-|----------------|-------------|--------------|
-| État initial   | #5C68E5     | #5C68E5      |
-| État de survol | #2846bc     | #2846bc      |
-
 ### Graphiques dégradés
 
 Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette dégradée doit être utilisée avec la valeur `'gradient'`. Les possibilités sont multiples en fonction du type de données que vous souhaitez représenter.
@@ -1185,9 +1172,9 @@ Si aucune couleur n’est renseignée via l’attribut `palette-colors`, le dég
 | État initial   | #00005F     | #3647CA      |
 | État de survol | #           | #            |
 
-#### Palette dégradée unicolore
+#### Palette dégradée séquentielle
 
-Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette séquentielle dégradée peut être utilisée.
+Lorsque les formes du graphique doivent être différenciées par des couleurs et que ces couleurs matérialisent une gradation, une palette dégradée séquentielle peut être utilisée.
 
 En fonction du nombre de catégories, il y aura autant de valeurs de couleurs générées qu’il en existe dans un dégradé allant de la couleur de départ à la couleur d’arrivée.
 
