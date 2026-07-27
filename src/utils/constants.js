@@ -101,14 +101,14 @@ export const COLOR_SETS = {
   },
   charts: {
     palette: COLORS_CHARTS,
-    default: COLORS_CHARTS.light.france,
+    default: COLORS_CHARTS.light.categorical1,
     gradient_start: COLORS_CHARTS.light.gradient2,
     gradient_end: COLORS_CHARTS.light.gradient1,
     themed: true,
   },
 };
 
-export const COLOR_SET = COLOR_SETS.charts;
+export const COLOR_SET = COLOR_SETS.dsfrV2;
 
 export const FRANCE = [
   {

@@ -200,7 +200,7 @@ export default {
       }
       this.width = Math.min(100, this.percentage);
     },
-    loadColors(theme) {
+    loadColors() {
       const colors = getColors(1, 'categorical');
       this.colorParse = colors.background[0];
     },

@@ -42,7 +42,7 @@ export const getColors = (count = 1, type = 'categorical', colors = [], highligh
         hover: Object.values(themeColors).map((color) => chroma(color).darken(0.8).hex()),
       };
     }
-    let backgroundColors = validCustomColors.map((color) => (themeColors[color] ? themeColors[color] : COLOR_SET.default));
+    let backgroundColors = validCustomColors.map((color) => themeColors[color] || COLOR_SET.default);
     let hoverColors = validCustomColors.map((color) => (themeColors[color] ? chroma(themeColors[color]).darken(0.8).hex() : chroma(COLOR_SET.default).darken(0.8).hex()));
     if (highlightIndexes.length > 0) {
       for (let i = 0; i < count; i++) {
