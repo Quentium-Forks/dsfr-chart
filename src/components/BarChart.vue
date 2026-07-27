@@ -337,7 +337,7 @@ export default {
       this.colorParse = colors.background;
       this.colorHover = colors.hover;
       // When the chart is stacked, we need to make sure all datasets have the same color
-      if (this.stacked) {
+      if (this.stacked && this.paletteType === 'gradient') {
         this.colorParse = this.colorParse[0];
         this.colorHover = this.colorHover[0];
       }
