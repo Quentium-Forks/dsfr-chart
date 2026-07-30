@@ -10,7 +10,7 @@ export const chartData = {
       unitTooltip: 'points d’indice',
     },
     multiple: {
-      x: '[[1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020], [1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020]]',
+      x: '[[1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020]]',
       y: '[[54.5, 58.2, 58.1, 59.6, 62.1, 64, 65.9, 67.1, 69, 69.2], [83.9, 83.2, 78.4, 75.9, 74.7, 75.3, 75.2, 75, 75.6, 74.8]]',
       name: '["Femmes", "Hommes"]',
       unitTooltip: '%',
@@ -48,7 +48,7 @@ export const chartData = {
       unitTooltip: 'mm',
     },
     horizontal: {
-      x: '[[2000, 2010, 2020], [2000, 2010, 2020]]',
+      x: '[[2000, 2010, 2020]]',
       y: '[[11.1, 10.5, 8.4], [8.8, 7.5, 5.6]]',
       name: '["Empreinte carbone", "Émission sur le territoire national"]',
       horizontal: true,
@@ -93,13 +93,13 @@ export const chartData = {
   },
   scatterChart: {
     default: {
-      x: '[[1995, 2000, 2005, 2010, 2015, 2020, 2022], [1995, 2000, 2005, 2010, 2015, 2020, 2022], [1995, 2000, 2005, 2010, 2015, 2020, 2022]]',
+      x: '[[1995, 2000, 2005, 2010, 2015, 2020, 2022]]',
       y: '[[175, 155, 149, 130, 111, 107, 130], [177, 168, 159, 130, 116, 109, 131], [176, 162, 152, 130, 111, 97, 103]]',
       name: '["Diesel", "Essence", "Total"]',
       unitTooltip: 'g de CO₂ / km',
     },
     linked: {
-      x: '[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950, 1952], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950, 1952], [1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950, 1952]]',
+      x: '[[1926, 1928, 1930, 1932, 1934, 1936, 1938, 1940, 1942, 1944, 1946, 1948, 1950, 1952]]',
       y: '[[35, 35, 37, 37, 39, 41, 43, 48, 51, 52, 54, 55, 55, 58], [76, 83, 82, 80, 81, 80, 81, 80, 81, 80, 79, 75, 72, 72], [54, 56, 58, 57, 59, 60, 62, 64, 66, 66, 66, 65, 64, 65]]',
       name: '["Femmes", "Hommes", "Ensemble"]',
       showLine: true,
@@ -145,7 +145,7 @@ export const chartData = {
   },
   radarChart: {
     default: {
-      x: '[["Logement, chauffage, éclairage", "Alimentation, boissons, tabac", "Autres biens et services", "Transports", "Communications, loisirs, culture", "Hôtels, cafés, restaurants", "Habillement et chaussures"], ["Logement, chauffage, éclairage", "Alimentation, boissons, tabac", "Autres biens et services", "Transports", "Communications, loisirs, culture", "Hôtels, cafés, restaurants", "Habillement et chaussures"]]',
+      x: '[["Logement, chauffage, éclairage", "Alimentation, boissons, tabac", "Autres biens et services", "Transports", "Communications, loisirs, culture", "Hôtels, cafés, restaurants", "Habillement et chaussures"]]',
       y: '[[22.6, 28.9, 8.4, 10.7, 8.5, 5.3, 12.8], [31.3, 15.9, 13.4, 12.9, 10.5, 8.5, 3.0]]',
       name: '["1963", "2023"]',
       unitTooltip: '%',
