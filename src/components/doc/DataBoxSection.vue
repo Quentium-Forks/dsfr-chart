@@ -204,7 +204,7 @@
 </template>
 
 <script setup>
-import { chartData } from '@/assets/data';
+import { chartData } from '@/components/doc/data.js';
 import CodeBlock from './CodeBlock.vue';
 
 const scatterData = JSON.parse(chartData.scatterChart.linked.y);

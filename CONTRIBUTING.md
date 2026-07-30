@@ -141,7 +141,7 @@ GitHub permet le déploiement de pages web statiques via la fonctionnalité **Gi
 
 1. Compléter le fichier `src/charts/main.js` si nécessaire. Ce fichier doit contenir la configuration de tous les graphiques que l'on souhaite afficher sur la page de démonstration. Il doit aussi contenir les dépendances au dsfr nécessaires au bon fonctionnement du projet.
 
-2. Ajouter si besoin les graphiques, titres et textes dans le fichier `src/components/doc/examples.js`. Ajuster aussi la page de documentation (`src/components/doc/Documentation.vue`) pour des changements globaux au projets.
+2. Ajouter si besoin les graphiques, titres et textes dans le fichier `src/components/doc/charts.js`. Ajuster aussi la page de documentation (`src/components/doc/Documentation.vue`) pour des changements globaux au projets.
 
 3. Visualiser la page en local : `npm run dev`.
 

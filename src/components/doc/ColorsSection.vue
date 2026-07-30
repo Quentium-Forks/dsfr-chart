@@ -97,7 +97,7 @@
 
 <script setup>
 import ColorCard from './ColorCard.vue';
-import { COLOR_SET } from '@/utils/constants';
+import { COLOR_SET } from '@/utils/constants.js';
 </script>
 
 <style scoped>

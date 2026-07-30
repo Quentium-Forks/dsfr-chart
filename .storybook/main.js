@@ -5,6 +5,12 @@ export default {
     name: '@storybook/web-components-vite',
   },
   core: {
+    builder: {
+      name: '@storybook/builder-vite',
+      options: {
+        viteConfigPath: 'vite-docs.config.js',
+      },
+    },
     disableTelemetry: true,
     disableWhatsNewNotifications: true,
   },

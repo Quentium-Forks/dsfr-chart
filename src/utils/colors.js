@@ -1,5 +1,7 @@
 import chroma from 'chroma-js';
-import { COLOR_SET } from '@/utils/constants';
+import { COLOR_SET } from '@/utils/constants.js';
+
+export const getColorName = (colorValue) => Object.entries(COLOR_SET.palette.light).find(([, value]) => value === colorValue)?.[0] ?? colorValue;
 
 export const getColors = (count = 1, type = 'categorical', colors = [], highlight = [], highlightColor = null, theme = null) => {
   const themeColors = COLOR_SET.themed ? COLOR_SET.palette[theme || document.documentElement.getAttribute('data-fr-theme') || 'light'] : COLOR_SET.palette.light;

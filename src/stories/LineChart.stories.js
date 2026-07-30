@@ -1,4 +1,4 @@
-import { chartData } from '../assets/data';
+import { chartData } from '@/components/doc/data.js';
 
 export default {
   component: 'line-chart',

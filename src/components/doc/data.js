@@ -1,6 +1,5 @@
-import { COLOR_SET } from '@/utils/constants';
-
-const getColorName = (colorValue) => Object.entries(COLOR_SET.palette.light).find(([, value]) => value === colorValue)?.[0] ?? colorValue;
+import { COLOR_SET } from '@/utils/constants.js';
+import { getColorName } from '@/utils/colors.js';
 
 export const chartData = {
   lineChart: {

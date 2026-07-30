@@ -171,7 +171,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { chartExamples } from './examples.js';
+import { chartExamples } from './charts.js';
 import Intro from './Intro.vue';
 import CodeBlock from './CodeBlock.vue';
 import DisplayMode from './DisplayMode.vue';

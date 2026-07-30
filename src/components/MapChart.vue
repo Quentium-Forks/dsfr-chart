@@ -195,10 +195,8 @@ import chroma from 'chroma-js';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
-import { getColors } from '@/utils/colors.js';
+import { getColors, getColorName } from '@/utils/colors.js';
 import { COLOR_SET } from '@/utils/constants.js';
-
-const getColorName = (colorValue) => Object.entries(COLOR_SET.palette.light).find(([, value]) => value === colorValue)?.[0] ?? colorValue;
 
 export default {
   name: 'MapChart',
