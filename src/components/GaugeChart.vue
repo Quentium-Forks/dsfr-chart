@@ -10,10 +10,27 @@
     >
       <div class="fr-col-12">
         <div class="chart">
-          <div class="tooltip">
-            <div class="tooltip_header fr-text--sm fr-mb-0" />
+          <div
+            class="tooltip"
+            :style="{ left: tooltip.left, top: tooltip.top, opacity: tooltip.visibility }"
+          >
+            <div class="tooltip_header fr-text--sm fr-mb-0">
+              {{ tooltip.name }}
+            </div>
             <div class="tooltip_body">
-              <div class="tooltip_value" />
+              <div class="tooltip_value">
+                <div
+                  v-for="(value, index) in tooltip.value"
+                  :key="index"
+                  class="tooltip_value-content"
+                >
+                  <span
+                    class="tooltip_dot"
+                    :style="{ backgroundColor: tooltip.color[index] }"
+                  />
+                  <p class="tooltip_place fr-mb-0">{{ value }}%</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -27,8 +44,11 @@
             >
               <div
                 v-for="(percentage, index) in percentagesParse"
+                :key="index"
                 :style="{ width: percentage + '%', backgroundColor: colorParse[0][index] }"
-              ></div>
+                @mouseenter="displayTooltip($event, index)"
+                @mouseleave="hideTooltip"
+              />
             </div>
           </div>
 
@@ -54,6 +74,7 @@
           <div
             v-else
             v-for="(percentage, index) in percentagesParse"
+            :key="index"
             class="gauge-container fr-mb-4v"
           >
             <div class="gauge-label fr-text--sm fr-mb-1v">
@@ -65,9 +86,10 @@
               :style="{ height: height }"
             >
               <div
-                class="gauge-fill"
                 :style="{ width: percentage + '%', backgroundColor: colorParse[index] }"
-              ></div>
+                @mouseenter="displayTooltip($event, index)"
+                @mouseleave="hideTooltip"
+              />
             </div>
           </div>
 
@@ -145,6 +167,14 @@ export default {
       colorParse: [],
       colorHover: [],
       targetReady: false,
+      tooltip: {
+        left: '0px',
+        top: '0px',
+        visibility: 0,
+        name: '',
+        value: [],
+        color: [],
+      },
     };
   },
   watch: {
@@ -246,6 +276,44 @@ export default {
     },
     changeColors(theme) {
       this.loadColors();
+    },
+    displayTooltip(e, index) {
+      if (window.matchMedia('(hover: none)').matches) {
+        return;
+      }
+
+      this.tooltip.name = this.stacked ? 'Répartition' : this.nameParse[index];
+      this.tooltip.value = this.stacked ? this.percentagesParse : [this.percentagesParse[index]];
+      this.tooltip.color = this.stacked ? this.colorParse[0] : [this.colorParse[index]];
+      this.tooltip.visibility = 1;
+      this.$nextTick(() => {
+        this.positionTooltip(e);
+      });
+    },
+    positionTooltip(e) {
+      if (!this.tooltip.visibility) {
+        return;
+      }
+
+      const tooltipEl = e.target.closest('.chart').querySelector('.tooltip');
+      const targetRect = e.target.getBoundingClientRect();
+      const gap = 10;
+      let left = targetRect.right + gap;
+      let top = targetRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2;
+
+      if (left + tooltipEl.offsetWidth > window.innerWidth) {
+        left = targetRect.left - tooltipEl.offsetWidth - gap;
+      }
+      if (top + tooltipEl.offsetHeight > window.innerHeight) {
+        top = window.innerHeight - tooltipEl.offsetHeight - gap;
+      }
+      top = Math.max(gap, top);
+
+      this.tooltip.left = `${Math.max(gap, left)}px`;
+      this.tooltip.top = `${top}px`;
+    },
+    hideTooltip() {
+      this.tooltip.visibility = 0;
     },
   },
 };
