@@ -1,7 +1,7 @@
 <template>
   <dialog
-    :id="'modal-' + id"
-    :aria-labelledby="'fr-modal-title-modal-' + id"
+    :id="'modal-' + modalId"
+    :aria-labelledby="'fr-modal-title-modal-' + modalId"
     role="dialog"
     class="fr-modal"
   >
@@ -13,14 +13,14 @@
               <button
                 class="fr-btn--close fr-btn"
                 title="Fermer la fenêtre modale"
-                :aria-controls="'modal-' + id"
+                :aria-controls="'modal-' + modalId"
               >
                 Fermer
               </button>
             </div>
             <div class="fr-modal__content">
               <h1
-                :id="'fr-modal-title-modal-' + id"
+                :id="'fr-modal-title-modal-' + modalId"
                 class="fr-modal__title"
               >
                 <span class="fr-icon-arrow-right-line fr-icon--lg" />
@@ -38,7 +38,7 @@
 
 <script setup>
 defineProps({
-  id: {
+  modalId: {
     type: String,
     required: true,
   },

@@ -58,7 +58,7 @@
 
           <Teleport to="body">
             <DialogModal
-              :id="id"
+              :modal-id="id"
               :modal-title="modalTitle"
               :modal-content="modalContent"
             />
