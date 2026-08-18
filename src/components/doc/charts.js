@@ -52,11 +52,11 @@ export const chartExamples = [
     title: 'Cartes',
     desc: 'Les cartes permettent d’afficher une série de données réparties géographiquement. Les cartes sont actuellement disponibles aux niveaux départemental, régional, académique et mondial. Il est également possible d’isoler une région pour en afficher les départements.',
     graphs: [
-      { component: MapChart, noPalette: true, heading: 'Niveau départemental', props: chartData.mapChart.departments },
-      { component: MapChart, noPalette: true, heading: 'Niveau régional', props: chartData.mapChart.regions },
-      { component: MapChart, noPalette: true, heading: 'Niveau académique', props: chartData.mapChart.academies },
-      { component: MapChartReg, noPalette: true, heading: 'Niveau départemental isolé par la région', props: chartData.mapChartReg.region },
-      { component: MapChart, noPalette: true, heading: 'Niveau mondial', props: chartData.mapChart.world },
+      { component: MapChart, heading: 'Niveau départemental', props: chartData.mapChart.departments },
+      { component: MapChart, heading: 'Niveau régional', props: chartData.mapChart.regions },
+      { component: MapChart, heading: 'Niveau académique', props: chartData.mapChart.academies },
+      { component: MapChartReg, heading: 'Niveau départemental isolé par la région', props: chartData.mapChartReg.region },
+      { component: MapChart, heading: 'Niveau mondial', props: chartData.mapChart.world },
     ],
   },
   // Nuage de points
@@ -78,7 +78,7 @@ export const chartExamples = [
   {
     title: 'Jauge',
     desc: 'La jauge permet d’afficher des valeurs numériques ou des mesures dans une plage, pour visualiser l’avancement d’un objectif par exemple.',
-    graphs: [{ component: GaugeChart, noPalette: true, props: chartData.gaugeChart.default }],
+    graphs: [{ component: GaugeChart, props: chartData.gaugeChart.default }],
   },
   // Drilldown
   {
