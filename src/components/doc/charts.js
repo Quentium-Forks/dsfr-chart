@@ -78,7 +78,10 @@ export const chartExamples = [
   {
     title: 'Jauge',
     desc: 'La jauge permet d’afficher des valeurs numériques ou des mesures dans une plage, pour visualiser l’avancement d’un objectif par exemple.',
-    graphs: [{ component: GaugeChart, props: chartData.gaugeChart.default }],
+    graphs: [
+      { component: GaugeChart, title: 'Répartition des versions du DSFR', desc: 'Versions du DSFR en usage sur un total de 3757 sites analysés (2819 n’ayant probablement pas le DSFR). Qualiscore, 01/05/2026', props: chartData.gaugeChart.default },
+      { component: GaugeChart, title: 'Extensions des noms de domaines utilisés sur Audience', desc: 'Pourcentage des extensions des sites web disponibles sur les 3874 sites répertoriés sur la plateforme. Audience, 01/06/2026', props: chartData.gaugeChart.stacked },
+    ],
   },
   // Drilldown
   {

@@ -1,27 +1,17 @@
 .widget_container {
   .gauge-container {
     width: 100%;
-    display: flex;
 
-    .jauge {
+    .gauge {
+      display: flex;
       border: 1px solid var(--border-default-grey);
       background-color: var(--background-raised-grey);
       width: 100%;
 
-      &-fill {
-        height: 100%;
-        box-sizing: border-box;
-        position: relative;
+      &-label {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-      }
-
-      &-text {
-        position: absolute;
-        left: 0;
-        margin-top: auto;
-        margin-bottom: auto;
       }
     }
   }
@@ -34,10 +24,5 @@
     min-width: 0.8rem;
     display: inline-block;
     margin-top: 0.25rem;
-  }
-
-  .target_legend {
-    border: 1px solid var(--border-default-grey);
-    background-color: var(--background-raised-grey);
   }
 }

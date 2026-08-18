@@ -153,11 +153,16 @@ export const chartData = {
   },
   gaugeChart: {
     default: {
-      value: 360000,
-      init: 100000,
-      target: 2000000,
-      initDate: '(en 2022)',
-      targetDate: '(en 2026)',
+      values: '[274, 446, 116, 63, 25, 14]',
+      name: '["1.14", "1.13", "1.12", "1.11", "1.10", "1.9"]',
+    },
+    stacked: {
+      // values: '[2639, 799, 268, 168]',
+      values: '[68, 21, 7, 4]',
+      name: '["Domaines .gouv.fr", "Domaines .fr", "Domaines .org", "Domaines divers"]',
+      stacked: true,
+      paletteType: 'gradient',
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}"]`,
     },
   },
   mapChart: {
