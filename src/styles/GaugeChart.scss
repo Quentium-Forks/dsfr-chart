@@ -1,4 +1,12 @@
 .widget_container {
+  .chart {
+    position: relative;
+
+    .tooltip {
+      position: absolute;
+    }
+  }
+
   .gauge-container {
     width: 100%;
 

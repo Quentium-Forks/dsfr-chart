@@ -288,32 +288,19 @@ export default {
       this.tooltip.name = this.stacked ? 'Répartition' : this.nameParse[index];
       this.tooltip.value = this.stacked ? this.percentagesParse : [this.percentagesParse[index]];
       this.tooltip.color = this.stacked ? this.colorParse : [this.colorParse[index]];
-      this.tooltip.visibility = 'visible';
-      this.$nextTick(() => {
-        this.positionTooltip(e);
-      });
-    },
-    positionTooltip(e) {
-      if (!this.tooltip.visibility) {
-        return;
-      }
 
-      const tooltipEl = e.target.closest('.chart').querySelector('.tooltip');
+      const chartEl = e.target.closest('.chart');
+      const tooltipEl = chartEl.querySelector('.tooltip');
+      const chartRect = chartEl.getBoundingClientRect();
       const targetRect = e.target.getBoundingClientRect();
       const gap = 10;
-      let left = targetRect.right + gap;
-      let top = targetRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2;
 
-      if (left + tooltipEl.offsetWidth > window.innerWidth) {
-        left = targetRect.left - tooltipEl.offsetWidth - gap;
-      }
-      if (top + tooltipEl.offsetHeight > window.innerHeight) {
-        top = window.innerHeight - tooltipEl.offsetHeight - gap;
-      }
-      top = Math.max(gap, top);
+      let top = targetRect.top - chartRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2 + gap;
+      let left = targetRect.right - chartRect.left + gap;
 
-      this.tooltip.left = `${Math.max(gap, left)}px`;
       this.tooltip.top = `${top}px`;
+      this.tooltip.left = `${Math.max(gap, left)}px`;
+      this.tooltip.visibility = 'visible';
     },
     hideTooltip() {
       this.tooltip.visibility = 'hidden';
