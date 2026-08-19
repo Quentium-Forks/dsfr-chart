@@ -234,8 +234,8 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 ### Optionnels :
 
 - **name** : _(String)_ Les noms des séries de données sous forme d'une liste entre crochets.
-- **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barre horizontales. Mettre à `true` pour activer.
-- **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer.
+- **horizontal** : _(Boolean)_ Permet d'afficher le graphique en barre horizontales. Mettre à `true` pour activer l'affichage horizontal.
+- **stacked** : _(Boolean)_ Permet d'empiler les barres pour afficher des données empilées. Mettre à `true` pour activer l'affichage empilé.
 - **bar-size** : _(Number)_ Permet de définir la largeur des barres en pixels. Par défaut, la largeur est automatique (`'flex'`).
 - **max-bar-size** : _(Number)_ Permet de définir la largeur maximale des barres en pixels. Par défaut, la largeur maximale est de `32` pixels.
 - **highlight-index** : _(Array)_ Liste d'index des barres à mettre en avant (utilisé principalement avec la palette `'categorical'`).
@@ -903,28 +903,36 @@ Les jauges sont accessibles à travers la balise : `<gauge-chart>`.
 
 ### Obligatoires :
 
-- **init** : _(Number)_ La valeur de départ de la jauge.
-- **target** : _(Number)_ La valeur cible de la jauge.
+- **values** : _(String)_ Les valeurs des différentes jauges sous forme d'une liste entre crochets.
+- **name** : _(String)_ Les noms des différentes jauges sous forme d'une liste entre crochets.
 
 ### Optionnels :
 
-- **value** : _(Number)_ La valeur actuelle de la jauge.
-- **percent** : _(Number)_ Permet d’afficher la valeur en pourcentage par rapport à la valeur cible. Remplace le pourcentage calculé automatiquement si la prop value est renseignée.
-- **init-date** : _(String)_ Permet d’afficher une date associée à la valeur de départ.
-- **target-date** : _(String)_ Permet d’afficher une date associée à la valeur cible.
-- **height** : _(String)_ Permet de définir la hauteur de la jauge. Par défaut, la hauteur est de `2rem`.
-- **legend** : _(Boolean)_ Permet d’afficher une légende sous la jauge, avec "Valeur cible" et "Valeur actuelle". Par défaut, la légende est affichée.
+- **stacked** : _(Boolean)_ Permet d’afficher la jauge sous forme empilée. Mettre à `true` pour activer l’affichage empilé.
+- **height** : _(String)_ Permet de définir la hauteur de la jauge. Par défaut, la hauteur est de `1rem`.
 - **date** : _(String)_ Permet d'afficher une date associée au graphique.
+
+### 1. Jauge simple
+
+```html
+<gauge-chart
+  values="[856, 144, 78]"
+  names='["Licences", "Masters", "Doctorats"]'
+></gauge-chart>
+```
+
+### 2. Jauge empilée
+
+Pour tracer une **Jauge empilée**, il faut renseigner l’option **stacked="true"**.
 
 **Exemple**:
 
 ```html
 <gauge-chart
-  value="16"
-  init="10"
-  target="20"
+  values="[64, 25, 11]"
+  name='["Débutants", "Intermédiaires", "Confirmés"]'
+  stacked="true"
 ></gauge-chart>
-```
 
 ---
 
