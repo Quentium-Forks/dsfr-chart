@@ -298,6 +298,10 @@ export default {
       let top = targetRect.top - chartRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2 + gap;
       let left = targetRect.right - chartRect.left + gap;
 
+      if (left + tooltipEl.offsetWidth > chartRect.width) {
+        left = targetRect.left - chartRect.left - tooltipEl.offsetWidth - gap;
+      }
+
       this.tooltip.top = `${top}px`;
       this.tooltip.left = `${Math.max(gap, left)}px`;
       this.tooltip.visibility = 'visible';

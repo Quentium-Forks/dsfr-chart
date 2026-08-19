@@ -448,8 +448,12 @@ export default {
       const targetRect = e.target.getBoundingClientRect();
       const gap = 10;
 
-      const top = targetRect.top - mapRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2 + gap;
-      const left = targetRect.right - mapRect.left + gap;
+      let top = targetRect.top - mapRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2 + gap;
+      let left = targetRect.right - mapRect.left + gap;
+
+      if (left + tooltipEl.offsetWidth > mapRect.width) {
+        left = targetRect.left - mapRect.left - tooltipEl.offsetWidth - gap;
+      }
 
       this.tooltip.top = `${top}px`;
       this.tooltip.left = `${Math.max(gap, left)}px`;
