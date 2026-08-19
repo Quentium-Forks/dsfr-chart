@@ -1264,17 +1264,11 @@ Pourcentage de français ayant réalisé un achat sur Internet au cours des 12 d
 - 60 à 74 ans : 43,5%
 - 75 ans ou plus : 12,1%
 
-#### Alternative 3 : utiliser du texte structuré
-
-Dans d’autres cas, l’information pourrait déjà être présente dans le corps de texte adjacent ou l’alternative peut être un simple texte structuré.
-
-Ainsi, sur la jauge ci-dessus, l’alternative pourrait être : "En 2022, nous avons atteint les 100 000 utilisateurs. Cela correspond à 14 % de l’objectif 2026, fixé à 2 millions d’utilisateurs."
-
 ### Affichage de l’alternative
 
-L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La #databox présente ainsi systématiquement l’alternative textuelle dans le contrôle segmenté en bas à droite du composant.
+L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La databox présente ainsi systématiquement l’alternative du tableau dans le contrôle segmenté en bas à droite du composant.
 
-Lorsqu’un graphique est utilisé seul, sans la databox, l’alternative textuelle peut être affichée dans un [accordéon](https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/accordeon/) présenté sous le graphique.
+Lorsqu’un graphique est utilisé seul, sans la databox, l’alternative textuelle peut être affichée dans un [accordéon](https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/accordeon) présenté sous le graphique.
 
 > **Important**
 >

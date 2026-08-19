@@ -43,23 +43,12 @@
       <li>75 ans ou plus : 12,1%</li>
     </ul>
 
-    <h4>Alternative 3 : utiliser du texte structuré</h4>
-    <p>Dans d’autres cas, l’information pourrait déjà être présente dans le corps de texte adjacent ou l’alternative peut être un simple texte structuré.</p>
-    <div class="fr-mb-4v">
-      <component
-        :is="GaugeChart"
-        v-bind="chartData.gaugeChart.default"
-      />
-    </div>
-    <p>Ainsi, sur la jauge ci-dessus, l’alternative pourrait être :</p>
-    <p>En 2022, nous avons atteint les 100 000 utilisateurs. Cela correspond à 14 % de l’objectif 2026, fixé à 2 millions d’utilisateurs.</p>
-
     <h3>Affichage de l’alternative</h3>
-    <p>L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La databox présente ainsi systématiquement l’alternative textuelle dans le contrôle segmenté en bas à droite du composant.</p>
+    <p>L’alternative ou un moyen d’accéder à l’alternative (lien/bouton) doit être adjacente au graphique. La databox présente ainsi systématiquement l’alternative du tableau dans le contrôle segmenté en bas à droite du composant.</p>
     <p>
       Lorsqu’un graphique est utilisé seul, sans la databox, l’alternative textuelle peut être affichée dans un
       <a
-        href="https://www.systeme-de-design.gouv.fr/composants-et-modeles/composants/accordeon/"
+        href="https://www.systeme-de-design.gouv.fr/version-courante/fr/composants/accordeon"
         target="_blank"
       >
         accordéon
