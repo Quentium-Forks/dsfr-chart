@@ -45,7 +45,7 @@
               <div
                 v-for="(percentage, index) in percentagesParse"
                 :key="index"
-                :style="{ width: percentage + '%', backgroundColor: colorParse[0][index] }"
+                :style="{ width: percentage + '%', backgroundColor: colorParse[index] }"
                 @mouseenter="displayTooltip($event, index)"
                 @mouseleave="hideTooltip"
               />
@@ -63,7 +63,7 @@
             >
               <span
                 class="legend_dot"
-                :style="{ 'background-color': colorParse[0][index] }"
+                :style="{ 'background-color': colorParse[index] }"
               />
               <p class="fr-text--sm fr-text--bold fr-ml-1w fr-mb-0">
                 {{ capitalize(item) }}
@@ -270,6 +270,9 @@ export default {
     loadColors() {
       const colors = getColors(this.percentagesParse.length, this.paletteType, this.paletteColors);
       this.colorParse = colors.background;
+      if (this.stacked && this.paletteType === 'gradient') {
+        this.colorParse = this.colorParse[0];
+      }
     },
     createChart() {
       this.getData();
@@ -284,7 +287,7 @@ export default {
 
       this.tooltip.name = this.stacked ? 'Répartition' : this.nameParse[index];
       this.tooltip.value = this.stacked ? this.percentagesParse : [this.percentagesParse[index]];
-      this.tooltip.color = this.stacked ? this.colorParse[0] : [this.colorParse[index]];
+      this.tooltip.color = this.stacked ? this.colorParse : [this.colorParse[index]];
       this.tooltip.visibility = 'visible';
       this.$nextTick(() => {
         this.positionTooltip(e);
