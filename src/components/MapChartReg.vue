@@ -442,33 +442,21 @@ export default {
         }
       }
 
-      const franceRect = parentWidget.querySelector('.map_container').getBoundingClientRect();
-      const tooltipRect = parentWidget.querySelector('.tooltip').getBoundingClientRect();
-      const containerRect = e.target.getBoundingClientRect();
+      const mapEl = e.target.closest('.map');
+      const tooltipEl = mapEl.querySelector('.tooltip');
+      const mapRect = mapEl.getBoundingClientRect();
+      const targetRect = e.target.getBoundingClientRect();
+      const gap = 10;
 
-      const adjust = window.innerWidth > 1000 ? window.innerWidth / 30 : window.innerWidth / 15;
+      const top = targetRect.top - mapRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2 + gap;
+      const left = targetRect.right - mapRect.left + gap;
 
-      let tooltipX = containerRect.x - franceRect.x + tooltipRect.width - adjust;
-      const tooltipY = containerRect.y - franceRect.y;
-
-      if (tooltipX + tooltipRect.width + adjust > franceRect.x) {
-        tooltipX = containerRect.x / 2 - franceRect.x + tooltipRect.width + adjust / 2;
-      }
-
-      this.tooltip.top = `${tooltipY}px`;
-      this.tooltip.left = `${tooltipX}px`;
+      this.tooltip.top = `${top}px`;
+      this.tooltip.left = `${Math.max(gap, left)}px`;
       this.tooltip.visibility = 'visible';
     },
-    hideTooltip(e) {
-      if (isMobile()) {
-        return;
-      }
+    hideTooltip() {
       this.tooltip.visibility = 'hidden';
-      const parentWidget = this.$refs[this.widgetId];
-      const hoverElement = e.target.className.baseVal;
-
-      const elCol = parentWidget.getElementsByClassName(hoverElement);
-      elCol[0].style.opacity = 1;
     },
     changeGeoLevel(e) {
       this.zoomDep = e.target.className.baseVal.replace('FR-', '').split(' ')[0];
