@@ -19,7 +19,7 @@
         </button>
         <div class="map">
           <div
-            class="map_tooltip"
+            class="tooltip"
             :style="{ top: tooltip.top, left: tooltip.left, visibility: tooltip.visibility }"
           >
             <div class="tooltip_header fr-text--sm fr-mb-0">
@@ -590,7 +590,7 @@ export default {
       }
 
       const franceRect = parentWidget.querySelector('.map_container').getBoundingClientRect();
-      const tooltipRect = parentWidget.querySelector('.map_tooltip').getBoundingClientRect();
+      const tooltipRect = parentWidget.querySelector('.tooltip').getBoundingClientRect();
       const containerRect = e.target.getBoundingClientRect();
 
       const adjust = window.innerWidth > 1000 ? window.innerWidth / 30 : window.innerWidth / 15;

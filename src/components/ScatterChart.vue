@@ -547,7 +547,7 @@ export default {
 
                 // Hide if no tooltip
                 if (!tooltipModel || tooltipModel.opacity === 0) {
-                  tooltipEl.style.opacity = 0;
+                  tooltipEl.style.visibility = 'hidden';
                   return;
                 }
 
@@ -615,7 +615,7 @@ export default {
                 tooltipEl.style.pointerEvents = 'none';
                 tooltipEl.style.left = `${tooltipX}px`;
                 tooltipEl.style.top = `${tooltipY}px`;
-                tooltipEl.style.opacity = 1;
+                tooltipEl.style.visibility = 'visible';
               },
             },
           },

@@ -12,7 +12,7 @@
         <div class="chart">
           <div
             class="tooltip"
-            :style="{ left: tooltip.left, top: tooltip.top, opacity: tooltip.visibility }"
+            :style="{ left: tooltip.left, top: tooltip.top, visibility: tooltip.visibility }"
           >
             <div class="tooltip_header fr-text--sm fr-mb-0">
               {{ tooltip.name }}
@@ -170,7 +170,7 @@ export default {
       tooltip: {
         left: '0px',
         top: '0px',
-        visibility: 0,
+        visibility: 'hidden',
         name: '',
         value: [],
         color: [],
@@ -285,7 +285,7 @@ export default {
       this.tooltip.name = this.stacked ? 'Répartition' : this.nameParse[index];
       this.tooltip.value = this.stacked ? this.percentagesParse : [this.percentagesParse[index]];
       this.tooltip.color = this.stacked ? this.colorParse[0] : [this.colorParse[index]];
-      this.tooltip.visibility = 1;
+      this.tooltip.visibility = 'visible';
       this.$nextTick(() => {
         this.positionTooltip(e);
       });
@@ -313,7 +313,7 @@ export default {
       this.tooltip.top = `${top}px`;
     },
     hideTooltip() {
-      this.tooltip.visibility = 0;
+      this.tooltip.visibility = 'hidden';
     },
   },
 };
