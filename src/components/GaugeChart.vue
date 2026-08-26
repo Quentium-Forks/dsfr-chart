@@ -240,10 +240,21 @@ export default {
       }
 
       this.percentagesParse = [];
-      for (let i = 0; i < tmpValuesParse.length; i++) {
-        const total = tmpValuesParse.reduce((acc, val) => acc + val, 0);
-        const percentage = total > 0 ? (tmpValuesParse[i] / total) * 100 : 0;
-        this.percentagesParse.push(Math.round(percentage));
+
+      const total = tmpValuesParse.reduce((acc, val) => acc + val, 0);
+      if (total > 0) {
+        const exactPercentages = tmpValuesParse.map((value) => (value / total) * 100);
+        this.percentagesParse = exactPercentages.map((percentage) => Math.floor(percentage));
+        let remaining = 100 - this.percentagesParse.reduce((acc, val) => acc + val, 0);
+
+        const fractionalParts = exactPercentages.map((percentage, index) => ({ index, fraction: percentage - Math.floor(percentage) })).sort((first, second) => second.fraction - first.fraction);
+
+        for (let i = 0; i < remaining; i++) {
+          this.percentagesParse[fractionalParts[i].index] += 1;
+        }
+      } else if (this.percentagesParse.length > 0) {
+        this.percentagesParse = tmpValuesParse.map(() => 0);
+        this.percentagesParse[this.percentagesParse.length - 1] = 100;
       }
 
       let tmpNameParse = [];
