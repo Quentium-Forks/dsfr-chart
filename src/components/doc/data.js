@@ -155,6 +155,7 @@ export const chartData = {
     default: {
       values: '[274, 446, 116, 63, 25, 14]',
       name: '["1.14", "1.13", "1.12", "1.11", "1.10", "1.9"]',
+      unitTooltip: false,
     },
     stacked: {
       // values: '[2639, 799, 268, 168]',

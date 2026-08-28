@@ -28,7 +28,18 @@
                     class="tooltip_dot"
                     :style="{ backgroundColor: tooltip.color[index] }"
                   />
-                  <p class="tooltip_place fr-mb-0">{{ value }}%</p>
+                  <p
+                    v-if="unitTooltip === '%'"
+                    class="tooltip_place fr-mb-0"
+                  >
+                    {{ value }}%
+                  </p>
+                  <p
+                    v-else
+                    class="tooltip_place fr-mb-0"
+                  >
+                    {{ valuesParse[index] }} ({{ value }}%)
+                  </p>
                 </div>
               </div>
             </div>
@@ -145,6 +156,10 @@ export default {
       type: String,
       default: '',
     },
+    unitTooltip: {
+      type: String,
+      default: '%',
+    },
     paletteType: {
       type: String,
       default: 'categorical',
@@ -162,6 +177,7 @@ export default {
   data() {
     return {
       widgetId: '',
+      valuesParse: [],
       percentagesParse: [],
       nameParse: [],
       colorParse: [],
@@ -231,19 +247,18 @@ export default {
   methods: {
     getData() {
       // Parsing des données
-      let tmpValuesParse = [];
+      this.valuesParse = [];
       try {
-        tmpValuesParse = JSON.parse(this.values);
+        this.valuesParse = JSON.parse(this.values);
       } catch (error) {
         console.error('Erreur lors du parsing des données values:', error);
         return;
       }
 
       this.percentagesParse = [];
-
-      const total = tmpValuesParse.reduce((acc, val) => acc + val, 0);
+      const total = this.valuesParse.reduce((acc, val) => acc + val, 0);
       if (total > 0) {
-        const exactPercentages = tmpValuesParse.map((value) => (value / total) * 100);
+        const exactPercentages = this.valuesParse.map((value) => (value / total) * 100);
         this.percentagesParse = exactPercentages.map((percentage) => Math.floor(percentage));
         let remaining = 100 - this.percentagesParse.reduce((acc, val) => acc + val, 0);
 
@@ -253,7 +268,7 @@ export default {
           this.percentagesParse[fractionalParts[i].index] += 1;
         }
       } else if (this.percentagesParse.length > 0) {
-        this.percentagesParse = tmpValuesParse.map(() => 0);
+        this.percentagesParse = this.valuesParse.map(() => 0);
         this.percentagesParse[this.percentagesParse.length - 1] = 100;
       }
 
@@ -267,7 +282,7 @@ export default {
       }
 
       this.nameParse = [];
-      for (let i = 0; i < tmpValuesParse.length; i++) {
+      for (let i = 0; i < this.valuesParse.length; i++) {
         if (tmpNameParse[i]) {
           this.nameParse.push(tmpNameParse[i]);
         } else {
