@@ -300,10 +300,14 @@ export default {
         },
         options: {
           aspectRatio: this.aspectRatio,
+          elements: {
+            line: {
+              spanGaps: true,
+            },
+          },
           scales: {
             r: {
               angleLines: {
-                display: true,
                 borderDash: [3, 3],
               },
               ticks: {
