@@ -157,7 +157,7 @@ export default {
       default: '',
     },
     unitTooltip: {
-      type: String,
+      type: [Boolean, String],
       default: '%',
     },
     paletteType: {
@@ -307,30 +307,28 @@ export default {
       this.loadColors();
     },
     displayTooltip(e, index) {
-      if (window.matchMedia('(hover: none)').matches) {
-        return;
-      }
-
       this.tooltip.name = this.stacked ? 'Répartition' : this.nameParse[index];
       this.tooltip.value = this.stacked ? this.percentagesParse : [this.percentagesParse[index]];
       this.tooltip.color = this.stacked ? this.colorParse : [this.colorParse[index]];
 
-      const chartEl = e.target.closest('.chart');
-      const tooltipEl = chartEl.querySelector('.tooltip');
-      const chartRect = chartEl.getBoundingClientRect();
-      const targetRect = e.target.getBoundingClientRect();
-      const gap = 10;
+      this.$nextTick(() => {
+        const chartEl = e.target.closest('.chart');
+        const tooltipEl = chartEl.querySelector('.tooltip');
+        const chartRect = chartEl.getBoundingClientRect();
+        const targetRect = e.target.getBoundingClientRect();
+        const gap = 10;
 
-      let top = targetRect.top - chartRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2 + gap;
-      let left = targetRect.right - chartRect.left + gap;
+        let top = targetRect.top - chartRect.top + (targetRect.height - tooltipEl.offsetHeight) / 2 + gap;
+        let left = targetRect.right - chartRect.left + gap;
 
-      if (left + tooltipEl.offsetWidth > chartRect.width) {
-        left = targetRect.left - chartRect.left - tooltipEl.offsetWidth - gap;
-      }
+        if (left + tooltipEl.offsetWidth > chartRect.width) {
+          left = targetRect.left - chartRect.left - tooltipEl.offsetWidth - gap;
+        }
 
-      this.tooltip.top = `${top}px`;
-      this.tooltip.left = `${Math.max(gap, left)}px`;
-      this.tooltip.visibility = 'visible';
+        this.tooltip.top = `${top}px`;
+        this.tooltip.left = `${Math.max(gap, left)}px`;
+        this.tooltip.visibility = 'visible';
+      });
     },
     hideTooltip() {
       this.tooltip.visibility = 'hidden';
