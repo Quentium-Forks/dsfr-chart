@@ -362,12 +362,21 @@ export default {
 
                 // Set tooltip content
                 if (tooltipModel.body) {
-                  const titleLines = [this.xparse[0][tooltipModel.dataPoints[0].dataIndex]];
+                  let titleLines = [this.xparse[0][tooltipModel.dataPoints[0].dataIndex]];
+
+                  // Get all xparse values when the yparse value is zero & there is only one dataset
+                  if (this.yparse[0][tooltipModel.dataPoints[0].dataIndex] === 0 && this.yparse.length === 1) {
+                    titleLines = this.xparse[0].filter((_, index) => this.yparse[0][index] === 0);
+                  }
+
+                  // Determine the separator based on the presence of '+' in any title line
+                  const separator = titleLines.some((line) => line.includes('+')) ? ' & ' : ' + ';
+
                   const bodyLines = tooltipModel.body.map((bodyItem) => bodyItem.lines);
 
                   // Set the title in the tooltip header
                   const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                  divDate.innerText = titleLines[0];
+                  divDate.innerText = titleLines.join(separator);
 
                   // Clear the existing tooltip content
                   const divValue = tooltipEl.querySelector('.tooltip_value');
