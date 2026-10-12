@@ -1,36 +1,36 @@
-name: Build HTML docs
+name: Build & deploy HTML docs
 
 on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   docs:
-    name: Deploy docs
+    name: Build & deploy docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
+      - name: Setup Node LTS
+        uses: actions/setup-node@v7
         with:
-          node-version: 'lts/*'
+          node-version: "lts/*"
 
       - name: Install dependencies
         run: npm clean-install
 
-      - name: Build
+      - name: Build docs
         run: npm run build:docs
 
-      - name: Deploy
+      - name: Deploy GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
           force_orphan: true
-          user_name: 'GitHub Action'
-          user_email: 'action@github.com'
-          full_commit_message: 'Update documentation'
+          user_name: "GitHub Action"
+          user_email: "action@github.com"
+          full_commit_message: "Update documentation"
