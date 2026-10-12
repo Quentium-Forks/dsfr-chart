@@ -568,7 +568,7 @@ export default {
               backgroundColor: '#6b6b6b',
               callbacks: {
                 label: (tooltipItems) => this.datasets.map((set) => this.formatNumber(set.data[tooltipItems.dataIndex])),
-                title: (tooltipItems) => tooltipItems[0].label,
+                title: (tooltipItems) => (this.xAxisType === 'category' ? tooltipItems[0].label : this.labels[tooltipItems[0].dataIndex]),
                 labelTextColor: () => this.colorParse,
               },
               external: (context) => {
