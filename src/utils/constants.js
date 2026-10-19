@@ -1,23 +1,3 @@
-export const COLORS_DSFR_V2 = {
-  light: {
-    saphir: '#1D00FF',
-    caramel: '#F48900',
-    coquelicot: '#D80025',
-    emeraude: '#046E5A',
-    sapin: '#09B020',
-    moutarde: '#F9C800',
-    lavande: '#8400D1',
-    guimauve: '#FF53BD',
-    cacao: '#7C5947',
-    ocean: '#007DFA',
-    cannelle: '#FAD5CF',
-    lagon: '#4FCCFF',
-    fougere: '#A4CE0C',
-    citron: '#FEF300',
-    ardoise: '#A5B2C9',
-  },
-};
-
 export const COLORS_DSFR_V1 = {
   light: {
     france: '#6A6AF4',
@@ -85,13 +65,6 @@ export const COLORS_CHARTS = {
 };
 
 export const COLOR_SETS = {
-  dsfrV2: {
-    palette: COLORS_DSFR_V2,
-    default: COLORS_DSFR_V2.light.saphir,
-    gradient_start: COLORS_DSFR_V2.light.saphir,
-    gradient_end: COLORS_DSFR_V2.light.lagon,
-    themed: false,
-  },
   dsfrV1: {
     palette: COLORS_DSFR_V1,
     default: COLORS_DSFR_V1.light.france,
@@ -108,7 +81,7 @@ export const COLOR_SETS = {
   },
 };
 
-export const COLOR_SET = COLOR_SETS.dsfrV2;
+export const COLOR_SET = COLOR_SETS.charts;
 
 export const FRANCE = [
   {
