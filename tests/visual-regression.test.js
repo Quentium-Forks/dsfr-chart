@@ -1,24 +1,18 @@
 // This test require the project to be build and storybook running to work
 
 import { test, expect } from '@playwright/test';
-import { readdirSync } from 'fs';
+import { basename } from 'node:path';
 
 // Small hack because page.waitForSelector is not working with storybook
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
-const stories = await Promise.all(
-  readdirSync('src/stories')
-    .filter((file) => file.endsWith('.stories.js'))
-    .map(async (file) => ({
-      name: file.split('.')[0],
-      paths: Object.keys(await import(`../src/stories/${file}`))
-        .filter((x) => x !== 'default')
-        .map((exported) => ({
-          name: exported,
-          url: `/?path=/story/stories-${file.split('.')[0].toLowerCase()}--${exported}`,
-        })),
-    })),
-);
+const storyIndex = await fetch('http://localhost:6006/index.json').then((response) => response.json());
+const stories = Object.values(storyIndex.entries)
+  .filter((entry) => entry.type === 'story')
+  .map((entry) => ({
+    name: basename(entry.importPath).split('.')[0],
+    paths: [{ name: entry.name, url: `/?path=/story/${entry.id}` }],
+  }));
 
 test.describe('Charts visual regression', () => {
   stories.forEach((story) => {
@@ -26,7 +20,7 @@ test.describe('Charts visual regression', () => {
       test(`${story.name} - ${path.name}`, async ({ page, browserName }) => {
         await page.goto(path.url);
         await page.setViewportSize({ width: 1920, height: 1080 });
-        await sleep(3000);
+        await sleep(5000);
 
         const graph = page.locator('#storybook-preview-iframe');
 
