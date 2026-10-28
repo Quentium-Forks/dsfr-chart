@@ -7,7 +7,7 @@
       <li><code>categorical</code> : Palette catégorielle par défaut.</li>
       <li><code>gradient</code> : Palette dégradée.</li>
     </ul>
-    <p>Puis personnalisez si besoin, les couleurs utilisées par la palette choisie avec les noms des couleurs DSFR 2 :</p>
+    <p>Puis personnalisez si besoin, les couleurs utilisées par la palette choisie avec les noms des couleurs de la palette :</p>
     <ul>
       <li><code>['cacao', 'coquelicot', 'caramel', 'citron']</code> pour avoir une palette catégorielle sur un ton automne.</li>
       <li><code>['lagon']</code> pour une représentation ayant un seul dataset en cyan.</li>

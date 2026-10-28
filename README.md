@@ -129,7 +129,7 @@ Les graphiques en ligne sont accessibles à travers la balise : `<line-chart>`.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
   - `'gradient'` : Palette dégradée.
-- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs d'une palette pour le graphique. Par défaut, les couleurs sont dans un ordre prédéfini.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
   - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
@@ -249,7 +249,7 @@ Les graphiques en barre sont accessibles à travers la balise : `<bar-chart>`.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
   - `'gradient'` : Palette dégradée.
-- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs d'une palette pour le graphique. Par défaut, les couleurs sont dans un ordre prédéfini.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
   - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
@@ -408,7 +408,7 @@ Les graphiques en ligne et barres sont accessibles à travers la balise : `<bar-
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
   - `'gradient'` : Palette dégradée.
-- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs d'une palette pour le graphique. Par défaut, les couleurs sont dans un ordre prédéfini.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
   - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
@@ -451,7 +451,7 @@ Les diagrammes circulaires sont accessibles à travers la balise : `<pie-chart>`
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
   - `'gradient'` : Palette dégradée.
-- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs d'une palette pour le graphique. Par défaut, les couleurs sont dans un ordre prédéfini.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
   - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
@@ -530,7 +530,7 @@ Les cartes sont accessibles à travers la balise : `<map-chart>`.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
   - `'gradient'` : Palette dégradée.
-- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs d'une palette pour le graphique. Par défaut, les couleurs sont dans un ordre prédéfini.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
   - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
@@ -744,7 +744,7 @@ Les nuages de points sont accessibles à travers la balise : `<scatter-chart>`.
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
   - `'gradient'` : Palette dégradée.
-- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs d'une palette pour le graphique. Par défaut, les couleurs sont dans un ordre prédéfini.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
   - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
@@ -821,7 +821,7 @@ Les diagrammes en étoile (ou RadarChart) sont accessibles à travers la balise 
 - **palette-type** : _(String)_ Permet de choisir le type de palette utilisée pour le graphique. Les valeurs possibles sont :
   - `'categorical'` : Palette catégorielle par défaut.
   - `'gradient'` : Palette dégradée.
-- **palette-colors** : _(List)_ Permet de choisir les couleurs DSFR 2 pour le graphique. Par défaut, les couleurs sont bleu.
+- **palette-colors** : _(List)_ Permet de choisir les couleurs d'une palette pour le graphique. Par défaut, les couleurs sont dans un ordre prédéfini.
   - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
   - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
   - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
@@ -1091,7 +1091,7 @@ Dans DSFR Chart, le paramètre `palette-type` vous permet de choisir un type de 
 - `'categorical'` : Palette catégorielle par défaut.
 - `'gradient'` : Palette dégradée.
 
-Puis personnalisez si besoin, les couleurs utilisées par la palette choisie avec les noms des couleurs DSFR 2 :
+Puis personnalisez si besoin, les couleurs utilisées par la palette choisie avec les noms des couleurs :
 
 - `['cacao', 'coquelicot', 'caramel', 'citron']` : pour avoir une palette catégorielle sur un ton automne.
 - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
