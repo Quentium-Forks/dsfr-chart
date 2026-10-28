@@ -93,11 +93,11 @@
 </template>
 
 <script>
-import { Chart, LineController, LineElement } from 'chart.js';
+import { BarController, BarElement, Chart, LineController, LineElement } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { getColors } from '@/utils/colors.js';
 
-Chart.register(LineController, LineElement);
+Chart.register(BarController, BarElement, LineController, LineElement);
 
 export default {
   name: 'BarLineChart',

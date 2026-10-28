@@ -88,11 +88,11 @@
 </template>
 
 <script>
-import { Chart, ScatterController } from 'chart.js';
+import { Chart, LineElement, ScatterController } from 'chart.js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { getColors } from '@/utils/colors.js';
 
-Chart.register(ScatterController);
+Chart.register(LineElement, ScatterController);
 
 export default {
   name: 'ScatterChart',

@@ -52,12 +52,12 @@
 </template>
 
 <script>
-import { Chart, RadarController, RadialLinearScale } from 'chart.js';
+import { Chart, LineElement, RadarController, RadialLinearScale } from 'chart.js';
 import chroma from 'chroma-js';
 import { chartMixins, configureChartDefaults } from '@/utils/global.js';
 import { getColors } from '@/utils/colors.js';
 
-Chart.register(RadarController, RadialLinearScale);
+Chart.register(LineElement, RadarController, RadialLinearScale);
 
 export default {
   name: 'RadarChart',
