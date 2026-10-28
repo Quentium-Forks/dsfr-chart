@@ -88,7 +88,7 @@
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur basse"
-          :color="COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light['terre-battue'] || COLOR_SET.palette.light.terrible"
+          :color="COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.terrible"
         />
       </div>
     </div>
