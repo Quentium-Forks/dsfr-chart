@@ -4,7 +4,7 @@ export default {
   component: 'map-chart',
 };
 
-export const Departemental = {
+export const Departmental = {
   args: chartData.mapChart.departments,
   argTypes: {
     date: {
@@ -15,6 +15,24 @@ export const Departemental = {
 
 export const Regional = {
   args: chartData.mapChart.regions,
+  argTypes: {
+    date: {
+      control: 'text',
+    },
+  },
+};
+
+export const Academic = {
+  args: chartData.mapChart.academies,
+  argTypes: {
+    date: {
+      control: 'text',
+    },
+  },
+};
+
+export const World = {
+  args: chartData.mapChart.world,
   argTypes: {
     date: {
       control: 'text',
