@@ -465,6 +465,10 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
+      if (!this.chart) {
+        return;
+      }
+
       this.loadColors();
 
       // Mise à jour des couleurs dans le graphique

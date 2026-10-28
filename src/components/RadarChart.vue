@@ -265,6 +265,10 @@ export default {
       this.colorHover = colors.hover;
     },
     changeColors(theme) {
+      if (!this.chart) {
+        return;
+      }
+
       this.loadColors();
 
       // Mise à jour des couleurs dans le graphique

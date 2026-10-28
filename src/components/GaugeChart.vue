@@ -304,6 +304,10 @@ export default {
       this.getData();
     },
     changeColors(theme) {
+      if (!this.chart) {
+        return;
+      }
+
       this.loadColors();
     },
     displayTooltip(e, index) {
