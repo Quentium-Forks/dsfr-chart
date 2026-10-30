@@ -13,9 +13,21 @@
       <div class="fr-col-12">
         <div class="chart">
           <div class="tooltip">
-            <div class="tooltip_header fr-text--sm fr-mb-0" />
+            <div class="tooltip_header fr-text--sm fr-mb-0">{{ tooltipTitle }}</div>
             <div class="tooltip_body">
-              <div class="tooltip_value" />
+              <div class="tooltip_value">
+                <div
+                  v-for="(item, index) in tooltipValues"
+                  :key="index"
+                  class="tooltip_value-content"
+                >
+                  <span
+                    class="tooltip_dot"
+                    :style="{ backgroundColor: item.color }"
+                  />
+                  <p class="tooltip_place fr-mb-0">{{ item.value }}</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -155,6 +167,8 @@ export default {
       chartId: '',
       selectedIndex: -1,
       datasets: [],
+      tooltipTitle: '',
+      tooltipValues: [],
       labels: [],
       xparse: [],
       yparse: [],
@@ -362,14 +376,10 @@ export default {
                   const bodyLines = tooltipModel.body.map((bodyItem) => bodyItem.lines);
 
                   // Set the title in the tooltip header
-                  const divDate = tooltipEl.querySelector('.tooltip_header.fr-text--sm.fr-mb-0');
-                  divDate.innerText = titleLines[0];
-
-                  // Clear the existing tooltip content
-                  const divValue = tooltipEl.querySelector('.tooltip_value');
-                  divValue.innerHTML = '';
+                  this.tooltipTitle = titleLines[0];
 
                   // Iterate over bodyLines to set the color and value in the tooltip
+                  const tooltipValues = [];
                   bodyLines[0].forEach((line, i) => {
                     if (line && line !== 'NaN' && tooltipModel.dataPoints[i]) {
                       const { datasetIndex, dataIndex } = tooltipModel.dataPoints[i];
@@ -378,45 +388,39 @@ export default {
 
                       const displayValue = `${line}${this.unitTooltip ? ` ${this.unitTooltip}` : ''}`;
 
-                      divValue.innerHTML += `
-                        <div class="tooltip_value-content">
-                          <span class="tooltip_dot" data-color="${color}"></span>
-                          <p class="tooltip_place fr-mb-0">${displayValue}</p>
-                        </div>
-                      `;
-
-                      divValue.querySelectorAll('.tooltip_dot').forEach((dot) => {
-                        dot.style.backgroundColor = dot.getAttribute('data-color');
-                      });
+                      tooltipValues.push({ color, value: displayValue });
                     }
                   });
+                  this.tooltipValues = tooltipValues;
                 }
 
                 // Position the tooltip
-                const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
+                this.$nextTick(() => {
+                  const { offsetLeft: positionX, offsetTop: positionY } = this.chart.canvas;
 
-                const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
-                const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
+                  const canvasWidth = Number(this.chart.canvas.style.width.replace(/\D/g, ''));
+                  const canvasHeight = Number(this.chart.canvas.style.height.replace(/\D/g, ''));
 
-                let tooltipX = positionX + tooltipModel.caretX + 10;
-                let tooltipY = positionY + tooltipModel.caretY - 20;
-                if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
-                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
-                }
-                if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
-                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 20;
-                }
-                if (tooltipX < positionX) {
-                  tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
-                  tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
-                }
+                  let tooltipX = positionX + tooltipModel.caretX + 10;
+                  let tooltipY = positionY + tooltipModel.caretY - 20;
+                  if (tooltipX + tooltipEl.clientWidth > positionX + canvasWidth) {
+                    tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth - 10;
+                  }
+                  if (tooltipY + tooltipEl.clientHeight > positionY + 0.9 * canvasHeight) {
+                    tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight + 20;
+                  }
+                  if (tooltipX < positionX) {
+                    tooltipX = positionX + tooltipModel.caretX - tooltipEl.clientWidth / 2;
+                    tooltipY = positionY + tooltipModel.caretY - tooltipEl.clientHeight - 20;
+                  }
 
-                tooltipEl.style.position = 'absolute';
-                tooltipEl.style.padding = `${tooltipModel.padding}px ${tooltipModel.padding}px`;
-                tooltipEl.style.pointerEvents = 'none';
-                tooltipEl.style.left = `${tooltipX}px`;
-                tooltipEl.style.top = `${tooltipY}px`;
-                tooltipEl.style.visibility = 'visible';
+                  tooltipEl.style.position = 'absolute';
+                  tooltipEl.style.padding = `${tooltipModel.padding}px ${tooltipModel.padding}px`;
+                  tooltipEl.style.pointerEvents = 'none';
+                  tooltipEl.style.left = `${tooltipX}px`;
+                  tooltipEl.style.top = `${tooltipY}px`;
+                  tooltipEl.style.visibility = 'visible';
+                });
               },
             },
           },
