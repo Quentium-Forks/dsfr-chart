@@ -91,7 +91,6 @@
 <script setup>
 import { chartData } from '@/components/doc/data.js';
 import BarChart from '../BarChart.vue';
-import GaugeChart from '../GaugeChart.vue';
 import TableChart from '../TableChart.vue';
 import CodeBlock from './CodeBlock.vue';
 </script>

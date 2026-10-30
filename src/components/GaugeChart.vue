@@ -83,8 +83,8 @@
           </div>
 
           <div
-            v-else
             v-for="(percentage, index) in percentagesParse"
+            v-else
             :key="index"
             class="gauge-container fr-mb-4v"
           >
@@ -303,6 +303,7 @@ export default {
     createChart() {
       this.getData();
     },
+    // eslint-disable-next-line no-unused-vars
     changeColors(theme) {
       if (!this.chart) {
         return;
