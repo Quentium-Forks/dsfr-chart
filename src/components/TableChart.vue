@@ -57,14 +57,12 @@
                     v-for="(rowItem, rowIndex) in lineParse"
                     :key="rowIndex"
                   >
-                    <!-- eslint-disable vue/no-v-html -->
                     <td
                       v-for="(cellItem, cellIndex) in rowItem"
                       :key="cellIndex"
                       :class="getClass(cellItem)"
-                      v-html="cellItem"
+                      v-html="sanitize(cellItem)"
                     />
-                    <!-- eslint-enable vue/no-v-html -->
                   </tr>
                 </tbody>
               </table>

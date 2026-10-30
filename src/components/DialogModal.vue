@@ -26,8 +26,7 @@
                 <span class="fr-icon-arrow-right-line fr-icon--lg" />
                 {{ modalTitle }}
               </h1>
-              <!-- eslint-disable-next-line vue/no-v-html -->
-              <div v-html="modalContent" />
+              <div v-html="sanitize(modalContent)" />
             </div>
           </div>
         </div>
@@ -37,6 +36,8 @@
 </template>
 
 <script setup>
+import { sanitize } from '@/utils/global.js';
+
 defineProps({
   modalId: {
     type: String,

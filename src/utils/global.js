@@ -1,5 +1,6 @@
 import { CategoryScale, Chart, Filler, LinearScale, PointElement, Tooltip } from 'chart.js';
 import { FRANCE, WORLD } from '@/utils/constants.js';
+import DOMPurify from 'dompurify';
 
 Chart.register(Tooltip, Filler, LinearScale, CategoryScale, PointElement);
 
@@ -21,6 +22,17 @@ export const slugify = (string) =>
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9]/g, '-')
     .toLowerCase();
+
+/**
+ * Sanitize a string to allow only specific HTML tags and attributes
+ * @param {string} string The string to sanitize
+ * @returns {string} The sanitized string
+ */
+export const sanitize = (string) =>
+  DOMPurify.sanitize(string, {
+    ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a', 'p', 'span', 'ul', 'ol', 'li', 'br'],
+    ALLOWED_ATTR: ['href', 'target', 'rel', 'class', 'aria-label'],
+  });
 
 /**
  * Converts a number to a human-readable french format
@@ -159,6 +171,7 @@ export const chartMixins = {
   methods: {
     capitalize,
     formatNumber,
+    sanitize,
   },
 };
 

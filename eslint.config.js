@@ -38,6 +38,7 @@ export default [
     },
     rules: {
       'vue/no-v-html': 'off',
+      'vue/no-v-text-v-html-on-component': 'off',
     },
   },
 
