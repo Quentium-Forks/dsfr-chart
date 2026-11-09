@@ -167,7 +167,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { chartExamples } from './charts.js';
 import Intro from './Intro.vue';
 import CodeBlock from './CodeBlock.vue';
@@ -182,7 +182,15 @@ const PALETTE_LABELS = {
 };
 
 const currentPage = ref(window.location.hash.slice(1));
-window.addEventListener('hashchange', () => {
+const handleHashChange = () => {
   currentPage.value = window.location.hash.slice(1);
+};
+
+onMounted(() => {
+  window.addEventListener('hashchange', handleHashChange);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('hashchange', handleHashChange);
 });
 </script>

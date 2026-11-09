@@ -307,13 +307,10 @@ export default {
       }
     }
 
-    document.documentElement.addEventListener('dsfr.theme', (e) => {
-      if (this.chartId !== '') {
-        this.changeColors(e.detail.theme);
-      }
-    });
+    document.documentElement.addEventListener('dsfr.theme', this.changeColors);
   },
   beforeUnmount() {
+    document.documentElement.removeEventListener('dsfr.theme', this.changeColors);
     if (this._targetObserver) {
       this._targetObserver.disconnect();
     }
@@ -711,11 +708,12 @@ export default {
         },
       });
     },
-    changeColors(theme) {
+    changeColors(e) {
       if (!this.chart) {
         return;
       }
 
+      const theme = e.detail.theme;
       this.loadColors();
 
       // Mise à jour des couleurs dans le graphique

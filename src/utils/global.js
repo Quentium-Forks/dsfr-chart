@@ -1,6 +1,7 @@
 import { CategoryScale, Chart, Filler, LinearScale, PointElement, Tooltip } from 'chart.js';
-import { FRANCE, WORLD } from '@/utils/constants.js';
 import DOMPurify from 'dompurify';
+
+import { FRANCE, WORLD } from '@/utils/constants.js';
 
 Chart.register(Tooltip, Filler, LinearScale, CategoryScale, PointElement);
 

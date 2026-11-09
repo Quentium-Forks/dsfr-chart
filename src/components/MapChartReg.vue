@@ -260,13 +260,10 @@ export default {
       }
     }
 
-    document.documentElement.addEventListener('dsfr.theme', (e) => {
-      if (this.widgetId !== '') {
-        this.changeColors(e.detail.theme);
-      }
-    });
+    document.documentElement.addEventListener('dsfr.theme', this.changeColors);
   },
   beforeUnmount() {
+    document.documentElement.removeEventListener('dsfr.theme', this.changeColors);
     if (this._targetObserver) {
       this._targetObserver.disconnect();
     }
@@ -470,7 +467,12 @@ export default {
       this.zoomDep = '';
       this.createChart();
     },
-    changeColors(theme) {
+    changeColors(e) {
+      if (this.widgetId === '') {
+        return;
+      }
+
+      const theme = e.detail.theme;
       if (theme === 'light') {
         this.dromColor = '#6b6b6b';
         this.MapProps.colorStroke = '#FFFFFF';
