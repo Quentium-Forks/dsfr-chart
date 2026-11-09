@@ -1,4 +1,5 @@
 import chroma from 'chroma-js';
+
 import { COLOR_SET } from '@/utils/constants.js';
 
 export const getColorName = (colorValue) => Object.entries(COLOR_SET.palette.light).find(([, value]) => value === colorValue)?.[0] ?? colorValue;

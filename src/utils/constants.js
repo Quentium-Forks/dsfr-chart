@@ -69,7 +69,7 @@ export const COLOR_SETS = {
     palette: COLORS_DSFR_V1,
     default: COLORS_DSFR_V1.light.france,
     gradient_start: COLORS_DSFR_V1.light.france,
-    gradient_end: COLORS_DSFR_V1.light.archipel,
+    gradient_end: COLORS_DSFR_V1.light.marianne,
     themed: false,
   },
   charts: {

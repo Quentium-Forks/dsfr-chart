@@ -247,7 +247,7 @@ export default {
     },
     paletteColors: {
       type: [Array, String],
-      default: () => [getColorName(COLOR_SET.palette.light.lagon || COLOR_SET.palette.light.france || COLOR_SET.palette.light.gradient1), getColorName(COLOR_SET.palette.light.saphir || COLOR_SET.palette.light.archipel || COLOR_SET.palette.light.gradient2)],
+      default: () => [getColorName(COLOR_SET.gradient_start), getColorName(COLOR_SET.gradient_end)],
       validator: (value) => {
         const colorNames = getColors(0, 'keys');
         const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;

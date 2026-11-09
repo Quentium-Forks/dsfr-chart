@@ -61,7 +61,7 @@ export const chartData = {
       name: '["Tout à fait satisfait", "Plutôt satisfait", "Plutôt pas satisfait", "Pas du tout satisfait"]',
       stacked: true,
       paletteType: 'gradient',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.fougere || COLOR_SET.palette.light.bourgeon || COLOR_SET.palette.light.good)}", "${getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.terrible)}"]`,
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.good)}", "${getColorName(COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.marianne || COLOR_SET.palette.light.terrible)}"]`,
       unitTooltip: '%',
     },
     drilldown: {
@@ -163,7 +163,7 @@ export const chartData = {
       name: '["Domaines .gouv.fr", "Domaines .fr", "Domaines .org", "Domaines divers"]',
       stacked: true,
       paletteType: 'gradient',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}"]`,
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}"]`,
     },
   },
   mapChart: {
@@ -185,7 +185,7 @@ export const chartData = {
       name: 'Nom de l’indicateur',
       level: 'dep',
       date: '11/02/2025',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.terrible)}", "${getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}"]`,
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.marianne || COLOR_SET.palette.light.terrible)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}"]`,
     },
     regions: {
       data: `{"ARA": 32, "BFC": 8, "BRE": 38, "CVL": 12, "GES": 67, "HDF": 89, "IDF": 0,
@@ -207,7 +207,7 @@ export const chartData = {
       name: 'Nom de l’indicateur',
       level: 'aca',
       date: '11/02/2025',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.terrible)}"]`,
+      paletteColors: `["${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.marianne || COLOR_SET.palette.light.terrible)}"]`,
     },
     world: {
       data: `{"AE": 35, "AF": 65, "AL": 28, "AM": 9, "AO": 21, "AR": 71, "AT": 79, "AU": 17, "AZ": 76,
