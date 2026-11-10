@@ -134,7 +134,7 @@ export const chartData = {
       name: '["Voiture et deux-roues motorisés", "Transports en commun", "Marche à pied", "Pas de déplacement", "Vélo"]',
       unitTooltip: '%',
       paletteType: 'gradient',
-      paletteColors: `["${getColorName(colorSet.gradient_start)}", "${getColorName(colorSet.gradient_end)}"]`,
+      paletteColors: `["${getColorName(colorSet.gradient_end)}", "${getColorName(colorSet.gradient_start)}"]`,
     },
     drilldown: {
       x: '[["Google", "Apple", "Mozilla", "Microsoft", "Opera"]]',
