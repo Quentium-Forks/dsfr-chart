@@ -197,8 +197,6 @@ import maps from '@/components/maps';
 import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
 import { getColorSet, getColors, getColorName } from '@/utils/colors.js';
 
-const colorSet = getColorSet();
-
 export default {
   name: 'MapChart',
   components: {
@@ -248,7 +246,10 @@ export default {
     },
     paletteColors: {
       type: [Array, String],
-      default: () => [getColorName(colorSet.gradient_start), getColorName(colorSet.gradient_end)],
+      default: () => {
+        const colorSet = getColorSet();
+        return [getColorName(colorSet.gradient_start), getColorName(colorSet.gradient_end)];
+      },
       validator: (value) => {
         const colorNames = getColors(0, 'keys');
         const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;
