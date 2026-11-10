@@ -458,7 +458,13 @@ export default {
       this.tooltip.left = `${Math.max(gap, left)}px`;
       this.tooltip.visibility = 'visible';
     },
-    hideTooltip() {
+    hideTooltip(e) {
+      const parentWidget = this.$refs[this.widgetId];
+      const hoverElement = e.target.className.baseVal;
+
+      const elCol = parentWidget.getElementsByClassName(hoverElement);
+      elCol[0].style.opacity = '';
+
       this.tooltip.visibility = 'hidden';
     },
     changeGeoLevel(e) {
