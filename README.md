@@ -99,6 +99,18 @@ import '@gouvfr/dsfr-chart/BarChart';
 import '@gouvfr/dsfr-chart/BarChart.css'; // Ou '@gouvfr/dsfr-chart/BarChart/css'
 ```
 
+#### Choix de la palette globale
+
+La palette `charts` est utilisée par défaut. Vous pouvez choisir la palette DSFR v1 avant de créer vos graphiques :
+
+```javascript
+import { setColorSet } from '@gouvfr/dsfr-chart';
+
+setColorSet('dsfrV1');
+```
+
+Pour une importation d’un seul graphique, importez `setColorSet` depuis son entrée, par exemple `@gouvfr/dsfr-chart/LineChart`. Pour rétablir la palette par défaut, utilisez `setColorSet('charts')`. Le changement s’applique aux graphiques créés ensuite ; les graphiques déjà affichés doivent être recréés.
+
 #### ⚠️ Important : Si vous importez plus que deux composants, il est préférable d'importer toute la librairie `dsfr-chart` pour éviter de charger plusieurs fois les moteurs de rendu de Vue.js & Chart.js, etc.
 
 # Graphiques disponibles
@@ -1097,6 +1109,17 @@ Puis personnalisez si besoin, les couleurs utilisées par la palette choisie ave
 - `['lagon']` : pour une représentation ayant un seul dataset en cyan.
 - `['guimauve', 'lavande']` : pour une palette dégradée du rose vers le violet.
 - `['sapin', 'citron', 'coquelicot']` : pour une palette dégradée divergente.
+
+La palette globale utilisée par défaut est `charts`. Vous pouvez choisir la palette `dsfrV1` pour l’ensemble des graphiques en appelant `setColorSet` avant leur création, par exemple dans le point d’entrée de votre application Vue :
+
+```js
+import { getColorSet, setColorSet } from '@gouvfr/dsfr-chart';
+
+setColorSet('dsfrV1');
+const activeColorSet = getColorSet();
+```
+
+`getColorSet()` retourne l’objet de la palette actuellement active, avec notamment ses couleurs (`palette`), ses bornes de dégradé (`gradient_start` et `gradient_end`) et sa configuration de thème. Utilisez `setColorSet('charts')` pour rétablir la palette par défaut. Ce choix s’applique aux graphiques créés ensuite ; les graphiques déjà affichés doivent être recréés.
 
 ### Graphiques catégoriels (par défaut)
 

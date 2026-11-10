@@ -118,8 +118,9 @@ import chroma from 'chroma-js';
 import MapInfo from '@/components/MapInfo.vue';
 import maps from '@/components/maps';
 import { formatNumber, isMobile, mapMixins } from '@/utils/global.js';
-import { getColors, getColorName } from '@/utils/colors.js';
-import { COLOR_SET } from '@/utils/constants.js';
+import { getColorSet, getColors, getColorName } from '@/utils/colors.js';
+
+const colorSet = getColorSet();
 
 export default {
   name: 'MapChartReg',
@@ -170,7 +171,7 @@ export default {
     },
     paletteColors: {
       type: [Array, String],
-      default: () => [getColorName(COLOR_SET.gradient_start), getColorName(COLOR_SET.gradient_end)],
+      default: () => [getColorName(colorSet.gradient_start), getColorName(colorSet.gradient_end)],
       validator: (value) => {
         const colorNames = getColors(0, 'keys');
         const colorsToCheck = typeof value === 'string' ? JSON.parse(value) : value;

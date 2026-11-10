@@ -15,6 +15,8 @@ import RadarChart from '@/components/RadarChart.vue';
 import ScatterChart from '@/components/ScatterChart.vue';
 import TableChart from '@/components/TableChart.vue';
 
+export { getColorSet, setColorSet } from '@/utils/colors.js';
+
 customElements.define('data-box', defineCustomElement(DataBox, { shadowRoot: false }));
 
 customElements.define('bar-chart', defineCustomElement(BarChart, { shadowRoot: false }));

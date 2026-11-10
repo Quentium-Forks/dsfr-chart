@@ -15,18 +15,21 @@
       <li><code>['sapin', 'citron', 'coquelicot']</code> pour une palette dégradée divergente.</li>
     </ul>
 
+    <span class="fr-icon-palette-line fr-mr-2v"></span><b>Changement de set de couleurs</b>
+    <p>La palette active peut être définie globalement avec <code>setColorSet('dsfrV1')</code> ou <code>setColorSet('charts')</code> <i>(charts par défaut)</i>. La fonction <code>getColorSet()</code> retourne l’objet de la palette sélectionnée, notamment ses couleurs, ses bornes de dégradé et sa configuration de thème.</p>
+
     <h3>Graphiques catégoriels (par défaut)</h3>
     <p>Lorsque les formes du graphique doivent être différenciées par des couleurs mais que celles-ci ne sont pas porteuses de sens supplémentaire que la catégorisation, la palette catégorielle doit être utilisée avec la valeur <code>categorical</code> (non obligatoire car par défaut).</p>
     <p>Il est conseillé de ne pas représenter plus de 8 catégories, car cela nuirait à la compréhension de l’utilisateur. Au-delà de ce nombre, il conviendra de rassembler les dernières catégories dans un ensemble “Autres”.</p>
     <div class="fr-grid-row fr-grid-row--gutters fr-mb-6v">
       <div
-        v-for="color in Object.keys(COLOR_SET.palette.light)"
+        v-for="color in Object.keys(colorSet.palette.light)"
         :key="color"
         class="fr-col-6 fr-col-md-4"
       >
         <ColorCard
           :title="color"
-          :color="COLOR_SET.palette.light[color]"
+          :color="colorSet.palette.light[color]"
         />
       </div>
     </div>
@@ -38,13 +41,13 @@
       <div class="fr-col-6 fr-col-md-4">
         <ColorCard
           title="Couleur de départ"
-          :color="COLOR_SET.gradient_start"
+          :color="colorSet.gradient_start"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur d’arrivée"
-          :color="COLOR_SET.gradient_end"
+          :color="colorSet.gradient_end"
         />
       </div>
     </div>
@@ -57,13 +60,13 @@
       <div class="fr-col-6 fr-col-md-4">
         <ColorCard
           title="Couleur de départ"
-          :color="COLOR_SET.palette.light.guimauve || COLOR_SET.palette.light.macaron || COLOR_SET.palette.light.categorical7"
+          :color="colorSet.palette.light.guimauve || colorSet.palette.light.macaron || colorSet.palette.light.categorical7"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur d’arrivée"
-          :color="COLOR_SET.palette.light.lavande || COLOR_SET.palette.light.glycine || COLOR_SET.palette.light.categorical6"
+          :color="colorSet.palette.light.lavande || colorSet.palette.light.glycine || colorSet.palette.light.categorical6"
         />
       </div>
     </div>
@@ -76,19 +79,19 @@
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur haute"
-          :color="COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent"
+          :color="colorSet.palette.light.sapin || colorSet.palette.light.emeraude || colorSet.palette.light.excellent"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur médiane"
-          :color="COLOR_SET.palette.light.citron || COLOR_SET.palette.light.tournesol || COLOR_SET.palette.light.average"
+          :color="colorSet.palette.light.citron || colorSet.palette.light.tournesol || colorSet.palette.light.average"
         />
       </div>
       <div class="fr-col fr-col-md-4">
         <ColorCard
           title="Couleur basse"
-          :color="COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.terrible"
+          :color="colorSet.palette.light.coquelicot || colorSet.palette.light.tuile || colorSet.palette.light.terrible"
         />
       </div>
     </div>
@@ -97,7 +100,9 @@
 
 <script setup>
 import ColorCard from './ColorCard.vue';
-import { COLOR_SET } from '@/utils/constants.js';
+import { getColorSet } from '@/utils/colors.js';
+
+const colorSet = getColorSet();
 </script>
 
 <style scoped>

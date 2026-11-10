@@ -1,5 +1,6 @@
-import { COLOR_SET } from '@/utils/constants.js';
-import { getColorName } from '@/utils/colors.js';
+import { getColorName, getColorSet } from '@/utils/colors.js';
+
+const colorSet = getColorSet();
 
 export const chartData = {
   lineChart: {
@@ -34,17 +35,17 @@ export const chartData = {
       x: '[["15 à 29 ans", "30 à 44 ans", "45 à 59 ans", "60 à 74 ans", "75 ans ou plus"]]',
       y: '[[75.4, 80.5, 66.8, 43.4, 12.1]]',
       name: '["Achat sur internet au cours des 12 derniers mois (%)"]',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}"]`,
+      paletteColors: `["${getColorName(colorSet.palette.light.moutarde || colorSet.palette.light.average)}"]`,
       unitTooltip: '%',
       highlightIndex: '[3, 4]',
-      highlightColor: getColorName(COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.bad),
+      highlightColor: getColorName(colorSet.palette.light.caramel || colorSet.palette.light.bad),
     },
     gradient: {
       x: '[["Nouvelle-Aquitaine", "Hauts-de-France", "Bourgogne-Franche-Comté", "Auvergne-Rhône-Alpes", "Normandie", "Bretagne", "Pays de la Loire", "Occitanie", "Grand Est", "Centre-Val de Loire", "Île-de-France", "Provence-Alpes-Côte d’Azur", "Corse"]]',
       y: '[[1071, 927, 921, 850, 845, 838, 821, 793, 789, 771, 734, 485, 482]]',
       name: '["Hauteur des précipitations (en mm)"]',
       paletteType: 'gradient',
-      paletteColors: `["${getColorName(COLOR_SET.gradient_start)}", "${getColorName(COLOR_SET.gradient_end)}"]`,
+      paletteColors: `["${getColorName(colorSet.gradient_start)}", "${getColorName(colorSet.gradient_end)}"]`,
       unitTooltip: 'mm',
     },
     horizontal: {
@@ -61,7 +62,7 @@ export const chartData = {
       name: '["Tout à fait satisfait", "Plutôt satisfait", "Plutôt pas satisfait", "Pas du tout satisfait"]',
       stacked: true,
       paletteType: 'gradient',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.good)}", "${getColorName(COLOR_SET.palette.light.tuile || COLOR_SET.palette.light.caramel || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.marianne || COLOR_SET.palette.light.terrible)}"]`,
+      paletteColors: `["${getColorName(colorSet.palette.light.sapin || colorSet.palette.light.emeraude || colorSet.palette.light.excellent)}", "${getColorName(colorSet.palette.light.moutarde || colorSet.palette.light.good)}", "${getColorName(colorSet.palette.light.tuile || colorSet.palette.light.caramel || colorSet.palette.light.average)}", "${getColorName(colorSet.palette.light.coquelicot || colorSet.palette.light.marianne || colorSet.palette.light.terrible)}"]`,
       unitTooltip: '%',
     },
     drilldown: {
@@ -133,7 +134,7 @@ export const chartData = {
       name: '["Voiture et deux-roues motorisés", "Transports en commun", "Marche à pied", "Pas de déplacement", "Vélo"]',
       unitTooltip: '%',
       paletteType: 'gradient',
-      paletteColors: `["${getColorName(COLOR_SET.gradient_start)}", "${getColorName(COLOR_SET.gradient_end)}"]`,
+      paletteColors: `["${getColorName(colorSet.gradient_start)}", "${getColorName(colorSet.gradient_end)}"]`,
     },
     drilldown: {
       x: '[["Google", "Apple", "Mozilla", "Microsoft", "Opera"]]',
@@ -163,7 +164,7 @@ export const chartData = {
       name: '["Domaines .gouv.fr", "Domaines .fr", "Domaines .org", "Domaines divers"]',
       stacked: true,
       paletteType: 'gradient',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}"]`,
+      paletteColors: `["${getColorName(colorSet.palette.light.sapin || colorSet.palette.light.emeraude || colorSet.palette.light.excellent)}", "${getColorName(colorSet.palette.light.moutarde || colorSet.palette.light.average)}"]`,
     },
   },
   mapChart: {
@@ -185,7 +186,7 @@ export const chartData = {
       name: 'Nom de l’indicateur',
       level: 'dep',
       date: '11/02/2025',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.marianne || COLOR_SET.palette.light.terrible)}", "${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.sapin || COLOR_SET.palette.light.emeraude || COLOR_SET.palette.light.excellent)}"]`,
+      paletteColors: `["${getColorName(colorSet.palette.light.coquelicot || colorSet.palette.light.marianne || colorSet.palette.light.terrible)}", "${getColorName(colorSet.palette.light.moutarde || colorSet.palette.light.average)}", "${getColorName(colorSet.palette.light.sapin || colorSet.palette.light.emeraude || colorSet.palette.light.excellent)}"]`,
     },
     regions: {
       data: `{"ARA": 32, "BFC": 8, "BRE": 38, "CVL": 12, "GES": 67, "HDF": 89, "IDF": 0,
@@ -207,7 +208,7 @@ export const chartData = {
       name: 'Nom de l’indicateur',
       level: 'aca',
       date: '11/02/2025',
-      paletteColors: `["${getColorName(COLOR_SET.palette.light.moutarde || COLOR_SET.palette.light.average)}", "${getColorName(COLOR_SET.palette.light.coquelicot || COLOR_SET.palette.light.marianne || COLOR_SET.palette.light.terrible)}"]`,
+      paletteColors: `["${getColorName(colorSet.palette.light.moutarde || colorSet.palette.light.average)}", "${getColorName(colorSet.palette.light.coquelicot || colorSet.palette.light.marianne || colorSet.palette.light.terrible)}"]`,
     },
     world: {
       data: `{"AE": 35, "AF": 65, "AL": 28, "AM": 9, "AO": 21, "AR": 71, "AT": 79, "AU": 17, "AZ": 76,

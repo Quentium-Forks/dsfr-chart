@@ -81,8 +81,6 @@ export const COLOR_SETS = {
   },
 };
 
-export const COLOR_SET = COLOR_SETS.charts;
-
 export const FRANCE = [
   {
     department: 'Ain',
