@@ -320,33 +320,33 @@ export default {
       // Iterate over each department in France and hide
       for (const key of this.getAllDep()) {
         const className = `FR-${key}`;
-        const elCol = parentWidget.getElementsByClassName(className);
+        const mapElements = parentWidget.getElementsByClassName(className);
 
-        if (elCol.length === 0) {
+        if (mapElements.length === 0) {
           console.warn(`L'élément de la carte n'existe pas pour la valeur ${className}, veuillez le supprimer de vos données.`);
           continue;
         }
 
-        elCol[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
+        mapElements[0].setAttribute('fill', 'rgba(255, 255, 255, 0)');
         this.MapProps.displayPath[className] = 'none';
       }
       // Iterate over each department in the region and set colors
       for (const key of listDep) {
         const className = `FR-${key}`;
-        const elCol = parentWidget.getElementsByClassName(className);
+        const mapElements = parentWidget.getElementsByClassName(className);
 
-        if (elCol.length === 0) {
+        if (mapElements.length === 0) {
           console.warn(`L'élément de la carte n'existe pas pour la valeur ${className}, veuillez le supprimer de vos données.`);
           continue;
         }
 
         if (!this.zoomDep) {
           if (listDep.includes(key)) {
-            const polygon = elCol[0].getBBox();
+            const polygon = mapElements[0].getBBox();
             // Reset the fill and stroke for all paths
-            elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
-            elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
-            elCol[0].setAttribute('stroke-width', '0.2%');
+            mapElements[0].setAttribute('fill', colorScale(this.dataParse[key]));
+            mapElements[0].setAttribute('stroke', this.MapProps.colorStroke);
+            mapElements[0].setAttribute('stroke-width', '0.2%');
             this.MapProps.displayPath[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
@@ -354,23 +354,23 @@ export default {
             ymax.push(polygon.y + polygon.height);
           }
         } else if (this.zoomDep === key) {
-          const polygon = elCol[0].getBBox();
+          const polygon = mapElements[0].getBBox();
           // Highlight the selected path with a stroke
-          elCol[0].setAttribute('fill', colorScale(this.dataParse[key]));
-          elCol[0].setAttribute('stroke', '#1212FF');
-          elCol[0].setAttribute('stroke-width', 2);
+          mapElements[0].setAttribute('fill', colorScale(this.dataParse[key]));
+          mapElements[0].setAttribute('stroke', '#1212FF');
+          mapElements[0].setAttribute('stroke-width', 2);
           // Teleport to end of SVG to be on top for stroke
-          elCol[0].parentNode.appendChild(elCol[0]);
+          mapElements[0].parentNode.appendChild(mapElements[0]);
           this.MapProps.displayPath[className] = '';
           xmin.push(polygon.x);
           ymin.push(polygon.y);
           xmax.push(polygon.x + polygon.width);
           ymax.push(polygon.y + polygon.height);
         } else if (listDep.includes(key)) {
-          const polygon = elCol[0].getBBox();
-          elCol[0].setAttribute('fill', colorScale(this.dataParse[key]).alpha(0.6));
-          elCol[0].setAttribute('stroke', this.MapProps.colorStroke);
-          elCol[0].setAttribute('stroke-width', '0.2%');
+          const polygon = mapElements[0].getBBox();
+          mapElements[0].setAttribute('fill', colorScale(this.dataParse[key]).alpha(0.6));
+          mapElements[0].setAttribute('stroke', this.MapProps.colorStroke);
+          mapElements[0].setAttribute('stroke-width', '0.2%');
           this.MapProps.displayPath[className] = '';
           xmin.push(polygon.x);
           ymin.push(polygon.y);
@@ -429,8 +429,8 @@ export default {
       const hoverElement = e.target.className.baseVal;
       const hoverValues = hoverElement.replace('FR-', '').split(' ');
 
-      const elCol = parentWidget.getElementsByClassName(hoverElement);
-      elCol[0].style.opacity = 0.8;
+      const mapElements = parentWidget.getElementsByClassName(hoverElement);
+      mapElements[0].style.opacity = 0.8;
       this.tooltip.value = null;
       for (const hoverValue of hoverValues) {
         if (this.dataParse[hoverValue] !== undefined) {
@@ -462,8 +462,8 @@ export default {
       const parentWidget = this.$refs[this.widgetId];
       const hoverElement = e.target.className.baseVal;
 
-      const elCol = parentWidget.getElementsByClassName(hoverElement);
-      elCol[0].style.opacity = '';
+      const mapElements = parentWidget.getElementsByClassName(hoverElement);
+      mapElements[0].style.opacity = '';
 
       this.tooltip.visibility = 'hidden';
     },
