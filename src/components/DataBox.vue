@@ -231,7 +231,7 @@
         <p class="fr-text--xs fr-mb-0">{{ source }}, {{ date }}</p>
 
         <p
-          v-if="textIa"
+          v-if="textAi"
           class="fr-text--xs fr-mb-0"
         >
           <span
@@ -239,15 +239,15 @@
             aria-disabled="true"
           />
           <a
-            v-if="linkIa"
-            :href="linkIa"
+            v-if="linkAi"
+            :href="linkAi"
             target="_blank"
             rel="noopener noreferrer"
           >
-            {{ textIa }}
+            {{ textAi }}
           </a>
           <span v-else>
-            {{ textIa }}
+            {{ textAi }}
           </span>
         </p>
       </div>
@@ -400,12 +400,12 @@ const props = defineProps({
     type: String,
     required: true,
   },
-  linkIa: {
+  linkAi: {
     type: String,
     default: '',
     validator: (value) => value === '' || /^https?:\/\//.test(value),
   },
-  textIa: {
+  textAi: {
     type: String,
     default: '',
   },
