@@ -346,7 +346,7 @@ export default {
             // Reset the fill and stroke for all paths
             mapElements[0].setAttribute('fill', colorScale(this.dataParse[key]));
             mapElements[0].setAttribute('stroke', this.MapProps.colorStroke);
-            mapElements[0].setAttribute('stroke-width', '0.2%');
+            mapElements[0].setAttribute('stroke-width', '.2%');
             this.MapProps.displayPath[className] = '';
             xmin.push(polygon.x);
             ymin.push(polygon.y);
@@ -358,7 +358,7 @@ export default {
           // Highlight the selected path with a stroke
           mapElements[0].setAttribute('fill', colorScale(this.dataParse[key]));
           mapElements[0].setAttribute('stroke', '#1212FF');
-          mapElements[0].setAttribute('stroke-width', 2);
+          mapElements[0].setAttribute('stroke-width', '.5%');
           // Teleport to end of SVG to be on top for stroke
           mapElements[0].parentNode.appendChild(mapElements[0]);
           this.MapProps.displayPath[className] = '';
@@ -370,7 +370,7 @@ export default {
           const polygon = mapElements[0].getBBox();
           mapElements[0].setAttribute('fill', colorScale(this.dataParse[key]).alpha(0.6));
           mapElements[0].setAttribute('stroke', this.MapProps.colorStroke);
-          mapElements[0].setAttribute('stroke-width', '0.2%');
+          mapElements[0].setAttribute('stroke-width', '.2%');
           this.MapProps.displayPath[className] = '';
           xmin.push(polygon.x);
           ymin.push(polygon.y);
